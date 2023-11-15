@@ -58,6 +58,7 @@ body {
     border: none;
     outline: none;
     border-radius: 7px;
+    cursor: pointer;
 }
 
 .signinBtn {

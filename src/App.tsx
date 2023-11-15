@@ -1,6 +1,6 @@
 import React from 'react'
 import './css/App.css';
-import Layout from './route/layout'
+import Header from './route/header'
 import { Outlet } from 'react-router-dom';
 
 
@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      <Layout/>
+      <Header/>
       <Outlet/>
     </>
   )
