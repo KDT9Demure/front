@@ -3,31 +3,32 @@ import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Signin from './signin'
 import Layout from './layout'
+import Signup from './signup'
 
 
 const router = createBrowserRouter([
   {
-    path:"/",
+    path: "/",
     element: (
-      <Layout/>
+      <Layout />
     )
   },
   {
     path: "/signin",
-    element: <Signin/>
+    element: <Signin />
   },
-  // {
-  //   path: "/signup",
-  //   element: <Signup/>
-  // }
+  {
+    path: "/signup",
+    element: <Signup />
+  }
 ])
 
 function App() {
-  
+
 
   return (
     <div>
-      <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </div>
   )
 }
