@@ -1,13 +1,13 @@
 import React from "react"
 import {Link} from "react-router-dom";
-import styles from "./signin.module.css";
+import styles from "../css/signin.module.css";
 
 export default function Signin() {
 
     return (
-        <>
-            <div className={styles.container}>
-                <div className={styles.wrapper}>
+        <div className={styles.container}>
+            <div className={styles.wrapper}>
+                <div className={styles.main}>
                     <input className={styles.id} placeholder="ID"/>
                     <input className={styles.password} placeholder="Password"/>
                     <button className={styles.signinBtn}>로그인</button>
@@ -18,9 +18,8 @@ export default function Signin() {
                     |
                     <Link className={styles.findPassword} to="#"> 비밀번호 찾기</Link>
                 </div>
-                
             </div>
-        </>
+        </div>
         
     )
 }
