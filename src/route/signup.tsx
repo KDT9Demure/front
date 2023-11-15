@@ -2,6 +2,8 @@ import React, { FC, useRef } from "react"
 
 import { useForm, SubmitHandler } from "react-hook-form"
 
+import styles from "../css/signup.module.css";
+
 interface FormValue {
     id: string
     password: string
@@ -42,9 +44,8 @@ export default function Signup() {
     }
 
     return (
-        <div className="signupContainer">
-            <span className="signupTitle">회원가입</span>
-            <form onSubmit={handleSubmit(onVaild)} className="signupForm">
+        <div className={styles.container}>
+            <form onSubmit={handleSubmit(onVaild)} className={styles.form}>
 
 
                 <input
@@ -52,40 +53,44 @@ export default function Signup() {
                         required: "아이디를 입력해주세요",
                         maxLength: { message: "최대 20자를 넘을 수 없습니다", value: 20 }
                     })}
-                    className="id" placeholder="ID" />
+                    className={styles.id} placeholder="ID" />
                 <br />
-                <span>{errors?.id?.message}</span>
-                <br />
+                <div>
+                    <span>{errors?.id?.message}</span>
+                </div>
 
                 <input
                     {...register("password", {
                         required: "비밀번호를 입력해주세요",
-                        minLength: { message: "비밀번호는 최소 6자, 최대 30자 까지 가능합니다", value: 6 },
-                        maxLength: { message: "비밀번호는 최소 6자, 최대 30자 까지 가능합니다", value: 30 },
+                        minLength: { message: "최소 6자, 최대 30자 까지 가능합니다", value: 6 },
+                        maxLength: { message: "최소 6자, 최대 30자 까지 가능합니다", value: 30 },
                     })}
-                    className="password" placeholder="Password" type="password" />
+                    className={styles.password} placeholder="Password" type="password" />
                 <br />
-                <span>{errors?.password?.message}</span>
-                <br />
+                <div>
+                    <span>{errors?.password?.message}</span>
+                </div>
 
                 <input
                     {...register("confirmPassword", {
                         required: "비밀번호를 한번 더 입력해주세요",
                         validate: { value: (value) => value === passwordRef.current || "비밀번호가 일치하지 않습니다" }
                     })}
-                    className="confirmPassword" placeholder="Confirm Password" type="password" />
+                    className={styles.confirmPassword} placeholder="Confirm Password" type="password" />
                 <br />
-                <span>{errors?.confirmPassword?.message}</span>
-                <br />
+                <div>
+                    <span>{errors?.confirmPassword?.message}</span>
+                </div>
 
                 <input
                     {...register("name", {
                         required: "이름을 입력해주세요"
                     })}
-                    className="name" placeholder="Name" />
+                    className={styles.name} placeholder="Name" />
                 <br />
-                <span>{errors?.name?.message}</span>
-                <br />
+                <div>
+                    <span>{errors?.name?.message}</span>
+                </div>
 
                 <input
                     {...register("email", {
@@ -95,29 +100,33 @@ export default function Signup() {
                             message: "이메일 형식을 확인해 주세요"
                         }
                     })}
-                    className="email" placeholder="Email" type="text" />
+                    className={styles.email} placeholder="Email" type="text" />
                 <br />
-                <span>{errors?.email?.message}</span>
-                <br />
+                <div>
+                    <span>{errors?.email?.message}</span>
+                </div>
 
-                <button className="emailBtn" type="button" onClick={emailCheck} >이메일 인증</button>
+                <button className={styles.emailBtn} type="button" onClick={emailCheck} >이메일 인증</button>
                 <br />
 
                 <input
                     {...register("emailNumber", {
                         required: "인증번호를 확인해주세요"
                     })}
-                    className="emailNumber" placeholder="Author Number" />
+                    className={styles.emailNumber} placeholder="Author Number" maxLength={10} />
 
-                <button className="emailNumberConfirm" type="button" onClick={authorConfirm}>확인</button>
+                <button className={styles.emailNumberConfirmBtn} type="button" onClick={authorConfirm}>확인</button>
                 <br />
-                <span>{errors?.emailNumber?.message}</span>
-                <br />
+                <div>
+                    <span>{errors?.emailNumber?.message}</span>
+                </div>
 
-                <button className="signupBtn">회원가입</button>
+                <button className={styles.signupBtn}>회원가입</button>
 
             </form>
         </div>
 
     )
 }
+
+
