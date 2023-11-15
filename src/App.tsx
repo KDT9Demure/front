@@ -2,16 +2,24 @@ import React from 'react'
 import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Signin from './signin'
-import Layout from './layout'
 import Signup from './signup'
+import Layout from './layout'
+import Home from './Home'
+
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <Layout />
-    )
+      <Layout/>
+    ),
+    children: [
+      {
+        path:"/home",
+        element:<Home/>,
+      }
+    ]
   },
   {
     path: "/signin",
@@ -20,6 +28,7 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />
+
   }
 ])
 
@@ -27,9 +36,9 @@ function App() {
 
 
   return (
-    <div>
-      <RouterProvider router={router} />
-    </div>
+    <>
+      <RouterProvider router={router}/>
+    </>
   )
 }
 
