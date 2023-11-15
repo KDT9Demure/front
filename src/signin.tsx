@@ -1,17 +1,26 @@
 import React from "react"
 import {Link} from "react-router-dom";
+import styles from "./signin.module.css";
 
 export default function Signin() {
 
     return (
-        <div className="signinContainer">
-            <span className="signinTitle">Demure</span>
-            <div className="signinWrapper">
-                <input className="id"/>
-                <input className="password"/>
-                <button className="signBtn">로그인</button>
-                <Link to="/signup">회원가입</Link> | 비밀번호찾기
+        <>
+            <div className={styles.container}>
+                <div className={styles.wrapper}>
+                    <input className={styles.id} placeholder="ID"/>
+                    <input className={styles.password} placeholder="Password"/>
+                    <button className={styles.signinBtn}>로그인</button>
+                    <button className={styles.kakaoBtn}>카카오로 로그인</button>
+                </div>
+                <div className={styles.Link}>
+                    <Link className={styles.signup} to="/signup">회원가입</Link>
+                    |
+                    <Link className={styles.findPassword} to="#"> 비밀번호 찾기</Link>
+                </div>
+                
             </div>
-        </div>
+        </>
+        
     )
 }
