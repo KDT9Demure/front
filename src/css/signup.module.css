@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 16px;
+    width: 400px;
+    height: 550px;
+
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+.form {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px 35px 20px;
+    width: 390px;
+    height: 100%;
+}
+
+.id,
+.password,
+.confirmPassword,
+.name,
+.email,
+.emailNumber {
+    width: 250px;
+    height: 50px;
+    border: none;
+    border-bottom: 2px solid #253f39;
+    outline: none;
+}
+
+.form span {
+    display: flex;
+    justify-content: start;
+    top: 50px;
+    color: rgb(202, 30, 30);
+}
+
+.emailBtn {
+    color: white;
+    background-color: #253f39;
+    margin: 20px 0 20px 0;
+    width: 250px;
+}
+
+.emailNumberConfirmBtn {
+    position: absolute;
+    right: 70px;
+    color: white;
+    background-color: #253f39;
+}
+
+.signupBtn {
+    color: white;
+    background-color: #253f39;
+    margin: 20px 0 0 0;
+}
