@@ -7,9 +7,10 @@ import Layout from './layout'
 import Home from './Home'
 
 
+
 const router = createBrowserRouter([
   {
-    path:"/",
+    path: "/",
     element: (
       <Layout/>
     ),
@@ -22,16 +23,17 @@ const router = createBrowserRouter([
   },
   {
     path: "/signin",
-    element: <Signin/>
+    element: <Signin />
   },
   {
     path: "/signup",
-    element: <Signup/>
+    element: <Signup />
+
   }
 ])
 
 function App() {
-  
+
 
   return (
     <>
