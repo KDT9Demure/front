@@ -1,7 +1,7 @@
 import React from 'react'
-import './css/App.css';
 import Header from './nav/header'
 import { Outlet } from 'react-router-dom';
+import Footer from './nav/footer';
 
 
 
@@ -12,6 +12,7 @@ function App() {
     <>
       <Header/>
       <Outlet/>
+      <Footer/>
     </>
   )
 }
