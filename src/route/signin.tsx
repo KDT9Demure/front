@@ -2,27 +2,32 @@ import React, { useState } from "react"
 import {Link} from "react-router-dom";
 import styles from "../css/signin.module.css";
 import axios from "axios";
+import { Cookies } from "react-cookie";
 
 export default function Signin() {
     
+    const [id, setId] = useState("");
+    const [pw, setPw] = useState("");
+    const cookie = new Cookies;
 
-    
-
-    const signinData = async (e : any) => {
+    const signinData = async () => {
         const res = await axios({
-            url: 'http://localhost:8080',
+            url: 'http://localhost:8000/user/signin',
             method: 'POST',
+            headers:{'Content-Type' : 'application/json'},
             data: {
-                userid: e.target.id.value,
-                password: e.target.password.value
+                userid: id,
+                password: pw,
             }
         });
+        console.log(res.data)
 
         if (res.data.result) {
             alert('로그인이 되었습니다');
-            document.location.href = '/';
+            // document.location.href = '/';
           } else {
-            document.location.reload();
+            alert("실패")
+            // document.location.href = "/";
           }
     }
 
@@ -31,10 +36,10 @@ export default function Signin() {
         <div className={styles.container}>
             <div className={styles.wrapper}>
                 <div className={styles.main}>
-                    <input className={styles.id} name="id" placeholder="ID"/>
-                    <input className={styles.password} name="password" placeholder="Password"/>
-                    <button className={styles.signinBtn}>로그인</button>
-                    <button className={styles.kakaoBtn} type="button" onClick={signinData}>카카오로 로그인</button>
+                    <input className={styles.id} name="id" type="id" placeholder="ID" onChange={e => {setId(e.target.value);}}/>
+                    <input className={styles.password} name="password" type="password" placeholder="Password" onChange={e => {setPw(e.target.value);}}/>
+                    <button className={styles.signinBtn} type="button" onClick={signinData}>로그인</button>
+                    <button className={styles.kakaoBtn}>카카오로 로그인</button>
                 </div>
                 <div className={styles.Link}>
                     <Link className={styles.signup} to="/signup">회원가입</Link>
