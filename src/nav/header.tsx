@@ -1,6 +1,7 @@
 import styles from "../css/header.module.css";
 import { useState } from "react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightToBracket,faUser,faBasketShopping  } from "@fortawesome/free-solid-svg-icons";
 
 export default function Header() {
 
@@ -39,6 +40,16 @@ export default function Header() {
                     <dt>event</dt>
                 </div>
             </div> : <div className={styles.main} onClick={onClick}>Demure</div>}
+                <div>
+                    <FontAwesomeIcon icon={faRightToBracket} style={{ color: "#ffffff" }} />
+                    Bonjour!
+                </div>
+                <div>
+                    <FontAwesomeIcon icon={faUser} style={{color: "#ffffff",}} />
+                </div>
+                <div>
+                    <FontAwesomeIcon icon={faBasketShopping} style={{color: "#ffffff",}} />
+                </div>
         </div>
     )
 }
