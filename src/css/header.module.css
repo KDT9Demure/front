@@ -12,9 +12,15 @@
     width: 100%;
 }
 
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
 .menu {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap:10px;
+    gap:30px;
 }
