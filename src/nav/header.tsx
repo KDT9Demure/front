@@ -22,7 +22,7 @@ export default function Header() {
                     <input placeholder="검색"/>
                     <dt>shop
                         <dd>
-                            의자111
+                            의자
                         </dd>
                         <dd>
                             책상
