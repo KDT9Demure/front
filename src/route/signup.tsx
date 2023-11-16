@@ -108,14 +108,17 @@ export default function Signup() {
 
                 <button className={styles.emailBtn} type="button" onClick={emailCheck} >이메일 인증</button>
                 <br />
+                <div className={styles.emailDiv}>
 
-                <input
-                    {...register("emailNumber", {
-                        required: "인증번호를 확인해주세요"
-                    })}
-                    className={styles.emailNumber} placeholder="Author Number" maxLength={10} />
 
-                <button className={styles.emailNumberConfirmBtn} type="button" onClick={authorConfirm}>확인</button>
+                    <input
+                        {...register("emailNumber", {
+                            required: "인증번호를 확인해주세요"
+                        })}
+                        className={styles.emailNumber} placeholder="Author Number" maxLength={10} />
+
+                    <button className={styles.emailNumberConfirmBtn} type="button" onClick={authorConfirm}>확인</button>
+                </div>
                 <br />
                 <div>
                     <span>{errors?.emailNumber?.message}</span>
