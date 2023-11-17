@@ -18,7 +18,7 @@ button {
     background-color: rgb(255, 255, 255);
     border-radius: 16px;
     width: 400px;
-    height: 600px;
+    height: 550px;
 
     position: absolute;
     transform: translate(-50%, -50%);
@@ -32,7 +32,7 @@ button {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    padding: 0px 20px 0px 20px;
+
     width: 390px;
     height: 750px;
 }
@@ -50,10 +50,31 @@ button {
     outline: none;
 }
 
+.iconContainer {
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    color: green;
+    font-size: 22px;
+    right: 0px;
+    bottom: 15px;
+
+}
+
+.messageDiv {
+    display: flex;
+    justify-content: start;
+    text-align: start;
+}
+
 .form span {
     display: flex;
     justify-content: start;
     top: 50px;
+    font-size: 12px;
+    font-weight: bold;
     color: rgb(202, 30, 30);
 }
 
@@ -79,7 +100,7 @@ button {
 .emailNumberConfirmBtn {
     position: absolute;
     right: 0px;
-    top: 5px;
+    top: 0px;
     color: white;
     background-color: #253f39;
     width: 50px;
