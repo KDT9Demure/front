@@ -8,8 +8,7 @@ export default function Signin() {
     
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");
-    const cookie = new Cookies;
-
+    
     const signinData = async () => {
         const res = await axios({
             url: 'http://localhost:8000/user/signin',
@@ -25,6 +24,12 @@ export default function Signin() {
         if (res.data.result) {
             alert('로그인이 되었습니다');
             // document.location.href = '/';
+
+            //쿠키에 value로 token 넣기
+            const cookie = new Cookies();
+            const token = res.data.accessToken;
+            cookie.set("NID", token);
+            
           } else {
             alert("실패")
             // document.location.href = "/";
