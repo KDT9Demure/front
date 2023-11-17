@@ -4,7 +4,7 @@ import App from "./App";
 import Home from './route/home';
 import Signin from './route/signin';
 import Signup from './route/signup';
-
+import Product from './route/product';
 
 
 
@@ -24,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: <Signup />
+      },
+      {
+        path: "product",
+        element: <Product />
       }
     ]
   },
