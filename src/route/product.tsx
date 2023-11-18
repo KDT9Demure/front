@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import styles from "../css/product.module.css";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faSquareCaretDown} from "@fortawesome/free-solid-svg-icons";
+import {faSquareCaretUp} from "@fortawesome/free-solid-svg-icons";
+import img from "./MOKOKO_2022_10.png";
 export default function Product() {
     const [visible, setVisible] = useState(true);
-    const [visible2, setVisible2] = useState(true);
 
     const openDetail = () => {
         setVisible(false);
@@ -11,14 +13,6 @@ export default function Product() {
 
     const closeDetail = () => {
         setVisible(true);
-    }
-
-    const openComment = () => {
-        setVisible2(false);
-    }
-
-    const closeComment = () => {
-        setVisible2(true);
     }
 
     return (
@@ -56,39 +50,35 @@ export default function Product() {
                 <br/>
                 <div className={styles.detailContainer}>
                     <section className={styles.detailWrapper}>
-                        {visible ? <div className={styles.detailHeader}>
-                            <div>상품상세정보</div>
-                            <button className={styles.detailBtn} onClick={openDetail}>V</button>
+                        {visible ? <><div className={styles.detailHeader}>
+                            <div className={styles.title}>상품상세정보</div>
                         </div>
+                        <div className={styles.detailInfor}>
+                        상세한정보들
+                        </div>
+                        <div className={styles.detailBtn} onClick={openDetail}><FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faSquareCaretDown}/></div>
+                        </>
                         : <>
-                            <div className={styles.detailHeader2}>
-                                <div>상품상세정보</div>
-                                <button className={styles.detailBtn} onClick={closeDetail}>V</button>
+                            <div className={styles.detailHeader}>
+                                <div className={styles.title}>상품상세정보</div>
                             </div>
-                            <div className={styles.detailInfor}>
+                            <div className={styles.detailInfor2}>
                                 상세한정보들
                             </div>
+                            <div className={styles.detailBtn2} onClick={closeDetail}><FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faSquareCaretUp} /></div>
                         </>}
                     </section>
                 </div>
                 <div className={styles.commentContainer}>
                     <section className={styles.commentWrapper}>
-                        {visible2 ? <div className={styles.commentHeader}>
-                                <div>상품평</div>
-                                <button className={styles.commentBtn} onClick={openComment}>V</button>
+                        <div className={styles.commentHeader}>
+                                <div className={styles.title}>상품평</div>
                             </div>
-                            : <>
-                                <div className={styles.commentHeader2}>
-                                    <div>상품평</div>
-                                    <button className={styles.commentBtn} onClick={closeComment}>V</button>
-                                </div>
-                                <div className={styles.commentInfor}>
-                                    <div>날짜</div>
-                                    <div>별점</div>
-                                    <div>댓글내용</div>
-                                </div>
-                            </>
-                            }
+                            <div className={styles.commentInfor}>
+                                <div>날짜</div>
+                                <div>별점</div>
+                                <div>댓글내용</div>
+                            </div>
                     </section>
                 </div>
                 <div className={styles.createCommentContainer}>
