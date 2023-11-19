@@ -1,8 +1,8 @@
-import React, { FC, useRef, useState } from "react"
+import React, { useState } from "react"
 
 import axios from "axios";
 
-import { useForm, SubmitHandler } from "react-hook-form"
+// import { useForm, SubmitHandler } from "react-hook-form"
 
 import styles from "../css/signup.module.css";
 
@@ -106,8 +106,17 @@ export default function Signup() {
     const [email, setEmail] = useState<string>('');
     const [IsEmailTrue, setIsEmailTrue] = useState<boolean | null>(null);
 
+    const [authorToggle, setAuthorToggle] = useState<boolean | null>(false);
+    const [author, setAuthor] = useState<string | null>(null);
+    const [authorInput, setAuthorInput] = useState<string | null>(null);
+    const [isAuthorTrue, setIsAuthorTrue] = useState<boolean | null>(null);
+
+    // const [emailReadonly, setEmailReadonly] = useState<boolean | null>(null);
 
 
+
+
+    //회원가입 온클릭
     const sgup = async (data: any) => {
         const info = {
             userid: userid,
@@ -115,7 +124,7 @@ export default function Signup() {
             user_name: name,
             password: password
         }
-        if (isIdTrue === true && isPwTrue === true && isPasswordMatch === true && IsEmailTrue === true) {
+        if (isIdTrue === true && isPwTrue === true && isPasswordMatch === true && IsEmailTrue === true && isAuthorTrue === true) {
             console.log("성공")
             console.log(userid, email, name, password)
             const res = await axios({
@@ -128,6 +137,8 @@ export default function Signup() {
             if (res.data.result) {
                 alert("회원가입 완료")
             }
+        } else if (isIdTrue === true && isPwTrue === true && isPasswordMatch === true && IsEmailTrue === true && isAuthorTrue === false || isAuthorTrue === null) {
+            alert("이메일이 인증되지 않았습니다")
         } else {
             alert("입력한 정보를 확인해 주세요")
         }
@@ -164,11 +175,21 @@ export default function Signup() {
         const newPassword: string = e.target.value;
         setPassword(newPassword);
 
+
         // 비밀번호 유효성 검사 정규식
         const passwordRegex: RegExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
         const isValid: boolean = passwordRegex.test(newPassword);
         setIsPwTrue(newPassword === '' ? null : isValid);
 
+        // 비밀번호 확인과 일치 여부 검사
+        const isMatching: boolean = confirmPassword === newPassword;
+        if (newPassword === null || confirmPassword === null) {
+            setIsPasswordMatch(null)
+        } else if (newPassword.length > 0 && confirmPassword.length > 0) {
+            setIsPasswordMatch(isMatching);
+        } else {
+            setIsPasswordMatch(null)
+        }
     };
 
     //비밀번호 확인
@@ -176,9 +197,19 @@ export default function Signup() {
         const newConfirmPassword: string = e.target.value;
         setConfirmPassword(newConfirmPassword);
 
-        setIsPasswordMatch(password === '' ? null : password === newConfirmPassword);
+        // 비밀번호와 일치 여부 검사
+        const isMatching: boolean = newConfirmPassword === password;
+        if (password === null || newConfirmPassword === null) {
+            setIsPasswordMatch(null)
+        } else if (password.length > 0 && newConfirmPassword.length > 0) {
+            setIsPasswordMatch(isMatching)
+        } else {
+            setIsPasswordMatch(null)
+        }
+
+
     };
-    //이름
+    //이름 확인
     const nameCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newName: string = e.target.value;
         setName(newName)
@@ -194,6 +225,51 @@ export default function Signup() {
         setIsEmailTrue(newEmail === '' ? null : isValid);
     };
 
+    //이메일 인증 온클릭
+    const authorToggleBtn = async () => {
+        if (IsEmailTrue) {
+            console.log(email)
+            setAuthorToggle(true)
+            const res = await axios({
+                method: "post",
+                url: "http://localhost:8000/user/email",
+                data: {
+                    useremail: email
+                }
+            })
+            console.log(res.data)
+            alert("인증번호가 발송되었습니다")
+            if (res.data.result) {
+                setAuthor(res.data.verifyNumber)
+            }
+        } else {
+            alert("이메일 형식을 확인해 주세요")
+        }
+    }
+
+    // 인증번호 인풋 값 체크
+    const authorCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newAuthor: string = e.target.value;
+        setAuthorInput(newAuthor)
+    }
+
+    // 인증번호 확인 온클릭
+    const authorBtn = () => {
+        if (authorInput === author) {
+            setIsAuthorTrue(true)
+        } else {
+            setIsAuthorTrue(false)
+        }
+    }
+
+    // 이메일 인증시 인풋 리드온리
+    const emailInput = document.getElementById('emailInput') as HTMLInputElement;
+    if (isAuthorTrue === true) {
+        emailInput.readOnly = true
+
+    }
+
+
     return (
         <div className={styles.container}>
             <form className={styles.form}>
@@ -201,7 +277,6 @@ export default function Signup() {
                 <div className={styles.iconContainer}>
                     <input
                         className={styles.id} placeholder="ID" onChange={idCheck} maxLength={20} />
-                    {/* <button type="button" onClick={idCheck}>중복체크</button> */}
 
                     <div className={styles.icon}>
 
@@ -221,7 +296,7 @@ export default function Signup() {
                         <span style={{ color: 'green' }}>사용가능한 비밀번호입니다.</span>
                     ) : isPwTrue === false ? (
                         <span style={{ color: 'red' }}>
-                            8자 이상/숫자,문자,특수문자를 포함해 주세요
+                            8자 이상 / 숫자,문자,특수문자를 포함해 주세요
                         </span>
                     ) : null}
                 </div>
@@ -245,14 +320,10 @@ export default function Signup() {
 
                     className={styles.name} placeholder="Name" maxLength={20} onChange={nameCheck} />
 
-                <div>
-                    <span></span>
-                </div>
-
                 <div className="messageDiv">
                     <input
 
-                        className={styles.email} placeholder="Email" type="text" onChange={emailCheck} />
+                        className={styles.email} placeholder="Email" type="text" onChange={emailCheck} id="emailInput" />
                     {IsEmailTrue === false ? (
                         <span style={{ color: 'red' }}>이메일 형식을 확인해 주세요</span>
                     ) : IsEmailTrue === true ? (
@@ -263,28 +334,28 @@ export default function Signup() {
                 </div>
 
 
-                <div>
-                    <span></span>
-                </div>
+                <button className={styles.emailBtn} onClick={authorToggleBtn} type="button" >이메일 인증</button>
 
-                <button className={styles.emailBtn} type="button" >이메일 인증</button>
+                {authorToggle && (
+                    <div>
+                        <div className={styles.emailDiv}>
 
-                <div className={styles.emailDiv}>
+                            <input
 
+                                className={styles.emailNumber} placeholder="Author Number" maxLength={6} onChange={authorCheck} />
 
-                    <input
-
-                        className={styles.emailNumber} placeholder="Author Number" maxLength={10} />
-
-                    <button className={styles.emailNumberConfirmBtn} type="button">확인</button>
-                </div>
-
-                <div>
-                    <span></span>
-                </div>
-
+                            <button className={styles.emailNumberConfirmBtn} type="button" onClick={authorBtn}>확인</button>
+                            {isAuthorTrue === false ? (
+                                <span style={{ color: 'red' }}>인증을 올바르게 진행해 주세요</span>
+                            ) : isAuthorTrue === true ? (
+                                <span style={{ color: "green" }}>
+                                    인증이 완료되었습니다
+                                </span>
+                            ) : null}
+                        </div>
+                    </div>
+                )}
                 <button className={styles.signupBtn} type="button" onClick={sgup}>회원가입</button>
-
             </form>
         </div >
 
