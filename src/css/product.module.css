@@ -9,7 +9,11 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    gap: 70px
+    gap: 70px;
+    background-color:#253f39;
+    margin-top: -100px;
+    padding-top: 100px;
+    padding-bottom: 30px;
 }
 
 .imageWrapper {
@@ -154,7 +158,7 @@
     width: 97%;
     height: 70px;
     position: absolute;
-    top: 924px;
+    top: 953px;
     background: linear-gradient(to bottom,
             rgb(252, 252, 2520, 0.1) 0%,
             rgba(252, 252, 252, 0.3) 25%,
@@ -174,6 +178,7 @@
     border: 1px solid #253f39;
     height: 300px;
     width: 100%;
+    overflow: hidden;
 }
 
 .detailInfor2 {
@@ -194,7 +199,7 @@
     width: 97%;
     height: 70px;
     position: absolute;
-    top: 1120px;
+    top: 1155px;
     background: linear-gradient(to bottom,
             rgb(252, 252, 2520, 0.1) 0%,
             rgba(252, 252, 252, 0.3) 25%,
@@ -223,6 +228,10 @@
 
 .createCommentTitle {
     font-weight: 700;
+}
+
+.starIconWrapper {
+    display: none;
 }
 
 .createCommentMain {
