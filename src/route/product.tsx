@@ -7,8 +7,10 @@ import {faStar} from "@fortawesome/free-regular-svg-icons";
 
 
 
+
 export default function Product() {
     const [visible, setVisible] = useState<boolean | null>(true);
+    const [icon, setIcon] = useState(true);
 
     const openDetail = () => {
         setVisible(false);
@@ -17,6 +19,14 @@ export default function Product() {
     const closeDetail = () => {
         setVisible(true);
     }
+
+    const starIcon = () => {
+        setIcon(false);
+    }
+
+    // const starIcon2 = () => {
+    //     setIcon(true);
+    // }
 
     return (
             <>
@@ -95,16 +105,18 @@ export default function Product() {
                         <div className={styles.createCommentTitle}>상품평 작성</div>
                         <div className={styles.starIconContainer}>
                             <input type="radio" id="score" className={styles.starIconWrapper}/>
-                            <label htmlFor="score"><FontAwesomeIcon className={styles.starIcon} icon={faStar}/></label>
+                            <label htmlFor="score"><FontAwesomeIcon className={styles.starIcon} icon={faStar} onClick={starIcon}/></label>
                             <input type="radio" id="score" className={styles.starIconWrapper}/>
-                            <label htmlFor="score"><FontAwesomeIcon className={styles.starIcon} icon={faStar}/></label>
+                            <label htmlFor="score"><FontAwesomeIcon className={styles.starIcon} icon={faStar} onClick={starIcon}/></label>
                             <input type="radio" id="score" className={styles.starIconWrapper}/>
-                            <label htmlFor="score"><FontAwesomeIcon className={styles.starIcon} icon={faStar}/></label>
+                            <label htmlFor="score"><FontAwesomeIcon className={styles.starIcon} icon={faStar} onClick={starIcon}/></label>
                             <input type="radio" id="score" className={styles.starIconWrapper}/>
-                            <label htmlFor="score"><FontAwesomeIcon className={styles.starIcon} icon={faStar}/></label>
+                            <label htmlFor="score"><FontAwesomeIcon className={styles.starIcon} icon={faStar} onClick={starIcon}/></label>
                             <input type="radio" id="score" className={styles.starIconWrapper}/>
-                            <label htmlFor="score"><FontAwesomeIcon className={styles.starIcon} icon={faStar}/></label>
+                            <label htmlFor="score"><FontAwesomeIcon className={styles.starIcon} icon={faStar} onClick={starIcon}/></label>
                         </div>
+                        
+
                         <div className={styles.createCommentMain}>
                             <textarea placeholder="상품평을 입력해주세요" className={styles.comment}></textarea>
                             <button className={styles.commentCreateBtn}>등록</button>
