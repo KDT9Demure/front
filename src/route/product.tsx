@@ -3,7 +3,8 @@ import styles from "../css/product.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faSquareCaretDown} from "@fortawesome/free-solid-svg-icons";
 import {faSquareCaretUp} from "@fortawesome/free-solid-svg-icons";
-import img from "./MOKOKO_2022_10.png";
+
+
 export default function Product() {
     const [visible, setVisible] = useState(true);
 
