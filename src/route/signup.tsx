@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import axios from "axios";
 
@@ -105,6 +105,7 @@ export default function Signup() {
 
     const [email, setEmail] = useState<string>('');
     const [IsEmailTrue, setIsEmailTrue] = useState<boolean | null>(null);
+    const [isEmailBtnVisible, setEmailBtnVisible] = useState(true);
 
     const [authorToggle, setAuthorToggle] = useState<boolean | null>(false);
     const [author, setAuthor] = useState<string | null>(null);
@@ -136,6 +137,7 @@ export default function Signup() {
             console.log(res.data)
             if (res.data.result) {
                 alert("회원가입 완료")
+                document.location.href = "/signin"
             }
         } else if (isIdTrue === true && isPwTrue === true && isPasswordMatch === true && IsEmailTrue === true && isAuthorTrue === false || isAuthorTrue === null) {
             alert("이메일이 인증되지 않았습니다")
@@ -229,7 +231,7 @@ export default function Signup() {
     const authorToggleBtn = async () => {
         if (IsEmailTrue) {
             console.log(email)
-            setAuthorToggle(true)
+
             const res = await axios({
                 method: "post",
                 url: "http://localhost:8000/user/email",
@@ -239,9 +241,12 @@ export default function Signup() {
             })
             console.log(res.data)
             alert("인증번호가 발송되었습니다")
+            setAuthorToggle(true)
+            setIsActive(true)
             if (res.data.result) {
                 setAuthor(res.data.verifyNumber)
             }
+            setEmailBtnVisible(false)
         } else {
             alert("이메일 형식을 확인해 주세요")
         }
@@ -257,6 +262,7 @@ export default function Signup() {
     const authorBtn = () => {
         if (authorInput === author) {
             setIsAuthorTrue(true)
+            setIsActive(false)
         } else {
             setIsAuthorTrue(false)
         }
@@ -268,6 +274,75 @@ export default function Signup() {
         emailInput.readOnly = true
 
     }
+
+    // 타이머
+
+    const [time, setTime] = useState<number>(20); // 시간(초)
+    const [isActive, setIsActive] = useState<boolean | null>(null);
+    const [timerZero, setTimerZero] = useState<boolean | null>(null);
+
+    useEffect(() => {
+        let interval: NodeJS.Timeout;
+
+        if (isActive && time > 0) {
+            interval = setInterval(() => {
+                setTime((prevTime) => prevTime - 1);
+            }, 1000);
+        }
+        if (time === 0) {
+            setTimerZero(true);
+        } else {
+            setTimerZero(false);
+        }
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [isActive, time]);
+
+    // const startTimer = () => {
+    //     setIsActive(true);
+    // };
+
+    // const pauseTimer = () => {
+    //     setIsActive(false);
+    // };
+
+    // const resetTimer = () => {
+    //     setIsActive(false);
+    //     setTime(180);
+    // };
+
+    const formatTime = (seconds: number): string => {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+    };
+
+    // 인증번호 재전송
+    const reAuthorBtn = async () => {
+        if (IsEmailTrue) {
+            console.log(email)
+
+            const res = await axios({
+                method: "post",
+                url: "http://localhost:8000/user/email",
+                data: {
+                    useremail: email
+                }
+            })
+            console.log(res.data)
+            alert("인증번호가 발송되었습니다")
+            setIsActive(true)
+            setTime(20)
+            if (res.data.result) {
+                setAuthor(res.data.verifyNumber)
+
+            }
+
+        }
+    }
+    ////////////////////
 
 
     return (
@@ -334,7 +409,11 @@ export default function Signup() {
                 </div>
 
 
-                <button className={styles.emailBtn} onClick={authorToggleBtn} type="button" >이메일 인증</button>
+                {isEmailBtnVisible && (
+                    <button className={styles.emailBtn} onClick={authorToggleBtn} type="button">
+                        이메일 인증
+                    </button>
+                )}
 
                 {authorToggle && (
                     <div>
@@ -344,9 +423,20 @@ export default function Signup() {
 
                                 className={styles.emailNumber} placeholder="Author Number" maxLength={6} onChange={authorCheck} />
 
-                            <button className={styles.emailNumberConfirmBtn} type="button" onClick={authorBtn}>확인</button>
+                            {timerZero ? (
+                                <button className={styles.emailNumberConfirmBtn} type="button" onClick={reAuthorBtn}>
+                                    재전송
+                                </button>
+                            ) : (
+                                <button className={styles.emailNumberConfirmBtn} type="button" onClick={authorBtn}>
+                                    확인
+                                </button>
+                            )}
+                            <div className={styles.timer}>
+                                {formatTime(time)}
+                            </div>
                             {isAuthorTrue === false ? (
-                                <span style={{ color: 'red' }}>인증을 올바르게 진행해 주세요</span>
+                                <span style={{ color: 'red' }}>인증번호가 틀립니다</span>
                             ) : isAuthorTrue === true ? (
                                 <span style={{ color: "green" }}>
                                     인증이 완료되었습니다
@@ -357,6 +447,7 @@ export default function Signup() {
                 )}
                 <button className={styles.signupBtn} type="button" onClick={sgup}>회원가입</button>
             </form>
+
         </div >
 
     )
