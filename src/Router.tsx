@@ -5,6 +5,7 @@ import Home from './route/home';
 import Signin from './route/signin';
 import Signup from './route/signup';
 import Product from './route/product';
+import List from './route/list';
 
 
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "product",
         element: <Product />
+      },
+      {
+        path: "list",
+        element: <List />
       }
     ]
   },
