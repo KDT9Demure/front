@@ -19,6 +19,7 @@
     font-style: normal;
     /* header menu 폰트 */
 }
+
   
 body {
     margin: 0;
@@ -39,7 +40,7 @@ body {
     cursor: pointer;
     font-size: 50px;
     color: #ffff;
-    font-family: 'yleeMortalHeartImmortalMemory', sans-serif;
+    font-family: 'Monsieur La Doulaise';
 }
   
 .headerUser {
