@@ -3,8 +3,9 @@ import React from "react"
 
 export default function Home() {
     const my_style = {
-        width:"100px",
-        height: "100px",
+        width:"100%",
+        height: "100vh",
+        backgroudColor:"white"
     }
     return (
         <>

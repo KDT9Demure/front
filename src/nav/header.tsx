@@ -1,5 +1,6 @@
-import styles from "../css/header.module.css";
+import headerStyles from "../css/header.module.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket, faUser, faBasketShopping, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
@@ -15,11 +16,11 @@ export default function Header() {
   }
 
   return (
-    <div className={styles.container}>
-        <div className={styles.header_logo} onClick={onLogoClick}>
+    <div className={headerStyles.container}>
+        <div className={headerStyles.headerLogo} onClick={onLogoClick}>
           Demure
         </div>
-        <div className={styles.header_user}>
+        <div className={headerStyles.headerUser}>
             <div>
                 <FontAwesomeIcon icon={faRightToBracket} style={{ color: "#ffffff" }} />
                 Bonjour!
@@ -32,54 +33,60 @@ export default function Header() {
             </div>
         </div>
       {openMenu && (
-        <div className={styles.wrapper} onClick={onClick2}>
-            <div className={styles.menu} onClick={(e) => { e.stopPropagation() }}>
-                <span className={styles.header_search}>
-                    <FontAwesomeIcon className={styles.header_search_icon} icon={faMagnifyingGlass} style={{ color: "#ffffff" }} />
-                    <input type="text"className={styles.header_search_input} placeholder="What do you looking for?" />
+        <div className={headerStyles.wrapper} onClick={onClick2}>
+            <div className={headerStyles.menu} onClick={(e) => { e.stopPropagation() }}>
+                <span className={headerStyles.headerSearch}>
+                    <FontAwesomeIcon className={headerStyles.headerSearchIcon} icon={faMagnifyingGlass} style={{ color: "#ffffff" }} />
+                    <input type="text"className={headerStyles.headerSearchInput} placeholder="What do you looking for?" />
                 </span>
-                <div className={styles.header_menu}>
-                    <dt>Category
+                <div className={headerStyles.headerMenu}>
+                    <dt>
+                        <Link to={""} className={headerStyles.dtLink}>Home</Link>
+                    </dt>
+                    <dt>
+                        <div>Category</div>
                         <dd>
-                            Bathroom products
+                            <Link to={""} className={headerStyles.menuLink}>Bathroom products</Link>
                         </dd>
                         <dd>
-                            Kitchen
+                            <Link to={""} className={headerStyles.menuLink}>Kitchen</Link>
                         </dd>
                         <dd>
-                            Beds & mattresses
+                            <Link to={""} className={headerStyles.menuLink}>Beds & mattresses</Link>
                         </dd>
                         <dd>
-                            Chairs
+                            <Link to={""} className={headerStyles.menuLink}>Chairs</Link>
                         </dd>
                         <dd>
-                            Tables & desks
+                            <Link to={""} className={headerStyles.menuLink}>Tables & desks</Link>
                         </dd>
                         <dd>
-                            Lighting
+                            <Link to={""} className={headerStyles.menuLink}>Lighting</Link>
                         </dd>
                         <dd>
-                            Baby & Children
+                            <Link to={""} className={headerStyles.menuLink}>Baby & Children</Link>
                         </dd>
                         <dd>
-                            Decoration
+                            <Link to={""} className={headerStyles.menuLink}>Decoration</Link>
                         </dd>
                         <dd>
-                            Living room
+                            <Link to={""} className={headerStyles.menuLink}>Living room</Link>
                         </dd>
                         <dd>
-                            Cabinets
+                            <Link to={""} className={headerStyles.menuLink}>Cabinets</Link>
                         </dd>
                     </dt>
-                    <dt>Customer Service
+                    <dt>
+                        <div>Customer Service</div>
                         <dd>
-                            QnA
+                            <Link to={""} className={headerStyles.menuLink}>QnA</Link>
                         </dd>
                         <dd>
-                            Notice
+                            <Link to={""} className={headerStyles.menuLink}>Notice</Link>
                         </dd>
                     </dt>
-                    <dt>Event
+                    <dt>
+                        <Link to={""} className={headerStyles.dtLink}>Event</Link>
                     </dt>
                 </div>
             </div>

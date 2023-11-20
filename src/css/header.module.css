@@ -19,6 +19,7 @@
     font-style: normal;
     /* header menu 폰트 */
 }
+
   
 body {
     margin: 0;
@@ -34,15 +35,15 @@ body {
     width: 100%;
 }
   
-.header_logo {
+.headerLogo {
     position: fixed;
     cursor: pointer;
     font-size: 50px;
     color: #ffff;
-    font-family: 'yleeMortalHeartImmortalMemory', sans-serif;
+    font-family: 'Monsieur La Doulaise';
 }
   
-.header_user {
+.headerUser {
     position: fixed;
     right: 5%;
     display: flex;
@@ -66,17 +67,17 @@ body {
     font-family: 'Pretendard-Regular';
 }
 
-.header_search {
+.headerSearch {
     display: flex;
     align-items: center;
 }
 
-.header_search_icon {
+.headerSearchIcon {
     color: #ffffff;
     margin-right: 10px;
 }
 
-.header_search_input {
+.headerSearchInput {
     background: none;
     border: none;
     border-bottom: 1px solid #ffff;
@@ -89,37 +90,52 @@ body {
     flex: 1;
 }
 
-.header_search_input::placeholder {
+.headerSearchInput::placeholder {
     white-space: nowrap;
 }
 
-.header_menu {
+.headerMenu {
     display: flex;
     justify-content: space-between;
     gap: 250px;
     color: #ffff;
 }
   
-.header_menu dt {
+.headerMenu dt {
     font-size: 18px;
     margin-bottom: 5px;
 }
   
-.header_menu dd {
-    font-size: 15px;
-    margin-left: 5px;
-}
-  
-.header_menu dd:not(:last-child) {
-    border-bottom: 1px solid #fff;
+.headerMenu div {
     margin-bottom: 10px;
 }
+
+.headerMenu dt .dtLink {
+    color: white;
+    text-decoration: none;
+}
+
+.headerMenu dd {
+    font-size: 15px;
+    margin-left: 5px;
+    padding-bottom: 10px;
+}
   
-.header_menu dd:hover {
+.headerMenu dd .menuLink {
+    color: white;
+    text-decoration: none;
+}
+
+.headerMenu dd .menuLink:hover {
     background-color: #fff6f654;
     border-radius: 5px;
     transition: background-color 0.3s ease-in-out;
-}  
+}
+
+.headerMenu dd:not(:last-child) {
+    border-bottom: 1px solid #fff;
+    margin-bottom: 10px;
+}
 
 @keyframes fadeIn {
     from {
@@ -131,9 +147,9 @@ body {
       transform: translateY(0);
     }
   }
-  .header_logo,
-  .header_user,
-  .header_menu,
+  .headerLogo,
+  .headerUser,
+  .headerMenu,
   .menu {
     animation: fadeIn 0.5s ease-in-out;
   }
