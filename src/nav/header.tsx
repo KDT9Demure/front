@@ -1,5 +1,6 @@
 import styles from "../css/header.module.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket, faUser, faBasketShopping, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
@@ -16,10 +17,10 @@ export default function Header() {
 
   return (
     <div className={styles.container}>
-        <div className={styles.header_logo} onClick={onLogoClick}>
+        <div className={styles.headerLogo} onClick={onLogoClick}>
           Demure
         </div>
-        <div className={styles.header_user}>
+        <div className={styles.headerUser}>
             <div>
                 <FontAwesomeIcon icon={faRightToBracket} style={{ color: "#ffffff" }} />
                 Bonjour!
@@ -34,52 +35,58 @@ export default function Header() {
       {openMenu && (
         <div className={styles.wrapper} onClick={onClick2}>
             <div className={styles.menu} onClick={(e) => { e.stopPropagation() }}>
-                <span className={styles.header_search}>
-                    <FontAwesomeIcon className={styles.header_search_icon} icon={faMagnifyingGlass} style={{ color: "#ffffff" }} />
-                    <input type="text"className={styles.header_search_input} placeholder="What do you looking for?" />
+                <span className={styles.headerSearch}>
+                    <FontAwesomeIcon className={styles.headerSearchIcon} icon={faMagnifyingGlass} style={{ color: "#ffffff" }} />
+                    <input type="text"className={styles.headerSearchInput} placeholder="What do you looking for?" />
                 </span>
-                <div className={styles.header_menu}>
-                    <dt>Category
+                <div className={styles.headerMenu}>
+                    <dt>
+                        <Link to={""} className={styles.dtLink}>Home</Link>
+                    </dt>
+                    <dt>
+                        <div>Category</div>
                         <dd>
-                            Bathroom products
+                            <Link to={""} className={styles.menuLink}>Bathroom products</Link>
                         </dd>
                         <dd>
-                            Kitchen
+                            <Link to={""} className={styles.menuLink}>Kitchen</Link>
                         </dd>
                         <dd>
-                            Beds & mattresses
+                            <Link to={""} className={styles.menuLink}>Beds & mattresses</Link>
                         </dd>
                         <dd>
-                            Chairs
+                            <Link to={""} className={styles.menuLink}>Chairs</Link>
                         </dd>
                         <dd>
-                            Tables & desks
+                            <Link to={""} className={styles.menuLink}>Tables & desks</Link>
                         </dd>
                         <dd>
-                            Lighting
+                            <Link to={""} className={styles.menuLink}>Lighting</Link>
                         </dd>
                         <dd>
-                            Baby & Children
+                            <Link to={""} className={styles.menuLink}>Baby & Children</Link>
                         </dd>
                         <dd>
-                            Decoration
+                            <Link to={""} className={styles.menuLink}>Decoration</Link>
                         </dd>
                         <dd>
-                            Living room
+                            <Link to={""} className={styles.menuLink}>Living room</Link>
                         </dd>
                         <dd>
-                            Cabinets
+                            <Link to={""} className={styles.menuLink}>Cabinets</Link>
                         </dd>
                     </dt>
-                    <dt>Customer Service
+                    <dt>
+                        <div>Customer Service</div>
                         <dd>
-                            QnA
+                            <Link to={""} className={styles.menuLink}>QnA</Link>
                         </dd>
                         <dd>
-                            Notice
+                            <Link to={""} className={styles.menuLink}>Notice</Link>
                         </dd>
                     </dt>
-                    <dt>Event
+                    <dt>
+                        <Link to={""} className={styles.dtLink}>Event</Link>
                     </dt>
                 </div>
             </div>
