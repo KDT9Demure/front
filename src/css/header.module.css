@@ -32,20 +32,34 @@ body {
     justify-content: center;
     align-items: center;
     height: 100px;
-    width: 100%;
+    width: 80%;
+    transition: background-color 0.5s ease-in-out;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 30px 30px 0px 0px;
+    overflow: hidden; 
 }
-  
+
+.openMenu {
+    position: fixed;
+    background-color: #253f39;
+}
+   
 .headerLogo {
     position: fixed;
     cursor: pointer;
     font-size: 50px;
     color: #ffff;
     font-family: 'Monsieur La Doulaise';
+    filter: drop-shadow(0 0 15px rgba(195, 176, 145, 0.8))
+    drop-shadow(0 0 5px rgba(195, 176, 145, 0.5))
+    drop-shadow(0 0 2px rgba(195, 176, 145, 0.2));
+
 }
   
 .headerUser {
     position: fixed;
-    right: 5%;
+    right: 15%;
     display: flex;
     align-items: center;
     gap: 13px;
@@ -58,23 +72,29 @@ body {
     position: fixed;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
     gap: 30px;
     top: 100px;
+    width: 80%; 
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .menu {
     font-family: 'Pretendard-Regular';
+    border-radius: 0px 0px 30px 30px;
 }
 
 .headerSearch {
+    position: relative;
     display: flex;
     align-items: center;
 }
 
 .headerSearchIcon {
     color: #ffffff;
-    margin-right: 10px;
+    position: absolute;
+    left: 250px;
 }
 
 .headerSearchInput {
@@ -86,8 +106,11 @@ body {
     font-size: 18px;
     color: #ffff;
     outline: none;
-    margin-bottom: 23px;
-    flex: 1;
+    flex: 0.5;
+    margin: 23px auto;
+    text-align: center;
+    display: block;
+    width: 80%;
 }
 
 .headerSearchInput::placeholder {
@@ -97,10 +120,11 @@ body {
 .headerMenu {
     display: flex;
     justify-content: space-between;
-    gap: 250px;
     color: #ffff;
+    margin-left: 10%;
+    margin-right: 10%;
 }
-  
+
 .headerMenu dt {
     font-size: 18px;
     margin-bottom: 5px;
@@ -118,7 +142,7 @@ body {
 .headerMenu dd {
     font-size: 15px;
     margin-left: 5px;
-    padding-bottom: 10px;
+    padding-bottom: 8px;
 }
   
 .headerMenu dd .menuLink {
@@ -129,28 +153,37 @@ body {
 .headerMenu dd .menuLink:hover {
     background-color: #fff6f654;
     border-radius: 5px;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
 }
 
 .headerMenu dd:not(:last-child) {
     border-bottom: 1px solid #fff;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
-@keyframes fadeIn {
+.headerMenu dd:last-child {
+    border-bottom: 1px solid #fff;
+    margin-bottom: 20px;
+}
+
+  @keyframes fadeInWithScale {
     from {
       opacity: 0;
-      transform: translateY(-10px);
+      transform: translateY(-10px) scale(0.9, 0.9);
+      background-color: transparent;
     }
     to {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1, 1);
+      background-color: #253f39;
     }
-  }
-  .headerLogo,
-  .headerUser,
-  .headerMenu,
-  .menu {
-    animation: fadeIn 0.5s ease-in-out;
-  }
+    }
+    .menu {
+        animation: fadeInWithScale 0.5s ease-out;
+        transform-origin: 50% 0;
+        transform: scale(1, 1);
+        transition: all 0.5s cubic-bezier(.72, .02, 1, .55);
+        animation-fill-mode: forwards;
+    }
+  
   

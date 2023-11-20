@@ -2,7 +2,12 @@ import headerStyles from "../css/header.module.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRightToBracket, faUser, faBasketShopping, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+  faRightToBracket,
+  faUser,
+  faBasketShopping,
+  faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -11,35 +16,49 @@ export default function Header() {
     setOpenMenu(!openMenu);
   };
 
-  const onClick2 = () => {
+  const closeMenu = () => {
     setOpenMenu(false);
-  }
+  };
 
   return (
-    <div className={headerStyles.container}>
-        <div className={headerStyles.headerLogo} onClick={onLogoClick}>
-          Demure
+    <div className={`${headerStyles.container} ${openMenu && headerStyles.openMenu}`}>
+      <div className={headerStyles.headerLogo} onClick={onLogoClick}>
+        Demure
+      </div>
+      <div className={headerStyles.headerUser}>
+        <div>
+          <Link to="/signin" className={headerStyles.iconLink}>
+            <FontAwesomeIcon icon={faRightToBracket} style={{ color: "#ffffff" }} />
+          </Link>
+          Bonjour!
         </div>
-        <div className={headerStyles.headerUser}>
-            <div>
-                <FontAwesomeIcon icon={faRightToBracket} style={{ color: "#ffffff" }} />
-                Bonjour!
-            </div>
-            <div>
-                <FontAwesomeIcon icon={faUser} style={{ color: "#ffffff" }} />
-            </div>
-            <div>
-                <FontAwesomeIcon icon={faBasketShopping} style={{ color: "#ffffff" }} />
-            </div>
+        <div>
+          <Link to="/profile" className={headerStyles.iconLink}>
+            <FontAwesomeIcon icon={faUser} style={{ color: "#ffffff" }} />
+          </Link>
         </div>
+        <div>
+          <Link to="/cart" className={headerStyles.iconLink}>
+            <FontAwesomeIcon icon={faBasketShopping} style={{ color: "#ffffff" }} />
+          </Link>
+        </div>
+      </div>
       {openMenu && (
-        <div className={headerStyles.wrapper} onClick={onClick2}>
-            <div className={headerStyles.menu} onClick={(e) => { e.stopPropagation() }}>
-                <span className={headerStyles.headerSearch}>
-                    <FontAwesomeIcon className={headerStyles.headerSearchIcon} icon={faMagnifyingGlass} style={{ color: "#ffffff" }} />
-                    <input type="text"className={headerStyles.headerSearchInput} placeholder="What do you looking for?" />
-                </span>
-                <div className={headerStyles.headerMenu}>
+        <div className={headerStyles.wrapper} onClick={closeMenu}>
+          <div className={headerStyles.menu} onClick={(e) => e.stopPropagation()}>
+            <span className={headerStyles.headerSearch}>
+              <FontAwesomeIcon
+                className={headerStyles.headerSearchIcon}
+                icon={faMagnifyingGlass}
+                style={{ color: "#ffffff" }}
+              />
+              <input
+                type="text"
+                className={headerStyles.headerSearchInput}
+                placeholder="What do you looking for?"
+              />
+            </span>
+            <div className={headerStyles.headerMenu}>
                     <dt>
                         <Link to={""} className={headerStyles.dtLink}>Home</Link>
                     </dt>
@@ -95,3 +114,4 @@ export default function Header() {
     </div>
   )
 }
+
