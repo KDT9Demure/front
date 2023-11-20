@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styles from "../css/product.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faSquareCaretDown} from "@fortawesome/free-solid-svg-icons";
 import {faSquareCaretUp} from "@fortawesome/free-solid-svg-icons";
+import {faStar} from "@fortawesome/free-regular-svg-icons";
+
 
 
 export default function Product() {
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState<boolean | null>(true);
 
     const openDetail = () => {
         setVisible(false);
@@ -26,7 +28,13 @@ export default function Product() {
                         <div className={styles.inforHeader}>
                             <div className={styles.inforTitle}>침대</div>
                             <div className={styles.inforName}>상품이름</div>
-                            <div>별점</div>
+                            <div>
+                                <FontAwesomeIcon className={styles.starIcon} icon={faStar}/>
+                                <FontAwesomeIcon className={styles.starIcon} icon={faStar}/>
+                                <FontAwesomeIcon className={styles.starIcon} icon={faStar}/>
+                                <FontAwesomeIcon className={styles.starIcon} icon={faStar}/>
+                                <FontAwesomeIcon className={styles.starIcon} icon={faStar}/>
+                            </div>
                         </div>
                         <div className={styles.inforBody}>
                             <div className={styles.inforPrice}>판매가</div>
@@ -85,7 +93,18 @@ export default function Product() {
                 <div className={styles.createCommentContainer}>
                     <section className={styles.createCommentWrapper}>
                         <div className={styles.createCommentTitle}>상품평 작성</div>
-                        <div>별점</div>
+                        <div className={styles.starIconContainer}>
+                            <input type="radio" id="score" className={styles.starIconWrapper}/>
+                            <label htmlFor="score"><FontAwesomeIcon className={styles.starIcon} icon={faStar}/></label>
+                            <input type="radio" id="score" className={styles.starIconWrapper}/>
+                            <label htmlFor="score"><FontAwesomeIcon className={styles.starIcon} icon={faStar}/></label>
+                            <input type="radio" id="score" className={styles.starIconWrapper}/>
+                            <label htmlFor="score"><FontAwesomeIcon className={styles.starIcon} icon={faStar}/></label>
+                            <input type="radio" id="score" className={styles.starIconWrapper}/>
+                            <label htmlFor="score"><FontAwesomeIcon className={styles.starIcon} icon={faStar}/></label>
+                            <input type="radio" id="score" className={styles.starIconWrapper}/>
+                            <label htmlFor="score"><FontAwesomeIcon className={styles.starIcon} icon={faStar}/></label>
+                        </div>
                         <div className={styles.createCommentMain}>
                             <textarea placeholder="상품평을 입력해주세요" className={styles.comment}></textarea>
                             <button className={styles.commentCreateBtn}>등록</button>
