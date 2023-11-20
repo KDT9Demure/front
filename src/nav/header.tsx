@@ -30,7 +30,7 @@ export default function Header() {
           <Link to="/signin" className={headerStyles.iconLink}>
             <FontAwesomeIcon icon={faRightToBracket} style={{ color: "#ffffff" }} />
           </Link>
-          Bonjour!
+          <span className={headerStyles.text}>Bonjour!</span>  
         </div>
         <div>
           <Link to="/profile" className={headerStyles.iconLink}>
