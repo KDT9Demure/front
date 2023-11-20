@@ -451,8 +451,8 @@ export default function Signup() {
                 )}
                 <button className={styles.signupBtn} type="button" onClick={sgup}>회원가입</button>
             </form>
-
-        </div >
+        </div>
+    </div>
 
     )
 }
