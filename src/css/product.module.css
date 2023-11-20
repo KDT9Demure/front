@@ -11,7 +11,6 @@
     width: 100%;
     gap: 70px;
     background-color:#253f39;
-    margin-top: -100px;
     padding-top: 100px;
     padding-bottom: 30px;
 }
@@ -179,6 +178,12 @@
     height: 300px;
     width: 100%;
     overflow: hidden;
+    text-align: center;
+}
+
+.datailImg {
+    width: 900px;
+    height: 500px;
 }
 
 .detailInfor2 {
@@ -187,6 +192,7 @@
     border: 1px solid #253f39;
     height: 500px;
     width: 100%;
+    text-align: center;
 }
 
 .detailBtn2 {
@@ -230,9 +236,33 @@
     font-weight: 700;
 }
 
-.starIconWrapper {
+.starIconContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.starIconCover {
     display: none;
 }
+
+.starIconLabel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.startIcon {
+    cursor: pointer;
+}
+
+.starIcon2 path {
+    fill: yellow;
+    cursor: pointer;
+}
+
+
 
 .createCommentMain {
     display: flex;
