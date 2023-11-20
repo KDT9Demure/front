@@ -346,67 +346,69 @@ export default function Signup() {
 
 
     return (
-        <div className={styles.container}>
-            <form className={styles.form}>
+        <div className={styles.bodys}>
+            <div className={styles.container}>
+                <form className={styles.form}>
 
-                <div className={styles.iconContainer}>
-                    <input
-                        className={styles.id} placeholder="ID" onChange={idCheck} maxLength={20} />
+                    <div className={styles.iconContainer}>
+                        <input
+                            className={styles.id} placeholder="ID" onChange={idCheck} maxLength={20} />
 
-                    <div className={styles.icon}>
+                        <div className={styles.icon}>
 
-                        {isIdTrue === true && <FontAwesomeIcon icon={faCheck as IconProp} />}
-                        {isIdTrue === false && <p>❌</p>}
-                        {isIdTrue === null && <span></span>}
+                            {isIdTrue === true && <FontAwesomeIcon icon={faCheck as IconProp} />}
+                            {isIdTrue === false && <p>❌</p>}
+                            {isIdTrue === null && <span></span>}
+                        </div>
                     </div>
-                </div>
 
 
-                <div className="messageDiv">
+                    <div className="messageDiv">
+                        <input
+
+                            className={styles.password} placeholder="Password" type="password"
+                            onChange={pwCheck} />
+                        {isPwTrue === true ? (
+                            <span style={{ color: 'green' }}>사용가능한 비밀번호입니다.</span>
+                        ) : isPwTrue === false ? (
+                            <span style={{ color: 'red' }}>
+                                8자 이상 / 숫자,문자,특수문자를 포함해 주세요
+                            </span>
+                        ) : null}
+                    </div>
+
+                    <div className="messageDiv">
+                        <input
+
+                            className={styles.confirmPassword} placeholder="Confirm Password" type="password"
+                            onChange={confirmPw} />
+                        {isPasswordMatch === true ? (
+                            <span style={{ color: 'green' }}>비밀번호 일치</span>
+                        ) : isPasswordMatch === false ? (
+                            <span style={{ color: 'red' }}>
+                                비밀번호가 일치하지 않습니다
+                            </span>
+                        ) : null}
+                    </div>
+
+
                     <input
 
-                        className={styles.password} placeholder="Password" type="password"
-                        onChange={pwCheck} />
-                    {isPwTrue === true ? (
-                        <span style={{ color: 'green' }}>사용가능한 비밀번호입니다.</span>
-                    ) : isPwTrue === false ? (
-                        <span style={{ color: 'red' }}>
-                            8자 이상 / 숫자,문자,특수문자를 포함해 주세요
-                        </span>
-                    ) : null}
-                </div>
+                        className={styles.name} placeholder="Name" maxLength={20} onChange={nameCheck} />
 
-                <div className="messageDiv">
-                    <input
+                    <div className="messageDiv">
+                        <input
 
-                        className={styles.confirmPassword} placeholder="Confirm Password" type="password"
-                        onChange={confirmPw} />
-                    {isPasswordMatch === true ? (
-                        <span style={{ color: 'green' }}>비밀번호 일치</span>
-                    ) : isPasswordMatch === false ? (
-                        <span style={{ color: 'red' }}>
-                            비밀번호가 일치하지 않습니다
-                        </span>
-                    ) : null}
-                </div>
+                            className={styles.email} placeholder="Email" type="text" onChange={emailCheck} id="emailInput" />
+                        {IsEmailTrue === false ? (
+                            <span style={{ color: 'red' }}>이메일 형식을 확인해 주세요</span>
+                        ) : IsEmailTrue === true ? (
+                            <span style={{ color: "green" }}>
+                                알맞은 이메일 형식입니다
+                            </span>
+                        ) : null}
+                    </div>
 
-
-                <input
-
-                    className={styles.name} placeholder="Name" maxLength={20} onChange={nameCheck} />
-
-                <div className="messageDiv">
-                    <input
-
-                        className={styles.email} placeholder="Email" type="text" onChange={emailCheck} id="emailInput" />
-                    {IsEmailTrue === false ? (
-                        <span style={{ color: 'red' }}>이메일 형식을 확인해 주세요</span>
-                    ) : IsEmailTrue === true ? (
-                        <span style={{ color: "green" }}>
-                            알맞은 이메일 형식입니다
-                        </span>
-                    ) : null}
-                </div>
 
 
                 {isEmailBtnVisible && (
@@ -415,13 +417,15 @@ export default function Signup() {
                     </button>
                 )}
 
-                {authorToggle && (
-                    <div>
-                        <div className={styles.emailDiv}>
 
-                            <input
+                    {authorToggle && (
+                        <div>
+                            <div className={styles.emailDiv}>
 
-                                className={styles.emailNumber} placeholder="Author Number" maxLength={6} onChange={authorCheck} />
+                                <input
+
+                                    className={styles.emailNumber} placeholder="Author Number" maxLength={6} onChange={authorCheck} />
+
 
                             {timerZero ? (
                                 <button className={styles.emailNumberConfirmBtn} type="button" onClick={reAuthorBtn}>
