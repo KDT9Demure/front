@@ -6,6 +6,7 @@ import Signin from './route/signin';
 import Signup from './route/signup';
 import Product from './route/product';
 import List from './route/list';
+import Cart from './route/cart';
 
 
 
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "list",
         element: <List />
+      },
+      {
+        path:"cart",
+        element: <Cart/>
       }
     ]
   },

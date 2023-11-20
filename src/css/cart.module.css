@@ -1,0 +1,121 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    margin-top:-100px;
+    width: 100vw;
+    height: auto;
+    background-color: #253f39;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    font-size: 30px;
+    position: absolute;
+    top: 240px;
+    left: 220px;
+    z-index: 1;
+}
+
+.cartWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 7px;
+    width: 800px;
+    height: auto;
+    background-color: white;
+    margin-top:100px;
+    margin-bottom: 20px;
+    padding: 16px;
+}
+
+.cartMain {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    border-top: 1px solid #253f39;
+    border-bottom: 1px solid #253f39;
+    width: 100%;
+    padding: 16px;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #253f39;
+    width: 100%;
+    border-radius: 7px;
+    padding: 10px;
+}
+
+.cartImg {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.img {
+    width: 150px;
+    height: 150px;
+    border: 1px solid red;
+    border-radius: 7px;
+}
+
+.cartInfoWrapper {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width:500px;
+}
+
+.cartTitle {
+    color: white;
+    font-size: 20px;
+    border-bottom: 1px solid white;
+    margin-bottom: 10px;
+}
+
+.cartInfo {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+
+.cartDeleteBtn {
+    border: none;
+    color: white;
+    background-color: #253f39;
+    border-radius: 7px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.priceWrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    width: 100%;
+    height: 60px;
+    margin-top: 10px;
+    padding-right: 20px;
+}
+
+.orderBtn {
+    border: none;
+    color: white;
+    background-color: #253f39;
+    border-radius: 7px;
+    margin-top: 10px;
+    width: 150px;
+    cursor: pointer;
+}
