@@ -51,4 +51,9 @@ body {
 .projectMembers div {
     margin: 0 10px;
 }
+
+.gitHubs {
+    color: white;
+    font-size: 30px;
+}
   
