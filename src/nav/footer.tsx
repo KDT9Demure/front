@@ -1,4 +1,7 @@
 import footerStyles from '../css/footer.module.css';
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 export default function Footer() {
   return (
@@ -17,6 +20,11 @@ export default function Footer() {
             <div>박가현</div>
             <div>황동하</div>
             <div>김민영</div>
+          </div>
+          <div>
+            <Link to="https://github.com/KDT9Demure" className={footerStyles.gitHubs}>
+              <FontAwesomeIcon icon={faGithub} />
+            </Link>
           </div>
         </div>
       </div>
