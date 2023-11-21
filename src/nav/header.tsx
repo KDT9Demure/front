@@ -25,26 +25,29 @@ export default function Header() {
       <div className={headerStyles.headerLogo} onClick={onLogoClick}>
         Demure
       </div>
-      <div className={headerStyles.headerUser}>
-        <div>
-          <Link to="/signin" className={headerStyles.iconLink}>
-            <FontAwesomeIcon icon={faRightToBracket} style={{ color: "#ffffff" }} />
-          </Link>
-          <span className={headerStyles.text}>Bonjour!</span>  
-        </div>
-        <div>
-          <Link to="/profile" className={headerStyles.iconLink}>
-            <FontAwesomeIcon icon={faUser} style={{ color: "#ffffff" }} />
-          </Link>
-        </div>
-        <div>
-          <Link to="/cart" className={headerStyles.iconLink}>
-            <FontAwesomeIcon icon={faBasketShopping} style={{ color: "#ffffff" }} />
-          </Link>
-        </div>
-      </div>
+      
       {openMenu && (
         <div className={headerStyles.wrapper} onClick={closeMenu}>
+
+          <div className={headerStyles.headerUser} >
+            <div>
+              <Link to="/signin" className={headerStyles.iconLink}>
+                <FontAwesomeIcon icon={faRightToBracket}/>
+              </Link>
+              <span className={headerStyles.text}>Bonjour!</span>  
+            </div>
+            <div>
+              <Link to="/profile" className={headerStyles.iconLink}>
+                <FontAwesomeIcon icon={faUser}/>
+              </Link>
+            </div>
+            <div>
+              <Link to="/cart" className={headerStyles.iconLink}>
+                <FontAwesomeIcon icon={faBasketShopping}/>
+              </Link>
+            </div>
+          </div>
+
           <div className={headerStyles.menu} onClick={(e) => e.stopPropagation()}>
             <span className={headerStyles.headerSearch}>
               <FontAwesomeIcon
