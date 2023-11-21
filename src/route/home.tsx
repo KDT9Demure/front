@@ -1,16 +1,20 @@
-import React from "react"
-
+import homeStyles from '../css/home.module.css';
+// import { mainSwiper } from '../image/mainSwiper'; 
 
 export default function Home() {
-    const my_style = {
-        width:"100%",
-        height: "100vh",
-        backgroudColor:"white"
-    }
+    
     return (
-        <>
-            <div style={my_style}></div>
-        </>
+        <div className={homeStyles.main}>
+            <section className={homeStyles.mainSwiper}>
+
+            </section>
+            <section className={homeStyles.mainBrand}>
+
+            </section>
+            <section className={homeStyles.mainMouse}>
+
+            </section>
+        </div>
         
     )
 }
