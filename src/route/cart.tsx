@@ -7,7 +7,6 @@ export default function Cart() {
 
     return (
             <div className={styles.container}>
-                <div className={styles.title}></div>
                 <section className={styles.cartWrapper}>
                     <div className={styles.cartMain}>
                         <div className={styles.main}>
@@ -36,7 +35,6 @@ export default function Cart() {
                     </div>
                     <button className={styles.orderBtn}>상품 주문하기</button>
                 </section>
-
             </div>
         )
 };
