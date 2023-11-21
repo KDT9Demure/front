@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 
 import axios from "axios";
 
@@ -18,76 +18,112 @@ export default function List() {
 
     const [categories, setCategories] = useState<any[]>([]);
 
+    const [scrollPosition, setScrollPosition] = useState<number>(0);
+
+    const [divHeight, setDivHeight] = useState<number>(0);
+
+    const [scrollEnd, setScrollEnd] = useState<boolean>(false)
+
+    const onScroll = () => {
+        setScrollPosition(window.scrollY);
+    }
+
+    const page = categories.length / 20 + 1
+
     useEffect(() => {
         const categoryData = async () => {
             try {
-                const res = await axios({
-                    method: "post",
-                    url: "http://localhost:8000/list/10382",
-                    data: {
-                        page: 1
-                    }
-                });
-                setCategories(res.data);
-                console.log(res.data[0]);
+                if (categories.length > 1) {
+                    setCategories([""])
+                } else {
+
+                    const res = await axios({
+                        method: "post",
+                        url: "http://localhost:8000/list/10382",
+                        data: {
+                            page: 1
+                        }
+                    });
+                    console.log('useEffect running')
+                    setCategories(res.data);
+
+                }
             } catch (error) {
                 console.log(error);
             }
+
         };
 
         categoryData();
+
     }, []);
 
-    //두번 오는거 해결
 
 
-    // const products = [
-    //     {
-    //         id: 1,
-    //         name: 'Product 1',
-    //         image: 'image-url-1',
-    //         sale: false,
-    //         price: 2000
-    //     },
-    //     {
-    //         id: 2,
-    //         name: 'Product 2',
-    //         image: 'image-url-2',
-    //         sale: false,
-    //         price: 30000,
-    //     },
-    //     {
-    //         id: 3,
-    //         name: 'Product 3',
-    //         image: 'image-url-3',
-    //         sale: false,
-    //         price: 59000,
-    //     },
-    //     {
-    //         id: 4,
-    //         name: 'Product 4',
-    //         image: 'image-url-4',
-    //         sale: false,
-    //         price: 192000,
-    //     },
-    //     {
-    //         id: 5,
-    //         name: 'Product 5',
-    //         image: 'image-url-5',
-    //         sale: true,
-    //         price: 1500000,
-    //     },
+    useEffect(() => {
+        window.addEventListener("scroll", onScroll);
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+        };
+    }, []);
 
 
+    // 스크롤 위치, body height 감시
+    console.log("현재 스크롤 위치 ", scrollPosition)
+    console.log("divHeight", divHeight)
 
-    // ];
+    const divRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        // divRef.current가 null이 아닌 경우를 넣어줘야 함( 안주면 오류 )
+        if (divRef.current) {
+            const bodyHeight = divRef.current.clientHeight;
+            console.log("높이:", bodyHeight);
+            setDivHeight(bodyHeight - 800)
+            //얘가 바뀔때마다 계속 감시해야함/////////////////
+        }
+    }, [categories]);
+
+
+    // 현재 스크롤 위치 scrollPosition이 height - 800 정도 되면 setScrollEnd(true)
+    useEffect(() => {
+        // scrollPosition이 divHeight보다 큰 경우에만 axios 요청
+        if (scrollPosition > divHeight && divHeight !== null) {
+            setScrollEnd(true)
+        }
+    }, [scrollPosition]);
+
+    // setScrollEnd(true) 면 다음페이지 20개 불러오고 다시 setScrollEnd(false) 
+    useEffect(() => {
+        if (scrollEnd === true) {
+
+            axios({
+                method: "post",
+                url: "http://localhost:8000/list/10382",
+                data: {
+                    page
+                },
+            })
+                .then((res) => {
+
+                    setCategories((prevCategories) => [...prevCategories, ...res.data]);
+                    console.log("Axios 요청");
+                    console.log(categories)
+                    setScrollEnd(false)
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
+        }
+    }, [scrollEnd])
+
 
 
 
     return (
         <>
             <div className={styles.top}></div>
-            <div className={styles.bodys}>
+            <div ref={divRef} className={styles.bodys}>
                 <div className={styles.container}>
                     <div className={styles.categoryInfo}>
                         <h1>카테고리</h1>
@@ -98,21 +134,31 @@ export default function List() {
                         </div>
                     </div>
                     <div className={styles.container2}>
-                        {categories.map((product, index) => (
+                        {categories.map((product, index) => {
 
-                            <div key={index} className={styles.productContainer}>
-                                <div className={styles.productImg}>
-                                    <img style={{ width: 100 }} src={product[0].image} alt={`상품 이미지 - ${product.name}`} />
+                            // 가격에 , 추가
+                            const commaPrice = product.goods_id.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+                            return (
+                                <div key={index} className={styles.productContainer}>
+
+                                    <div className={styles.productImg}>
+                                        <img style={{ width: 300, height: 300 }} src={product.goods_id.image} alt={`상품 이미지 - ${product.goods_id.name}`} />
+                                    </div>
+
+                                    <div className={styles.productTextTop}>
+                                        <span className={styles.category}>{product.goods_id.type_name}</span>
+                                        <span className={styles.productName}>{product.goods_id.name}</span>
+
+                                    </div>
+
+                                    <div className={styles.productTextBot}>
+                                        <span className={styles.sale}>{product.goods_id.discount ? `sale` : " "}</span>
+                                        <span className={styles.price}>{commaPrice}원</span>
+                                    </div>
                                 </div>
-                                <div className={styles.productName}>{product.name}</div>
-                                <span className={styles.sale}>{product.discount ? `sale` : null}</span>
-                                <span className={styles.price}>{product[0].price}원</span>
-
-                            </div>
-
-
-
-                        ))}
+                            )
+                        })}
 
                     </div>
                 </div>
