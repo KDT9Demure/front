@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+.hi, .hi2 {
+    width: 100px;
+    height: 100px;
+}
+
 .qnaContainer {
     display: flex;
     flex-direction: column;
@@ -117,7 +122,13 @@
     height: 50px;
     padding: 16px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
+
+.inquireBox:hover {
+    scale: 1.03;
+}
+
 
 .inquireResponse {
     display: flex;
@@ -198,11 +209,19 @@
     cursor: pointer;
 }
 
+.inquireMainBtnDelete {
+    margin-right: 14px;
+}
+
 .inquireMainBtnOff {
     cursor: pointer;
 }
 
-.inquireMainPatch:hover, .inquireMainBtnDelete:hover, .inquireMainBtnOff:hover {
+.inquireMainBtnOff:hover {
+    scale: 1.2;
+}
+
+.inquireMainPatch:hover, .inquireMainBtnDelete:hover {
     scale: 1.1;
 }
 
