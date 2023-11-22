@@ -1,0 +1,302 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hi, .hi2 {
+    width: 100px;
+    height: 100px;
+}
+
+.qnaContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:#253f39;
+    padding-top: 100px;
+}
+
+.qnaSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 7px;
+    padding: 16px;
+    width: 700px;
+}
+
+.qnaWrapper {
+    border: 3px solid #253f39;
+    border-radius: 7px;
+    margin-bottom: 70px;
+    padding: 16px;
+    width: 600px;
+}
+
+.qnaTitle, .inquireHeaderTitle {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.qnaName {
+    margin-bottom: 5px;
+}
+
+.qnaBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #253f39;
+    color: white;
+    border-radius: 7px;
+    width: 565px;
+    height: 50px;
+    padding: 16px;
+    margin-bottom: 10px;
+}
+
+.qnaBox2Wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    width: 565px;
+    height: 200px;
+    margin-bottom: 10px;
+    border: 1px solid #253f39;
+    border-radius: 7px;
+}
+
+.qnaBox2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #253f39;
+    color: black;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+    width: 565px;
+    height: 50px;
+    padding: 16px;
+    color: white;
+}
+
+.qnaBtn {
+    cursor: pointer;
+}
+
+.qnaBtn:hover {
+    scale: 1.2;
+}
+
+.qnaInfor {
+    padding-left: 10px;
+    padding-bottom: 80px;
+}
+
+.inquireWrapper {
+    border: 3px solid #253f39;
+    border-radius: 7px;
+    padding: 16px;
+    width: 600px;
+}
+
+.inquireSearch {
+    width: 565px;
+    margin-bottom: 10px;
+}
+
+.inquireBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #253f39;
+    color: white;
+    border-radius: 7px;
+    width: 565px;
+    height: 50px;
+    padding: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.inquireBox:hover {
+    scale: 1.03;
+}
+
+
+.inquireResponse {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 10px;
+    color: black;
+    background-color: white;
+}
+
+.inquireTitle {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 100%;
+}
+
+.inquireMainBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 565px;
+    background-color: #253f39;
+    border-radius: 7px;
+    color: white;
+    padding: 16px;
+    margin-bottom: 10px;
+}
+
+.inquireMainHeader {
+    display: flex;
+    justify-content: space-between;
+    width: 565px;
+    
+}
+
+.inquireMainTitle {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 15px;
+}
+
+.inquireMainBtnWrapper {
+    display: flex;
+    gap: 20px;
+    padding-right: 15px;
+}
+
+.inquireMainContent {
+    width: 450px;
+    height: 100px;
+    text-align: center;
+    background-color: white;
+    color: black;
+    padding: 16px;
+    border-radius: 7px;
+    margin-top: 10px;
+}
+
+.inquirMainBtnWrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+
+.inquireMainPatch, .inquireMainBtnDelete {
+    border-radius: 7px;
+    background-color: white;
+    border: none;
+    color: black;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.inquireMainBtnDelete {
+    margin-right: 14px;
+}
+
+.inquireMainBtnOff {
+    cursor: pointer;
+}
+
+.inquireMainBtnOff:hover {
+    scale: 1.2;
+}
+
+.inquireMainPatch:hover, .inquireMainBtnDelete:hover {
+    scale: 1.1;
+}
+
+.inquireMainBtn {
+    border-radius: 7px;
+    background-color: white;
+    border: none;
+    margin-top: 10px;
+    margin-right: 45px;
+    cursor: pointer;
+    height: 20px;
+}
+
+.inquireMainBtn:hover {
+    scale:1.1;
+}
+
+.inquireMainAnswer {
+    border-radius: 7px;
+    margin-top: 10px;
+    width: 450px;
+    height: 100px;
+    resize: none;
+}
+
+.answerBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 565px;
+    background-color: #253f39;
+    border-radius: 7px;
+    color: white;
+    padding: 16px;
+}
+
+.answerTitle {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.answerMain {
+    border-radius: 7px;
+    margin-top: 10px;
+    width: 450px;
+    height: 100px;
+    resize: none;
+}
+
+.answerBtnWrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+
+.answerCheck, .answerSecret {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.answerRegisterBtn {
+    border-radius: 7px;
+    background-color: white;
+    border: none;
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-right: 45px;
+    cursor: pointer;
+    height: 20px;
+}
+
+
+.answerRegisterBtn:hover {
+    scale:1.1;
+}

@@ -58,7 +58,7 @@ export default function Header() {
               <input
                 type="text"
                 className={headerStyles.headerSearchInput}
-                placeholder="What do you looking for?"
+                placeholder="검색어를 입력하세요"
               />
             </span>
             <div className={headerStyles.headerMenu}>

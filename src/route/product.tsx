@@ -19,68 +19,67 @@ export default function Product() {
         setVisible(true);
     }
 
+    const noneStyle={
+        height:"300px",
+    }
+
+    const openStyle={
+        height:"auto",
+    }
+
     return (
         <>
             <div className={styles.inforcontainer}>
-                <section className={styles.imageWrapper}>
-                    <img src="" className={styles.image} />
-                </section>
-                <section className={styles.inforWrapper}>
-                    <div className={styles.inforHeader}>
-                        <div className={styles.inforTitle}>침대</div>
-                        <div className={styles.inforName}>상품이름</div>
-                        <div>
-                            <FontAwesomeIcon className={styles.starIcon} icon={faStar} />
-                            <FontAwesomeIcon className={styles.starIcon} icon={faStar} />
-                            <FontAwesomeIcon className={styles.starIcon} icon={faStar} />
-                            <FontAwesomeIcon className={styles.starIcon} icon={faStar} />
-                            <FontAwesomeIcon className={styles.starIcon} icon={faStar} />
-                        </div>
+                <div className={styles.inforBox}>
+                    <div className={styles.imageWrapper}>
+                        <img src="https://www.ikea.com/kr/ko/images/products/aspekt-knife-sharpener-black__0711089_pe727974_s5.jpg" className={styles.image} />
                     </div>
-                    <div className={styles.inforBody}>
-                        <div className={styles.inforPrice}>판매가</div>
-                        <div className={styles.selectWrapper}>옵션
-                            <select className={styles.select}>
-                                <option value='' selected>--- 선택하세요 ---</option>
-                                <option>원목</option>
-                                <option>오크</option>
-                                <option>네이마르</option>
-                            </select>
+                    <div className={styles.inforWrapper}>
+                        <div className={styles.inforHeader}>
+                            <div className={styles.inforTitle}>침대</div>
+                            <div className={styles.inforName}>상품이름</div>
+                            <div className={styles.inforRate}>
+                                5.0
+                            </div>
                         </div>
-                        <div className={styles.quantity}>수량</div>
+                        <div className={styles.inforBody}>
+                            <div className={styles.inforPrice}>판매가</div>
+                            <div className={styles.selectWrapper}>옵션
+                                <select className={styles.select}>
+                                    <option value='' selected>--- 선택하세요 ---</option>
+                                    <option>원목</option>
+                                    <option>오크</option>
+                                    <option>네이마르</option>
+                                </select>
+                            </div>
+                            <div className={styles.quantity}>수량</div>
 
+                        </div>
+                        <div className={styles.amount}>총 금액 : </div>
+                        <div className={styles.bottom}>
+                            <button className={styles.buyBtn}>구매</button>
+                            <button className={styles.pickBtn}>장바구니</button>
+                        </div>
                     </div>
-                    <div className={styles.amount}>총 금액 : </div>
-                    <div className={styles.bottom}>
-                        <button className={styles.buyBtn}>구매</button>
-                        <button className={styles.pickBtn}>장바구니</button>
-                    </div>
-                </section>
+                </div>
             </div>
-            <br />
             <div className={styles.detailContainer}>
-                <section className={styles.detailWrapper}>
-                    {visible ? <><div className={styles.detailHeader}>
+                <div className={styles.detailWrapper}>
+                    <div className={styles.detailHeader}>
                         <div className={styles.title}>상품상세정보</div>
                     </div>
-                        <div className={styles.detailInfor}>
-                            <img className={styles.datailImg} src=""/>
-                        </div>
-                        <div className={styles.detailBtn} onClick={openDetail}><FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faSquareCaretDown} /></div>
-                    </>
-                        : <>
-                            <div className={styles.detailHeader}>
-                                <div className={styles.title}>상품상세정보</div>
-                            </div>
-                            <div className={styles.detailInfor2}>
-                                <img className={styles.datailImg} src=""/>
-                            </div>
-                            <div className={styles.detailBtn2} onClick={closeDetail}><FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faSquareCaretUp} /></div>
-                        </>}
-                </section>
+                    <div className={styles.detailInfor} style={visible?noneStyle:openStyle}>
+                        <img className={styles.datailImg} src="https://image.musinsa.com/images/prd_img/2021040517184200000070689.jpg"/>
+                        {visible? <div className={styles.detailBtn} onClick={openDetail}><FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faSquareCaretDown} /></div>
+                        :
+                        <div className={styles.detailBtn} onClick={closeDetail}><FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faSquareCaretUp} /></div>}
+                        
+                    </div>
+                    
+                </div>
             </div>
             <div className={styles.commentContainer}>
-                <section className={styles.commentWrapper}>
+                <div className={styles.commentWrapper}>
                     <div className={styles.commentHeader}>
                         <div className={styles.title}>상품평</div>
                     </div>
@@ -89,10 +88,10 @@ export default function Product() {
                         <div>별점</div>
                         <div>댓글내용</div>
                     </div>
-                </section>
+                </div>
             </div>
             <div className={styles.createCommentContainer}>
-                <section className={styles.createCommentWrapper}>
+                <div className={styles.createCommentWrapper}>
                     <div className={styles.createCommentTitle}>상품평 작성</div>
                     <div className={styles.starIconContainer}>
                         {[1, 2, 3, 4, 5].map((number, index) => (
@@ -108,7 +107,7 @@ export default function Product() {
                         <textarea placeholder="상품평을 입력해주세요" className={styles.comment}></textarea>
                         <button className={styles.commentCreateBtn}>등록</button>
                     </div>
-                </section>
+                </div>
             </div>
         </>
     )

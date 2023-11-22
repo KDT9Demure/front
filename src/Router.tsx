@@ -7,6 +7,10 @@ import Signup from './route/signup';
 import Product from './route/product';
 import List from './route/list';
 import Cart from './route/cart';
+import QnA from './route/qna';
+import Search from './route/search';
+import Order from './route/order';
+
 
 
 
@@ -38,7 +42,20 @@ const router = createBrowserRouter([
       {
         path:"cart",
         element: <Cart/>
+      },
+      {
+        path:"question/load",
+        element: <QnA />
+      },
+      {
+        path: "search",
+        element: <Search />
+      },
+      {
+        path: "order",
+        element: <Order />
       }
+
     ]
   },
 ]);
