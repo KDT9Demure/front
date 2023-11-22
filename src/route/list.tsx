@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, } from "react"
+import { useLocation, useParams } from "react-router-dom";
+
 
 import axios from "axios";
 
@@ -15,7 +17,6 @@ config.autoAddCss = false
 
 export default function List() {
 
-
     const [categories, setCategories] = useState<any[]>([]);
 
     const [scrollPosition, setScrollPosition] = useState<number>(0);
@@ -23,6 +24,13 @@ export default function List() {
     const [divHeight, setDivHeight] = useState<number>(0);
 
     const [scrollEnd, setScrollEnd] = useState<boolean>(false)
+
+    const [Page, setPage] = useState<number>(1)
+    const [sort, setSort] = useState<String>("best")
+
+
+    const { number } = useParams();
+
 
     const onScroll = () => {
         setScrollPosition(window.scrollY);
@@ -33,21 +41,20 @@ export default function List() {
     useEffect(() => {
         const categoryData = async () => {
             try {
-                if (categories.length > 1) {
-                    setCategories([""])
-                } else {
 
-                    const res = await axios({
-                        method: "post",
-                        url: "http://localhost:8000/list/10382",
-                        data: {
-                            page: 1
-                        }
-                    });
-                    console.log('useEffect running', res)
-                    setCategories(res.data);
+                const res = await axios({
+                    method: "post",
+                    url: `http://localhost:8000/list/${number}?sort=${sort}`,
+                    data: {
+                        page: 1,
+                        sort: sort
+                    }
+                });
+                console.log('useEffect running')
+                setCategories([])
+                setCategories(res.data);
 
-                }
+
             } catch (error) {
                 console.log(error);
             }
@@ -56,7 +63,7 @@ export default function List() {
 
         categoryData();
 
-    }, []);
+    }, [number, sort]);
 
 
 
@@ -69,8 +76,8 @@ export default function List() {
 
 
     // 스크롤 위치, body height 감시
-    console.log("현재 스크롤 위치 ", scrollPosition)
-    console.log("divHeight", divHeight)
+    // console.log("현재 스크롤 위치 ", scrollPosition)
+    // console.log("divHeight", divHeight)
 
     const divRef = useRef<HTMLDivElement>(null);
 
@@ -78,14 +85,13 @@ export default function List() {
         // divRef.current가 null이 아닌 경우를 넣어줘야 함( 안주면 오류 )
         if (divRef.current) {
             const bodyHeight = divRef.current.clientHeight;
-            console.log("높이:", bodyHeight);
-            setDivHeight(bodyHeight - 800)
-            //얘가 바뀔때마다 계속 감시해야함/////////////////
+            // console.log("높이:", bodyHeight);
+            setDivHeight(bodyHeight - 700)
         }
-    }, [categories]);
+    }, [scrollPosition]);
 
 
-    // 현재 스크롤 위치 scrollPosition이 height - 800 정도 되면 setScrollEnd(true)
+    // 현재 스크롤 위치 scrollPosition이 height - 700 정도 되면 setScrollEnd(true)
     useEffect(() => {
         // scrollPosition이 divHeight보다 큰 경우에만 axios 요청
         if (scrollPosition > divHeight && divHeight !== null) {
@@ -96,13 +102,14 @@ export default function List() {
     // setScrollEnd(true) 면 다음페이지 20개 불러오고 다시 setScrollEnd(false) 
     useEffect(() => {
         if (scrollEnd === true) {
-
+            setPage(page + 1)
             axios({
                 method: "post",
-                url: "http://localhost:8000/list/10382",
+                url: `http://localhost:8000/list/${number}?sort=${sort}`,
                 data: {
-                    page
-                },
+                    sort: sort,
+                    page: Page
+                }
             })
                 .then((res) => {
 
@@ -117,7 +124,65 @@ export default function List() {
         }
     }, [scrollEnd])
 
+    // 정렬
 
+    const best = async () => {
+
+        setSort("best")
+        const res = await axios({
+            method: "post",
+            url: `http://localhost:8000/list/${number}?sort=${sort}`,
+            data: {
+                sort: sort,
+                page: 0
+            }
+
+        })
+        console.log('sort running');
+        setCategories(res.data);
+    }
+    const high = async () => {
+
+        setSort("high")
+        const res = await axios({
+            method: "post",
+            url: `http://localhost:8000/list/${number}?sort=${sort}`,
+            data: {
+                sort: sort,
+                page: 0
+            }
+        })
+        console.log('sort running');
+        setCategories(res.data);
+        console.log(res.data)
+    }
+    const low = async () => {
+
+        setSort("low")
+        const res = await axios({
+            method: "post",
+            url: `http://localhost:8000/list/${number}?sort=${sort}`,
+            data: {
+                sort: "low",
+                page: 0
+            }
+        })
+        console.log('sort running');
+        setCategories(res.data);
+    }
+
+
+    let title: string;
+    switch (number) {
+        case "10555":
+            title = '욕실용품';
+            break;
+        case "10382":
+            title = '책장';
+            break;
+        default:
+            title = '카테고리';
+    }
 
 
     return (
@@ -126,11 +191,13 @@ export default function List() {
             <div ref={divRef} className={styles.bodys}>
                 <div className={styles.container}>
                     <div className={styles.categoryInfo}>
-                        <h1>카테고리</h1>
+
+                        <h1>{title}</h1>
+
                         <div className={styles.sort}>
-                            <span>인기상품순 | </span>
-                            <span>낮은 가격순 | </span>
-                            <span>높은 가격순</span>
+                            <span onClick={best} >인기상품순 | </span>
+                            <span onClick={low}>낮은 가격순 | </span>
+                            <span onClick={high}>높은 가격순</span>
                         </div>
                     </div>
                     <div className={styles.container2}>
@@ -139,15 +206,44 @@ export default function List() {
                             // 가격에 , 추가
                             const commaPrice = product.goods_id.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
+                            const productImgHover = product.imgHover || false;
+
+
+
                             return (
-                                <div key={index} className={styles.productContainer}>
+                                <div key={index}
+                                    className={styles.productContainer}
+                                >
 
                                     <div className={styles.productImg}>
-                                        <img style={{ width: 300, height: 300 }} src={product.goods_id.image} alt={`상품 이미지 - ${product.goods_id.name}`} />
+                                        <img loading="lazy"
+
+                                            onMouseOver={() => {
+                                                setCategories((prevCategories) =>
+                                                    prevCategories.map((prevProduct, idx) =>
+                                                        idx === index ? { ...prevProduct, imgHover: true } : prevProduct
+                                                    )
+                                                );
+                                            }}
+
+                                            onMouseOut={() => {
+                                                setCategories((prevCategories) =>
+                                                    prevCategories.map((prevProduct, idx) =>
+                                                        idx === index ? { ...prevProduct, imgHover: false } : prevProduct
+                                                    )
+                                                );
+                                            }}
+
+                                            src={productImgHover ? product.goods_id.arrange_image || product.goods_id.image : product.goods_id.image}
+                                            style={{ width: 300, height: 300, borderRadius: 8 }}
+                                            alt={`${product.goods_id.name}`} />
+                                    </div>
+
+                                    <div className={styles.productTextHeader}>
+                                        <span className={styles.category}>{product.goods_id.type_name}</span>
                                     </div>
 
                                     <div className={styles.productTextTop}>
-                                        <span className={styles.category}>{product.goods_id.type_name}</span>
                                         <span className={styles.productName}>{product.goods_id.name}</span>
 
                                     </div>
@@ -156,13 +252,14 @@ export default function List() {
                                         <span className={styles.sale}>{product.goods_id.discount ? `sale` : " "}</span>
                                         <span className={styles.price}>{commaPrice}원</span>
                                     </div>
+                                    <hr />
                                 </div>
                             )
                         })}
 
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     )
 }

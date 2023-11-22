@@ -25,25 +25,25 @@ export default function Header() {
       <div className={headerStyles.headerLogo} onClick={onLogoClick}>
         Demure
       </div>
-      
+
       {openMenu && (
         <div className={headerStyles.wrapper} onClick={closeMenu}>
 
           <div className={headerStyles.headerUser} >
             <div>
               <Link to="/signin" className={headerStyles.iconLink}>
-                <FontAwesomeIcon icon={faRightToBracket}/>
+                <FontAwesomeIcon icon={faRightToBracket} />
               </Link>
-              <span className={headerStyles.text}>Bonjour!</span>  
+              <span className={headerStyles.text}>Bonjour!</span>
             </div>
             <div>
               <Link to="/profile" className={headerStyles.iconLink}>
-                <FontAwesomeIcon icon={faUser}/>
+                <FontAwesomeIcon icon={faUser} />
               </Link>
             </div>
             <div>
               <Link to="/cart" className={headerStyles.iconLink}>
-                <FontAwesomeIcon icon={faBasketShopping}/>
+                <FontAwesomeIcon icon={faBasketShopping} />
               </Link>
             </div>
           </div>
@@ -62,56 +62,56 @@ export default function Header() {
               />
             </span>
             <div className={headerStyles.headerMenu}>
-                    <dt>
-                        <Link to={""} className={headerStyles.dtLink}>Home</Link>
-                    </dt>
-                    <dt>
-                        <div>Category</div>
-                        <dd>
-                            <Link to={""} className={headerStyles.menuLink}>Bathroom products</Link>
-                        </dd>
-                        <dd>
-                            <Link to={""} className={headerStyles.menuLink}>Kitchen</Link>
-                        </dd>
-                        <dd>
-                            <Link to={""} className={headerStyles.menuLink}>Beds & mattresses</Link>
-                        </dd>
-                        <dd>
-                            <Link to={""} className={headerStyles.menuLink}>Chairs</Link>
-                        </dd>
-                        <dd>
-                            <Link to={""} className={headerStyles.menuLink}>Tables & desks</Link>
-                        </dd>
-                        <dd>
-                            <Link to={""} className={headerStyles.menuLink}>Lighting</Link>
-                        </dd>
-                        <dd>
-                            <Link to={""} className={headerStyles.menuLink}>Baby & Children</Link>
-                        </dd>
-                        <dd>
-                            <Link to={""} className={headerStyles.menuLink}>Decoration</Link>
-                        </dd>
-                        <dd>
-                            <Link to={""} className={headerStyles.menuLink}>Living room</Link>
-                        </dd>
-                        <dd>
-                            <Link to={""} className={headerStyles.menuLink}>Cabinets</Link>
-                        </dd>
-                    </dt>
-                    <dt>
-                        <div>Customer Service</div>
-                        <dd>
-                            <Link to={""} className={headerStyles.menuLink}>QnA</Link>
-                        </dd>
-                        <dd>
-                            <Link to={""} className={headerStyles.menuLink}>Notice</Link>
-                        </dd>
-                    </dt>
-                    <dt>
-                        <Link to={""} className={headerStyles.dtLink}>Event</Link>
-                    </dt>
-                </div>
+              <dt>
+                <Link to={""} className={headerStyles.dtLink}>Home</Link>
+              </dt>
+              <dt>
+                <div>Category</div>
+                <dd>
+                  <Link to={"list/10555"} className={headerStyles.menuLink}>Bathroom products</Link>
+                </dd>
+                <dd>
+                  <Link to={""} className={headerStyles.menuLink}>Kitchen</Link>
+                </dd>
+                <dd>
+                  <Link to={""} className={headerStyles.menuLink}>Beds & mattresses</Link>
+                </dd>
+                <dd>
+                  <Link to={""} className={headerStyles.menuLink}>Chairs</Link>
+                </dd>
+                <dd>
+                  <Link to={""} className={headerStyles.menuLink}>Tables & desks</Link>
+                </dd>
+                <dd>
+                  <Link to={""} className={headerStyles.menuLink}>Lighting</Link>
+                </dd>
+                <dd>
+                  <Link to={""} className={headerStyles.menuLink}>Baby & Children</Link>
+                </dd>
+                <dd>
+                  <Link to={""} className={headerStyles.menuLink}>Decoration</Link>
+                </dd>
+                <dd>
+                  <Link to={""} className={headerStyles.menuLink}>Living room</Link>
+                </dd>
+                <dd>
+                  <Link to={"list/10382"} className={headerStyles.menuLink}>Cabinets</Link>
+                </dd>
+              </dt>
+              <dt>
+                <div>Customer Service</div>
+                <dd>
+                  <Link to={""} className={headerStyles.menuLink}>QnA</Link>
+                </dd>
+                <dd>
+                  <Link to={""} className={headerStyles.menuLink}>Notice</Link>
+                </dd>
+              </dt>
+              <dt>
+                <Link to={""} className={headerStyles.dtLink}>Event</Link>
+              </dt>
             </div>
+          </div>
         </div>
       )}
     </div>
