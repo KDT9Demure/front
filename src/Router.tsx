@@ -36,15 +36,15 @@ const router = createBrowserRouter([
         element: <Product />
       },
       {
-        path: "list",
+        path: "list/:number",
         element: <List />
       },
       {
-        path:"cart",
-        element: <Cart/>
+        path: "cart",
+        element: <Cart />
       },
       {
-        path:"question/load",
+        path: "question/load",
         element: <QnA />
       },
       {

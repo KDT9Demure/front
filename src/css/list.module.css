@@ -5,7 +5,7 @@
 }
 
 .bodys {
-    padding: 40px 40px 60px 40px;
+    padding: 40px 0px 70px 60px;
     width: auto;
     height: auto;
     background-color: white;
@@ -41,10 +41,12 @@
 }
 
 .productContainer {
-    margin-left: 40px;
-    margin-top: 20px;
+    cursor: pointer;
+    margin: 20px 20px 30px 20px;
+
     width: 300px;
     height: 370px;
+
 
     @media (max-width : 679px) {
 
@@ -53,10 +55,24 @@
 
 }
 
+hr {
+    cursor: default;
+    width: 341px;
+    margin-top: 20px;
+    height: 2px;
+    background-color: black;
+}
+
+
 .productImg {
     width: 300px;
     height: 300px;
 
+}
+
+.productTextHeader {
+    display: flex;
+    justify-content: center;
 }
 
 .productTextTop {
@@ -68,11 +84,13 @@
 
 .category {
     margin: 0 7px 0 0;
-    color: rgb(183, 163, 97)
+    color: rgb(183, 163, 97);
+
 }
 
 .productName {
-    font-size: 26px;
+    font-size: 22px;
+    font-weight: bold;
 }
 
 .productTextBot {
@@ -84,10 +102,4 @@
 
 .price {
     font-size: 22px;
-}
-
-
-.hr {
-    width: 115%;
-    padding: 0 0 0 30px;
 }
