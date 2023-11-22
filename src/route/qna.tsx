@@ -2,7 +2,8 @@ import styles from "../css/qna.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
 function OneQna({ que, anw }: { que: string, anw: string }) {
@@ -13,14 +14,14 @@ function OneQna({ que, anw }: { que: string, anw: string }) {
             (<div className={styles.qnaBox}>
                 <div>{que}</div>
                 <div className={styles.qnaBtn}>
-                    <FontAwesomeIcon className={styles.starIcon} icon={faCaretDown} onClick={() => setVisible(false)} />
+                    <FontAwesomeIcon icon={faCaretDown} onClick={() => setVisible(false)} />
                 </div>
             </div >)
             :
             (<div className={styles.qnaBox2Wrapper}>
                 <div className={styles.qnaBox2}>
                     <div>{que}</div>
-                    <div className={styles.qnaBtn}><FontAwesomeIcon className={styles.starIcon} icon={faCaretUp} onClick={() => setVisible(true)} /></div>
+                    <div className={styles.qnaBtn}><FontAwesomeIcon icon={faCaretUp} onClick={() => setVisible(true)} /></div>
                 </div>
                 <div className={styles.qnaInfor}>
                     {anw}
@@ -29,9 +30,54 @@ function OneQna({ que, anw }: { que: string, anw: string }) {
     )
 }
 
+
 export default function QnA() {
+    const [comments, setComments] = useState<any[]>([]);
+    const [visible, setVisible] = useState<boolean>(true);
 
 
+    useEffect(() => {
+        const datas = async () => {
+            const res = await axios({
+                method: "get",
+                url: 'http://localhost:8000/question/load',
+                params: {
+                    
+                }
+            })
+            setComments(res.data);
+        }
+        datas();
+       
+    }, [])
+
+    
+    const DeleteComment = () => {
+        const deleteUser = async () => {
+            if (!confirm('댓글을 삭제하시겠습니까?')) {
+                return;
+            }
+            
+            const res = await axios({
+                method: "delete",
+                url: "http://localhost:8000/question/delete",
+                data: {
+                    
+                }
+            }).then((res) => {
+                if (res.data.result) {
+                    document.location.reload();
+                }
+            })
+            
+        }
+        deleteUser();
+        const result = comments.filter((value) => !value.done === true);
+        setComments(result);
+        console.log("2", result)
+    };
+
+    
     return (
         <>
             <div className={styles.qnaContainer}>
@@ -48,30 +94,31 @@ export default function QnA() {
                     <div className={styles.inquireWrapper}>
                         <div className={styles.inquireHeaderTitle}>1:1 문의</div>
                         <input placeholder="검색" className={styles.inquireSearch} />
-                        <div className={styles.inquireBox}>
-                            <div className={styles.inquireResponse}>답변완료</div>
-                            <div className={styles.inquireTitle}>배송 언제 오나요???</div>
-                        </div>
-                        <div className={styles.inquireBox}>
-                            <div className={styles.inquireResponse}>답변유무</div>
-                            <div className={styles.inquireTitle}>글 제목</div>
-                        </div>
-                        <div className={styles.inquireMainBox}>
-                            <div className={styles.inquireMainHeader}>
-                                <div className={styles.inquireMainTitle}>글 제목</div>
-                                <div className={styles.inquireMainBtnWrapper}>
-                                    <button className={styles.inquireMainPatch}>수정</button>
-                                    <button className={styles.inquireMainBtnDelete}>삭제</button>
-                                    <div><FontAwesomeIcon className={styles.inquireMainBtnOff} icon={faCaretUp} /></div>
-                                </div>
-                            </div>
-                            <div className={styles.inquireMainContent}>글 내용</div>
-                            <br />
-                            <textarea className={styles.inquireMainAnswer}></textarea>
-                            <div className={styles.inquirMainBtnWrapper}>
-                                <button className={styles.inquireMainBtn}>답글등록</button>
-                            </div>
-                        </div>
+                        {comments.map((comment, index) => {
+                            return(
+                                visible ?
+                                (<div key={index} className={styles.inquireBox} onClick={() => setVisible(false)}>
+                                    <div className={styles.inquireResponse}>답변대기</div>
+                                    <div className={styles.inquireTitle}>{comment.title}</div>
+                                </div>) :
+                                
+                                (<div className={styles.inquireMainBox}>
+                                    <div className={styles.inquireMainHeader}>
+                                        <div className={styles.inquireMainTitle}>{comment.title}</div>
+                                        <div className={styles.inquireMainBtnWrapper}>
+                                            <button className={styles.inquireMainPatch}>수정</button>
+                                            <button className={styles.inquireMainBtnDelete} onClick={DeleteComment}>삭제</button>
+                                            <div><FontAwesomeIcon className={styles.inquireMainBtnOff} icon={faCaretUp} onClick={() => setVisible(true)}/></div>
+                                        </div>
+                                    </div>
+                                    <div className={styles.inquireMainContent}>{comment.content}</div>
+                                    <br />
+                                    <textarea className={styles.inquireMainAnswer}></textarea>
+                                    <div className={styles.inquirMainBtnWrapper}>
+                                        <button className={styles.inquireMainBtn}>답글등록</button>
+                                    </div>
+                                </div>)
+                            )})}
                         <div className={styles.answerBox}>
                             <div className={styles.answerTitle}>문의하기</div>
                             <textarea className={styles.answerMain}></textarea>
@@ -86,6 +133,5 @@ export default function QnA() {
             </div>
         </>
     )
+
 }
-
-
