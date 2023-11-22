@@ -44,7 +44,7 @@ export default function List() {
                             page: 1
                         }
                     });
-                    console.log('useEffect running')
+                    console.log('useEffect running', res)
                     setCategories(res.data);
 
                 }
