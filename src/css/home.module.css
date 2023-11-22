@@ -9,12 +9,14 @@
 }
 
 .slide {
+    position: relative;
     display: flex;
     transition: transform 0.5s ease-in-out;
 }
 
 .slideBox {
     display: flex;
+    position: relative;
 }
 
 .slideBoxImg {
@@ -23,23 +25,33 @@
     object-fit: cover;
 }
 
-.slideBtnBox {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
-    padding: 0 10px;
-    color: white;
-    size: 100px;
-}
-  
 .slideLeftBtn,
 .slideRightBtn {
     cursor: pointer;
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    color: azure;
+    font-size: 30px;
+    opacity: 0.5;
 }
-  
+
+.slideLeftBtn:hover,
+.slideRightBtn:hover {
+    color: azure;
+    opacity: 1;
+}
+
+.slideLeftBtn {
+    left: 13px;
+}
+
+.slideRightBtn {
+    right: 13px;
+}
+
 /* section2 브랜드스토리 스타일 */
 .mainBrand {
 
