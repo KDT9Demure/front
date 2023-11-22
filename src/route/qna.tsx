@@ -46,7 +46,6 @@ export default function QnA() {
                 }
             })
             setComments(res.data);
-            console.log("Re", res)
         }
         datas();
        
@@ -58,6 +57,7 @@ export default function QnA() {
             if (!confirm('댓글을 삭제하시겠습니까?')) {
                 return;
             }
+            
             const res = await axios({
                 method: "delete",
                 url: "http://localhost:8000/question/delete",
@@ -69,7 +69,7 @@ export default function QnA() {
                     document.location.reload();
                 }
             })
-            console.log("Qq", res)
+            
         }
         deleteUser();
         const result = comments.filter((value) => !value.done === true);

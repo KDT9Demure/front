@@ -22,8 +22,8 @@ export default function Signin() {
         console.log(res.data)
 
         if (res.data.result) {
-            alert('로그인이 되었습니다');
-            // document.location.href = '/';
+            alert("로그인이 되었습니다.");
+            document.location.href = "/";
 
             //쿠키에 value로 token 넣기
             const cookie = new Cookies();
@@ -31,8 +31,8 @@ export default function Signin() {
             cookie.set("NID", token);
             
           } else {
-            alert("실패")
-            // document.location.reload();
+            alert("로그인에 실패하셨습니다.");
+            document.location.reload();
           }
     }
 
