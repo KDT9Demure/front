@@ -19,12 +19,20 @@ export default function Product() {
         setVisible(true);
     }
 
+    const noneStyle={
+        height:"300px",
+    }
+
+    const openStyle={
+        height:"auto",
+    }
+
     return (
         <>
             <div className={styles.inforcontainer}>
                 <div className={styles.inforBox}>
                     <div className={styles.imageWrapper}>
-                        <img src="https://www.ikea.com/kr/ko/images/products/besta-tv-bench-with-doors-white-lappviken-white__0719188_pe731908_s5.jpg" className={styles.image} />
+                        <img src="https://www.ikea.com/kr/ko/images/products/aspekt-knife-sharpener-black__0711089_pe727974_s5.jpg" className={styles.image} />
                     </div>
                     <div className={styles.inforWrapper}>
                         <div className={styles.inforHeader}>
@@ -57,23 +65,17 @@ export default function Product() {
             </div>
             <div className={styles.detailContainer}>
                 <div className={styles.detailWrapper}>
-                    {visible ? <><div className={styles.detailHeader}>
+                    <div className={styles.detailHeader}>
                         <div className={styles.title}>상품상세정보</div>
                     </div>
-                        <div className={styles.detailInfor}>
-                            <img className={styles.datailImg} src="https://image.musinsa.com/images/prd_img/2021040517184200000070689.jpg"/>
-                        </div>
-                        <div className={styles.detailBtn} onClick={openDetail}><FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faSquareCaretDown} /></div>
-                    </>
-                        : <>
-                            <div className={styles.detailHeader}>
-                                <div className={styles.title}>상품상세정보</div>
-                            </div>
-                            <div className={styles.detailInfor2}>
-                                <img className={styles.datailImg} src=""/>
-                            </div>
-                            <div className={styles.detailBtn2} onClick={closeDetail}><FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faSquareCaretUp} /></div>
-                        </>}
+                    <div className={styles.detailInfor} style={visible?noneStyle:openStyle}>
+                        <img className={styles.datailImg} src="https://image.musinsa.com/images/prd_img/2021040517184200000070689.jpg"/>
+                        {visible? <div className={styles.detailBtn} onClick={openDetail}><FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faSquareCaretDown} /></div>
+                        :
+                        <div className={styles.detailBtn} onClick={closeDetail}><FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faSquareCaretUp} /></div>}
+                        
+                    </div>
+                    
                 </div>
             </div>
             <div className={styles.commentContainer}>
