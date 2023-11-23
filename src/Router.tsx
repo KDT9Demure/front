@@ -10,6 +10,7 @@ import Cart from './route/cart';
 import QnA from './route/qna';
 import Search from './route/search';
 import Order from './route/order';
+import Notion from './route/Notion';
 
 
 
@@ -36,15 +37,15 @@ const router = createBrowserRouter([
         element: <Product />
       },
       {
-        path: "list",
+        path: "list/:number",
         element: <List />
       },
       {
-        path:"cart",
-        element: <Cart/>
+        path: "cart",
+        element: <Cart />
       },
       {
-        path:"question/load",
+        path: "question/load",
         element: <QnA />
       },
       {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: "order",
         element: <Order />
+      },
+      {
+        path: "notion",
+        element: <Notion />
       }
 
     ]

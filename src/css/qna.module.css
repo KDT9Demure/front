@@ -117,7 +117,13 @@
     height: 50px;
     padding: 16px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
+
+.inquireBox:hover {
+    scale: 1.03;
+}
+
 
 .inquireResponse {
     display: flex;
@@ -198,11 +204,19 @@
     cursor: pointer;
 }
 
+.inquireMainBtnDelete {
+    margin-right: 14px;
+}
+
 .inquireMainBtnOff {
     cursor: pointer;
 }
 
-.inquireMainPatch:hover, .inquireMainBtnDelete:hover, .inquireMainBtnOff:hover {
+.inquireMainBtnOff:hover {
+    scale: 1.2;
+}
+
+.inquireMainPatch:hover, .inquireMainBtnDelete:hover {
     scale: 1.1;
 }
 
@@ -218,6 +232,13 @@
 
 .inquireMainBtn:hover {
     scale:1.1;
+}
+
+.answerMainName {
+    border-radius: 7px;
+    width: 450px;
+    height: 50px;
+    resize: none;
 }
 
 .inquireMainAnswer {
@@ -244,6 +265,7 @@
     display: flex;
     justify-content: flex-start;
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .answerMain {

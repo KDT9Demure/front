@@ -25,25 +25,25 @@ export default function Header() {
       <div className={headerStyles.headerLogo} onClick={onLogoClick}>
         Demure
       </div>
-      
+
       {openMenu && (
         <div className={headerStyles.wrapper} onClick={closeMenu}>
 
           <div className={headerStyles.headerUser} >
             <div>
               <Link to="/signin" className={headerStyles.iconLink}>
-                <FontAwesomeIcon icon={faRightToBracket}/>
+                <FontAwesomeIcon icon={faRightToBracket} />
               </Link>
-              <span className={headerStyles.text}>Bonjour!</span>  
+              <span className={headerStyles.text}>Bonjour!</span>
             </div>
             <div>
               <Link to="/profile" className={headerStyles.iconLink}>
-                <FontAwesomeIcon icon={faUser}/>
+                <FontAwesomeIcon icon={faUser} />
               </Link>
             </div>
             <div>
               <Link to="/cart" className={headerStyles.iconLink}>
-                <FontAwesomeIcon icon={faBasketShopping}/>
+                <FontAwesomeIcon icon={faBasketShopping} />
               </Link>
             </div>
           </div>
