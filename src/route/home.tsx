@@ -1,13 +1,9 @@
 import homeStyles from '../css/home.module.css';; 
 import { useState, useEffect, CSSProperties } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 type SlideImage = string[];
-
-const createCyclicArray = (arr: any[], times: number) => {
-    return Array.from({ length: times }, () => [...arr]).flat();
-};
 
 export default function Home() {
     const initialSlides = [
@@ -19,31 +15,32 @@ export default function Home() {
         'assets/slide6.jpg',
     ];
 
-    const [slideImg, setSlideImg] = useState<SlideImage>(createCyclicArray(initialSlides, 10));
-    const [slideCount, setSlideCount] = useState<number>(0);
+     const [slideImg, setSlideImg] = useState<SlideImage>(initialSlides);
+     const [slideCount, setSlideCount] = useState<number>(0);
 
-    useEffect(() => {
+     useEffect(() => {
         const interval = setInterval(() => {
-            setSlideCount((prevCount) => (prevCount + 1) % slideImg.length);
-            setSlideImg((prevSlides) => {
-                return prevSlides;
-            });
+            const nextSlideIndex = slideImg.length % initialSlides.length;
+            const nextSlide = initialSlides[nextSlideIndex];
+            setSlideImg((prevImges) => [...prevImges,nextSlide]);
+
+            setSlideCount((prevSlideCount) => (prevSlideCount + 1) % slideImg.length);
         }, 2000);
 
         return () => clearInterval(interval);
-    }, [slideCount, slideImg]);
+     }, [slideCount, slideImg]);
 
-    const handlePrev = () => {
-        setSlideCount((prevCount) => (prevCount - 1 + slideImg.length) % slideImg.length);
-    };
+    //  const handlePrev = () => {
+    //     setSlideCount((prevCount) => (prevCount - 1 + slideImg.length) % slideImg.length);
+    //  };
 
-    const handleNext = () => {
-        setSlideCount((nextCount) => (nextCount + 1) % slideImg.length);
-    };
+    //  const handleNext = () => {
+    //     setSlideCount((nextCount) => (nextCount + 1) % slideImg.length);
+    //  };
 
-    const slideStyle: CSSProperties = {
-        transform: `translate(-${slideCount * 100}%, 0px)`,
-    };
+     const slideStyle: CSSProperties = {
+        transform: `translate(-${slideCount * 100}%, 0px)`
+     };
 
     const initialFurniture = [
         'assets/furniture1.jpg',
@@ -52,26 +49,30 @@ export default function Home() {
         'assets/furniture4.jpg',
         'assets/furniture5.jpg',
         'assets/furniture6.jpg',
-    ]
-
-    const [furImg, setFurImg] = useState<SlideImage>(createCyclicArray(initialFurniture, 10));
-    const [furCount, setFurCount] = useState<number>(0);
-
-    useEffect(() => {
+        'assets/furniture7.jpg',
+        'assets/furniture8.jpg',
+      ];
+      
+      const [furImg, setFurImg] = useState<SlideImage>(initialFurniture);
+      const [furCount, setFurCount] = useState<number>(0);
+      
+      useEffect(() => {
         const intervalFur = setInterval(() => {
-            setFurCount((prevCount) => (prevCount + 1) % furImg.length);
-            setFurImg((prevSlides) => {
-                const newSlides = [...prevSlides];
-                return newSlides;
-            });
+          const nextImageIndex = furImg.length % initialFurniture.length;
+          const nextImage = initialFurniture[nextImageIndex];
+          setFurImg((prevSlides) => [...prevSlides, nextImage]);
+      
+          setFurCount((prevCount) => (prevCount + 1) % furImg.length);
         }, 2000);
-    
+      
         return () => clearInterval(intervalFur);
-    }, [furCount, furImg]);
+      }, [furCount, furImg]);
+      
 
-    const furStyle: CSSProperties = {
-        transform: `translate(-${furCount * 100}%, 0px)`,
-    };
+     const furStyle: CSSProperties = {
+        transform: `translateX(-${furCount * (100 / initialFurniture.length)}%)`
+     };
+      
 
     return (
         <div className={homeStyles.main}>
@@ -84,7 +85,7 @@ export default function Home() {
                     </div>
                 </div>    
                 <div className={homeStyles.slideBtnBox}>
-                    <FontAwesomeIcon
+                    {/* <FontAwesomeIcon
                         icon={faChevronLeft}
                         className={homeStyles.slideLeftBtn}
                         onClick={handlePrev}
@@ -93,7 +94,7 @@ export default function Home() {
                         icon={faChevronRight}
                         className={homeStyles.slideRightBtn}
                         onClick={handleNext}
-                    />
+                    /> */}
                 </div>
             </section>
             <section className={homeStyles.mainBrand}>
