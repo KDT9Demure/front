@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, } from "react"
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 
 import axios from "axios";
@@ -14,7 +14,6 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 
 
-
 export default function List() {
 
     const [categories, setCategories] = useState<any[]>([]);
@@ -25,9 +24,11 @@ export default function List() {
 
     const [scrollEnd, setScrollEnd] = useState<boolean>(false)
 
-    const [Page, setPage] = useState<number>(1)
+    const [Page, setPage] = useState<number>(2)
     const [sort, setSort] = useState<String>("best")
+    const [selectedSort, setSelectedSort] = useState<String>("best")
 
+    const [isListEnd, setIsListEnd] = useState<boolean>(false)
 
     const { number } = useParams();
 
@@ -35,8 +36,6 @@ export default function List() {
     const onScroll = () => {
         setScrollPosition(window.scrollY);
     }
-
-    const page = categories.length / 20 + 1
 
     useEffect(() => {
         const categoryData = async () => {
@@ -65,15 +64,12 @@ export default function List() {
 
     }, [number, sort]);
 
-
-
     useEffect(() => {
         window.addEventListener("scroll", onScroll);
         return () => {
             window.removeEventListener("scroll", onScroll);
         };
     }, []);
-
 
     // 스크롤 위치, body height 감시
     // console.log("현재 스크롤 위치 ", scrollPosition)
@@ -90,7 +86,6 @@ export default function List() {
         }
     }, [scrollPosition]);
 
-
     // 현재 스크롤 위치 scrollPosition이 height - 700 정도 되면 setScrollEnd(true)
     useEffect(() => {
         // scrollPosition이 divHeight보다 큰 경우에만 axios 요청
@@ -102,7 +97,8 @@ export default function List() {
     // setScrollEnd(true) 면 다음페이지 20개 불러오고 다시 setScrollEnd(false) 
     useEffect(() => {
         if (scrollEnd === true) {
-            setPage(page + 1)
+            setPage(Page + 1)
+            console.log("현재 페이지", Page)
             axios({
                 method: "post",
                 url: `http://localhost:8000/list/${number}?sort=${sort}`,
@@ -112,65 +108,79 @@ export default function List() {
                 }
             })
                 .then((res) => {
-
                     setCategories((prevCategories) => [...prevCategories, ...res.data]);
                     console.log("Axios 요청");
                     console.log(categories)
                     setScrollEnd(false)
+
+                    if (res.data.length < 20) {
+                        setIsListEnd(true)
+                    }
                 })
                 .catch((error) => {
                     console.log(error)
                 });
+        } else {
+
         }
     }, [scrollEnd])
 
     // 정렬
-
     const best = async () => {
-
+        setSelectedSort("best")
         setSort("best")
+        setCategories([])
+        setPage(2)
+        setIsListEnd(false)
         const res = await axios({
             method: "post",
             url: `http://localhost:8000/list/${number}?sort=${sort}`,
             data: {
                 sort: sort,
-                page: 0
+                page: 1
             }
 
         })
         console.log('sort running');
         setCategories(res.data);
     }
-    const high = async () => {
 
+    const high = async () => {
+        setSelectedSort("high")
         setSort("high")
+        setCategories([])
+        setPage(2)
+        setIsListEnd(false)
         const res = await axios({
             method: "post",
             url: `http://localhost:8000/list/${number}?sort=${sort}`,
             data: {
                 sort: sort,
-                page: 0
+                page: 1
             }
         })
         console.log('sort running');
         setCategories(res.data);
         console.log(res.data)
     }
-    const low = async () => {
 
+    const low = async () => {
+        setSelectedSort("low")
         setSort("low")
+        setCategories([])
+        setPage(2)
+        setIsListEnd(false)
         const res = await axios({
             method: "post",
             url: `http://localhost:8000/list/${number}?sort=${sort}`,
             data: {
                 sort: "low",
-                page: 0
+                page: 1
             }
         })
         console.log('sort running');
         setCategories(res.data);
     }
-
 
     let title: string;
     switch (number) {
@@ -184,20 +194,21 @@ export default function List() {
             title = '카테고리';
     }
 
-
     return (
         <>
             <div className={styles.top}></div>
             <div ref={divRef} className={styles.bodys}>
-                <div className={styles.container}>
+                <div className={styles.container1}>
                     <div className={styles.categoryInfo}>
 
-                        <h1>{title}</h1>
+                        <h1 className={styles.title}>{title}</h1>
 
                         <div className={styles.sort}>
-                            <span onClick={best} >인기상품순 | </span>
-                            <span onClick={low}>낮은 가격순 | </span>
-                            <span onClick={high}>높은 가격순</span>
+                            <span className={selectedSort === 'best' ? styles.selectedSort : ''} onClick={best}>인기상품순   </span>
+                            <span>|</span>
+                            <span className={selectedSort === 'low' ? styles.selectedSort : ''} onClick={low}>   낮은 가격순   </span>
+                            <span>|</span>
+                            <span className={selectedSort === 'high' ? styles.selectedSort : ''} onClick={high}>   높은 가격순</span>
                         </div>
                     </div>
                     <div className={styles.container2}>
@@ -207,8 +218,6 @@ export default function List() {
                             const commaPrice = product.goods_id.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
                             const productImgHover = product.imgHover || false;
-
-
 
                             return (
                                 <div key={index}
@@ -253,12 +262,18 @@ export default function List() {
                                         <span className={styles.price}>{commaPrice}원</span>
                                     </div>
                                     <hr />
+
                                 </div>
                             )
                         })}
 
                     </div>
                 </div>
+                {isListEnd &&
+                    <div className={styles.listEndDiv}>
+                        <div className={styles.listEndText}>ㅤENDㅤ</div>
+                    </div>
+                }
             </div >
         </>
     )
