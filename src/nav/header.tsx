@@ -66,7 +66,7 @@ export default function Header() {
                         <Link to={""} className={headerStyles.dtLink}>Home</Link>
                     </dt>
                     <dt>
-                        <div>Category</div>
+                        <div className={headerStyles.dtLink}>Category</div>
                         <dd>
                             <Link to={""} className={headerStyles.menuLink}>Bathroom products</Link>
                         </dd>
@@ -99,7 +99,7 @@ export default function Header() {
                         </dd>
                     </dt>
                     <dt>
-                        <div>Customer Service</div>
+                        <div className={headerStyles.dtLink}>Customer Service</div>
                         <dd>
                             <Link to={""} className={headerStyles.menuLink}>QnA</Link>
                         </dd>

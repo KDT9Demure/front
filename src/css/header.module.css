@@ -39,11 +39,17 @@ body {
     overflow: hidden; 
     z-index: 100;
     position: fixed;
+    padding-bottom: 15px;
 }
 
 .openMenu {
     background-color: #253f39;
     box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.05);
+    animation: fadeInWithScale 0.5s ease-out;
+        transform-origin: 50% 0;
+        transform: scale(1, 1);
+        transition: all 0.2s cubic-bezier(.72, .02, 1, .55);
+        animation-fill-mode: forwards;
 }
    
 .headerLogo {
@@ -157,12 +163,13 @@ body {
 }
   
 .headerMenu div {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .headerMenu dt .dtLink {
     color: white;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .headerMenu dd {
@@ -199,13 +206,8 @@ body {
       opacity: 1;
       background-color: #253f39;
     }
-    }
-    .openMenu{
-        animation: fadeInWithScale 0.5s ease-out;
-        transform-origin: 50% 0;
-        transform: scale(1, 1);
-        transition: all 0.2s cubic-bezier(.72, .02, 1, .55);
-        animation-fill-mode: forwards;
-    }
+}
+
+
   
   
