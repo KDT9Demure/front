@@ -5,13 +5,13 @@
 }
 
 .bodys {
-    padding: 40px 0px 70px 60px;
+    padding: 40px 60px 20px 60px;
     width: auto;
     height: auto;
     background-color: white;
 }
 
-.container {
+.container1 {
 
     background-color: white;
     position: relative;
@@ -25,8 +25,20 @@
     height: 100px;
 }
 
+.title {
+    font-size: 36px;
+}
+
 .sort {
+    cursor: pointer;
+    font-size: 18px;
     margin: 10px 0 0 20px;
+}
+
+.selectedSort {
+    font-weight: bold;
+    font-size: 20px;
+    /* 다른 굵게 표시할 스타일을 추가할 수 있습니다. */
 }
 
 .container2 {
@@ -56,13 +68,15 @@
 }
 
 hr {
+    position: relative;
     cursor: default;
     width: 341px;
     margin-top: 20px;
     height: 2px;
     background-color: black;
+    display: block;
+    z-index: 1;
 }
-
 
 .productImg {
     width: 300px;
@@ -89,7 +103,13 @@ hr {
 }
 
 .productName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     font-size: 22px;
+    text-size-adjust: auto;
+    height: 45px;
     font-weight: bold;
 }
 
@@ -102,4 +122,37 @@ hr {
 
 .price {
     font-size: 22px;
+}
+
+.listEndDiv {
+    position: relative;
+    display: flex;
+    width: auto;
+    height: 50px;
+    align-items: end;
+    justify-content: center;
+    border-top: solid 20px white;
+    z-index: 2;
+
+}
+
+.listEndText {
+
+
+    background-color: white;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: rgb(177, 177, 177);
+        z-index: -1;
+
+    }
 }
