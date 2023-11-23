@@ -187,6 +187,26 @@
     margin-top: 10px;
 }
 
+.AnswerBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.openAnswerBtn, .closeAnswerBtn {
+    border-radius: 7px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    height: 30px;
+    margin-top: 20px;
+}
+
+.openAnswerBtn:hover, .closeAnswerBtn:hover {
+    scale: 1.1;
+}
+
 .inquirMainBtnWrapper {
     display: flex;
     justify-content: flex-end;
@@ -225,7 +245,6 @@
     background-color: white;
     border: none;
     margin-top: 10px;
-    margin-right: 45px;
     cursor: pointer;
     height: 20px;
 }
@@ -234,19 +253,28 @@
     scale:1.1;
 }
 
-.answerMainName {
-    border-radius: 7px;
-    width: 450px;
-    height: 50px;
-    resize: none;
+.inquireMainAnswerWrapper {
+    border-top: 1px solid white ;
 }
 
 .inquireMainAnswer {
     border-radius: 7px;
-    margin-top: 10px;
+    margin-top: 20px;
     width: 450px;
     height: 100px;
     resize: none;
+}
+
+.inquireMainAdiminAnswer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+    margin-top: 10px;
+    width: 450px;
+    height: 100px;
+    background-color: white;
+    color: black;
 }
 
 .answerBox {
@@ -266,6 +294,13 @@
     justify-content: flex-start;
     width: 100%;
     margin-bottom: 10px;
+}
+
+.answerMainName {
+    border-radius: 7px;
+    width: 450px;
+    height: 50px;
+    resize: none;
 }
 
 .answerMain {
@@ -301,5 +336,78 @@
 
 
 .answerRegisterBtn:hover {
+    scale:1.1;
+}
+
+/* 수정 */
+.patchBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 565px;
+    background-color: #253f39;
+    border-radius: 7px;
+    color: white;
+    padding: 16px;
+}
+
+.patchTitle {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.patchMainName {
+    border-radius: 7px;
+    width: 450px;
+    height: 50px;
+    resize: none;
+}
+
+.patchMain {
+    border-radius: 7px;
+    margin-top: 10px;
+    width: 450px;
+    height: 100px;
+    resize: none;
+}
+
+.patchBtnWrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+
+.patchCheck, .patchSecret {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.patchRegisterBtn {
+    border-radius: 7px;
+    background-color: white;
+    border: none;
+    margin-top: 10px;
+    margin-left: 30px;
+    cursor: pointer;
+    height: 20px;
+}
+
+.patchCancelBtn {
+    border-radius: 7px;
+    background-color: white;
+    border: none;
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-right: 45px;
+    cursor: pointer;
+    height: 20px;
+}
+
+
+.patchRegisterBtn:hover, .patchCancelBtn:hover {
     scale:1.1;
 }

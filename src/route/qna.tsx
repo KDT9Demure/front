@@ -31,10 +31,51 @@ function OneQna({ que, anw }: { que: string, anw: string }) {
     )
 }
 
-function InquireOpen({ comment }: { comment: any }) {
+function PatchBox({ comment, patch, setPatch }: { comment: any, patch : boolean, setPatch : any } ) {
+    const [title, setTitle] = useState<string>("");
+    const [content, setContent] = useState<string>("");
+    const [secret, setSecret] = useState<boolean>(false);
+
+    
+    const Patch = async () => {
+        const res = await axios({
+            method: "patch",
+            url: "http://localhost:8000/question/update",
+            data: {
+                id: comment?.id,
+                title,
+                content,
+                secret,
+            }
+        })
+        console.log("1", res)
+        console.log("12", res.data)
+        if (res.data.result) {
+            window.location.reload();
+        }
+    }
+
+    return (
+        <div className={styles.patchBox}>
+            <div className={styles.patchTitle}>수정하기</div>
+            <textarea className={styles.patchMainName} placeholder="제목" onChange={e => { setTitle(e.target.value) }}>{comment.title}</textarea>
+            <textarea className={styles.patchMain} placeholder="문의내용" onChange={e => { setContent(e.target.value) }}>{comment.content}</textarea>
+            <div className={styles.patchBtnWrapper}>
+                <input className={styles.patchCheck} type="checkbox" onChange={e => { setSecret(e.target.checked) }} />
+                <div className={styles.patchSecret}>비밀글</div>
+                <button className={styles.patchRegisterBtn} onClick={Patch}>수정</button>
+                <button className={styles.patchCancelBtn} onClick={()=>setPatch(false)}>취소</button>
+            </div>
+        </div>
+    )
+}
+
+function Inquire({ comment }: { comment: any }) {
     const [visible, setVisible] = useState<boolean>(true);
-    const [Answer, setAnswer] = useState<string>("")
-    const [cookies, setCookies] = useCookies(["NID"])
+    const [Answer, setAnswer] = useState<string>("");
+    const [cookies, setCookies] = useCookies(["NID"]);
+    const [openAnswer, setOpenAnswer] = useState<boolean>(false);
+    const [patch, setPatch] = useState<boolean>(false);
     const isAdmin = !!cookies.NID;
 
     const Delete = () => {
@@ -56,16 +97,17 @@ function InquireOpen({ comment }: { comment: any }) {
         deleteComment();
     };
 
-    const registerAnswer = async (comment : any) => {
-        
+    const registerAnswer = async (comment: any) => {
+
         const res = await axios({
             method: "post",
             url: "http://localhost:8000/question/answer",
             data: {
-                question_id:comment.id,
-                content:Answer
+                question_id: comment.id,
+                content: Answer
             }
         })
+
         if (res.data.result) {
             document.location.reload();
         }
@@ -74,25 +116,39 @@ function InquireOpen({ comment }: { comment: any }) {
     return (
         visible ?
             (<div className={styles.inquireBox} onClick={() => setVisible(false)}>
-                <div className={styles.inquireResponse}>답변대기</div>
-                <div className={styles.inquireTitle}>{comment.title}</div>
+                {(comment.answer_status) && <div className={styles.inquireResponse}>답변완료</div>}
+                {(comment.answer_status) || <div className={styles.inquireResponse}>답변대기</div>}
+                {(comment.secret) || <div className={styles.inquireTitle}>{comment.title}</div>}
+                {(comment.secret) && <div className={styles.inquireTitle}>비밀글</div>}
             </div>) :
 
             (<div className={styles.inquireMainBox}>
                 <div className={styles.inquireMainHeader}>
                     <div className={styles.inquireMainTitle}>{comment.title}</div>
                     <div className={styles.inquireMainBtnWrapper}>
-                        <button className={styles.inquireMainPatch}>수정</button>
+                        <button className={styles.inquireMainPatch} onClick={() => setPatch(true)}>수정</button>
                         <button className={styles.inquireMainBtnDelete} onClick={Delete}>삭제</button>
                         <div><FontAwesomeIcon className={styles.inquireMainBtnOff} icon={faCaretUp} onClick={() => setVisible(true)} /></div>
                     </div>
                 </div>
+                {patch && <PatchBox comment={comment} patch={patch} setPatch={setPatch}/>}
+
                 <div className={styles.inquireMainContent}>{comment.content}</div>
+                {(comment.answer_status && openAnswer && !!comment.answer?.content) &&
+                    <div className={styles.AnswerBox}>
+                        <div className={styles.inquireMainAdiminAnswer}>{comment.answer?.content}</div>
+                        <button onClick={() => setOpenAnswer(false)} className={styles.closeAnswerBtn}>닫기</button>
+                    </div>}
+                {(comment.answer_status && !openAnswer && !!comment.answer.content) &&
+                    <button onClick={() => setOpenAnswer(true)} className={styles.openAnswerBtn}>답글보기</button>
+                }
                 <br />
-                {isAdmin && <textarea className={styles.inquireMainAnswer} onChange={e => {setAnswer(e.target.value)}}></textarea>}
-                <div className={styles.inquirMainBtnWrapper}>
-                    <button className={styles.inquireMainBtn} onClick={() => registerAnswer(comment)}>답글등록</button>
-                </div>
+                {isAdmin && <div className={styles.inquireMainAnswerWrapper}>
+                    <textarea className={styles.inquireMainAnswer} onChange={e => { setAnswer(e.target.value) }}></textarea>
+                    <div className={styles.inquirMainBtnWrapper}>
+                        <button className={styles.inquireMainBtn} onClick={() => registerAnswer(comment)}>답글등록</button>
+                    </div>
+                </div>}
             </div>)
     )
 }
@@ -116,8 +172,8 @@ export default function QnA() {
         console.log(comments)
     }, []);
 
-    const register = async () =>  {
-        
+    const register = async () => {
+
         const res = await axios({
             method: "post",
             url: "http://localhost:8000/question/write",
@@ -125,7 +181,7 @@ export default function QnA() {
                 title,
                 content,
                 secret,
-                user_id:1
+                user_id: 32 //테스트용 숫자
             }
         })
         if (res.data.result) {
@@ -133,7 +189,7 @@ export default function QnA() {
         }
     };
 
-   
+
 
     return (
         <>
@@ -153,15 +209,15 @@ export default function QnA() {
                         <input placeholder="검색" className={styles.inquireSearch} />
                         {comments.map((comment, index) => {
                             return (
-                                <InquireOpen key={index} comment={comment} />
+                                <Inquire key={index} comment={comment} />
                             )
                         })}
                         <div className={styles.answerBox}>
                             <div className={styles.answerTitle}>문의하기</div>
-                            <textarea className={styles.answerMainName} placeholder="제목" onChange={e => {setTitle(e.target.value)}}></textarea>
-                            <textarea className={styles.answerMain} placeholder="문의내용" onChange={e => {setContent(e.target.value)}}></textarea>
+                            <textarea className={styles.answerMainName} placeholder="제목" onChange={e => { setTitle(e.target.value) }}></textarea>
+                            <textarea className={styles.answerMain} placeholder="문의내용" onChange={e => { setContent(e.target.value) }}></textarea>
                             <div className={styles.answerBtnWrapper}>
-                                <input className={styles.answerCheck} type="checkbox" onChange={e => {setSecret(e.target.checked)}}/>
+                                <input className={styles.answerCheck} type="checkbox" onChange={e => { setSecret(e.target.checked) }} />
                                 <div className={styles.answerSecret}>비밀글</div>
                                 <button className={styles.answerRegisterBtn} onClick={register}>등록</button>
                             </div>
