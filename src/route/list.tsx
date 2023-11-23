@@ -76,20 +76,20 @@ export default function List() {
     // console.log("divHeight", divHeight)
 
     const divRef = useRef<HTMLDivElement>(null);
+    const bodyHeight = divRef?.current?.clientHeight;
 
     useEffect(() => {
         // divRef.current가 null이 아닌 경우를 넣어줘야 함( 안주면 오류 )
         if (divRef.current) {
-            const bodyHeight = divRef.current.clientHeight;
             // console.log("높이:", bodyHeight);
-            setDivHeight(bodyHeight - 700)
+            setDivHeight(bodyHeight ? bodyHeight - 700 : 0)
         }
     }, [scrollPosition]);
 
     // 현재 스크롤 위치 scrollPosition이 height - 700 정도 되면 setScrollEnd(true)
     useEffect(() => {
         // scrollPosition이 divHeight보다 큰 경우에만 axios 요청
-        if (scrollPosition > divHeight && divHeight !== null) {
+        if (divHeight - 50 < scrollPosition && scrollPosition < divHeight + 15 && divHeight !== null && divHeight > 0) {
             setScrollEnd(true)
         }
     }, [scrollPosition]);
@@ -124,6 +124,32 @@ export default function List() {
 
         }
     }, [scrollEnd])
+
+    const moreList = () => {
+        setPage(Page + 1)
+        console.log("현재 페이지", Page)
+        axios({
+            method: "post",
+            url: `http://localhost:8000/list/${number}?sort=${sort}`,
+            data: {
+                sort: sort,
+                page: Page
+            }
+        })
+            .then((res) => {
+                setCategories((prevCategories) => [...prevCategories, ...res.data]);
+                console.log("Axios 요청");
+                console.log(categories)
+                setScrollEnd(false)
+
+                if (res.data.length < 20) {
+                    setIsListEnd(true)
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+    }
 
     // 정렬
     const best = async () => {
@@ -182,6 +208,7 @@ export default function List() {
         setCategories(res.data);
     }
 
+
     let title: string;
     switch (number) {
         case "10555":
@@ -210,6 +237,7 @@ export default function List() {
                             <span>|</span>
                             <span className={selectedSort === 'high' ? styles.selectedSort : ''} onClick={high}>   높은 가격순</span>
                         </div>
+
                     </div>
                     <div className={styles.container2}>
                         {categories.map((product, index) => {
@@ -226,6 +254,7 @@ export default function List() {
 
                                     <div className={styles.productImg}>
                                         <img loading="lazy"
+                                            id="img"
 
                                             onMouseOver={() => {
                                                 setCategories((prevCategories) =>
@@ -271,7 +300,12 @@ export default function List() {
                 </div>
                 {isListEnd &&
                     <div className={styles.listEndDiv}>
-                        <div className={styles.listEndText}>ㅤENDㅤ</div>
+                        <div className={styles.listEndText}>ㅤEndㅤ</div>
+                    </div>
+                }
+                {!isListEnd &&
+                    <div className={styles.listMoreDiv}>
+                        <div onClick={moreList} className={styles.listMoreText}>ㅤMore 🔽ㅤ</div>
                     </div>
                 }
             </div >
