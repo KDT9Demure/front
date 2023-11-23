@@ -1,3 +1,24 @@
+@font-face {
+    font-family: 'MapoDacapo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoDacapoA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'KOTRA_SONGEULSSI';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/KOTRA_SONGEULSSI.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'MapoFlowerIsland';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoFlowerIslandA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .main {
 
 }
@@ -54,7 +75,57 @@
 
 /* section2 브랜드스토리 스타일 */
 .mainBrand {
+    height: 100vh;
+}
 
+.brandText {
+    margin-top: 20%;
+    text-align: center;
+    height: 50vh;
+}
+
+.brandText h5 {
+    text-transform: uppercase;
+    color: #625f5f;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 1.8px;
+    margin-bottom: 10px;
+    font-family: 'MapoDacapo'
+}
+
+.brandText h3 {
+    font-size: 70px;
+    line-height: 80px;
+    color: #333;
+    font-weight: 400;
+    font-family: 'Monsieur La Doulaise';
+    margin-top: 25px;
+}
+
+.brandText p {
+    width: 34em;
+    margin: 15px auto;
+    font-family: 'MapoFlowerIsland';
+}
+
+.brandSlide {
+    position: relative;
+    display: flex;
+    transition: transform 1.5s ease-in-out;
+    height: 50vh;
+}
+
+.brandSlideBox {
+    display: flex;
+    position: relative;  
+}
+
+.brandSlideImg {
+    width: 291px;
+    border-radius: 20px;
+    border-style: none;
+    margin-right: 30px;
 }
 
 /* section3 스타일 */

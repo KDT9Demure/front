@@ -45,6 +45,34 @@ export default function Home() {
         transform: `translate(-${slideCount * 100}%, 0px)`,
     };
 
+    const initialFurniture = [
+        'assets/furniture1.jpg',
+        'assets/furniture2.jpg',
+        'assets/furniture3.jpg',
+        'assets/furniture4.jpg',
+        'assets/furniture5.jpg',
+        'assets/furniture6.jpg',
+    ]
+
+    const [furImg, setFurImg] = useState<SlideImage>(createCyclicArray(initialFurniture, 10));
+    const [furCount, setFurCount] = useState<number>(0);
+
+    useEffect(() => {
+        const intervalFur = setInterval(() => {
+            setFurCount((prevCount) => (prevCount + 1) % furImg.length);
+            setFurImg((prevSlides) => {
+                const newSlides = [...prevSlides];
+                return newSlides;
+            });
+        }, 2000);
+    
+        return () => clearInterval(intervalFur);
+    }, [furCount, furImg]);
+
+    const furStyle: CSSProperties = {
+        transform: `translate(-${furCount * 100}%, 0px)`,
+    };
+
     return (
         <div className={homeStyles.main}>
             <section className={homeStyles.mainSwiper}>
@@ -69,7 +97,20 @@ export default function Home() {
                 </div>
             </section>
             <section className={homeStyles.mainBrand}>
-
+                <div className={homeStyles.brandStory}>
+                    <div className={homeStyles.brandText}>
+                        <h5>demurely, modest, meek</h5>
+                        <h3>Demure</h3>
+                        <p>"우리는 Demure(고요한) 이름처럼, 고요하면서도 아름다운 공간을 만들기 위해 노력합니다.<br/>디뮤어에서 당신만의 고유한 공간을 만들어보세요"</p> 
+                    </div>
+                    <div className={homeStyles.brandSlide} style={furStyle}>
+                        <div className={homeStyles.brandSlideBox}>
+                            {furImg.map((value, index) => (
+                                <img className={homeStyles.brandSlideImg} key={index} src={value} alt={`furniture${index}`} />
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </section>
             <section className={homeStyles.mainMouse}>
 
