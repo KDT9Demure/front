@@ -23,7 +23,7 @@ export default function Signin() {
 
         if (res.data.result) {
             alert("로그인이 되었습니다.");
-            document.location.href = "/";
+            // document.location.href = "/";
 
             //쿠키에 value로 token 넣기
             const cookie = new Cookies();
