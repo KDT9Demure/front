@@ -1,7 +1,5 @@
 import homeStyles from '../css/home.module.css';; 
 import { useState, useEffect, CSSProperties } from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 type SlideImage = string[];
 
@@ -15,10 +13,10 @@ export default function Home() {
         'assets/slide6.jpg',
     ];
 
-     const [slideImg, setSlideImg] = useState<SlideImage>(initialSlides);
-     const [slideCount, setSlideCount] = useState<number>(0);
+    const [slideImg, setSlideImg] = useState<SlideImage>(initialSlides);
+    const [slideCount, setSlideCount] = useState<number>(0);
 
-     useEffect(() => {
+    useEffect(() => {
         const interval = setInterval(() => {
             const nextSlideIndex = slideImg.length % initialSlides.length;
             const nextSlide = initialSlides[nextSlideIndex];
@@ -28,19 +26,11 @@ export default function Home() {
         }, 2000);
 
         return () => clearInterval(interval);
-     }, [slideCount, slideImg]);
+    }, [slideCount, slideImg]);
 
-    //  const handlePrev = () => {
-    //     setSlideCount((prevCount) => (prevCount - 1 + slideImg.length) % slideImg.length);
-    //  };
-
-    //  const handleNext = () => {
-    //     setSlideCount((nextCount) => (nextCount + 1) % slideImg.length);
-    //  };
-
-     const slideStyle: CSSProperties = {
+    const slideStyle: CSSProperties = {
         transform: `translate(-${slideCount * 100}%, 0px)`
-     };
+    };
 
     const initialFurniture = [
         'assets/furniture1.jpg',
@@ -51,12 +41,12 @@ export default function Home() {
         'assets/furniture6.jpg',
         'assets/furniture7.jpg',
         'assets/furniture8.jpg',
-      ];
+    ];
       
-      const [furImg, setFurImg] = useState<SlideImage>(initialFurniture);
-      const [furCount, setFurCount] = useState<number>(0);
+    const [furImg, setFurImg] = useState<SlideImage>(initialFurniture);
+    const [furCount, setFurCount] = useState<number>(0);
       
-      useEffect(() => {
+    useEffect(() => {
         const intervalFur = setInterval(() => {
           const nextImageIndex = furImg.length % initialFurniture.length;
           const nextImage = initialFurniture[nextImageIndex];
@@ -66,14 +56,56 @@ export default function Home() {
         }, 2000);
       
         return () => clearInterval(intervalFur);
-      }, [furCount, furImg]);
+    }, [furCount, furImg]);
       
 
-     const furStyle: CSSProperties = {
+    const furStyle: CSSProperties = {
         transform: `translateX(-${furCount * (100 / initialFurniture.length)}%)`
-     };
-      
+    };
 
+    type EventImage = {
+        path: string;
+        title: string;
+        description: string;
+      }[];
+
+      const images : EventImage = [
+        { path: 'assets/event1.jpg', title: 'Event 1', description: 'Description 1' },
+        { path: 'assets/event2.jpg', title: 'Event 2', description: 'Description 2' },
+        { path: 'assets/event3.jpg', title: 'Event 3', description: 'Description 3' },
+        { path: 'assets/event4.jpg', title: 'Event 4', description: 'Description 4' },
+      ];
+      
+      const [image, setImage] = useState<string | null>(null);
+
+      const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+      
+      const getRandomImage = () => {
+        const randomIndex = Math.floor(Math.random() * images.length);
+        const randomImagePath = images[randomIndex].path;
+        console.log('Random Image Path:', randomImagePath);
+        return randomImagePath;
+      };
+
+      useEffect(() => {
+        const handleMouseMove = (event: MouseEvent) => {
+            setImage(getRandomImage());
+            setMousePosition({ x: event.clientX, y: event.clientY });
+        };
+          
+        const handleMouseLeave = () => {
+          setImage(null);
+        };
+          
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseleave', handleMouseLeave);
+          
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseleave', handleMouseLeave);
+        };
+      }, []);
+    
     return (
         <div className={homeStyles.main}>
             <section className={homeStyles.mainSwiper}>
@@ -84,18 +116,6 @@ export default function Home() {
                         ))}
                     </div>
                 </div>    
-                <div className={homeStyles.slideBtnBox}>
-                    {/* <FontAwesomeIcon
-                        icon={faChevronLeft}
-                        className={homeStyles.slideLeftBtn}
-                        onClick={handlePrev}
-                    />
-                    <FontAwesomeIcon
-                        icon={faChevronRight}
-                        className={homeStyles.slideRightBtn}
-                        onClick={handleNext}
-                    /> */}
-                </div>
             </section>
             <section className={homeStyles.mainBrand}>
                 <div className={homeStyles.brandStory}>
@@ -113,8 +133,27 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            <section className={homeStyles.mainMouse}>
-
+            <section className={homeStyles.mainEvent}>
+                <div className={homeStyles.innerText}>
+                    <h4>
+                        <span className={homeStyles.bigText}>Create</span>
+                        <br/>
+                        <span className={homeStyles.smallText}>your own special space</span>
+                    </h4>
+                </div>
+                <div className={homeStyles.mouseEvent}>
+                    {image && (
+                        <img
+                        className={`${homeStyles.randomImage} ${homeStyles.randomImageHidden}`}
+                        src={image}
+                        alt="Random Image"
+                        style={{
+                            left: mousePosition.x,
+                            top: mousePosition.y,
+                        }}
+                        />
+                    )}
+                </div>
             </section>
         </div>  
     )

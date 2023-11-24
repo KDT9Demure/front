@@ -50,33 +50,6 @@ body {
     object-fit: cover;
 }
 
-.slideLeftBtn,
-.slideRightBtn {
-    cursor: pointer;
-    position: absolute;
-    top: 40%;
-    transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
-    color: azure;
-    font-size: 30px;
-    opacity: 0.5;
-}
-
-.slideLeftBtn:hover,
-.slideRightBtn:hover {
-    color: azure;
-    opacity: 1;
-}
-
-.slideLeftBtn {
-    left: 13px;
-}
-
-.slideRightBtn {
-    right: 13px;
-}
-
 /* section2 브랜드스토리 스타일 */
 .mainBrand {
     height: 100vh;
@@ -130,10 +103,60 @@ body {
     border-radius: 20px;
     border-style: none;
     margin-right: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 /* section3 스타일 */
-.mainMouse {
-    
+.mainEvent {
+    width: 100%;
+    height: 100vh;
+    background-color: #ffff;
+    position: relative;
 }
+
+.innerText {
+    line-height: 1.2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh
+}
+
+.bigText {
+    background: linear-gradient(90deg,#7d7d7d,#030303);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+    font-weight: 400;
+    font-size: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.smallText {
+    font-size: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(90deg,#7d7d7d,#030303);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.randomImage {
+    position: relative;
+    max-width: 100px;
+    max-height: 100px;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.randomImageHidden {
+    opacity: 1;
+}
+  
