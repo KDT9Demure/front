@@ -6,9 +6,6 @@ export default function Kakao() {
     
 
     useEffect(()=>{
-
-        
-
         const kakao_code = async ()=>{
             const code = new URL(window.location.href).searchParams.get("code");
             await axios({
@@ -19,6 +16,8 @@ export default function Kakao() {
                 }
             })
         }
+
+        kakao_code();
         
     }, [])
 
