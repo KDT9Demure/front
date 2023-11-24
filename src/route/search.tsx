@@ -26,7 +26,7 @@ export default function Search() {
     const [sort, setSort] = useState<String>("best")
     const [selectedSort, setSelectedSort] = useState<String>("best")
 
-    const [colors, setColors] = useState<string>("")
+    const [colors, setColors] = useState<String>("")
 
 
 
@@ -67,6 +67,7 @@ export default function Search() {
 
 
     //무한스크롤
+
     const onScroll = () => {
         setScrollPosition(window.scrollY);
     }
@@ -88,14 +89,14 @@ export default function Search() {
         // divRef.current가 null이 아닌 경우를 넣어줘야 함( 안주면 오류 )
         if (divRef.current) {
             // console.log("높이:", bodyHeight);
-            setDivHeight(bodyHeight ? bodyHeight - 700 : 0)
+            setDivHeight(bodyHeight ? bodyHeight - 500 : 0)
         }
-    }, [scrollPosition]);
+    }, [bodyHeight, search]);
 
     // 현재 스크롤 위치 scrollPosition이 height - 700 정도 되면 setScrollEnd(true)
     useEffect(() => {
         // scrollPosition이 divHeight보다 큰 경우에만 axios 요청
-        if (divHeight - 50 < scrollPosition && scrollPosition < divHeight + 15 && divHeight !== null && divHeight > 0) {
+        if (divHeight - 500 < scrollPosition && scrollPosition < divHeight + 55 && divHeight !== null && divHeight > 0) {
             console.log("현재 스크롤 위치 ", scrollPosition)
             console.log("divHeight", divHeight)
 
@@ -106,124 +107,137 @@ export default function Search() {
 
     // setScrollEnd(true) 면 다음페이지 20개 불러오고 다시 setScrollEnd(false) 
     useEffect(() => {
-        if (scrollEnd === true) {
+        const fetchData = async () => {
+            try {
+                if (scrollEnd === true) {
+                    setPage(Page + 1);
+                    console.log("현재 페이지", Page);
 
-            setPage(Page + 1)
-            console.log("현재 페이지", Page)
-            axios({
-                method: "post",
-                url: `http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`,
-                data: {
-                    sort: sort,
-                    page: Page,
-                    searchName: "의자"
-                }
-            })
-                .then((res) => {
-                    setSearch((prevSearch) => [...prevSearch, ...res.data]);
+                    const response = await axios.post(`http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`, {
+                        sort: sort,
+                        page: Page,
+                        searchName: "의자"
+                    });
+
+                    setSearch((prevSearch) => [...prevSearch, ...response.data]);
+                    setScrollPosition(divHeight - 1000)
+                    setDivHeight(scrollPosition + 3000)
                     console.log("Axios 요청");
-                    console.log(search)
-                    console.log("scrollend false")
-                    setScrollEnd(false)
+                    console.log(search);
+                    console.log("scrollend false");
+                    setScrollEnd(false);
 
-                    console.log("현재 스크롤 위치 ", scrollPosition)
-                    console.log("divHeight", divHeight)
+                    console.log("현재 스크롤 위치 ", scrollPosition);
+                    console.log("divHeight", divHeight);
 
-                    if (res.data.length < 20) {
-
-                        setIsListEnd(true)
+                    if (response.data.length < 20) {
+                        setIsListEnd(true);
                     }
-                })
-                .catch((error) => {
-                    console.log(error)
-                });
-        } else {
+                } else {
+                    setScrollEnd(false);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
 
-        }
-    }, [scrollEnd])
-
-
+        fetchData();
+    }, [scrollEnd]);
 
 
     // 정렬
-    const best = async () => {
-        setSelectedSort("best")
-        setSort("best")
-        setSearch([])
-        setPage(2)
-        setIsListEnd(false)
-        const res = await axios({
-            method: "post",
-            url: `http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`,
-            data: {
-                sort: sort,
-                page: 1
-            }
+    // const best = async () => {
+    //     setSelectedSort("best")
+    //     setSort("best")
+    //     setSearch([])
+    //     setPage(2)
+    //     setIsListEnd(false)
+    //     const res = await axios({
+    //         method: "post",
+    //         url: `http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`,
+    //         data: {
+    //             sort: sort,
+    //             page: 1
+    //         }
 
-        })
-        console.log('sort running');
-        setSearch(res.data);
-    }
+    //     })
+    //     console.log('sort running');
+    //     setSearch(res.data);
+    // }
 
-    const high = async () => {
-        setSelectedSort("high")
-        setSort("high")
-        setSearch([])
-        setPage(2)
-        setIsListEnd(false)
-        const res = await axios({
-            method: "post",
-            url: `http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`,
-            data: {
-                sort: sort,
-                page: 1
-            }
-        })
-        console.log('sort running');
-        setSearch(res.data);
-        console.log(res.data)
-    }
+    // const high = async () => {
+    //     setSelectedSort("high")
+    //     setSort("high")
+    //     setSearch([])
+    //     setPage(2)
+    //     setIsListEnd(false)
+    //     const res = await axios({
+    //         method: "post",
+    //         url: `http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`,
+    //         data: {
+    //             sort: sort,
+    //             page: 1
+    //         }
+    //     })
+    //     console.log('sort running');
+    //     setSearch(res.data);
+    //     console.log(res.data)
+    // }
 
-    const low = async () => {
-        setSelectedSort("low")
-        setSort("low")
-        setSearch([])
-        setPage(2)
-        setIsListEnd(false)
-        const res = await axios({
-            method: "post",
-            url: `http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`,
-            data: {
-                sort: "low",
-                page: 1
-            }
-        })
-        console.log('sort running');
-        setSearch(res.data);
-    }
+    // const low = async () => {
+    //     setSelectedSort("low")
+    //     setSort("low")
+    //     setSearch([])
+    //     setPage(2)
+    //     setIsListEnd(false)
+    //     const res = await axios({
+    //         method: "post",
+    //         url: `http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`,
+    //         data: {
+    //             sort: "low",
+    //             page: 1
+    //         }
+    //     })
+    //     console.log('sort running');
+    //     setSearch(res.data);
+    // }
+
 
     //색상 정렬
     //블랙 , 화이트 , 그레이, 블루, 그린, 브라운
 
-    const colorSort = async () => {
-        setColors("레드")
-        setSearch([])
-        setPage(2)
-        setIsListEnd(false)
-        const res = await axios({
-            method: "post",
-            url: `http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`,
-            data: {
-                page: 1,
-                sort: sort,
-                colors: colors
-            }
-        })
-        console.log('sort running');
-        setSearch(res.data);
-    }
+    // const colorSort = async () => {
+    //     setColors("레드")
+    //     setSearch([])
+    //     setPage(2)
+    //     setIsListEnd(false)
+    //     const res = await axios({
+    //         method: "post",
+    //         url: `http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`,
+    //         data: {
+    //             page: 1,
+    //             sort: sort,
+    //             colors: colors
+    //         }
+    //     })
+    //     console.log('sort running');
+    //     setSearch(res.data);
+    // }
 
+    // 정렬
+    const best = () => { setSelectedSort("best"), setSort("best") }
+    const high = () => { setSelectedSort("high"), setSort("high") }
+    const low = () => { setSelectedSort("low"), setSort("low") }
 
+    // 색정렬
+    const noColor = () => { setColors("") }
+    const red = () => { setColors("레드") }
+    const green = () => { setColors("그린") }
+    const blue = () => { setColors("블루") }
+    const black = () => { setColors("블랙") }
+    const gray = () => { setColors("그레이") }
+    const white = () => { setColors("화이트") }
+    const brown = () => { setColors("브라운") }
 
     //리스트 더 가져오기
     const moreList = () => {
@@ -276,9 +290,14 @@ export default function Search() {
                         <div className={styles.colorContainer}>
                             색상
 
-                            <div onClick={colorSort} style={{ width: 50, height: 50, backgroundColor: "red" }}></div>
-                            <div style={{ width: 50, height: 50, backgroundColor: "blue" }}></div>
-                            <div style={{ width: 50, height: 50, backgroundColor: "green" }}></div>
+                            <div onClick={red} style={{ width: 50, height: 50, backgroundColor: "red" }}></div>
+                            <div onClick={green} style={{ width: 50, height: 50, backgroundColor: "green" }}></div>
+                            <div onClick={blue} style={{ width: 50, height: 50, backgroundColor: "blue" }}></div>
+                            <div onClick={black} style={{ width: 50, height: 50, backgroundColor: "black" }}></div>
+                            <div onClick={gray} style={{ width: 50, height: 50, backgroundColor: "gray" }}></div>
+                            <div onClick={white} style={{ width: 50, height: 50, backgroundColor: "white", }} className={styles.white}></div>
+                            <div onClick={brown} style={{ width: 50, height: 50, backgroundColor: "brown" }}></div>
+
 
 
                         </div>

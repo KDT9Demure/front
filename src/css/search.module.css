@@ -40,8 +40,13 @@
 .colorContainer {
     display: flex;
     justify-content: space-between;
-    width: 200px;
+    align-items: center;
+    width: 440px;
 
+}
+
+.white {
+    border: solid 1px;
 }
 
 

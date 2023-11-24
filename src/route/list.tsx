@@ -84,12 +84,12 @@ export default function List() {
             // console.log("높이:", bodyHeight);
             setDivHeight(bodyHeight ? bodyHeight - 700 : 0)
         }
-    }, [scrollPosition]);
+    }, [bodyHeight, categories]);
 
     // 현재 스크롤 위치 scrollPosition이 height - 700 정도 되면 setScrollEnd(true)
     useEffect(() => {
         // scrollPosition이 divHeight보다 큰 경우에만 axios 요청
-        if (divHeight - 50 < scrollPosition && scrollPosition < divHeight + 15 && divHeight !== null && divHeight > 0) {
+        if (divHeight - 500 < scrollPosition && scrollPosition < divHeight + 55 && divHeight !== null && divHeight > 0) {
             setScrollEnd(true)
         }
     }, [scrollPosition]);
@@ -109,6 +109,8 @@ export default function List() {
             })
                 .then((res) => {
                     setCategories((prevCategories) => [...prevCategories, ...res.data]);
+                    setScrollPosition(divHeight - 1000)
+                    setDivHeight(scrollPosition + 3000)
                     console.log("Axios 요청");
                     console.log(categories)
                     setScrollEnd(false)
@@ -152,61 +154,9 @@ export default function List() {
     }
 
     // 정렬
-    const best = async () => {
-        setSelectedSort("best")
-        setSort("best")
-        setCategories([])
-        setPage(2)
-        setIsListEnd(false)
-        const res = await axios({
-            method: "post",
-            url: `http://localhost:8000/list/${number}?sort=${sort}`,
-            data: {
-                sort: sort,
-                page: 1
-            }
-
-        })
-        console.log('sort running');
-        setCategories(res.data);
-    }
-
-    const high = async () => {
-        setSelectedSort("high")
-        setSort("high")
-        setCategories([])
-        setPage(2)
-        setIsListEnd(false)
-        const res = await axios({
-            method: "post",
-            url: `http://localhost:8000/list/${number}?sort=${sort}`,
-            data: {
-                sort: sort,
-                page: 1
-            }
-        })
-        console.log('sort running');
-        setCategories(res.data);
-        console.log(res.data)
-    }
-
-    const low = async () => {
-        setSelectedSort("low")
-        setSort("low")
-        setCategories([])
-        setPage(2)
-        setIsListEnd(false)
-        const res = await axios({
-            method: "post",
-            url: `http://localhost:8000/list/${number}?sort=${sort}`,
-            data: {
-                sort: "low",
-                page: 1
-            }
-        })
-        console.log('sort running');
-        setCategories(res.data);
-    }
+    const best = () => { setSelectedSort("best"), setSort("best") }
+    const high = () => { setSelectedSort("high"), setSort("high") }
+    const low = () => { setSelectedSort("low"), setSort("low") }
 
 
     let title: string;
