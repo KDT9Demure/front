@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, } from "react"
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 import axios from "axios";
@@ -39,6 +39,7 @@ export default function List() {
 
     useEffect(() => {
         const categoryData = async () => {
+
             try {
 
                 const res = await axios({
@@ -125,7 +126,7 @@ export default function List() {
         } else {
 
         }
-    }, [scrollEnd])
+    }, [scrollEnd, sort])
 
     const moreList = () => {
         setPage(Page + 1)
@@ -154,10 +155,70 @@ export default function List() {
     }
 
     // 정렬
-    const best = () => { setSelectedSort("best"), setSort("best") }
-    const high = () => { setSelectedSort("high"), setSort("high") }
-    const low = () => { setSelectedSort("low"), setSort("low") }
+    const best = async () => {
+        setSelectedSort("best")
+        setSort("best")
+        setCategories([])
+        setPage(2)
+        setIsListEnd(false)
+        const res = await axios({
+            method: "post",
+            url: `http://localhost:8000/list/${number}?sort=${sort}`,
+            data: {
+                sort: sort,
+                page: 1
+            }
 
+        })
+        console.log('sort running');
+        setCategories(res.data);
+    }
+
+    const high = async () => {
+        setSelectedSort("high")
+        setSort("high")
+        setCategories([])
+        setPage(2)
+        setIsListEnd(false)
+        const res = await axios({
+            method: "post",
+            url: `http://localhost:8000/list/${number}?sort=${sort}`,
+            data: {
+                sort: sort,
+                page: 1
+            }
+        })
+        console.log('sort running');
+        setCategories(res.data);
+        console.log(res.data)
+    }
+
+    const low = async () => {
+        setSelectedSort("low")
+        setSort("low")
+        setCategories([])
+        setPage(2)
+        setIsListEnd(false)
+        const res = await axios({
+            method: "post",
+            url: `http://localhost:8000/list/${number}?sort=${sort}`,
+            data: {
+                sort: "low",
+                page: 1
+            }
+        })
+        console.log('sort running');
+        setCategories(res.data);
+    }
+
+    // const best = () => { setSelectedSort("best"), setSort("best") }
+    // const high = () => { setSelectedSort("high"), setSort("high") }
+    // const low = () => { setSelectedSort("low"), setSort("low") }
+
+    // 상품 페이지로 이동
+    const moveProduct = (id: number) => {
+        window.location.href = `http://localhost:3000/product/${id}`
+    }
 
     let title: string;
     switch (number) {
@@ -198,8 +259,10 @@ export default function List() {
                             const productImgHover = product.imgHover || false;
 
                             return (
+
                                 <div key={index}
                                     className={styles.productContainer}
+                                    onClick={() => moveProduct(product.goods_id.id)}
                                 >
 
                                     <div className={styles.productImg}>
@@ -243,6 +306,7 @@ export default function List() {
                                     <hr />
 
                                 </div>
+
                             )
                         })}
 
