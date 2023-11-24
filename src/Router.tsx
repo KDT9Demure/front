@@ -11,6 +11,7 @@ import QnA from './route/qna';
 import Search from './route/search';
 import Order from './route/order';
 import Notion from './route/Notion';
+import Kakao from './route/Kakao';
 
 
 
@@ -59,8 +60,11 @@ const router = createBrowserRouter([
       {
         path: "notion",
         element: <Notion />
+      },
+      {
+        path:"user/kakao-login",
+        element: <Kakao />
       }
-
     ]
   },
 ]);
