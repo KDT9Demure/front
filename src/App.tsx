@@ -4,6 +4,7 @@ import Footer from './nav/footer';
 import { Outlet } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import Token from './verify/Token';
 
 
 
@@ -16,6 +17,7 @@ function App() {
         <Header/>
         <Outlet/>
         <Footer/>
+        <Token />
       </Provider>
     </>
   )
