@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
+// redux toolkit 예시용
 export interface CounterState{
     value:number;
 }
