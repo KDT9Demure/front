@@ -118,10 +118,11 @@
     padding: 16px;
     margin-bottom: 10px;
     cursor: pointer;
+    transition: all 0.3s;
 }
 
 .inquireBox:hover {
-    scale: 1.03;
+    transform: scale(1.02);
 }
 
 
