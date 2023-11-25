@@ -6,6 +6,7 @@ import { faSquareCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useAppSelector } from "../hook";
 
 
 
@@ -28,6 +29,8 @@ export default function Product() {
     const [data, setData] = useState<any>("");
     const [reviews, setReviews] = useState<any[]>([]);
     const { id } = useParams();
+
+    const userData = useAppSelector((state) => state.signin);
 
     useEffect(() => {
         const datas = async () => {
@@ -86,7 +89,7 @@ export default function Product() {
             method: "post",
             url: "http://localhost:8000/product/review",
             data: {
-                user_id: 32,
+                user_id: userData.user_id,
                 content: review,
                 rate: score,
                 goods_id:data.id,
