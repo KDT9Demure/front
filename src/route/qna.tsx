@@ -5,6 +5,7 @@ import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Cookies, useCookies } from "react-cookie";
+import { useAppSelector } from "../hook";
 
 
 function OneQna({ que, anw }: { que: string, anw: string }) {
@@ -70,12 +71,15 @@ function PatchBox({ comment, patch, setPatch }: { comment: any, patch : boolean,
     )
 }
 
-function Inquire({ comment }: { comment: any }) {
+function Inquire({ comment ,userData }: { comment: any, userData:any[] | any }) {
     const [visible, setVisible] = useState<boolean>(true);
     const [Answer, setAnswer] = useState<string>("");
     const [cookies, setCookies] = useCookies(["NID"]);
     const [openAnswer, setOpenAnswer] = useState<boolean>(false);
     const [patch, setPatch] = useState<boolean>(false);
+    // const [grade, setGrade] = useState<any>("");
+    // setGrade(userData.grade)
+    // // console.log("a", grade)
     const isAdmin = !!cookies.NID;
 
     const Delete = () => {
@@ -160,6 +164,9 @@ export default function QnA() {
     const [content, setContent] = useState<string>("");
     const [secret, setSecret] = useState<boolean>(false);
 
+    const userData = useAppSelector((state) => state.signin);
+    console.log("킥킥",userData)
+
     useEffect(() => {
         const datas = async () => {
             const res = await axios({
@@ -181,7 +188,7 @@ export default function QnA() {
                 title,
                 content,
                 secret,
-                user_id: 32 //테스트용 숫자
+                user_id: userData.user_id
             }
         })
         if (res.data.result) {
@@ -209,7 +216,7 @@ export default function QnA() {
                         <input placeholder="검색" className={styles.inquireSearch} />
                         {comments.map((comment, index) => {
                             return (
-                                <Inquire key={index} comment={comment} />
+                                <Inquire key={index} comment={comment} userData={userData}/>
                             )
                         })}
                         <div className={styles.answerBox}>

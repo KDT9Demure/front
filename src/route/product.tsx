@@ -46,12 +46,12 @@ export default function Product() {
     }, []);
 
     
-    const reviewLoading = async () => {
+    const reviewCheck = async () => {
         const res = await axios({
             method: "post",
             url: "http://localhost:8000/product/review/verify",
             data: {
-                user_id: 32,
+                user_id: userData.user_id,
                 goods_id:data.id,
             }
         })
@@ -85,6 +85,9 @@ export default function Product() {
     }
     
     const CreaeteReview = async () => {
+        if(!userData.user_id) {
+            alert("로그인을 해야 이용가능한 서비스입니다.");
+        }
         const res = await axios({
             method: "post",
             url: "http://localhost:8000/product/review",
