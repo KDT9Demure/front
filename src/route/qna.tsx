@@ -4,7 +4,6 @@ import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Cookies, useCookies } from "react-cookie";
 import { useAppSelector } from "../hook";
 
 
@@ -49,8 +48,7 @@ function PatchBox({ comment, patch, setPatch }: { comment: any, patch : boolean,
                 secret,
             }
         })
-        console.log("1", res)
-        console.log("12", res.data)
+        
         if (res.data.result) {
             window.location.reload();
         }
@@ -71,16 +69,12 @@ function PatchBox({ comment, patch, setPatch }: { comment: any, patch : boolean,
     )
 }
 
-function Inquire({ comment ,userData }: { comment: any, userData:any[] | any }) {
+function Inquire({ comment , userData }: { comment: any, userData:any[] | any }) {
     const [visible, setVisible] = useState<boolean>(true);
     const [Answer, setAnswer] = useState<string>("");
-    const [cookies, setCookies] = useCookies(["NID"]);
     const [openAnswer, setOpenAnswer] = useState<boolean>(false);
     const [patch, setPatch] = useState<boolean>(false);
-    // const [grade, setGrade] = useState<any>("");
-    // setGrade(userData.grade)
-    // // console.log("a", grade)
-    const isAdmin = !!cookies.NID;
+    const isAdmin = userData.grade === "m";
 
     const Delete = () => {
         const deleteComment = async () => {
@@ -130,8 +124,8 @@ function Inquire({ comment ,userData }: { comment: any, userData:any[] | any }) 
                 <div className={styles.inquireMainHeader}>
                     <div className={styles.inquireMainTitle}>{comment.title}</div>
                     <div className={styles.inquireMainBtnWrapper}>
-                        <button className={styles.inquireMainPatch} onClick={() => setPatch(true)}>수정</button>
-                        <button className={styles.inquireMainBtnDelete} onClick={Delete}>삭제</button>
+                        {(comment.user_id === userData.user_id) && <button className={styles.inquireMainPatch} onClick={() => setPatch(true)}>수정</button>}
+                        {(comment.user_id === userData.user_id) && <button className={styles.inquireMainBtnDelete} onClick={Delete}>삭제</button>}
                         <div><FontAwesomeIcon className={styles.inquireMainBtnOff} icon={faCaretUp} onClick={() => setVisible(true)} /></div>
                     </div>
                 </div>
@@ -147,7 +141,7 @@ function Inquire({ comment ,userData }: { comment: any, userData:any[] | any }) 
                     <button onClick={() => setOpenAnswer(true)} className={styles.openAnswerBtn}>답글보기</button>
                 }
                 <br />
-                {isAdmin && <div className={styles.inquireMainAnswerWrapper}>
+                {(isAdmin && !comment.answer_status) && <div className={styles.inquireMainAnswerWrapper}>
                     <textarea className={styles.inquireMainAnswer} onChange={e => { setAnswer(e.target.value) }}></textarea>
                     <div className={styles.inquirMainBtnWrapper}>
                         <button className={styles.inquireMainBtn} onClick={() => registerAnswer(comment)}>답글등록</button>
@@ -165,6 +159,7 @@ export default function QnA() {
     const [secret, setSecret] = useState<boolean>(false);
 
     const userData = useAppSelector((state) => state.signin);
+    
     console.log("킥킥",userData)
 
     useEffect(() => {
@@ -176,7 +171,7 @@ export default function QnA() {
             setComments(res.data);
         }
         datas();
-        console.log(comments)
+        console.log("Aa", comments)
     }, []);
 
     const register = async () => {
