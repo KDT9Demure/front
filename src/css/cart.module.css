@@ -54,6 +54,7 @@
     width: 100%;
     border-radius: 7px;
     padding: 10px;
+    margin-bottom: 10px;
 }
 
 .cartImg {
@@ -65,7 +66,6 @@
 .img {
     width: 150px;
     height: 150px;
-    border: 1px solid red;
     border-radius: 7px;
 }
 
@@ -81,6 +81,7 @@
     font-size: 20px;
     border-bottom: 1px solid white;
     margin-bottom: 10px;
+    padding-bottom: 7px
 }
 
 .cartInfo {
@@ -98,18 +99,24 @@
     cursor: pointer;
 }
 
+.cartDeleteBtn:hover {
+    scale:1.02;
+}
+
 .priceWrapper {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: flex-end;
     flex-direction: column;
     width: 100%;
     height: 60px;
-    margin-top: 10px;
     padding-right: 20px;
 }
 
 .orderBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
     color: white;
     background-color: #253f39;
@@ -117,4 +124,11 @@
     margin-top: 10px;
     width: 150px;
     cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    height: 40px;
+}
+
+.orderBtn:hover {
+    scale:1.05;
 }

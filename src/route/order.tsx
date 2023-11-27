@@ -4,67 +4,11 @@ import axios from "axios";
 
 import styles from "../css/order.module.css";
 
-import { config } from '@fortawesome/fontawesome-svg-core'
-
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
 export default function Order() {
 
     const [orderList, setOrderList] = useState<any[]>([])
-    const [id, setId] = useState<Number | null>(null)
-
-    // const orderList = [
-    //     {
-    //         id: 1,
-    //         name: 'Product 1',
-    //         image: 'image-url-1',
-    //         sale: false,
-    //         price: 2000,
-    //         color: "브라운",
-    //         date: "2023.11.15",
-    //         orderNumber: 111111
-    //     },
-    //     {
-    //         id: 2,
-    //         name: 'Product 2',
-    //         image: 'image-url-2',
-    //         sale: false,
-    //         price: 30000,
-    //         color: "레드",
-    //         date: "2023.11.15",
-    //         orderNumber: 111111
-    //     },
-    //     {
-    //         id: 3,
-    //         name: 'Product 3',
-    //         image: 'image-url-3',
-    //         sale: false,
-    //         price: 59000,
-    //         color: "브라운",
-    //         date: "2023.11.14",
-    //         orderNumber: 222222
-    //     },
-    //     {
-    //         id: 4,
-    //         name: 'Product 4',
-    //         image: 'image-url-4',
-    //         sale: false,
-    //         price: 192000,
-    //         color: "블랙",
-    //         date: "2023.11.13",
-    //         orderNumber: 333333
-    //     },
-    //     {
-    //         id: 5,
-    //         name: 'Product 5',
-    //         image: 'image-url-5',
-    //         sale: true,
-    //         price: 1500000,
-    //         color: "화이트",
-    //         date: "2023.11.13",
-    //         orderNumber: 444444
-    //     },
-    // ]
 
     useEffect(() => {
         const orderData = async () => {
@@ -96,62 +40,104 @@ export default function Order() {
         window.location.href = `http://localhost:3000/product/${id}`
     }
 
+    const orderCancel = async (id: string) => {
+        if (confirm(`${id}번 주문을 취소하시겠습니까?`)) {
+            const res = await axios({
+                method: "delete",
+                url: `http://localhost:8000/order/cancel`,
+                data: {
+                    id
+                }
+            })
+            console.log(res.data)
+            alert("주문이 취소되었습니다")
+        }
+    }
+
+    // 날짜별로 그룹화
+    const ordersByDate: { [key: string]: typeof orderList } = {};
+
+
+    orderList.forEach((order) => {
+        if (!ordersByDate[order.id]) {
+            ordersByDate[order.id] = [];
+        }
+        ordersByDate[order.id].push(order);
+    });
+
     return (
         <>
+
             <div className={styles.top}></div>
             <div className={styles.bodys}>
                 <div className={styles.container}>
                     <div className={styles.orderList}>
                         <h1>주문내역</h1>
                     </div>
-                    {orderList.map((order, index) => {
 
-                        const date = order.create_date
-                        const newDate = date.split("T")
-                        console.log(newDate[0])
-                        const newTime = newDate[1].split(".")
+                    <div className={styles.containerBox}>
+                        {Object.entries(ordersByDate).map(([id, orders]) => {
+                            const date = orders[0].create_date.split("T");
+                            const newDate = date[0];
+                            const amount = orders[0].amount
 
-                        return (
-                            <div className={styles.mainContainer}>
-                                <div key={order.id} className={styles.orderContainer}>
+                            // 가격에 , 추가
+                            // const commaPrice = orders[0].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            // const PaymentPrice = orders[0].price * orders[0].goods_count;
+                            // const commaPayment = PaymentPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            const commaAmount = amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-                                    <div className={styles.orderNumber}>
-                                        <span >{newDate[0]}</span> <span>{newTime[0]}</span>
-                                        <span>  주문번호 {order.id}</span>
-
-                                    </div>
-
-                                    <div className={styles.imgContainer} >
-                                        <img src="" className={styles.img} alt="상품 이미지"></img>
-                                        <div><button onClick={() => reBuy(order.goods_id)} className={styles.reBuy}>재구매</button></div>
-                                    </div>
-
-                                    <div className={styles.infoContainer}>
+                            return (
+                                <div key={id} className={styles.map}>
+                                    <hr className={styles.titleHr} />
+                                    <div className={styles.header}>
                                         <div>
-                                            <span className={styles.productName}> 제품명 {order.delivery_memo} </span>
-                                            <span className={styles.productColor} > 색상 {order.payment_type}</span>
+                                            <span className={styles.date}>{`${newDate}`}</span>
+                                            <span className={styles.id}>주문번호 : {id}</span>
                                         </div>
-                                        <h2>{order.price}원</h2>
-                                        <span className={styles.productCount}>수량</span><span> {order.goods_count}</span><br />
-                                        <span className={styles.delivery}>배송지</span><span> {order.address}</span>
-                                        <div>
-                                            <span className={styles.price}>결제금액 </span><span className={styles.paymentPrice}> {Number(order.price) * Number(order.goods_count)}</span><br />
+                                        <button className={styles.cancleBtn} onClick={() => orderCancel(id)}>{id}번 주문 취소</button>
 
-                                            <span className={styles.deliveryStatus}>배송상태 {order.delivery_status}</span>
+                                    </div>
+                                    <div>
+                                        {orders.map((order) => (
+                                            <div key={order.id}>
+                                                <div className={styles.mainContainer}>
+                                                    <div className={styles.orderContainer}>
+                                                        <div className={styles.imgContainer} >
+                                                            <img src="" className={styles.img} alt="상품 이미지"></img>
+                                                        </div>
+                                                        <button onClick={() => reBuy(order.goods_id)} className={styles.reBuy}>재구매</button>
 
-                                        </div>
-                                        <div className={styles.cancle}>
-                                            <button>주문 취소(위치고민중)</button>
+                                                        <div className={styles.infoContainer}>
+                                                            <div>
+                                                                <span className={styles.productName}> 제품명 {order.delivery_memo} </span>
+                                                                <span className={styles.productColor} > 색상 {order.payment_type}</span>
+                                                                <div className={styles.productPrice}>{order.price} 원</div>
+                                                            </div>
+                                                            <span className={styles.productCount}>수량ㅤㅤ ㅤ{order.goods_count}</span>
+                                                            <span className={styles.delivery}>배송지ㅤㅤ{order.address}</span>
+                                                            <div className={styles.priceAndDelivery}>
+                                                                <span className={styles.price}>결제금액ㅤ</span><span className={styles.paymentPrice}>{Number(order.price) * Number(order.goods_count)} 원</span>
+                                                                <span className={styles.deliveryStatus}>배송상태ㅤ{order.delivery_status} </span>
+                                                            </div>
+                                                        </div>
+
+                                                    </div >
+                                                </div>
+                                            </div>
+                                        ))}
+                                        <div className={styles.total}>
+                                            <div className={styles.totalHr}>
+                                                총 결제 금액 : {commaAmount} 원
+                                            </div>
                                         </div>
                                     </div>
-                                    <hr className={styles.hr} />
-                                </div >
-                            </div>
-                        )
-
-                    })}
+                                </div>
+                            )
+                        })}
+                    </div>
                 </div>
-            </div >
+            </div>
         </>
     )
 }
