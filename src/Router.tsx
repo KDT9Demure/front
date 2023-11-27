@@ -12,6 +12,7 @@ import Search from './route/search';
 import Order from './route/order';
 import Notice from './route/Notice';
 import Kakao from './route/Kakao';
+import Buy from './route/Buy';
 
 
 
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "user/kakao-login",
         element: <Kakao />
+      },
+      {
+        path:"buy",
+        element: <Buy />
       }
     ]
   },
