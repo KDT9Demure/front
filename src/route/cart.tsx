@@ -5,16 +5,6 @@ import { useAppSelector } from "../hook";
 import { Link } from "react-router-dom";
 
 
-// function AllPrice({ data }: { data: any }) {
-
-
-//     return (
-//         <div className={styles.priceWrapper}>
-//             <div>총 주문금액 : {data.goods_id.price} 원</div>
-//         </div>
-//     )
-// }
-
 export default function Cart() {
     const userData = useAppSelector((state) => state.signin);
     const [datas, setDatas] = useState<any[]>([]);
@@ -40,13 +30,10 @@ export default function Cart() {
                     user_id: userData.user_id
                 }
             })
-            setDatas(res.data.cart)
-            // console.log(1, res.data)
-            // console.log(11, res.data.cart)
-            // console.log(2, res.data.cart[0].id)
+            setDatas(res.data.cart);
 
         }
-        datas()
+        datas();
     }, [userData])
 
     const Delete = () => {
@@ -59,8 +46,7 @@ export default function Cart() {
                 method: "delete",
                 url: 'http://localhost:8000/cart/delete',
                 data: {
-                    // user_id: cartId
-                    ids: checkedIds,
+                    id: checkedIds,
                 }
             })
             if (res.data.result) {
@@ -74,10 +60,6 @@ export default function Cart() {
     console.log('datas', datas)
     console.log('checkedIds', checkedIds)
 
-    // let sumPrice = 0;
-    // for (const data of datas){
-    //     sumPrice += data.goods_id.price
-    // }
     const sumPrice = datas.reduce((acc, data) => acc + data.goods_id.price, 0);
 
     return (
@@ -118,7 +100,7 @@ export default function Cart() {
                     <button className={styles.cartDeleteBtn} onClick={Delete}>선택상품 삭제</button>
                 </div>
 
-                <Link className={styles.orderBtn} to="/buy?cart=">주문하기</Link>
+                <Link className={styles.orderBtn} to={`/buy?cart=${checkedIds}`}>주문하기</Link>
             </section>
         </div>
     )
