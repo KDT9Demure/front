@@ -10,7 +10,7 @@ import Cart from './route/cart';
 import QnA from './route/qna';
 import Search from './route/search';
 import Order from './route/order';
-import Notion from './route/Notion';
+import Notice from './route/Notice';
 import Kakao from './route/Kakao';
 
 
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
         element: <Signup />
       },
       {
-        path: "product",
+        path: "product/:id",
         element: <Product />
       },
       {
@@ -58,8 +58,8 @@ const router = createBrowserRouter([
         element: <Order />
       },
       {
-        path: "notion",
-        element: <Notion />
+        path: "notice",
+        element: <Notice />
       },
       {
         path:"user/kakao-login",

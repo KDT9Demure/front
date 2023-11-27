@@ -4,7 +4,7 @@ import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Cookies, useCookies } from "react-cookie";
+import { useAppSelector } from "../hook";
 
 
 function OneQna({ que, anw }: { que: string, anw: string }) {
@@ -48,8 +48,7 @@ function PatchBox({ comment, patch, setPatch }: { comment: any, patch : boolean,
                 secret,
             }
         })
-        console.log("1", res)
-        console.log("12", res.data)
+        
         if (res.data.result) {
             window.location.reload();
         }
@@ -70,13 +69,12 @@ function PatchBox({ comment, patch, setPatch }: { comment: any, patch : boolean,
     )
 }
 
-function Inquire({ comment }: { comment: any }) {
+function Inquire({ comment , userData }: { comment: any, userData:any[] | any }) {
     const [visible, setVisible] = useState<boolean>(true);
     const [Answer, setAnswer] = useState<string>("");
-    const [cookies, setCookies] = useCookies(["NID"]);
     const [openAnswer, setOpenAnswer] = useState<boolean>(false);
     const [patch, setPatch] = useState<boolean>(false);
-    const isAdmin = !!cookies.NID;
+    const isAdmin = userData.grade === "m";
 
     const Delete = () => {
         const deleteComment = async () => {
@@ -126,8 +124,8 @@ function Inquire({ comment }: { comment: any }) {
                 <div className={styles.inquireMainHeader}>
                     <div className={styles.inquireMainTitle}>{comment.title}</div>
                     <div className={styles.inquireMainBtnWrapper}>
-                        <button className={styles.inquireMainPatch} onClick={() => setPatch(true)}>수정</button>
-                        <button className={styles.inquireMainBtnDelete} onClick={Delete}>삭제</button>
+                        {(comment.user_id === userData.user_id) && <button className={styles.inquireMainPatch} onClick={() => setPatch(true)}>수정</button>}
+                        {(comment.user_id === userData.user_id) && <button className={styles.inquireMainBtnDelete} onClick={Delete}>삭제</button>}
                         <div><FontAwesomeIcon className={styles.inquireMainBtnOff} icon={faCaretUp} onClick={() => setVisible(true)} /></div>
                     </div>
                 </div>
@@ -143,7 +141,7 @@ function Inquire({ comment }: { comment: any }) {
                     <button onClick={() => setOpenAnswer(true)} className={styles.openAnswerBtn}>답글보기</button>
                 }
                 <br />
-                {isAdmin && <div className={styles.inquireMainAnswerWrapper}>
+                {(isAdmin && !comment.answer_status) && <div className={styles.inquireMainAnswerWrapper}>
                     <textarea className={styles.inquireMainAnswer} onChange={e => { setAnswer(e.target.value) }}></textarea>
                     <div className={styles.inquirMainBtnWrapper}>
                         <button className={styles.inquireMainBtn} onClick={() => registerAnswer(comment)}>답글등록</button>
@@ -160,6 +158,10 @@ export default function QnA() {
     const [content, setContent] = useState<string>("");
     const [secret, setSecret] = useState<boolean>(false);
 
+    const userData = useAppSelector((state) => state.signin);
+    
+    console.log("킥킥",userData)
+
     useEffect(() => {
         const datas = async () => {
             const res = await axios({
@@ -169,7 +171,7 @@ export default function QnA() {
             setComments(res.data);
         }
         datas();
-        console.log(comments)
+        console.log("Aa", comments)
     }, []);
 
     const register = async () => {
@@ -181,7 +183,7 @@ export default function QnA() {
                 title,
                 content,
                 secret,
-                user_id: 32 //테스트용 숫자
+                user_id: userData.user_id
             }
         })
         if (res.data.result) {
@@ -209,7 +211,7 @@ export default function QnA() {
                         <input placeholder="검색" className={styles.inquireSearch} />
                         {comments.map((comment, index) => {
                             return (
-                                <Inquire key={index} comment={comment} />
+                                <Inquire key={index} comment={comment} userData={userData}/>
                             )
                         })}
                         <div className={styles.answerBox}>

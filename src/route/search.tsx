@@ -144,86 +144,6 @@ export default function Search() {
         fetchData();
     }, [scrollEnd]);
 
-
-    // 정렬
-    // const best = async () => {
-    //     setSelectedSort("best")
-    //     setSort("best")
-    //     setSearch([])
-    //     setPage(2)
-    //     setIsListEnd(false)
-    //     const res = await axios({
-    //         method: "post",
-    //         url: `http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`,
-    //         data: {
-    //             sort: sort,
-    //             page: 1
-    //         }
-
-    //     })
-    //     console.log('sort running');
-    //     setSearch(res.data);
-    // }
-
-    // const high = async () => {
-    //     setSelectedSort("high")
-    //     setSort("high")
-    //     setSearch([])
-    //     setPage(2)
-    //     setIsListEnd(false)
-    //     const res = await axios({
-    //         method: "post",
-    //         url: `http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`,
-    //         data: {
-    //             sort: sort,
-    //             page: 1
-    //         }
-    //     })
-    //     console.log('sort running');
-    //     setSearch(res.data);
-    //     console.log(res.data)
-    // }
-
-    // const low = async () => {
-    //     setSelectedSort("low")
-    //     setSort("low")
-    //     setSearch([])
-    //     setPage(2)
-    //     setIsListEnd(false)
-    //     const res = await axios({
-    //         method: "post",
-    //         url: `http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`,
-    //         data: {
-    //             sort: "low",
-    //             page: 1
-    //         }
-    //     })
-    //     console.log('sort running');
-    //     setSearch(res.data);
-    // }
-
-
-    //색상 정렬
-    //블랙 , 화이트 , 그레이, 블루, 그린, 브라운
-
-    // const colorSort = async () => {
-    //     setColors("레드")
-    //     setSearch([])
-    //     setPage(2)
-    //     setIsListEnd(false)
-    //     const res = await axios({
-    //         method: "post",
-    //         url: `http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`,
-    //         data: {
-    //             page: 1,
-    //             sort: sort,
-    //             colors: colors
-    //         }
-    //     })
-    //     console.log('sort running');
-    //     setSearch(res.data);
-    // }
-
     // 정렬
     const best = () => { setSelectedSort("best"), setSort("best") }
     const high = () => { setSelectedSort("high"), setSort("high") }
@@ -272,6 +192,12 @@ export default function Search() {
             });
     }
 
+    // 상품 페이지로 이동
+    const moveProduct = (id: number) => {
+        window.location.href = `http://localhost:3000/product/${id}`
+    }
+
+
     return (
         <>
             <div className={styles.top}></div>
@@ -295,7 +221,7 @@ export default function Search() {
                             <div onClick={blue} style={{ width: 50, height: 50, backgroundColor: "blue" }}></div>
                             <div onClick={black} style={{ width: 50, height: 50, backgroundColor: "black" }}></div>
                             <div onClick={gray} style={{ width: 50, height: 50, backgroundColor: "gray" }}></div>
-                            <div onClick={white} style={{ width: 50, height: 50, backgroundColor: "white", }} className={styles.white}></div>
+                            <div onClick={white} style={{ width: 50, height: 50, backgroundColor: "white" }} className={styles.white}></div>
                             <div onClick={brown} style={{ width: 50, height: 50, backgroundColor: "brown" }}></div>
 
 
@@ -321,7 +247,7 @@ export default function Search() {
                         const productImgHover = product.imgHover || false;
 
                         return (
-                            <div key={index} className={styles.productContainer}>
+                            <div key={index} className={styles.productContainer} onClick={() => moveProduct(product.id)}>
 
                                 <div className={styles.productImg}>
                                     <img loading="lazy"

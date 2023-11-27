@@ -18,7 +18,10 @@ export default function Kakao() {
             })
             console.log(res)
         }
+
+
         kakao_code();
+        
 
     }, [])
 

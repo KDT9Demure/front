@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "../reducer/counter";
+import signinReducer from "../reducer/singin";
 
 export const store = configureStore({
   reducer: {
     counter:counterReducer,
+    signin:signinReducer,
   },
 });
 
