@@ -23,10 +23,6 @@ body {
     overflow-x: hidden;
 }
 
-.main {
-
-}
-
 /* section1 슬라이더보드 스타일 */
 .mainSwiper {
     position: relative;
@@ -112,6 +108,13 @@ body {
     height: 100vh;
     background-color: #ffff;
     position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.mouseEvent {
+    flex: 1;
+    position: absolute;
 }
 
 .innerText {
@@ -151,12 +154,21 @@ body {
 
 .randomImage {
     position: relative;
-    max-width: 100px;
-    max-height: 100px;
-    transition: opacity 0.5s ease-in-out;
+    width: 350px;
+    height: 405px;
+    transition: opacity 0.5s ease-in-out, width 0.5s ease-in-out, height 0.5s ease-in-out;
+    animation: mouseImg 3s ease-in-out;
 }
 
-.randomImageHidden {
-    opacity: 1;
+@keyframes mouseImg {
+    0% {
+        opacity: 1;
+        width: 350px;
+        height: 405px;
+    }
+    100% {
+        opacity: 0;
+        width: 100px;
+        height: 50px;
+    }
 }
-  
