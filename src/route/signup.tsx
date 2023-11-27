@@ -12,86 +12,10 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 config.autoAddCss = false
 
-// interface FormValue {
-//     id: string
-//     password: string
-//     confirmPassword: string
-//     name: string
-//     email: string
-//     emailNumber: string
-// }
-// const signupForm: FC = () => {
-
-//     return(
-//         <>
-
-//         </>
-//     )
-// }
 
 export default function Signup() {
 
-    // const { register, handleSubmit, watch, formState: { errors } } = useForm<FormValue>({})
-    // const onVaild = async (data: any) => {
-    //     const info = {
-    //         userid: data.id,
-    //         email: data.email,
-    //         user_name: data.name,
-    //         password: data.password
-    //     }
-    //     const res = await axios({
-    //         method: "post",
-    //         url: 'http://localhost:8000/user/signup',
-    //         data: info
-    //     })
-    //     console.log(data)
-    //     console.log(res.data)
-    //     if (res.data.result) {
-    //         alert("회원가입 완료")
-    //     }
 
-    // };
-
-    // //아이디값 빼오기
-    // const idValue = useRef<string | null>(null)
-    // idValue.current = watch("id")
-    // console.log(userid)
-
-    // {/* 비밀번호 / 비밀번호 확인 일치를 검증하기 위해 password input 의 value 를 추적함*/ }
-    // const passwordRef = useRef<string | null>(null)
-    // passwordRef.current = watch("password")
-
-    // // 이메일 인풋 값 빼오기
-    // const emailAuthor = useRef<string | null>(null)
-    // emailAuthor.current = watch("email")
-
-    // // 인증번호 인풋 값 빼오기
-    // const emailNumber = useRef<string | null>(null)
-    // emailNumber.current = watch("emailNumber")
-
-    // //이메일 인증번호 전송 온클릭
-    // const emailCheck = async () => {
-    //     const data = emailAuthor.current
-    //     const res = await axios({
-    //         method: "post",
-    //         url: "http://localhost:8000/user/email",
-    //         data
-    //     })
-    //     console.log(data)
-
-    // }
-    // //인증번호 확인 온클릭
-    // const authorConfirm = async () => {
-    //     // const res = await axios({
-    //     //     method: "post",
-    //     //     url: "http://localhost:8000/user/email",
-    //     //     data
-    //     // })
-    //     console.log("인증번호 확인")
-    // }
-
-
-    //DOM접근할수 있는 방법 찾기
     const [userid, setUserid] = useState<string | null>(null);
     const [isIdTrue, setIsIdTrue] = useState<boolean | null>(null);
 
@@ -113,9 +37,6 @@ export default function Signup() {
     const [isAuthorTrue, setIsAuthorTrue] = useState<boolean | null>(null);
 
     // const [emailReadonly, setEmailReadonly] = useState<boolean | null>(null);
-
-
-
 
     //회원가입 온클릭
     const sgup = async (data: any) => {
@@ -300,18 +221,6 @@ export default function Signup() {
         };
     }, [isActive, time]);
 
-    // const startTimer = () => {
-    //     setIsActive(true);
-    // };
-
-    // const pauseTimer = () => {
-    //     setIsActive(false);
-    // };
-
-    // const resetTimer = () => {
-    //     setIsActive(false);
-    //     setTime(180);
-    // };
 
     const formatTime = (seconds: number): string => {
         const minutes = Math.floor(seconds / 60);
@@ -411,11 +320,11 @@ export default function Signup() {
 
 
 
-                {isEmailBtnVisible && (
-                    <button className={styles.emailBtn} onClick={authorToggleBtn} type="button">
-                        이메일 인증
-                    </button>
-                )}
+                    {isEmailBtnVisible && (
+                        <button className={styles.emailBtn} onClick={authorToggleBtn} type="button">
+                            이메일 인증
+                        </button>
+                    )}
 
 
                     {authorToggle && (
@@ -427,32 +336,32 @@ export default function Signup() {
                                     className={styles.emailNumber} placeholder="Author Number" maxLength={6} onChange={authorCheck} />
 
 
-                            {timerZero ? (
-                                <button className={styles.emailNumberConfirmBtn} type="button" onClick={reAuthorBtn}>
-                                    재전송
-                                </button>
-                            ) : (
-                                <button className={styles.emailNumberConfirmBtn} type="button" onClick={authorBtn}>
-                                    확인
-                                </button>
-                            )}
-                            <div className={styles.timer}>
-                                {formatTime(time)}
+                                {timerZero ? (
+                                    <button className={styles.emailNumberConfirmBtn} type="button" onClick={reAuthorBtn}>
+                                        재전송
+                                    </button>
+                                ) : (
+                                    <button className={styles.emailNumberConfirmBtn} type="button" onClick={authorBtn}>
+                                        확인
+                                    </button>
+                                )}
+                                <div className={styles.timer}>
+                                    {formatTime(time)}
+                                </div>
+                                {isAuthorTrue === false ? (
+                                    <span style={{ color: 'red' }}>인증번호가 틀립니다</span>
+                                ) : isAuthorTrue === true ? (
+                                    <span style={{ color: "green" }}>
+                                        인증이 완료되었습니다
+                                    </span>
+                                ) : null}
                             </div>
-                            {isAuthorTrue === false ? (
-                                <span style={{ color: 'red' }}>인증번호가 틀립니다</span>
-                            ) : isAuthorTrue === true ? (
-                                <span style={{ color: "green" }}>
-                                    인증이 완료되었습니다
-                                </span>
-                            ) : null}
                         </div>
-                    </div>
-                )}
-                <button className={styles.signupBtn} type="button" onClick={sgup}>회원가입</button>
-            </form>
+                    )}
+                    <button className={styles.signupBtn} type="button" onClick={sgup}>회원가입</button>
+                </form>
+            </div>
         </div>
-    </div>
 
     )
 }

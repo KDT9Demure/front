@@ -207,10 +207,10 @@ export default function Search() {
 
                     <div className={styles.searchAndResult}>
                         <h1>"검색어" 에 대한 검색결과</h1>
-                        <span className={styles.result}>result 몇개 </span>
+                        {/* <span className={styles.result}>result 몇개 </span> */}
                     </div>
 
-                    <hr className={styles.hr} />
+                    <hr className={styles.titleHr} />
 
                     <div>
                         <div className={styles.colorContainer}>
@@ -287,7 +287,7 @@ export default function Search() {
                                     <span className={styles.sale}>{product.discount ? `sale` : " "}</span>
                                     <span className={styles.price}>{commaPrice}원</span>
                                 </div>
-                                <hr />
+                                <hr className={styles.hr} />
 
                             </div>
                         )

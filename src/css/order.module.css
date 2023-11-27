@@ -5,10 +5,45 @@
 }
 
 .bodys {
-    padding: 40px 250px 40px 250px;
+    padding: 40px 200px 40px 200px;
     width: 100vw;
     height: auto;
     background-color: #253f39;
+
+}
+
+.map {
+    height: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0 0 20px
+}
+
+.id {
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.date {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.titleHr {
+    margin: 5px 0 5px 0;
+}
+
+.cancleBtn {
+
+
+    background-color: white;
+    color: #253f39;
+    border-radius: 10px;
+    font-weight: bold;
 }
 
 .container {
@@ -16,32 +51,45 @@
     position: relative;
     background-color: white;
     margin-top: 50px;
-
+    padding: 30px 30px 10px 30px;
 }
 
-.mainContainer {}
+.mainContainer {
+    height: auto;
+}
 
 .orderList {
-    padding: 30px 0 0 30px;
+    padding: 0 0 0 30px;
     width: 100vw;
     height: 100%;
 }
 
+.containerBox {}
+
+
+
 
 .orderContainer {
     position: relative;
-    padding: 0 0 20px 60px;
-
+    padding: 0 0 0 180px;
+    height: auto
 }
 
 .infoContainer {
-    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
     width: auto;
-    top: 17px;
-    left: 220px
+    top: 0px;
+    left: 220px;
+    margin-bottom: 10px;
 }
 
 .reBuy {
+    position: absolute;
+    left: 20px;
+    bottom: 5px;
     width: 150px;
     border-radius: 10px;
     color: white;
@@ -49,60 +97,90 @@
 }
 
 .imgContainer {
-    display: flex;
-    align-items: end;
+    position: absolute;
+    left: 20px;
     width: 150px;
-    height: 150px;
+    height: 130px;
 }
 
 .img {
     width: 150px;
-    height: 120px;
+    height: 150px;
 }
 
 .productName {
     font-size: 32px;
     font-weight: bold;
-    margin: 5px 0 5px 0;
+    margin: 3px 0 3px 0;
 }
 
 .productColor {
     margin-left: 10px;
     font-size: 18px;
-    margin: 5px 0 5px 0;
+    margin: 3px 0 3px 0;
 }
 
 .productCount {
     font-size: 18px;
-    margin: 5px 0 5px 0;
+    margin: 3px 0 3px 0;
 }
 
 .delivery {
     font-size: 18px;
-    margin: 5px 0 5px 0;
+    margin: 3px 0 3px 0;
+
 }
 
 .price {
     font-size: 18px;
-    margin: 5px 0 5px 0;
+    margin: 3px 0 3px 0;
+}
+
+.deliveryStatus {
+    font-size: 18px;
+    margin: 3px 0 3px 0;
+
 }
 
 .paymentPrice {
     font-weight: bold;
 }
 
-.deliveryStatus {
-    font-size: 18px;
-    margin: 5px 0 5px 0;
-}
 
-.cancle {
-    position: absolute;
-    right: 0;
-    bottom: 0;
 
-}
+
+
+
+
+
 
 .hr {
     width: auto;
+}
+
+.totalHr {
+    display: flex;
+    height: 50px;
+    width: auto;
+    align-items: center;
+    justify-content: end;
+    border-top: dashed 2px;
+    font-weight: bold;
+    font-size: 20px;
+    padding-right: 20px;
+
+
+}
+
+.infoTitle {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: auto;
+    height: auto;
+    max-width: 600px;
+    flex-direction: column;
+
+    margin-bottom: 10px;
 }

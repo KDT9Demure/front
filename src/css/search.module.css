@@ -4,12 +4,6 @@
     box-sizing: border-box;
 }
 
-.bodys {
-    padding: 40px;
-    width: 95vw;
-    height: auto;
-    background-color: white;
-}
 
 .container1 {
     margin-top: 50px;
@@ -30,11 +24,6 @@
     display: flex;
     justify-content: space-between;
     align-items: end;
-}
-
-.hr {
-    margin: 10px 10px 10px 3px;
-    width: 100%;
 }
 
 .colorContainer {
@@ -127,6 +116,10 @@
     font-size: 36px;
 }
 
+.titleHr {
+    margin: 10px;
+}
+
 .sort {
     cursor: pointer;
     font-size: 18px;
@@ -164,13 +157,13 @@
 
 }
 
-hr {
+.hr {
     position: relative;
     cursor: default;
     width: 341px;
     margin-top: 20px;
     height: 2px;
-    background-color: black;
+    background-color: rgb(213, 213, 213);
     display: block;
     z-index: 1;
 }
