@@ -36,7 +36,7 @@ export default function Product() {
         const datas = async () => {
             const res = await axios({
                 method: "get",
-                url: `http://localhost:8000/product/00161644`,
+                url: `http://localhost:8000/product/${id}`,
             })
             setData(res.data);
             setReviews(res.data.reviews);
@@ -74,13 +74,13 @@ export default function Product() {
             method: "post",
             url: "http://localhost:8000/cart",
             data: {
-                user_id: 32,
+                user_id: userData.user_id,
                 goods_id:data.id,
                 goods_count:1
             }
         })
         if(res.data.result) {
-            window.location.reload();
+            alert("장바구니에 추가했습니다.");
         }
     }
     
