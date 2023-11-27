@@ -9,8 +9,8 @@ import List from './route/list';
 import Cart from './route/cart';
 import QnA from './route/qna';
 import Search from './route/search';
-import Order from './route/Order';
-import Notion from './route/Notion';
+import Order from './route/order';
+import Notice from './route/Notice';
 import Kakao from './route/Kakao';
 
 
@@ -58,8 +58,8 @@ const router = createBrowserRouter([
         element: <Order />
       },
       {
-        path: "notion",
-        element: <Notion />
+        path: "notice",
+        element: <Notice />
       },
       {
         path: "user/kakao-login",
