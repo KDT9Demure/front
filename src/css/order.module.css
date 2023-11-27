@@ -25,7 +25,7 @@
 .id {
     margin-left: 20px;
     font-size: 20px;
-    font-weight: bold;
+
 }
 
 .date {
@@ -89,7 +89,7 @@
 .reBuy {
     position: absolute;
     left: 20px;
-    bottom: 5px;
+    bottom: 0;
     width: 150px;
     border-radius: 10px;
     color: white;
@@ -100,7 +100,7 @@
     position: absolute;
     left: 20px;
     width: 150px;
-    height: 130px;
+    height: 150px;
 }
 
 .img {
@@ -111,38 +111,49 @@
 .productName {
     font-size: 32px;
     font-weight: bold;
-    margin: 3px 0 3px 0;
+    margin: 7px 0 7px 0;
 }
 
 .productColor {
     margin-left: 10px;
     font-size: 18px;
-    margin: 3px 0 3px 0;
+    margin: 7px 0 7px 0;
+}
+
+.productPrice {
+    font-size: 25px;
+    margin: 7px 0 7px 0;
 }
 
 .productCount {
-    font-size: 18px;
-    margin: 3px 0 3px 0;
+    font-size: 19px;
+    margin: 7px 0 7px 0;
 }
 
 .delivery {
-    font-size: 18px;
-    margin: 3px 0 3px 0;
+    font-size: 19px;
+    margin: 7px 0 7px 0;
 
 }
 
 .price {
-    font-size: 18px;
-    margin: 3px 0 3px 0;
+    font-size: 19px;
+    margin: 7px 0 7px 0;
+}
+
+.priceAndDelivery {
+    margin: 7px 0 7px 0;
 }
 
 .deliveryStatus {
-    font-size: 18px;
-    margin: 3px 0 3px 0;
+    font-size: 19px;
+    margin: 7px 0 7px 0;
+    padding-left: 50px;
 
 }
 
 .paymentPrice {
+    font-size: 20px;
     font-weight: bold;
 }
 

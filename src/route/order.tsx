@@ -40,6 +40,20 @@ export default function Order() {
         window.location.href = `http://localhost:3000/product/${id}`
     }
 
+    const orderCancel = async (id: string) => {
+        if (confirm(`${id}번 주문을 취소하시겠습니까?`)) {
+            const res = await axios({
+                method: "delete",
+                url: `http://localhost:8000/order/cancel`,
+                data: {
+                    id
+                }
+            })
+            console.log(res.data)
+            alert("주문이 취소되었습니다")
+        }
+    }
+
     // 날짜별로 그룹화
     const ordersByDate: { [key: string]: typeof orderList } = {};
 
@@ -66,6 +80,13 @@ export default function Order() {
                             const date = orders[0].create_date.split("T");
                             const newDate = date[0];
                             const amount = orders[0].amount
+
+                            // 가격에 , 추가
+                            // const commaPrice = orders[0].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            // const PaymentPrice = orders[0].price * orders[0].goods_count;
+                            // const commaPayment = PaymentPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            const commaAmount = amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
                             return (
                                 <div key={id} className={styles.map}>
                                     <hr className={styles.titleHr} />
@@ -74,7 +95,7 @@ export default function Order() {
                                             <span className={styles.date}>{`${newDate}`}</span>
                                             <span className={styles.id}>주문번호 : {id}</span>
                                         </div>
-                                        <button className={styles.cancleBtn}>{id}번 주문 취소</button>
+                                        <button className={styles.cancleBtn} onClick={() => orderCancel(id)}>{id}번 주문 취소</button>
 
                                     </div>
                                     <div>
@@ -91,13 +112,14 @@ export default function Order() {
                                                             <div>
                                                                 <span className={styles.productName}> 제품명 {order.delivery_memo} </span>
                                                                 <span className={styles.productColor} > 색상 {order.payment_type}</span>
-                                                                <h2>{order.price} 원</h2>
+                                                                <div className={styles.productPrice}>{order.price} 원</div>
                                                             </div>
                                                             <span className={styles.productCount}>수량ㅤㅤ ㅤ{order.goods_count}</span>
                                                             <span className={styles.delivery}>배송지ㅤㅤ{order.address}</span>
-                                                            <span className={styles.price}>결제금액ㅤ{Number(order.price) * Number(order.goods_count)}</span>
-                                                            <span className={styles.deliveryStatus}>배송상태ㅤ{order.delivery_status} </span>
-
+                                                            <div className={styles.priceAndDelivery}>
+                                                                <span className={styles.price}>결제금액ㅤ</span><span className={styles.paymentPrice}>{Number(order.price) * Number(order.goods_count)} 원</span>
+                                                                <span className={styles.deliveryStatus}>배송상태ㅤ{order.delivery_status} </span>
+                                                            </div>
                                                         </div>
 
                                                     </div >
@@ -106,7 +128,7 @@ export default function Order() {
                                         ))}
                                         <div className={styles.total}>
                                             <div className={styles.totalHr}>
-                                                총 결제 금액 : {amount} 원
+                                                총 결제 금액 : {commaAmount} 원
                                             </div>
                                         </div>
                                     </div>
