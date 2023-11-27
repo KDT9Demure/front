@@ -78,19 +78,7 @@
 }
 
 .searchBox{
-    margin-top: 25px;
-}
-   
-.headerLogo {
-    position: inherit;
-    top: 20px;
-    cursor: pointer;
-    font-size: 50px;
-    color: #253f39;
-    font-family: 'Monsieur La Doulaise';
-    filter: drop-shadow(0 0 20px rgba(255, 187, 0, 0.4)) drop-shadow(0 0 10px rgba(255, 234, 112, 0.4)) drop-shadow(0 0 5px rgba(255, 238, 112, 0.4));
-    user-select:none;
-    z-index: 5;
+    margin-top: 30px;
 }
 
 .top{
@@ -105,17 +93,6 @@
     display: none;
 }
 
-.headerUser {
-    position: relative;
-    margin-top: -50px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    font-size: 20px;
-    font-family: 'yleeMortalHeartImmortalMemory', sans-serif;
-    justify-content: flex-end;
-}
-  
 .iconLink {
     color: #fff;
     margin-left: 20px;
@@ -152,27 +129,8 @@
     color: #253f39;
     font-size: 20px;
     font-family: 'yleeMortalHeartImmortalMemory';
+    color: #fff;
     /* font-weight: bold; */
-}
-
-.openMenu .headerLogo {
-    color: #fff;
-}
-
-.openMenu .text {
-    color: #fff;
-}
-
-.wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 30px;
-    top: 100px;
-    width: 80%; 
-    margin-left: 10%;
-    margin-right: 10%;
 }
 
 .menu {
