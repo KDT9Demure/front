@@ -74,7 +74,7 @@ function Inquire({ comment , userData }: { comment: any, userData:any[] | any })
     const [Answer, setAnswer] = useState<string>("");
     const [openAnswer, setOpenAnswer] = useState<boolean>(false);
     const [patch, setPatch] = useState<boolean>(false);
-    const isAdmin = userData.grade === "m";
+    const isAdmin = userData.grade === "M";
 
     const Delete = () => {
         const deleteComment = async () => {
