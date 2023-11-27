@@ -6,11 +6,7 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import Token from './verify/Token';
 
-
-
 function App() {
-
-
   return (
     <>
       <Provider store={store}>
