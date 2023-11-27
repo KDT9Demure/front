@@ -223,10 +223,34 @@ export default function List() {
     let title: string;
     switch (number) {
         case "10555":
-            title = '욕실용품';
+            title = 'Bathroom products';
             break;
-        case "10382":
-            title = '책장';
+        case "700417":
+            title = "Kitchen"
+            break;
+        case "bm003":
+            title = "Beds & mattresses";
+            break;
+        case "fu002":
+            title = 'Chairs';
+            break;
+        case "fu004":
+            title = 'Tables & desks';
+            break;
+        case "li002":
+            title = 'Lighting';
+            break;
+        case "18767":
+            title = 'Baby & Children';
+            break;
+        case "tl002":
+            title = 'Decoration';
+            break;
+        case "fu003":
+            title = 'Living room';
+            break;
+        case "st002":
+            title = 'Cabinets';
             break;
         default:
             title = '카테고리';
@@ -303,7 +327,7 @@ export default function List() {
                                         <span className={styles.sale}>{product.goods_id.discount ? `sale` : " "}</span>
                                         <span className={styles.price}>{commaPrice}원</span>
                                     </div>
-                                    <hr />
+                                    <hr className={styles.listHr} />
 
                                 </div>
 

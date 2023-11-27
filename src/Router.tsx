@@ -9,7 +9,7 @@ import List from './route/list';
 import Cart from './route/cart';
 import QnA from './route/qna';
 import Search from './route/search';
-import Order from './route/order';
+import Order from './route/Order';
 import Notion from './route/Notion';
 import Kakao from './route/Kakao';
 
@@ -62,7 +62,7 @@ const router = createBrowserRouter([
         element: <Notion />
       },
       {
-        path:"user/kakao-login",
+        path: "user/kakao-login",
         element: <Kakao />
       }
     ]
