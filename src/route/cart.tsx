@@ -1,9 +1,23 @@
+import { useEffect, useState } from "react";
 import styles from "../css/cart.module.css";
-
+import axios from "axios";
 
 export default function Cart() {
 
+    const [data, setData] = useState<any[]>([]);
 
+    useEffect(() => {
+        const datas = async () => {
+            const res = await axios({
+                method: "get",
+                url:'http://localhost:8000/cart'
+            })
+            console.log(1, res)
+            console.log(res.data)
+            setData(res.data)
+        }
+        datas()
+    })
 
     return (
             <div className={styles.container}>
