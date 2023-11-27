@@ -122,7 +122,7 @@ export default function Header() {
                             <div className={header.linkName}>Customer Service</div>
                             <div className={header.linkCSBox}>
                                 <dd>
-                                    <Link to={"/qna"} className={header.menuLink}>QnA</Link>
+                                    <Link to={"/question"} className={header.menuLink}>QnA</Link>
                                 </dd>
                                 <dd>
                                     <Link to={"/notice"} className={header.menuLink}>Notice</Link>
