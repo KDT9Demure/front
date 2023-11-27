@@ -80,12 +80,15 @@ export default function Buy(){
                             </div>
                             <div className={buy.listBody}>
                                 <div className={buy.listInfor}>
-                                    <div>
-                                        {/* <img /> */}
+                                    <div className={buy.listImgBox}>
+                                        <img />
+                                    </div>
+                                    <div className={buy.listData}>
+                                        상품이름
                                     </div>
                                 </div>
-                                <div className={buy.listCount}></div>
-                                <div className={buy.listPrice}></div>
+                                <div className={buy.listCount}>1</div>
+                                <div className={buy.listPrice}>20000</div>
                                 <div className={buy.listCouponBox}>
                                     <div className={buy.couponName}>연말쿠폰</div>
                                     <div className={buy.couponDelete}>삭제</div>
@@ -93,6 +96,42 @@ export default function Buy(){
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div className={buy.deliveryDateBox}>
+                        <div className={buy.devliveryDateTitle}></div>
+                        <div className={buy.deliveryDateChoice}>
+                            <div>11/28</div>
+                            <div>11/29</div>
+                            <div>11/30</div>
+                            <div>12/01</div>
+                            <div>12/02</div>
+                        </div>
+                    </div>
+                    <div className={buy.cashBox}>
+                        <div className={buy.dpayBox}>
+                            <div className={buy.dpayListBox}>
+
+                            </div>
+                            <div className={buy.dpayAddBox}>
+
+                            </div>
+                        </div>
+                        <div className={buy.cashMethod}>
+
+                        </div>
+                    </div>
+                    <div className={buy.cashResultBox}>
+                        <div className={buy.cashResult}>
+                            <div className={buy.cashResultTitle}></div>
+                            <div className={buy.cashResultContent}></div>
+                        </div>
+                        <div className={buy.cashDiscountResult}>
+                            <div className={buy.cashDiscountResultTitle}></div>
+                            <div className={buy.cashDiscountResultContent}></div>
+                        </div>
+                    </div>
+                    <div className={buy.goBox}>
+                        <div className={buy.go}>결제하기</div>
                     </div>
                 </div>
             </section>
