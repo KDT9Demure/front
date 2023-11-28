@@ -13,6 +13,7 @@ import Order from './route/order';
 import Notice from './route/Notice';
 import Kakao from './route/Kakao';
 import Buy from './route/Buy';
+import Profile from './route/Profile';
 
 
 
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
       {
         path: "buy",
         element: <Buy />
+      },
+      {
+        path: "profile",
+        element: <Profile />
       }
     ]
   },
