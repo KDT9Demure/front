@@ -100,9 +100,8 @@ const Home: React.FC = () => {
             return [...prevImages, newAnimatedImage];
           });
           
-          
-        }, 1000);
-        setAddingImage(false);
+          setAddingImage(false);
+        }, INTERVAL);
       }
     };
 
