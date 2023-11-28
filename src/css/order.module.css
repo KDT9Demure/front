@@ -59,9 +59,10 @@
 }
 
 .orderList {
-    padding: 0 0 0 30px;
+    padding: 0 0 0 15px;
     width: 100vw;
     height: 100%;
+    font-size: 20px;
 }
 
 .containerBox {}
@@ -178,7 +179,7 @@
     border-top: dashed 2px;
     font-weight: bold;
     font-size: 20px;
-    padding-right: 20px;
+    padding: 10px 20px 0 0;
 
 
 }

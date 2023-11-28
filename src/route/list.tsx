@@ -223,19 +223,19 @@ export default function List() {
     let title: string;
     switch (number) {
         case "10555":
-            title = 'Bathroom products';
+            title = 'Bathroom Products';
             break;
         case "700417":
             title = "Kitchen"
             break;
         case "bm003":
-            title = "Beds & mattresses";
+            title = "Beds & Mattresses";
             break;
         case "fu002":
             title = 'Chairs';
             break;
         case "fu004":
-            title = 'Tables & desks';
+            title = 'Tables & Desks';
             break;
         case "li002":
             title = 'Lighting';
@@ -247,13 +247,13 @@ export default function List() {
             title = 'Decoration';
             break;
         case "fu003":
-            title = 'Living room';
+            title = 'Living Room';
             break;
         case "st002":
             title = 'Cabinets';
             break;
         default:
-            title = '카테고리';
+            title = 'Category';
     }
 
     return (
@@ -343,7 +343,7 @@ export default function List() {
                 }
                 {!isListEnd &&
                     <div className={styles.listMoreDiv}>
-                        <div onClick={moreList} className={styles.listMoreText}>ㅤMore 🔽ㅤ</div>
+                        <div onClick={moreList} className={styles.listMoreText}>ㅤMore ▼ㅤ</div>
                     </div>
                 }
             </div >

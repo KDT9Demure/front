@@ -26,18 +26,143 @@
     align-items: end;
 }
 
+.colorText {
+    font-size: 18px;
+}
+
 .colorContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 440px;
+    width: 350px;
 
 }
 
-.white {
+.colorBoxRed {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(255, 0, 0, 0.8);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.colorBoxGreen {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(0, 128, 0, 0.8);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.colorBoxBlue {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(0, 0, 255, 0.8);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.colorBoxBlack {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.colorBoxGray {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(128, 128, 128, 0.8);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.colorBoxWhite {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
     border: solid 1px;
+    cursor: pointer;
 }
 
+.colorBoxBrown {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(165, 42, 42, 0.8);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.selectedColorRed {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(255, 0, 0, 0.8);
+    border-radius: 10px;
+    cursor: pointer;
+    border: 3px solid rgba(0, 0, 0, 0.5);
+}
+
+.selectedColorGreen {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(0, 128, 0, 0.8);
+    border-radius: 10px;
+    cursor: pointer;
+    border: 3px solid rgba(0, 0, 0, 0.5);
+}
+
+.selectedColorBlue {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(0, 0, 255, 0.8);
+    border-radius: 10px;
+    cursor: pointer;
+    border: 3px solid rgba(0, 0, 0, 0.5);
+}
+
+.selectedColorBlack {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    cursor: pointer;
+    border: 3px solid rgba(255, 255, 255, 0.8)
+}
+
+.selectedColorGray {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(128, 128, 128, 0.8);
+    border-radius: 10px;
+    cursor: pointer;
+    border: 3px solid rgba(0, 0, 0, 0.5);
+}
+
+.selectedColorWhite {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    cursor: pointer;
+    border: 3px solid rgb(0, 0, 0);
+}
+
+.selectedColorBrown {
+    width: 35px;
+    height: 35px;
+    background-color: rgba(165, 42, 42, 0.8);
+    border-radius: 10px;
+    cursor: pointer;
+    border: 3px solid rgba(0, 0, 0, 0.5);
+}
+
+.resetColor {
+    font-size: 24px;
+    cursor: pointer;
+}
 
 
 .sort {

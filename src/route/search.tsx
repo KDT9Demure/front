@@ -27,6 +27,7 @@ export default function Search() {
     const [selectedSort, setSelectedSort] = useState<String>("best")
 
     const [colors, setColors] = useState<String>("")
+    const [selectedColor, setSelectedColor] = useState<string>("")
 
 
 
@@ -150,14 +151,14 @@ export default function Search() {
     const low = () => { setSelectedSort("low"), setSort("low") }
 
     // 색정렬
-    const noColor = () => { setColors("") }
-    const red = () => { setColors("레드") }
-    const green = () => { setColors("그린") }
-    const blue = () => { setColors("블루") }
-    const black = () => { setColors("블랙") }
-    const gray = () => { setColors("그레이") }
-    const white = () => { setColors("화이트") }
-    const brown = () => { setColors("브라운") }
+    const noColor = () => { setSelectedColor(""), setColors("") }
+    const red = () => { setSelectedColor("red"), setColors("레드") }
+    const green = () => { setSelectedColor("green"), setColors("그린") }
+    const blue = () => { setSelectedColor("blue"), setColors("블루") }
+    const black = () => { setSelectedColor("black"), setColors("블랙") }
+    const gray = () => { setSelectedColor("gray"), setColors("그레이") }
+    const white = () => { setSelectedColor("white"), setColors("화이트") }
+    const brown = () => { setSelectedColor("brown"), setColors("브라운") }
 
     //리스트 더 가져오기
     const moreList = () => {
@@ -212,18 +213,18 @@ export default function Search() {
 
                     <hr className={styles.titleHr} />
 
-                    <div>
+                    <div style={{ marginLeft: 20 }}>
                         <div className={styles.colorContainer}>
-                            색상
+                            <span className={styles.colorText}>색상</span>
 
-                            <div onClick={red} style={{ width: 50, height: 50, backgroundColor: "red" }}></div>
-                            <div onClick={green} style={{ width: 50, height: 50, backgroundColor: "green" }}></div>
-                            <div onClick={blue} style={{ width: 50, height: 50, backgroundColor: "blue" }}></div>
-                            <div onClick={black} style={{ width: 50, height: 50, backgroundColor: "black" }}></div>
-                            <div onClick={gray} style={{ width: 50, height: 50, backgroundColor: "gray" }}></div>
-                            <div onClick={white} style={{ width: 50, height: 50, backgroundColor: "white" }} className={styles.white}></div>
-                            <div onClick={brown} style={{ width: 50, height: 50, backgroundColor: "brown" }}></div>
-
+                            <div className={selectedColor === "red" ? styles.selectedColorRed : styles.colorBoxRed} onClick={red} ></div>
+                            <div className={selectedColor === "green" ? styles.selectedColorGreen : styles.colorBoxGreen} onClick={green} ></div>
+                            <div className={selectedColor === "blue" ? styles.selectedColorBlue : styles.colorBoxBlue} onClick={blue}></div>
+                            <div className={selectedColor === "black" ? styles.selectedColorBlack : styles.colorBoxBlack} onClick={black} ></div>
+                            <div className={selectedColor === "gray" ? styles.selectedColorGray : styles.colorBoxGray} onClick={gray}></div>
+                            <div className={selectedColor === "white" ? styles.selectedColorWhite : styles.colorBoxWhite} onClick={white}></div>
+                            <div className={selectedColor === "brown" ? styles.selectedColorBrown : styles.colorBoxBrown} onClick={brown} style={{ width: 35, height: 35, backgroundColor: "brown" }}></div>
+                            <div className={styles.resetColor} onClick={noColor}>↻</div>
 
 
                         </div>
@@ -302,7 +303,7 @@ export default function Search() {
                 }
                 {!isListEnd &&
                     <div className={styles.listMoreDiv}>
-                        <div onClick={moreList} className={styles.listMoreText}>ㅤMore 🔽ㅤ</div>
+                        <div onClick={moreList} className={styles.listMoreText}>ㅤMore ▼ㅤ</div>
                     </div>
                 }
             </div>
