@@ -3,6 +3,61 @@ import styles from "../css/cart.module.css";
 import axios from "axios";
 import { useAppSelector } from "../hook";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faMinus } from "@fortawesome/free-solid-svg-icons";
+
+function Counter({data} : {data:any}) {
+    const [number, setNumber] = useState<number>(data.goods_count);
+    
+    //수량 +
+    const handleIncrement = () => {
+        setNumber(number + 1);
+
+        const countPatch = async () => {
+            
+            const res = await axios({
+                method: "patch",
+                url: 'http://localhost:8000/cart/update',
+                data: {
+                    id: data.id,
+                    objectCount:number+1
+                }
+            })
+        }
+        countPatch();
+    }
+
+    //수량 -
+    const handleDecrement = () => {
+        if(number < 1) return;
+        setNumber(number - 1);
+        
+        const countPatch = async () => {
+            const res = await axios({
+                method: "patch",
+                url: 'http://localhost:8000/cart/update',
+                data: {
+                    id: data.id,
+                    objectCount:number-1
+                }
+            })
+        }
+        countPatch();
+    }
+
+    
+
+
+    return (
+        <div className={styles.amountWrapper}>
+            <div className={styles.amountTitle}>수량</div>
+            <button onClick={handleDecrement} className={styles.amountBtn}><FontAwesomeIcon icon={faMinus} className={styles.amountIcon}/></button>
+            <div className={styles.amountPrice}>  {number}  </div>
+            <button onClick={handleIncrement} className={styles.amountBtn}><FontAwesomeIcon icon={faPlus} className={styles.amountIcon}/></button>
+        </div>
+    )
+}
 
 
 export default function Cart() {
@@ -31,7 +86,7 @@ export default function Cart() {
                 }
             })
             setDatas(res.data.cart);
-
+            console.log(res)
         }
         datas();
     }, [userData])
@@ -57,9 +112,11 @@ export default function Cart() {
     }
 
 
-    console.log('datas', datas)
+
+    //check된 id 확인
     console.log('checkedIds', checkedIds)
 
+    //금액 총액
     const sumPrice = datas.reduce((acc, data) => acc + data.goods_id.price, 0);
 
     return (
@@ -90,6 +147,7 @@ export default function Cart() {
                                     </div>
                                     <div className={styles.cartInfo}>
                                         <div>배송비 무료</div>
+                                        <Counter data={data}/>
                                     </div>
                                 </div>
                             </div>)
