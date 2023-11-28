@@ -1,5 +1,5 @@
 import { combineReducers, configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import counterReducer from "../reducer/counter";
+// import counterReducer from "../reducer/counter";
 import signinReducer, { signinSlice } from "../reducer/singin";
 import storage from 'redux-persist/lib/storage'
 import { persistReducer } from 'redux-persist';
