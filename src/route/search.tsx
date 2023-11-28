@@ -6,8 +6,6 @@ import axios from "axios";
 
 import styles from "../css/search.module.css";
 
-import { config } from '@fortawesome/fontawesome-svg-core'
-
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
 export default function Search() {
