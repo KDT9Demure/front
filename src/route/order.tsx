@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"
-
+import React, { useState, useEffect, } from "react"
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 import styles from "../css/order.module.css";
@@ -10,14 +10,15 @@ export default function Order() {
 
     const [orderList, setOrderList] = useState<any[]>([])
 
+    const { id } = useParams<{ id: string }>();
+    console.log('현재 주문 ID:', id);
     useEffect(() => {
         const orderData = async () => {
-
             try {
 
                 const res = await axios({
                     method: "get",
-                    url: `http://localhost:8000/order`,
+                    url: `http://localhost:8000/order/${id}`,
                 });
                 console.log('useEffect running')
 
@@ -74,8 +75,8 @@ export default function Order() {
                     <div className={styles.orderList}>
                         <h1>주문내역</h1>
                     </div>
-
                     <div className={styles.containerBox}>
+
                         {Object.entries(ordersByDate).map(([id, orders]) => {
                             const date = orders[0].create_date.split("T");
                             const newDate = date[0];
@@ -87,6 +88,8 @@ export default function Order() {
                             // const commaPayment = PaymentPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                             const commaAmount = amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
+                            console.log(orders.length)
+
                             return (
                                 <div key={id} className={styles.map}>
                                     <hr className={styles.titleHr} />
@@ -95,7 +98,7 @@ export default function Order() {
                                             <span className={styles.date}>{`${newDate}`}</span>
                                             <span className={styles.id}>주문번호 : {id}</span>
                                         </div>
-                                        <button className={styles.cancleBtn} onClick={() => orderCancel(id)}>{id}번 주문 취소</button>
+                                        <button className={styles.cancleBtn} onClick={() => orderCancel(id)}>주문 취소</button>
 
                                     </div>
                                     <div>

@@ -3,9 +3,9 @@ import { createBrowserRouter } from 'react-router-dom';
 import App from "./App";
 import Home from './route/home';
 import Signin from './route/Signin';
-import Signup from './route/signup';
+import Signup from './route/Signup';
 import Product from './route/product';
-import List from './route/list';
+import List from './route/List';
 import Cart from './route/Cart';
 import QnA from './route/Qna';
 import Search from './route/search';
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
         element: <Search />
       },
       {
-        path: "order",
+        path: "order/:id",
         element: <Order />
       },
       {
@@ -67,7 +67,7 @@ const router = createBrowserRouter([
         element: <Kakao />
       },
       {
-        path:"buy",
+        path: "buy",
         element: <Buy />
       }
     ]
