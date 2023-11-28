@@ -77,8 +77,8 @@ const Home: React.FC = () => {
     position: { x: number; y: number };
   };
 
-  const MAX_IMAGES = 3;
-  const INTERVAL = 800;
+  const MAX_IMAGES = 1;
+  const INTERVAL = 2000;
 
   const [animatedImages, setAnimatedImages] = useState<AnimatedImage[]>([]);
   const [addingImage, setAddingImage] = useState(false);
