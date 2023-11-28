@@ -30,6 +30,12 @@ export default function Token(){
             dispatch(setUserName(res.data.user_name));
             dispatch(setGrade(res.data.grade));
         }
+
+        if(!cookies.get("NID")){
+            dispatch(setUserId(0));
+            dispatch(setUserName(""));
+            dispatch(setGrade("N"));
+        }
         
         signIn()
     },[])

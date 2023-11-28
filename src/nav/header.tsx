@@ -134,9 +134,9 @@ export default function Header() {
                         </div>
                     </div>
                 </div>
-                <div className={`${header.hello} ${!openMenu && header.displayNone}`}>
+                {/* <div className={`${header.hello} ${!openMenu && header.displayNone}`}>
                     <span className={header.text}>Bonjour!</span>
-                </div>
+                </div> */}
             </div>
         </div>
     )

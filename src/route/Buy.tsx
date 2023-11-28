@@ -1,32 +1,52 @@
-import { useEffect } from "react"
+import axios from "axios";
+import { useAppSelector } from "../hook";
+import { useEffect, useState } from "react"
 import buy from "../css/buy.module.css";
 
-export default function Buy(){
 
-    const arr:object[] = [
+export default function Buy() {
+
+    const [address, setAddress] = useState<any[]>([]);
+    const userData = useAppSelector((state) => state.signin);
+
+    const arr: object[] = [
         {
-            user_id:32,
-            detail:"홍천소낙들길",
-            address:"충청남도 서산시 해미면",
-            zip_code:"32582",
-            address_name:"집",
-            id:2
+            user_id: 32,
+            detail: "홍천소낙들길",
+            address: "충청남도 서산시 해미면",
+            zip_code: "32582",
+            address_name: "집",
+            id: 2
         },
         {
-            user_id:32,
-            detail:"홍천소낙들길",
-            address:"충청남도 서산시 해미면",
-            zip_code:"32582",
-            address_name:"집2",
-            id:3
+            user_id: 32,
+            detail: "홍천소낙들길",
+            address: "충청남도 서산시 해미면",
+            zip_code: "32582",
+            address_name: "집2",
+            id: 3
         }
     ]
 
-    
-    useEffect(()=>{
 
+    useEffect(() => {
+        const getAddress = async () => {
+            const res = await axios({
+                method:"POST",
+                url:"http://localhost:8000/buy/address/get",
+                data:{
+                    user_id:userData.user_id,
+                }
+            })
+            console.log(userData.user_id);
+            setAddress(res);
+            console.log(res);
+        }
+
+        getAddress();
+        
     }, [])
-    
+
     return (
         <>
             <section className={buy.buyBox}>
@@ -39,7 +59,7 @@ export default function Buy(){
                                 <div className={buy.newAddress}></div>
                             </div>
                             <div className={buy.addressItemBox}>
-                                {arr.map((value, index)=>{
+                                {arr.map((value, index) => {
                                     return (
                                         <div className={buy.addressItem} key={index}>
                                             <input type="radio" name="address" value={value.id}></input>
@@ -58,7 +78,7 @@ export default function Buy(){
                                         </div>
                                     )
                                 })}
-                            </div>                       
+                            </div>
                         </div>
                         <div className={buy.addressMemoBox}>
                             <div className={buy.memoTitle}>배송 메모</div>
