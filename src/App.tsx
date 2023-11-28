@@ -5,15 +5,22 @@ import { Outlet } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import Token from './verify/Token';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
 
 function App() {
+
+  let persistor = persistStore(store);
+  
   return (
     <>
       <Provider store={store}>
-        <Header/>
-        <Outlet/>
-        <Footer/>
-        <Token />
+        <PersistGate loading={null} persistor={persistor}>
+          <Token />
+          <Header/>
+          <Outlet/>
+          <Footer/>
+        </PersistGate>
       </Provider>
     </>
   )
