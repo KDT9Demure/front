@@ -7,6 +7,7 @@ import { store } from './store/store';
 import Token from './verify/Token';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
+import Chatbot from './route/Chatbot';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Token />
           <Header/>
           <Outlet/>
+          <Chatbot/>
           <Footer/>
         </PersistGate>
       </Provider>
