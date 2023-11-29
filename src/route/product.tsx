@@ -38,8 +38,9 @@ export default function Product() {
                 method: "get",
                 url: `http://localhost:8000/product/${id}`,
             })
-            setData(res.data);
-            setReviews(res.data.reviews);
+            console.log(res.data)
+            setData(res.data.goodsInfo);
+            setReviews(res.data.goodsInfo.reviews);
             console.log(1, res.data.reviews)
         }
         datas();     
@@ -60,11 +61,15 @@ export default function Product() {
     const Buy = async () => {
         const res = await axios({
             method: "post",
-            url: "http://localhost:8000/product/buy",
-            data
+            url: "http://localhost:8000/cart",
+            data: {
+                user_id: userData.user_id,
+                goods_id:data.id,
+                goods_count:1
+            }
         })
         if(res.data.result) {
-            // window.location.href ="/buy"
+            window.location.href ="/cart"
         }
     }
 
@@ -79,6 +84,7 @@ export default function Product() {
                 goods_count:1
             }
         })
+        console.log(res);
         if(res.data.result) {
             alert("장바구니에 추가했습니다.");
         }

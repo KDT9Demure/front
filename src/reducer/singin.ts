@@ -4,13 +4,15 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 export interface SigninState{
     user_id:number,
     user_name:string,
-    grade:string
+    grade:string,
+    userid:string,
 }
 
 const initialState:SigninState = {
     user_id:0,
     user_name:'',
     grade:'N',
+    userid:'',
 }
 
 export const signinSlice = createSlice({
@@ -26,9 +28,12 @@ export const signinSlice = createSlice({
         },
         setGrade:(state, action:PayloadAction<string>)=>{
             state.grade = action.payload;
+        },
+        setUserid:(state, action:PayloadAction<string>)=>{
+            state.userid = action.payload;
         }
     }
 })
 
-export const {setUserId, setUserName, setGrade} = signinSlice.actions;
+export const {setUserId, setUserName, setGrade, setUserid} = signinSlice.actions;
 export default signinSlice.reducer;

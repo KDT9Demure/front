@@ -7,29 +7,16 @@ import buy from "../css/buy.module.css";
 export default function Buy() {
 
     const [address, setAddress] = useState<any[]>([]);
+    const [goods, setGoods] = useState<any[]>([]);
+    const [deliveryArr, setdeliveryArr] = useState<any[]>([]);
+    const [deliveryDate, setdeliveryDate] = useState<string>("");
     const userData = useAppSelector((state) => state.signin);
-
-    const arr: object[] = [
-        {
-            user_id: 32,
-            detail: "홍천소낙들길",
-            address: "충청남도 서산시 해미면",
-            zip_code: "32582",
-            address_name: "집",
-            id: 2
-        },
-        {
-            user_id: 32,
-            detail: "홍천소낙들길",
-            address: "충청남도 서산시 해미면",
-            zip_code: "32582",
-            address_name: "집2",
-            id: 3
-        }
-    ]
 
 
     useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const cart_ids = params.get("cart");
+
         const getAddress = async () => {
             const res = await axios({
                 method:"POST",
@@ -38,14 +25,46 @@ export default function Buy() {
                     user_id:userData.user_id,
                 }
             })
-            console.log(userData.user_id);
-            setAddress(res);
+            setAddress(res.data.data);
+        }
+
+        // 카트에 담겨온 아이템들
+        const getOrderGoods = async ()=>{
+            console.log(cart_ids);
+            const res = await axios({
+                method:"GET",
+                url:"http://localhost:8000/buy/goods/get",
+                params:{
+                    cart_ids
+                }
+            })
+
             console.log(res);
+            setGoods(res.data.data);
         }
 
         getAddress();
+        getOrderGoods();
+        // setdeliveryArr(()=>{
+
+        // })
+        let arr = [];
+        const today = new Date();
+        for(let i = 0; i<5; i++){
+            arr.push(formatDate(new Date(today.setDate(today.getDate() + 1))));
+        }
+        console.log(arr);
+        
         
     }, [])
+
+    const formatDate = (d: Date): string => {
+            const month = d.getMonth()+ 1;
+            const date = d.getDate();
+            
+        return month + "/" + date;
+    };
+    
 
     return (
         <>
@@ -59,7 +78,7 @@ export default function Buy() {
                                 <div className={buy.newAddress}></div>
                             </div>
                             <div className={buy.addressItemBox}>
-                                {arr.map((value, index) => {
+                                {address.map((value, index) => {
                                     return (
                                         <div className={buy.addressItem} key={index}>
                                             <input type="radio" name="address" value={value.id}></input>
@@ -98,23 +117,28 @@ export default function Buy() {
                                 <div className={buy.listPriceHead}>판매가</div>
                                 <div className={buy.listCouponHead}>쿠폰</div>
                             </div>
-                            <div className={buy.listBody}>
-                                <div className={buy.listInfor}>
-                                    <div className={buy.listImgBox}>
-                                        <img />
+                            {goods.map((value, index)=>{
+                                return (
+                                <div className={buy.listBody} key={index}>
+                                    <div className={buy.listInfor}>
+                                        <div className={buy.listImgBox}>
+                                            <img src={value.goods_id.arrange_image}/>
+                                        </div>
+                                        <div className={buy.listData}>
+                                            {value.goods_id.name}
+                                        </div>
                                     </div>
-                                    <div className={buy.listData}>
-                                        상품이름
+                                    <div className={buy.listCount}>{value.goods_count}</div>
+                                    <div className={buy.listPrice}>20000</div>
+                                    <div className={buy.listCouponBox}>
+                                        {/* <div className={buy.couponName}>연말쿠폰</div>
+                                        <div className={buy.couponDelete}>삭제</div> */}
+                                        <div className={buy.couponUse}>사용</div>
                                     </div>
                                 </div>
-                                <div className={buy.listCount}>1</div>
-                                <div className={buy.listPrice}>20000</div>
-                                <div className={buy.listCouponBox}>
-                                    <div className={buy.couponName}>연말쿠폰</div>
-                                    <div className={buy.couponDelete}>삭제</div>
-                                    <div className={buy.couponUse}>사용</div>
-                                </div>
-                            </div>
+                            )
+                            })}
+                            
                         </div>
                     </div>
                     <div className={buy.deliveryDateBox}>
