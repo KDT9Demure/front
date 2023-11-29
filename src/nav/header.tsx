@@ -34,7 +34,7 @@ export default function Header() {
         <div className={header.box}>
             <div className={`${header.container} ${openMenu && header.openMenu}`}>
                 <div className={`${header.logo} ${openMenu && header.logoColor}`} onClick={onLogoClick}>Demure</div>
-                <div className={`${header.top} ${!openMenu && header.displayNone}`}>
+                <div className={`${header.top} ${!openMenu && header.displayNone}`} onClick={onLogoClick}>
                     <div className={header.iconBox}>
                         <div>
                             {userData.user_id === 0 ?
@@ -68,7 +68,7 @@ export default function Header() {
                     </div>
                     <div className={header.homeBox}>
                         <Link to="/" className={header.homeLink} style={{textDecoration:"none"}}>
-                        <FontAwesomeIcon icon={faHouse} />
+                            <FontAwesomeIcon icon={faHouse} />
                         </Link>
                     </div>
                 </div>
@@ -80,7 +80,7 @@ export default function Header() {
                         </span>
                     </div>
                 </div>
-                <div className={`${header.menuBox} ${!openMenu && header.displayNone}`}>
+                <div className={`${header.menuBox} ${!openMenu && header.displayNone}`} onClick={onLogoClick}>
                     <div className={header.headerMenu}>
                         <div className={header.itemBox}>
                             <div className={header.linkName}>Category</div>

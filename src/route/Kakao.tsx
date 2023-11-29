@@ -4,16 +4,16 @@ import { Cookies } from "react-cookie";
 
 export default function Kakao() {
 
-    
 
-    useEffect(()=>{
-        const kakao_code = async ()=>{
+
+    useEffect(() => {
+        const kakao_code = async () => {
             const code = new URL(window.location.href).searchParams.get("code");
             console.log(code)
-           const token = await axios({
-                method:"POST",
-                url:"http://localhost:8000/user/kakao/code",
-                data:{
+            const token = await axios({
+                method: "POST",
+                url: "http://localhost:8000/user/kakao/code",
+                data: {
                     code
                 }
             })
@@ -26,10 +26,10 @@ export default function Kakao() {
 
     }, [])
 
-    return(
+    return (
         <>
 
-        </>   
+        </>
     )
 
 }
