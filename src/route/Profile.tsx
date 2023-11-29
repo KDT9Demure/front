@@ -8,64 +8,99 @@ import styles from "../css/profile.module.css";
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
 
-const dummy = [
-    {
-        date: "2023.11.23",
-        product: "가구",
-        status: "배송완료"
-
-    },
-    {
-        date: "2023.11.24",
-        product: "qwertyuio",
-        status: "배송중"
-
-    },
-    {
-        date: "2023.11.25",
-        product: "아이폰 12 Pro dasdw asdasdas das",
-        status: "배송실패"
-
-    },
-
-]
-
-const dummy2 = [
-    {
-        date: "2023.11.23",
-        product: "문의1",
-        status: "답변대기"
-
-    },
-    {
-        date: "2023.11.24",
-        product: "문의2",
-        status: "답변완료"
-
-    },
-    {
-        date: "2023.11.25",
-        product: "문의3",
-        status: "답변불가"
-
-    },
-
-]
-
-const dummy3 = [
-    {
-        date: "2023.11.24",
-        product: "2023 크리스마스 50% 할인 쿠폰",
-    },
-    {
-        date: "2023.11.25",
-        product: "2023 연말 20% 할인 쿠폰",
-    },
-
-]
-
+import { useAppSelector } from "../hook";
 
 export default function Profile() {
+
+    const userInfo = useAppSelector((state) => state.signin);
+
+    const [userData, setUserData] = useState<any>({})
+    const [orderData, setOrderData] = useState<any[]>([])
+    const [addressData, setAddressData] = useState<any[]>([])
+    const [askData, setAskData] = useState<any[]>([])
+    const [couponData, setCouponData] = useState<any[]>([])
+
+    // 회원정보
+    useEffect(() => {
+        const userData = async () => {
+            const res = await axios({
+                method: "post",
+                url: `http://localhost:8000/profile/user`,
+                data: {
+                    user_id: userInfo.user_id
+                }
+            })
+            setUserData(res.data)
+            console.log("회원정보", res.data)
+        }
+        userData();
+    }, [])
+
+    // 주문정보
+    useEffect(() => {
+        const orderData = async () => {
+            const res = await axios({
+                method: "post",
+                url: `http://localhost:8000/profile/order`,
+                data: {
+                    user_id: userInfo.user_id
+                }
+            })
+            setOrderData(res.data)
+            console.log("주문정보", res.data)
+        }
+        orderData();
+    }, [])
+
+    // 주소정보
+    useEffect(() => {
+        const addressData = async () => {
+            const res = await axios({
+                method: "post",
+                url: `http://localhost:8000/profile/address`,
+                data: {
+                    user_id: userInfo.user_id
+                }
+            })
+            setAddressData(res.data)
+            console.log("주소정보", res.data)
+        }
+        addressData();
+    }, [])
+
+    // 문의내역
+    useEffect(() => {
+        const askData = async () => {
+            const res = await axios({
+                method: "post",
+                url: `http://localhost:8000/profile/question`,
+                data: {
+                    user_id: userInfo.user_id
+                }
+            })
+            setAskData(res.data)
+            console.log("문의내역", res.data)
+        }
+        askData();
+    }, [])
+
+    // 쿠폰정보
+    useEffect(() => {
+        const couponData = async () => {
+            const res = await axios({
+                method: "post",
+                url: `http://localhost:8000/profile/coupon`,
+                data: {
+                    user_id: userInfo.user_id
+                }
+            })
+            setCouponData(res.data)
+            console.log("쿠폰정보", res.data)
+        }
+        couponData();
+    }, [])
+
+    const commaPoint = userData.point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return (
         <>
             <div className={styles.bodys}>
@@ -73,9 +108,9 @@ export default function Profile() {
 
                     <div className={styles.infoBox}>
                         <div className={styles.infoTitle} >회원정보</div>
-                        <h1>아이디</h1>
-                        <h4>이름</h4>
-                        <div>포인트 : 100,000,000P</div>
+                        <h1>{userData.userid}</h1>
+                        <h4>{userData.user_name}</h4>
+                        <div>보유 포인트  {commaPoint} P</div>
                     </div>
 
                     <button className={styles.editBtn}>회원정보수정</button>
@@ -84,12 +119,20 @@ export default function Profile() {
                         <div className={styles.orderTitle}>최근 주문 내역</div>
                         <div className={styles.orderListBox}>
                             <div className={styles.whiteBox}>
-                                <div className={styles.box} style={{ fontWeight: "bold" }}>주문일자</div><div className={styles.box} style={{ fontWeight: "bold" }}>주문내용</div><div className={styles.box} style={{ fontWeight: "bold" }}>배송상태</div>
+                                <div className={styles.box} style={{ fontWeight: "bold" }}>주문일자</div>
+                                <div className={styles.box} style={{ fontWeight: "bold" }}>주문내용</div>
+                                <div className={styles.box} style={{ fontWeight: "bold" }}>배송상태</div>
                                 <hr className={styles.orderHr} />
-                                {dummy.map((value, index) => {
+                                {orderData.map((value) => {
+
+                                    const date = value.create_date.split("T");
+                                    const newDate = date[0];
+
                                     return (
                                         <>
-                                            <div className={styles.box}>{value.date}</div><div className={styles.box}>{value.product}</div><div className={styles.box}>{value.status}</div>
+                                            <div className={styles.box}>{newDate}</div>
+                                            <div className={styles.box}>{value.goods_id.name}</div>
+                                            <div className={styles.box}>{value.delivery_status}</div>
                                         </>
                                     )
                                 })}
@@ -103,9 +146,17 @@ export default function Profile() {
                         <div className={styles.addressTitle}>내 주소</div>
                         <div className={styles.addressBox}>
                             <div className={styles.whiteBox2}>
-                                <h3 style={{ margin: 10 }}>우리집</h3>
-                                <hr className={styles.addressHr} />
-                                <div style={{ margin: 10 }}>서울특별시 서대문구 서대문동 서대문아파트 101동 1703호</div>
+                                {addressData.map((value) => {
+                                    return (
+                                        <>
+                                            <h3 style={{ margin: 10 }}>{value.address_name}</h3>
+                                            <hr className={styles.addressHr} />
+                                            <div style={{ margin: 10 }}>{value.address} - {value.detail}</div>
+                                            {addressData.length > 1 && <hr className={styles.addressHr2} />}
+                                        </>
+                                    )
+                                })}
+
                             </div>
                         </div>
                     </div>
@@ -116,12 +167,18 @@ export default function Profile() {
                         <div className={styles.askTitle}>문의내역</div>
                         <div className={styles.orderListBox}>
                             <div className={styles.whiteBox}>
-                                <div className={styles.box} style={{ fontWeight: "bold" }}>날짜</div><div className={styles.box} style={{ fontWeight: "bold" }}>제목</div><div className={styles.box} style={{ fontWeight: "bold" }}>답변상태</div>
+                                <div className={styles.box} style={{ fontWeight: "bold" }}>날짜</div>
+                                <div className={styles.box} style={{ fontWeight: "bold" }}>제목</div>
+                                <div className={styles.box} style={{ fontWeight: "bold" }}>답변상태</div>
                                 <hr className={styles.orderHr} />
-                                {dummy2.map((value, index) => {
+                                {askData.map((value) => {
+                                    const date = value.create_date.split("T");
+                                    const newDate = date[0];
                                     return (
                                         <>
-                                            <div className={styles.box}>{value.date}</div><div className={styles.box}>{value.product}</div><div className={styles.box}>{value.status}</div>
+                                            <div className={styles.box}>{newDate}</div>
+                                            <div className={styles.box}>{value.title}</div>
+                                            {value.answer_status ? <div className={styles.box}>답변완료</div> : <div className={styles.box}>문의접수</div>}
                                         </>
                                     )
                                 })}
@@ -131,16 +188,27 @@ export default function Profile() {
 
                     <br />
 
-                    <div className={styles.couponBox}>
-                        <h1 style={{ marginBottom: 10 }}>보유쿠폰</h1>
-                        {dummy3.map((value, index) => {
-                            return (
-                                <div>
-                                    <span>{value.product}</span><div>  ~ {value.date} 까지 </div>
-                                    <br />
-                                </div>
-                            )
-                        })}
+                    <div className={styles.couponContainer}>
+                        <h2 style={{ marginBottom: 10, fontWeight: "normal" }}>보유쿠폰</h2>
+                        <div className={styles.couponFlex}>
+                            {couponData.map((value) => {
+
+                                const date = value.coupon_id.use_date.split("T");
+                                const newDate = date[0];
+
+                                return (
+                                    <div className={styles.couponBox}>
+                                        <div className={styles.coupon1}></div>
+                                        <div className={styles.couponName}>{value.coupon_id.coupon_name}</div>
+                                        <div className={styles.couponDis}>{value.coupon_id.discount}%</div>
+                                        <span className={styles.dis}>할인 쿠폰</span>
+                                        <hr className={styles.couponHr} />
+                                        <div className={styles.couponDate}>유효기간 {newDate}</div>
+
+                                    </div>
+                                )
+                            })}
+                        </div>
                     </div>
                 </div>
             </div >

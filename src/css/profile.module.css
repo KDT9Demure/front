@@ -5,7 +5,7 @@
 }
 
 .bodys {
-    padding: 40px 300px 40px 300px;
+    padding: 40px 275px 40px 275px;
     width: 100vw;
     height: auto;
     background-color: #253f39;
@@ -74,6 +74,7 @@
     color: black;
     margin-bottom: 30px;
     padding: 10px;
+    border-radius: 7px;
 }
 
 .orderHr {
@@ -121,11 +122,18 @@
     color: black;
     margin-bottom: 30px;
     padding: 10px;
+    border-radius: 7px;
 }
 
 .addressHr {
-    width: 95%;
-    margin-left: 2.5%;
+    width: 98%;
+    margin-left: 1%;
+}
+
+.addressHr2 {
+    width: 100%;
+    margin: 0 0 10px 0;
+    border: dashed 1px;
 }
 
 .askTitle {
@@ -133,11 +141,69 @@
     font-size: 22px;
 }
 
-.couponBox {
+.couponContainer {
+
     width: auto;
     padding: 20px;
     color: white;
     background-color: #253f39;
     margin-bottom: 30px;
     border-radius: 10px;
+}
+
+.couponFlex {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.couponBox {
+    position: relative;
+    color: black;
+    background-color: white;
+    width: 300px;
+    height: 150px;
+    margin: 15px;
+    border-radius: 10px;
+    border: solid 3px;
+}
+
+.coupon1 {
+    position: absolute;
+    top: 60px;
+    left: 95.5%;
+    width: 35px;
+    height: 35px;
+    background-color: #253f39;
+    border-radius: 100px;
+
+}
+
+.couponName {
+    margin: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #253f39;
+}
+
+.couponDis {
+    margin: 10px;
+    font-size: 34px;
+    font-weight: bold;
+}
+
+.dis {
+    position: absolute;
+    left: 80px;
+    bottom: 70px;
+}
+
+.couponHr {
+    width: 260px;
+    margin-left: 15px;
+}
+
+.couponDate {
+    margin: 15px;
+    font-size: 18px;
 }
