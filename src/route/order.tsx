@@ -1,12 +1,13 @@
 import React, { useState, useEffect, } from "react"
 import { useParams } from "react-router-dom";
 import axios from "axios";
-
 import styles from "../css/order.module.css";
-
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import { useAppSelector } from "../hook";
 
 export default function Order() {
+
+    // const userInfo = useAppSelector((state) => state.signin);
 
     const [orderList, setOrderList] = useState<any[]>([])
 
@@ -107,14 +108,14 @@ export default function Order() {
                                                 <div className={styles.mainContainer}>
                                                     <div className={styles.orderContainer}>
                                                         <div className={styles.imgContainer} >
-                                                            <img src="" className={styles.img} alt="상품 이미지"></img>
+                                                            <img src={order.goods_id.image} className={styles.img} alt="상품 이미지"></img>
                                                         </div>
-                                                        <button onClick={() => reBuy(order.goods_id)} className={styles.reBuy}>재구매</button>
+                                                        <button onClick={() => reBuy(order.goods_id.id)} className={styles.reBuy}>재구매</button>
 
                                                         <div className={styles.infoContainer}>
                                                             <div>
-                                                                <span className={styles.productName}> 제품명 {order.delivery_memo} </span>
-                                                                <span className={styles.productColor} > 색상 {order.payment_type}</span>
+                                                                <span className={styles.productName}> {order.goods_id.name} </span>
+                                                                <span className={styles.productColor} > {order.goods_id.color}</span>
                                                                 <div className={styles.productPrice}>{order.price} 원</div>
                                                             </div>
                                                             <span className={styles.productCount}>수량ㅤㅤ ㅤ{order.goods_count}</span>
@@ -127,6 +128,7 @@ export default function Order() {
 
                                                     </div >
                                                 </div>
+                                                <br />
                                             </div>
                                         ))}
                                         <div className={styles.total}>

@@ -96,7 +96,9 @@ export default function Profile() {
         couponData();
     }, [])
 
-
+    const moveOrder = (id: any) => {
+        window.location.href = `http://localhost:3000/order/${id}`
+    }
     return (
         <>
             <div className={styles.bodys}>
@@ -109,7 +111,7 @@ export default function Profile() {
                         <div>보유 포인트  {commaPoint} P</div>
                     </div>
 
-                    <button className={styles.editBtn}>회원정보수정</button>
+                    <a href="profile/user"><button className={styles.editBtn}>회원정보수정</button></a>
 
                     <div className={styles.orderListContainer}>
                         <div className={styles.orderTitle}>최근 주문 내역</div>
@@ -127,7 +129,7 @@ export default function Profile() {
                                     return (
                                         <>
                                             <div className={styles.box}>{newDate}</div>
-                                            <div className={styles.box}>{value.goods_id.name}</div>
+                                            <div className={styles.box} ><span onClick={() => moveOrder(value.id)} className={styles.orderText}>{value.goods_id.name}</span></div>
                                             <div className={styles.box}>{value.delivery_status}</div>
                                         </>
                                     )
@@ -174,7 +176,7 @@ export default function Profile() {
                                         <>
                                             <div className={styles.box}>{newDate}</div>
                                             <div className={styles.box}>{value.title}</div>
-                                            {value.answer_status ? <div className={styles.box}>답변완료</div> : <div className={styles.box}>문의접수</div>}
+                                            {value.answer_status ? <div className={styles.box}>답변완료</div> : <div className={styles.box}>답변대기</div>}
                                         </>
                                     )
                                 })}
