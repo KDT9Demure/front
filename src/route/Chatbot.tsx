@@ -10,15 +10,18 @@ import styles from "../css/chatbot.module.css";
 function ChatbotTalk() {
 
     return(
-        <div>
-            <div>
+        <div className={styles.firstTalkContainer}>
+            <div className={styles.firstTalkHead}>
+                <div>챗봇이 연결되었습니다</div>
+            </div>
+            <div className={styles.firstTalkWrapper}>
                 <div className={styles.talkFirst}>안녕하세요! 고객지원 도우미 챗봇 원노 🤖입니다.</div>
             </div>
-            <div>
-                <div className={styles.talkFirst}>간단한 단어를 활용해 한 문장으로 문의해 주세요.</div>
+            <div className={styles.firstTalkWrapper}>
+                <div className={styles.talkSecond}>간단한 단어를 활용해 한 문장으로 문의해 주세요.</div>
             </div>
-            <div>
-                <div className={styles.talkFirst}>무엇을 도와드릴까요?</div>
+            <div className={styles.firstTalkWrapper}>
+                <div className={styles.talkThird}>무엇을 도와드릴까요?</div>
             </div>
         </div>
     )
@@ -26,6 +29,12 @@ function ChatbotTalk() {
 
 
 function MainChatbot({openChatbot, setOpenChatbot}:{openChatbot:boolean, setOpenChatbot:any}) {
+
+    const [question, setQuestion] = useState<string>("");
+
+    const sendMessage = () => {
+        console.log(question)
+    }
 
     return (
         <section className={styles.chatbotSection}>
@@ -44,8 +53,8 @@ function MainChatbot({openChatbot, setOpenChatbot}:{openChatbot:boolean, setOpen
                     <ChatbotTalk/>
                 </div>
                 <div className={styles.chatbotChattingBox}>
-                    <textarea className={styles.chatbotChatting}></textarea>
-                    <div className={styles.chatbotChattingBtn}><FontAwesomeIcon icon={faMessage} /></div>
+                    <input className={styles.chatbotChatting} onChange={e => setQuestion(e.target.value)}/>
+                    <div className={styles.chatbotChattingBtn}><FontAwesomeIcon icon={faMessage} onClick={sendMessage}/></div>
                 </div>
             </div>
         </section>
