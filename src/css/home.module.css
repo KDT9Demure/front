@@ -21,6 +21,7 @@
 
 body {
     overflow-x: hidden;
+    background-color: #253f39;
 }
 
 /* section1 슬라이더보드 스타일 */
@@ -59,7 +60,7 @@ body {
 
 .brandText h5 {
     text-transform: uppercase;
-    color: #625f5f;
+    color: #dedede;
     font-weight: 500;
     font-size: 12px;
     letter-spacing: 1.8px;
@@ -70,7 +71,7 @@ body {
 .brandText h3 {
     font-size: 70px;
     line-height: 80px;
-    color: #333;
+    color: #ffff;
     font-weight: 400;
     font-family: 'Monsieur La Doulaise';
     margin-top: 25px;
@@ -80,6 +81,7 @@ body {
     width: 34em;
     margin: 15px auto;
     font-family: 'MapoFlowerIsland';
+    color: #dedede;
 }
 
 .brandSlide {
@@ -106,7 +108,7 @@ body {
 .mainEvent {
     width: 100%;
     height: 100vh;
-    background-color: #ffff;
+    background-color: #253f39;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -127,7 +129,7 @@ body {
 }
 
 .bigText {
-    background: linear-gradient(90deg,#7d7d7d,#030303);
+    background: linear-gradient(90deg,#7d7d7d,#ffff);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -146,7 +148,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(90deg,#7d7d7d,#030303);
+    background: linear-gradient(90deg,#7d7d7d,#ffff);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;

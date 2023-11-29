@@ -16,15 +16,18 @@ const Home: React.FC = () => {
     const [slideImg, setSlideImg] = useState<SlideImage>(initialSlides);
     const [slideCount, setSlideCount] = useState<number>(0);
 
+    // 첫번째 세션 애니메이션
     useEffect(() => {
-        const interval = setInterval(() => {
-            const nextSlideIndex = slideCount + 1 >= initialSlides.length ? 0 : slideCount + 1;
-            setSlideImg((prevImages) => [...prevImages, initialSlides[nextSlideIndex]]);
-            setSlideCount(nextSlideIndex);
-        }, 2000);
+      const interval = setInterval(() => {
+          const nextSlideIndex = slideImg.length % initialSlides.length;
+          const nextSlide = initialSlides[nextSlideIndex];
+          setSlideImg((prevImges) => [...prevImges,nextSlide]);
 
-        return () => clearInterval(interval);
-    }, [slideCount]);
+          setSlideCount((prevSlideCount) => (prevSlideCount + 1) % slideImg.length);
+      }, 2000);
+
+      return () => clearInterval(interval);
+   }, [slideCount, slideImg]);
 
     const slideStyle: CSSProperties = {
         transform: `translate(-${slideCount * 100}%, 0px)`,
@@ -44,15 +47,18 @@ const Home: React.FC = () => {
     const [furImg, setFurImg] = useState<SlideImage>(initialFurniture);
     const [furCount, setFurCount] = useState<number>(0);
 
+    // 두번째 세션 애니메이션
     useEffect(() => {
-        const intervalFur = setInterval(() => {
-            const nextImageIndex = furCount + 1 >= initialFurniture.length ? 0 : furCount + 1;
-            setFurImg((prevImages) => [...prevImages, initialFurniture[nextImageIndex]]);
-            setFurCount(nextImageIndex);
-        }, 2000);
-
-        return () => clearInterval(intervalFur);
-    }, [furCount]);
+      const intervalFur = setInterval(() => {
+        const nextImageIndex = furImg.length % initialFurniture.length;
+        const nextImage = initialFurniture[nextImageIndex];
+        setFurImg((prevSlides) => [...prevSlides, nextImage]);
+    
+        setFurCount((prevCount) => (prevCount + 1) % furImg.length);
+      }, 2000);
+    
+      return () => clearInterval(intervalFur);
+    }, [furCount, furImg]);
 
     const furStyle: CSSProperties = {
         transform: `translateX(-${furCount * (100 / initialFurniture.length)}%)`,
@@ -94,7 +100,6 @@ const Home: React.FC = () => {
                 });
 
                 setTimeout(() => {
-                    // 지정된 시간이 지난 후 추가된 이미지를 제거
                     setAnimatedImages((prevImages) => {
                         return prevImages.filter((img) => img.id !== newAnimatedImage.id);
                     });
