@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
@@ -9,7 +9,7 @@ import styles from "../css/chatbot.module.css";
 
 function ChatbotTalk() {
 
-    return(
+    return (
         <div className={styles.firstTalkContainer}>
             <div className={styles.firstTalkHead}>
                 <div>챗봇이 연결되었습니다</div>
@@ -27,13 +27,46 @@ function ChatbotTalk() {
     )
 }
 
+interface Chat {
+    message: string;
+    type: "question" | "answer";
+}
 
-function MainChatbot({openChatbot, setOpenChatbot}:{openChatbot:boolean, setOpenChatbot:any}) {
+function MainChatbot({ openChatbot, setOpenChatbot }: { openChatbot: boolean, setOpenChatbot: any }) {
 
-    const [question, setQuestion] = useState<string>("");
+    const [chats, setChats] = useState<Chat[]>([]);
+    const [inputValue, setInputValue] = useState<string>("");
 
-    const sendMessage = () => {
-        console.log(question)
+    //챗봇 스크롤 아래로
+    const chatRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [inputValue]);
+ 
+    const scrollToBottom = () => {
+        if (chatRef.current) {
+            chatRef.current.scrollTop = chatRef.current.scrollHeight;
+        }
+    };
+      
+    function EnterChat() { 
+        let answer = "";
+        if (inputValue.includes("배송")) {
+            answer = "배송관련 머시기"
+        } else if (inputValue.includes("주문")) {
+            answer = "주문관련 머시기"
+        } else if (inputValue.includes("포인트")) {
+            answer = "포인트관련 머시기"
+        } else if (inputValue.includes("이원노")) {
+            answer = "좀 씻어라"
+        } else {
+            answer = "올바르게 입력해주세요"
+        }
+        setChats((prevChat) => {
+            return [...prevChat, { message: inputValue, type: "question" }, { message: answer, type: "answer" }]
+        })
+        setInputValue("");
     }
 
     return (
@@ -45,16 +78,33 @@ function MainChatbot({openChatbot, setOpenChatbot}:{openChatbot:boolean, setOpen
                         <div>Demure 챗봇</div>
                     </div>
                     <div className={styles.chatbotHeaderBtnBox}>
-                        <div className={styles.chatbotDownBtn}><FontAwesomeIcon icon={faChevronDown} onClick={() => {setOpenChatbot(false)}}/></div>
+                        <div className={styles.chatbotDownBtn}><FontAwesomeIcon icon={faChevronDown} onClick={() => { setOpenChatbot(false) }} /></div>
                         <div className={styles.chatbotCloseBtn}><FontAwesomeIcon icon={faXmark} /></div>
                     </div>
                 </div>
-                <div className={styles.chatbotBody}>
-                    <ChatbotTalk/>
+                <div className={styles.chatbotBody} ref={chatRef}>
+                    <ChatbotTalk />
+                    {chats.map((chat, index) => {
+                        if (chat.type === "question") {
+                            return (
+                                <div className={styles.questionBox} key={index}>
+                                    <div className={styles.question}>{chat.message}</div>
+                                </div>
+                            )
+                        } else if (chat.type === "answer") {
+                            return (
+                                <div className={styles.answerBox} key={index}>
+                                    <div className={styles.answer}>{chat.message}</div>
+                                </div>
+                            )
+                        }
+                    })}
                 </div>
                 <div className={styles.chatbotChattingBox}>
-                    <input className={styles.chatbotChatting} onChange={e => setQuestion(e.target.value)}/>
-                    <div className={styles.chatbotChattingBtn}><FontAwesomeIcon icon={faMessage} onClick={sendMessage}/></div>
+                    <input className={styles.chatbotChatting} onChange={e => setInputValue(e.currentTarget.value)} value={inputValue} onKeyDown={(e) => {
+                        if (e.key === "Enter") { EnterChat() }
+                    }} />
+                    <div className={styles.chatbotChattingBtn}><FontAwesomeIcon icon={faMessage} onClick={() => { EnterChat() }} /></div>
                 </div>
             </div>
         </section>
@@ -66,10 +116,10 @@ export default function Chatbot() {
     const [openChatbot, setOpenChatbot] = useState<boolean>(false);
 
     return (
-        openChatbot ? 
-            <MainChatbot openChatbot={openChatbot} setOpenChatbot={setOpenChatbot}/> :
+        openChatbot ?
+            <MainChatbot openChatbot={openChatbot} setOpenChatbot={setOpenChatbot} /> :
             <div className={styles.chatbotIconContainer}>
-                <FontAwesomeIcon icon={faMessage} className={styles.chatbotIcon} onClick={() => {setOpenChatbot(true)}}/>
+                <FontAwesomeIcon icon={faMessage} className={styles.chatbotIcon} onClick={() => { setOpenChatbot(true) }} />
             </div>
     )
 }
