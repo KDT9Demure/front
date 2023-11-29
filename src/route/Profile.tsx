@@ -1,17 +1,10 @@
 import React, { useState, useEffect, useRef } from "react"
-
-import { useParams } from 'react-router-dom';
-
 import axios from "axios";
-
 import styles from "../css/profile.module.css";
-
 import '@fortawesome/fontawesome-svg-core/styles.css'
-
 import { useAppSelector } from "../hook";
 
 export default function Profile() {
-
     const userInfo = useAppSelector((state) => state.signin);
 
     const [userData, setUserData] = useState<any>({})
@@ -19,6 +12,8 @@ export default function Profile() {
     const [addressData, setAddressData] = useState<any[]>([])
     const [askData, setAskData] = useState<any[]>([])
     const [couponData, setCouponData] = useState<any[]>([])
+
+    const [commaPoint, setCommaPoint] = useState<string>("")
 
     // 회원정보
     useEffect(() => {
@@ -32,6 +27,7 @@ export default function Profile() {
             })
             setUserData(res.data)
             console.log("회원정보", res.data)
+            setCommaPoint(res.data.point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
         }
         userData();
     }, [])
@@ -100,7 +96,7 @@ export default function Profile() {
         couponData();
     }, [])
 
-    const commaPoint = userData.point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
     return (
         <>
             <div className={styles.bodys}>
