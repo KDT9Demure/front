@@ -6,19 +6,25 @@
 
 /* main icon */
 .chatbotIconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: fixed;
-    width: 50px;
-    height: 50px;
+    width: 90px;
+    height: 90px;
     cursor: pointer;
     bottom: 50px;
     right: 50px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 2px 2px 3px rgb(0, 0, 0, 0.1);
 }
 
 .chatbotIconContainer svg {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     transition: all 0.7s;
-    color:white
+    color:black
 }
 
 .chatbotIcon:hover {
@@ -39,6 +45,7 @@
     height: 550px;
     background-color: #85caba;
     border-radius: 6px;
+    box-shadow: 5px 5px 3px rgb(0, 0, 0, 0.2);
     /* overflow-y: scroll; */
 }
 
@@ -56,7 +63,7 @@
     align-items: center;
     width: 400px;
     height: 50px;
-    background-color: brown;
+    background-color: rgb(159, 159, 234);
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
 }
@@ -121,10 +128,55 @@
 } 
 
 /* 처음 인사 talk */
-.talkFirst {
+
+.firstTalkContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.firstTalkHead {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    padding-top: 10px;
+}
+
+.firstTalkWrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.talkFirst, .talkSecond, .talkThird {
     background-color: white;
     border-radius: 6px;
     margin: 10px;
     width: fit-content;
     padding: 5px;
+    position: relative;
+    left:10px;
+}
+
+.talkFirst {
+    animation: move 0.6s linear;
+}
+
+.talkSecond {
+    animation: move 0.8s linear;
+}
+
+.talkThird {
+    animation: move 1s linear;
+}
+
+@keyframes move{
+    from {
+        left: -10px;
+        opacity: 0;
+    }
+    to {
+        left:10px;
+        opacity: 1;
+    }
 }
