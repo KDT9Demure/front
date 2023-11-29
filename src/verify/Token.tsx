@@ -8,7 +8,7 @@ export default function Token(){
 
     
     const cookies = new Cookies();
-    console.log(cookies.get("NID"));
+    console.log(cookies.get("DEMURE"));
     
     
     const dispatch = useAppDispatch();
@@ -22,7 +22,7 @@ export default function Token(){
                 method:"POST",
                 url:"http://localhost:8000/user/token",
                 headers:{
-                    Authorization: `Bearer ${cookies.get("NID")}`
+                    Authorization: `Bearer ${cookies.get("DEMURE")}`
                 }
             })
 
@@ -32,7 +32,7 @@ export default function Token(){
             dispatch(setUserid(res.data.userid));
         }
 
-        if(!cookies.get("NID")){
+        if(!cookies.get("DEMURE")){
             dispatch(setUserId(0));
             dispatch(setUserName(""));
             dispatch(setGrade("N"));

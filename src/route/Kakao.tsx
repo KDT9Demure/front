@@ -20,7 +20,7 @@ export default function Kakao() {
 
             //쿠키에 value로 token 넣기
             const cookie = new Cookies();
-            cookie.set("NID", token);
+            cookie.set("DEMURE", token);
         }
         kakao_code();
 

@@ -31,7 +31,7 @@ export default function Signin() {
             //쿠키에 value로 token 넣기
             const cookie = new Cookies();
             const token = res.data.accessToken;
-            cookie.set("NID", token);
+            cookie.set("DEMURE", token);
             
           } else {
             alert("로그인에 실패하셨습니다.");

@@ -90,15 +90,16 @@ const Home: React.FC = () => {
     const handleMouseMove = (event: MouseEvent) => {
         if (!addingImage) {
             setAddingImage(true);
-            setTimeout(() => {
-                const newImage: EventImage = getRandomImage();
-                const newPosition = { x: event.clientX, y: event.clientY };
-                const newAnimatedImage: AnimatedImage = { id: Date.now(), image: newImage, position: newPosition };
 
-                setAnimatedImages((prevImages) => {
-                    return [...prevImages, newAnimatedImage];
-                });
+            const newImage: EventImage = getRandomImage();
+            const newPosition = { x: event.clientX, y: event.clientY };
+            const newAnimatedImage: AnimatedImage = { id: Date.now(), image: newImage, position: newPosition };
+            
+            setAnimatedImages((prevImages) => {
+                return [...prevImages, newAnimatedImage];
+            });
 
+            setTimeout(() => {    
                 setTimeout(() => {
                     setAnimatedImages((prevImages) => {
                         return prevImages.filter((img) => img.id !== newAnimatedImage.id);
