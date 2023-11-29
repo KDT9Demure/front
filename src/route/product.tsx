@@ -29,6 +29,7 @@ export default function Product() {
     const [data, setData] = useState<any>("");
     const [reviews, setReviews] = useState<any[]>([]);
     const { id } = useParams();
+    const [avg, setAvg] = useState<number>(0);
 
     const userData = useAppSelector((state) => state.signin);
 
@@ -41,7 +42,13 @@ export default function Product() {
             console.log(res.data)
             setData(res.data.goodsInfo);
             setReviews(res.data.goodsInfo.reviews);
-            console.log(1, res.data.reviews)
+            setAvg(res.data.avg);
+            
+            if(!res.data.avg){
+                setAvg(0);
+            }
+
+            
         }
         datas();     
     }, []);
@@ -130,7 +137,7 @@ export default function Product() {
                             <div className={styles.inforTitle}>{data.type_name}</div>
                             <div className={styles.inforName}>{data.name}</div>
                             <div className={styles.inforRate}>
-                                5.0
+                                {avg}
                             </div>
                         </div>
                         <div className={styles.inforBody}>

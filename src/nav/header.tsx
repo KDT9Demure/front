@@ -1,5 +1,5 @@
 import header from "../css/header.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,6 +15,7 @@ import {Cookies} from 'react-cookie';
 
 export default function Header() {
     const [openMenu, setOpenMenu] = useState(false);
+    const [ coo, setCoo] = useState<any>("")
 
     const onLogoClick = () => {
         setOpenMenu(!openMenu);
@@ -25,49 +26,56 @@ export default function Header() {
 
     const handleLogout = (e:React.MouseEvent<HTMLAnchorElement, MouseEvent>)=>{
         e.preventDefault();
-        const cookies = new Cookies();
-        cookies.remove('NID');
+       const cookies = new Cookies();
+        // console.log(coo)
+        cookies.remove('DEMURE');
+        //console.log(cookies)
         window.location.reload();
     }
+
+    // useEffect( () => {
+    //     const cookies = new Cookies();
+    //     setCoo(cookies)
+    // },[])
 
     return (
         <div className={header.box}>
             <div className={`${header.container} ${openMenu && header.openMenu}`}>
                 <div className={`${header.logo} ${openMenu && header.logoColor}`} onClick={onLogoClick}>Demure</div>
-                <div className={`${header.top} ${!openMenu && header.displayNone}`} onClick={onLogoClick}>
+                <div className={`${header.top} ${!openMenu && header.displayNone}`}>
                     <div className={header.iconBox}>
                         <div>
                             {userData.user_id === 0 ?
-                                <Link to="/signin" className={header.iconLink} style={{textDecoration:"none"}}>
+                                <Link to="/signin" className={header.iconLink} style={{textDecoration:"none"}} onClick={onLogoClick}>
                                     <FontAwesomeIcon icon={faRightToBracket} />
                                     <div className={header.iconName}>Login</div>
                                 </Link>
                             :
-                                <Link to="/" className={header.iconLink} style={{textDecoration:"none"}} onClick={(e)=>handleLogout(e)}>
+                                <a href="/" className={header.iconLink} style={{textDecoration:"none"}} onClick={(e)=>handleLogout(e)}>
                                     <FontAwesomeIcon icon={faArrowRightFromBracket} />
                                     <div className={header.iconName}>Logout</div>
-                                </Link>
+                                </a>
                             }
                         </div>
                         <div>
                             {userData.user_id === 0 ?
                                 <div></div>
                             :
-                                <Link to="/profile" className={header.iconLink} style={{textDecoration:"none"}}>
+                                <Link to="/profile" className={header.iconLink} style={{textDecoration:"none"}} onClick={onLogoClick}>
                                     <FontAwesomeIcon icon={faUser} />
                                     <div className={header.iconName}>MyPage</div>
                                 </Link>
                             }
                         </div>
                         <div>
-                            <Link to="/cart" className={header.iconLink} style={{textDecoration:"none"}}>
+                            <Link to="/cart" className={header.iconLink} style={{textDecoration:"none"}} onClick={onLogoClick}>
                                 <FontAwesomeIcon icon={faBasketShopping} />
                                 <div className={header.iconName}>Cart</div>
                             </Link>
                         </div>
                     </div>
                     <div className={header.homeBox}>
-                        <Link to="/" className={header.homeLink} style={{textDecoration:"none"}}>
+                        <Link to="/" className={header.homeLink} style={{textDecoration:"none"}} onClick={onLogoClick}>
                             <FontAwesomeIcon icon={faHouse} />
                         </Link>
                     </div>

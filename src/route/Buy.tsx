@@ -45,15 +45,14 @@ export default function Buy() {
 
         getAddress();
         getOrderGoods();
-        // setdeliveryArr(()=>{
-
-        // })
+        
+        // 오늘 날짜 기준으로 5일 뒤 까지
         let arr = [];
         const today = new Date();
         for(let i = 0; i<5; i++){
             arr.push(formatDate(new Date(today.setDate(today.getDate() + 1))));
         }
-        console.log(arr);
+        setdeliveryArr(arr);
         
         
     }, [])
@@ -144,11 +143,11 @@ export default function Buy() {
                     <div className={buy.deliveryDateBox}>
                         <div className={buy.devliveryDateTitle}></div>
                         <div className={buy.deliveryDateChoice}>
-                            <div>11/28</div>
-                            <div>11/29</div>
-                            <div>11/30</div>
-                            <div>12/01</div>
-                            <div>12/02</div>
+                            {deliveryArr.map((value, index)=>{
+                                return (
+                                    <div key={index}>{value}</div>
+                                )
+                            })}
                         </div>
                     </div>
                     <div className={buy.cashBox}>

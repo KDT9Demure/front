@@ -15,6 +15,7 @@ import Kakao from './route/Kakao';
 import Buy from './route/Buy';
 import Profile from './route/Profile';
 import ProfileEdit from './route/ProfileEdit';
+import Event from './route/Event';
 
 
 
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: "profile/user",
         element: <ProfileEdit />
+      },
+      {
+        path:"event",
+        element: <Event />
       }
     ]
   },
