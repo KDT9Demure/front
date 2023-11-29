@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../hook";
 import {Cookies} from 'react-cookie';
-import { setGrade, setUserId, setUserName } from "../reducer/singin";
+import { setGrade, setUserId, setUserName, setUserid } from "../reducer/singin";
 
 export default function Token(){
 
@@ -29,12 +29,14 @@ export default function Token(){
             dispatch(setUserId(res.data.id));
             dispatch(setUserName(res.data.user_name));
             dispatch(setGrade(res.data.grade));
+            dispatch(setUserid(res.data.userid));
         }
 
         if(!cookies.get("NID")){
             dispatch(setUserId(0));
             dispatch(setUserName(""));
             dispatch(setGrade("N"));
+            dispatch(setUserid(""));
         }
         
         signIn()
