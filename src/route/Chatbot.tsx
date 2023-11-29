@@ -5,13 +5,14 @@ import styles from "../css/chatbot.module.css";
 
 
 
+
+
 export default function Chatbot() {
     const [openChatbot, setOpenChatbot] = useState<boolean>(false);
 
-    return (
-        
+    return ( 
             <div className={styles.chatbotIconContainer}>
-                <FontAwesomeIcon icon={faPersonCircleQuestion} className={styles.chatbotIcon} onClick={() => setOpenChatbot(true)}/>
+                <FontAwesomeIcon icon={faPersonCircleQuestion} className={styles.chatbotIcon} onClick={() => {setOpenChatbot(true)}}/>
             </div>
     )
 }
