@@ -4,23 +4,127 @@
     box-sizing: border-box;
 }
 
+/* main icon */
 .chatbotIconContainer {
     position: fixed;
     width: 50px;
     height: 50px;
-    
     cursor: pointer;
     bottom: 50px;
     right: 50px;
 }
 
-.chatbotIcon {
+.chatbotIconContainer svg {
     width: 50px;
     height: 50px;
     transition: all 0.7s;
+    color:white
 }
 
 .chatbotIcon:hover {
     transform: scale(1.1);
     color: #85caba;
+}
+
+/* main icon 눌렀을 때 */
+.chatbotSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    padding: 16px;
+    width: 400px;
+    height: 550px;
+    background-color: #85caba;
+    border-radius: 6px;
+    /* overflow-y: scroll; */
+}
+
+.chatbotContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 550px;
+}
+
+.chatbotHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+    height: 50px;
+    background-color: brown;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.chatbotTitleBox {
+    display: flex;
+    gap: 15px;
+    padding-left: 20px;
+}
+
+.chatbotHeaderBtnBox {
+    display: flex;
+    gap: 15px;
+    padding-right: 20px;
+}
+
+.chatbotDownBtn, .chatbotCloseBtn {
+    cursor: pointer;
+    border-radius: 30px;
+    width:20px;
+    text-align: center;
+}
+
+.chatbotDownBtn:hover, .chatbotCloseBtn:hover{
+    background-color: white;
+}
+
+.chatbotBody {
+    width: 400px;
+    height: 500px;
+}
+
+.chatbotChattingBox {
+    display: flex;
+    width: 400px;
+    border-top: 1px solid black;
+}
+
+.chatbotChatting {
+    width: 90%;
+    height: 50px;
+    resize: none;
+    border-bottom-left-radius: 6px;
+    outline: none;
+    border:none;
+    background-color: aliceblue;
+}
+
+.chatbotChattingBtn {
+    width: 10%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: aliceblue;
+    border-bottom-right-radius: 6px;
+}
+
+.chatbotChattingBtn svg:hover {
+    scale: 1.1;
+} 
+
+/* 처음 인사 talk */
+.talkFirst {
+    background-color: white;
+    border-radius: 6px;
+    margin: 10px;
+    width: fit-content;
+    padding: 5px;
 }
