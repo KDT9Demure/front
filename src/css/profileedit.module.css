@@ -36,7 +36,18 @@
     flex-direction: column;
     align-items: center;
     width: 330px;
-    height: 530px;
+    height: 280px;
+    padding: 16px;
+    gap: 10px;
+}
+
+.main2 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 330px;
+    height: 520px;
     padding: 16px;
     gap: 10px;
 }
@@ -70,6 +81,12 @@
     color: white;
     background-color: #253f39;
     margin-top: 20px
+}
+
+.signinBtn2 {
+    color: white;
+    background-color: #253f39;
+    margin-top: 40px
 }
 
 
@@ -110,4 +127,18 @@
     margin-top: 50px;
     margin: 30px 30px 10px 30px;
     border-radius: 7px;
+}
+
+.email {
+    width: 250px;
+    height: 50px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #a0b9b3;
+    background-color: #efefef;
+}
+
+
+input {
+    padding-left: 5px;
 }
