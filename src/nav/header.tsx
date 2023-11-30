@@ -15,7 +15,6 @@ import {Cookies} from 'react-cookie';
 
 export default function Header() {
     const [openMenu, setOpenMenu] = useState(false);
-    const [ coo, setCoo] = useState<any>("")
 
     const onLogoClick = () => {
         setOpenMenu(!openMenu);
@@ -27,16 +26,9 @@ export default function Header() {
     const handleLogout = (e:React.MouseEvent<HTMLAnchorElement, MouseEvent>)=>{
         e.preventDefault();
        const cookies = new Cookies();
-        // console.log(coo)
-        cookies.remove('DEMURE');
-        //console.log(cookies)
+        cookies.remove('DEMURE', { path: "/" });
         window.location.reload();
     }
-
-    // useEffect( () => {
-    //     const cookies = new Cookies();
-    //     setCoo(cookies)
-    // },[])
 
     return (
         <div className={header.box}>
