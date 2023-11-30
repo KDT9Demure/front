@@ -29,7 +29,7 @@
 
 .chatbotIcon:hover {
     transform: scale(1.1);
-    color: #85caba;
+    color: rgb(98 17 17 / 80%);
 }
 
 /* main icon 눌렀을 때 */
@@ -43,9 +43,9 @@
     padding: 16px;
     width: 400px;
     height: 550px;
-    background-color: #85caba;
+    background-color: white;
     border-radius: 6px;
-    box-shadow: 5px 5px 3px rgb(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.05);
 }
 
 .chatbotContainer {
@@ -63,7 +63,7 @@
     align-items: center;
     width: 400px;
     height: 50px;
-    background-color: rgb(159, 159, 234);
+    background-color: rgb(98 17 17 / 80%);
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
 }
@@ -72,12 +72,13 @@
     display: flex;
     gap: 15px;
     padding-left: 20px;
+    color: white;
 }
 
 .chatbotHeaderBtnBox {
     display: flex;
-    gap: 15px;
     padding-right: 20px;
+    color: white;
 }
 
 .chatbotDownBtn, .chatbotCloseBtn {
@@ -87,8 +88,8 @@
     text-align: center;
 }
 
-.chatbotDownBtn:hover, .chatbotCloseBtn:hover{
-    background-color: white;
+.chatbotCloseBtn:hover{
+    background-color: black;
 }
 
 .chatbotBody {
@@ -151,13 +152,14 @@
 }
 
 .talkFirst, .talkSecond, .talkThird {
-    background-color: white;
+    background-color: #e5e5e5;
     border-radius: 6px;
     margin: 10px;
     width: fit-content;
     padding: 5px;
     position: relative;
     left:10px;
+    box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.05);
 }
 
 .talkFirst {
@@ -190,13 +192,14 @@
 }
 
 .question{
-    background-color: rgb(237, 237, 178);
+    background-color: rgb(214 246 213);
     border-radius: 6px;
     width: fit-content;
     padding: 5px;
     position: relative;
     margin: 10px;
     right: 10px;
+    box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.05);
 }
 
 .answerBox {
@@ -205,11 +208,12 @@
 }
 
 .answer {
-    background-color: white;
+    background-color: #e5e5e5;
     border-radius: 6px;
     width: fit-content;
     padding: 5px;
     position: relative;
     margin: 10px;
     left: 10px;
+    box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.05);
 }

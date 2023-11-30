@@ -43,6 +43,7 @@ function MainChatbot({ openChatbot, setOpenChatbot }: { openChatbot: boolean, se
     useEffect(() => {
         scrollToBottom();
     }, [inputValue]);
+      
  
     const scrollToBottom = () => {
         if (chatRef.current) {
@@ -68,7 +69,7 @@ function MainChatbot({ openChatbot, setOpenChatbot }: { openChatbot: boolean, se
         })
         setInputValue("");
     }
-
+    
     return (
         <section className={styles.chatbotSection}>
             <div className={styles.chatbotContainer}>
@@ -78,8 +79,7 @@ function MainChatbot({ openChatbot, setOpenChatbot }: { openChatbot: boolean, se
                         <div>Demure 챗봇</div>
                     </div>
                     <div className={styles.chatbotHeaderBtnBox}>
-                        <div className={styles.chatbotDownBtn}><FontAwesomeIcon icon={faChevronDown} onClick={() => { setOpenChatbot(false) }} /></div>
-                        <div className={styles.chatbotCloseBtn}><FontAwesomeIcon icon={faXmark} /></div>
+                        <div className={styles.chatbotCloseBtn}><FontAwesomeIcon icon={faXmark} onClick={() => { setOpenChatbot(false) }}/></div>
                     </div>
                 </div>
                 <div className={styles.chatbotBody} ref={chatRef}>
@@ -104,7 +104,7 @@ function MainChatbot({ openChatbot, setOpenChatbot }: { openChatbot: boolean, se
                     <input className={styles.chatbotChatting} onChange={e => setInputValue(e.currentTarget.value)} value={inputValue} onKeyDown={(e) => {
                         if (e.key === "Enter") { EnterChat() }
                     }} />
-                    <div className={styles.chatbotChattingBtn}><FontAwesomeIcon icon={faMessage} onClick={() => { EnterChat() }} /></div>
+                    <div className={styles.chatbotChattingBtn}><FontAwesomeIcon icon={faMessage} onClick={() => { EnterChat()}} /></div>
                 </div>
             </div>
         </section>
