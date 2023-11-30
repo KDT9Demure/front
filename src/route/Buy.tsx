@@ -9,6 +9,7 @@ export default function Buy() {
     const [address, setAddress] = useState<any[]>([]);
     const [goods, setGoods] = useState<any[]>([]);
     const [deliveryArr, setdeliveryArr] = useState<any[]>([]);
+    const [dpay, setDpay] = useState<any[]>([]);
     const [deliveryDate, setdeliveryDate] = useState<string>("");
     const userData = useAppSelector((state) => state.signin);
 
@@ -30,7 +31,6 @@ export default function Buy() {
 
         // 카트에 담겨온 아이템들
         const getOrderGoods = async ()=>{
-            console.log(cart_ids);
             const res = await axios({
                 method:"GET",
                 url:"http://localhost:8000/buy/goods/get",
@@ -43,8 +43,20 @@ export default function Buy() {
             setGoods(res.data.data);
         }
 
+        const getDpay = async ()=>{
+            const res = await axios({
+                method:"GET",
+                url:"http://localhost:8000/buy/dpay",
+                params:{
+                    user:userData.user_id
+                }
+            })
+            setDpay(res.data.dpay);
+        }
+
         getAddress();
         getOrderGoods();
+        getDpay();
         
         // 오늘 날짜 기준으로 5일 뒤 까지
         let arr = [];
@@ -145,7 +157,7 @@ export default function Buy() {
                         <div className={buy.deliveryDateChoice}>
                             {deliveryArr.map((value, index)=>{
                                 return (
-                                    <div key={index}>{value}</div>
+                                    <div key={index} onClick={()=>setdeliveryDate(value)}>{value}</div>
                                 )
                             })}
                         </div>

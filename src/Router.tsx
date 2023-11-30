@@ -16,77 +16,89 @@ import Buy from './route/Buy';
 import Profile from './route/Profile';
 import ProfileEdit from './route/ProfileEdit';
 import Event from './route/Event';
+import Test from './route/Test';
+import Test2 from './route/Test2';
 
 
 
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        path: "",
-        element: <Home />,
-      },
-      {
-        path: "signin",
-        element: <Signin />
-      },
-      {
-        path: "signup",
-        element: <Signup />
-      },
-      {
-        path: "product/:id",
-        element: <Product />
-      },
-      {
-        path: "list/:number",
-        element: <List />
-      },
-      {
-        path: "cart",
-        element: <Cart />
-      },
-      {
-        path: "question",
-        element: <QnA />
-      },
-      {
-        path: "search",
-        element: <Search />
-      },
-      {
-        path: "order/:id",
-        element: <Order />
-      },
-      {
-        path: "notice",
-        element: <Notice />
-      },
-      {
-        path: "user/kakao-login",
-        element: <Kakao />
-      },
-      {
-        path: "buy",
-        element: <Buy />
-      },
-      {
-        path: "profile",
-        element: <Profile />
-      },
-      {
-        path: "profile/user",
-        element: <ProfileEdit />
-      },
-      {
-        path:"event",
-        element: <Event />
-      }
-    ]
-  },
+    {
+        path: "/",
+        element: <App />,
+        children: [
+            {
+                path: "",
+                element: <Home />,
+            },
+            {
+                path: "signin",
+                element: <Signin />
+            },
+            {
+                path: "signup",
+                element: <Signup />
+            },
+            {
+                path: "product/:id",
+                element: <Product />
+            },
+            {
+                path: "list/:number",
+                element: <List />
+            },
+            {
+                path: "cart",
+                element: <Cart />
+            },
+            {
+                path: "question",
+                element: <QnA />
+            },
+            {
+                path: "search",
+                element: <Search />
+            },
+            {
+                path: "order/:id",
+                element: <Order />
+            },
+            {
+                path: "notice",
+                element: <Notice />
+            },
+            {
+                path: "user/kakao-login",
+                element: <Kakao />
+            },
+            {
+                path: "buy",
+                element: <Buy />
+            },
+            {
+                path: "profile",
+                element: <Profile />
+            },
+            {
+                path: "profile/user",
+                element: <ProfileEdit />
+            },
+            {
+                path: "event",
+                element: <Event />,
+                children: [
+                    {
+                        path:"test",
+                        element:<Test />
+                    },
+                    {
+                        path:"test2",
+                        element:<Test2 />
+                    }
+                ]
+            }
+        ]
+    },
 ]);
 
 export default router;
