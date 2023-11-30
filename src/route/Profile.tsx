@@ -110,9 +110,9 @@ export default function Profile() {
                         <h4>{userData.user_name}</h4>
                         <div>보유 포인트  {commaPoint} P</div>
                     </div>
-
-                    <a href="profile/user"><button className={styles.editBtn}>회원정보수정</button></a>
-
+                    <div className={styles.btnFlex}>
+                        <a href="profile/user"><button className={styles.editBtn}>회원정보수정</button></a>
+                    </div>
                     <div className={styles.orderListContainer}>
                         <div className={styles.orderTitle}>최근 주문 내역</div>
                         <div className={styles.orderListBox}>

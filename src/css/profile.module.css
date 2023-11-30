@@ -35,7 +35,13 @@
     font-size: 22px;
 }
 
+.btnFlex {
+    display: flex;
+    justify-content: end;
+}
+
 .editBtn {
+    cursor: pointer;
     color: white;
     background-color: #253f39;
     border-radius: 7px;
