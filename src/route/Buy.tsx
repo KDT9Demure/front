@@ -85,8 +85,10 @@ export default function Buy() {
                         <div className={buy.title}>배송 정보</div>
                         <div className={buy.infoBox}>
                             <div className={buy.choiceBox}>
-                                <div className={buy.addressChoice}></div>
-                                <div className={buy.newAddress}></div>
+                                <input type="radio" name="choice" id="address" className={buy.addressInput} defaultChecked/>
+                                <label className={buy.addressChoice} htmlFor="address">배송지 선택</label>
+                                <input type="radio" name="choice" id="new" className={buy.addressInput}/>
+                                <label className={buy.newAddress} htmlFor="new">신규 입력</label>
                             </div>
                             <div className={buy.addressItemBox}>
                                 {address.map((value, index) => {
@@ -100,9 +102,14 @@ export default function Buy() {
                                                         <div className={buy.default}>기본</div>
                                                     </div>
                                                 </div>
+                                                <div className={buy.addressInforBox}>
+                                                    <div className={buy.address}>{value.address}</div>
+                                                    <div className={buy.addressDetail}>{value.detail}</div>
+                                                    <div className={buy.addressZipCode}>({value.zip_code})</div>
+                                                </div>
                                             </div>
                                             <div className={buy.mdBox}>
-                                                <div className={buy.modify}>수정</div>
+                                                {/* <div className={buy.modify}>수정</div> */}
                                                 <div className={buy.delete}>삭제</div>
                                             </div>
                                         </div>
@@ -140,7 +147,7 @@ export default function Buy() {
                                         </div>
                                     </div>
                                     <div className={buy.listCount}>{value.goods_count}</div>
-                                    <div className={buy.listPrice}>20000</div>
+                                    <div className={buy.listPrice}>{value.goods_id.price}</div>
                                     <div className={buy.listCouponBox}>
                                         {/* <div className={buy.couponName}>연말쿠폰</div>
                                         <div className={buy.couponDelete}>삭제</div> */}
@@ -153,11 +160,11 @@ export default function Buy() {
                         </div>
                     </div>
                     <div className={buy.deliveryDateBox}>
-                        <div className={buy.devliveryDateTitle}></div>
+                        <div className={buy.devliveryDateTitle}>배송 날짜</div>
                         <div className={buy.deliveryDateChoice}>
                             {deliveryArr.map((value, index)=>{
                                 return (
-                                    <div key={index} onClick={()=>setdeliveryDate(value)}>{value}</div>
+                                    <label key={index} onClick={()=>setdeliveryDate(value)}>{value}</label>
                                 )
                             })}
                         </div>
@@ -165,7 +172,11 @@ export default function Buy() {
                     <div className={buy.cashBox}>
                         <div className={buy.dpayBox}>
                             <div className={buy.dpayListBox}>
-
+                                {dpay.map((value, index)=>{
+                                    return (
+                                        <></>
+                                    )
+                                })}
                             </div>
                             <div className={buy.dpayAddBox}>
 

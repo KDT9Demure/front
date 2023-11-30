@@ -11,21 +11,21 @@ import Chatbot from './route/Chatbot';
 
 function App() {
 
-  let persistor = persistStore(store);
-  
-  return (
-    <>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <Token />
-          <Header/>
-          <Outlet/>
-          <Chatbot/>
-          <Footer/>
-        </PersistGate>
-      </Provider>
-    </>
-  )
+    let persistor = persistStore(store);
+
+    return (
+        <>
+            <Provider store={store}>
+                <PersistGate loading={null} persistor={persistor}>
+                    <Token />
+                    <Header />
+                    <Outlet />
+                    <Chatbot />
+                    <Footer />
+                </PersistGate>
+            </Provider>
+        </>
+    )
 }
 
 export default App;
