@@ -44,7 +44,9 @@ export default function ProfileEdit() {
             setUserData(res2.data)
             console.log("유저데이터", res2.data)
             alert("본인확인 완료")
+            setPassword(null)
             setToggleComp(true)
+            return;
         } else {
             setIsPwTrue(false)
         }
@@ -135,6 +137,29 @@ export default function ProfileEdit() {
         setName(newName)
     }
 
+
+    //회원탈퇴
+    const userDelete = async () => {
+        if (window.confirm("회원탈퇴 하시겠습니까? 삭제된 데이터는 복구할 수 없습니다.")) {
+
+            const res = await axios({
+                method: "delete",
+                url: "http://localhost:8000/user/update",
+                data: {
+                    id: userInfo.user_id
+                }
+            })
+            if (res.data.result) {
+                alert("회원탈퇴 되었습니다")
+                window.location.href = "/"
+            } else {
+                alert("회원탈퇴 오류")
+            }
+        }
+
+    }
+
+
     if (toggleComp === false) {
         return (
 
@@ -164,8 +189,9 @@ export default function ProfileEdit() {
                 <div className={styles.container}>
                     <div className={styles.wrapper}>
                         <div className={styles.main2}>
+                            <button type="button" onClick={userDelete} className={styles.delete}>회원탈퇴</button>
                             <h2>회원정보 수정</h2>
-                            <div style={{ margin: 25 }}>
+                            <div style={{ marginTop: 10, marginRight: 25, marginBottom: 25, marginLeft: 25 }}>
                                 <h3>이메일</h3>
                                 <input type="text" value={userData.user.email} className={styles.email} />
                                 <br /><br />

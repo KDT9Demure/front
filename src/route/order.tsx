@@ -53,6 +53,7 @@ export default function Order() {
             })
             console.log(res.data)
             alert("주문이 취소되었습니다")
+            window.location.reload()
         }
     }
 
