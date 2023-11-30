@@ -169,7 +169,7 @@
     position: relative;
     color: black;
     background-color: white;
-    width: 300px;
+    width: 250px;
     height: 150px;
     margin: 15px;
     border-radius: 10px;
@@ -207,7 +207,7 @@
 }
 
 .couponHr {
-    width: 260px;
+    width: 210px;
     margin-left: 15px;
 }
 

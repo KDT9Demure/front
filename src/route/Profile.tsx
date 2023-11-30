@@ -134,6 +134,7 @@ export default function Profile() {
                                         </>
                                     )
                                 })}
+                                {orderData.length === 0 && <div>주문내역이 없습니다.</div>}
                             </div>
                         </div>
                     </div>
@@ -155,6 +156,7 @@ export default function Profile() {
                                     )
                                 })}
 
+                                {addressData.length === 0 && <div>설정한 내 주소가 없습니다.</div>}
                             </div>
                         </div>
                     </div>
@@ -180,6 +182,7 @@ export default function Profile() {
                                         </>
                                     )
                                 })}
+                                {askData.length === 0 && <div>문의한 내용이 없습니다.</div>}
                             </div>
                         </div>
                     </div>
@@ -207,6 +210,7 @@ export default function Profile() {
                                 )
                             })}
                         </div>
+                        {couponData.length === 0 && <div>보유한 쿠폰이 없습니다.</div>}
                     </div>
                 </div>
             </div >

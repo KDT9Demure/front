@@ -46,6 +46,10 @@ export default function Signup() {
             user_name: name,
             password: password
         }
+        if (name?.length === 0) {
+            alert("이름을 입력해 주세요")
+            return;
+        }
         if (isIdTrue === true && isPwTrue === true && isPasswordMatch === true && IsEmailTrue === true && isAuthorTrue === true) {
             console.log("성공")
             console.log(userid, email, name, password)
@@ -59,11 +63,14 @@ export default function Signup() {
             if (res.data.result) {
                 alert("회원가입 완료")
                 document.location.href = "/signin"
+                return;
             }
         } else if (isIdTrue === true && isPwTrue === true && isPasswordMatch === true && IsEmailTrue === true && isAuthorTrue === false || isAuthorTrue === null) {
             alert("이메일이 인증되지 않았습니다")
+            return;
         } else {
             alert("입력한 정보를 확인해 주세요")
+            return;
         }
     };
 
