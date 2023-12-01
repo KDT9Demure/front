@@ -35,7 +35,13 @@
     font-size: 22px;
 }
 
+.btnFlex {
+    display: flex;
+    justify-content: end;
+}
+
 .editBtn {
+    cursor: pointer;
     color: white;
     background-color: #253f39;
     border-radius: 7px;
@@ -169,7 +175,7 @@
     position: relative;
     color: black;
     background-color: white;
-    width: 300px;
+    width: 250px;
     height: 150px;
     margin: 15px;
     border-radius: 10px;
@@ -207,7 +213,7 @@
 }
 
 .couponHr {
-    width: 260px;
+    width: 210px;
     margin-left: 15px;
 }
 

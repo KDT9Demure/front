@@ -1,38 +1,62 @@
 .buyBox{
     width: 100%;
     padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .container{
     width: 1000px;
+    padding: 20px;
+    box-sizing: content-box;
+    background-color: white;
 }
 
 .addressBox{
-
+    
 }
 
 .title{
-
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .infoBox{
-
+    display: flex;
+    flex-direction: column;
 }
 
 .choiceBox{
+    display: flex;
+}
 
+.addressInput{
+    display: none;
 }
 
 .addressChoice{
-
+    cursor: pointer;
+    border: 1px solid #e5e5e5;
+    padding: 10px 25px;
 }
 
 .newAddress{
+    cursor: pointer;
+    border: 1px solid #e5e5e5;
+    padding: 10px 25px;
+}
 
+.addressInput:checked + .addressChoice, .addressInput:checked + .newAddress{
+    border-bottom: none;
 }
 
 .addressItemBox{
 
+}
+
+.addressItem{
+    display: flex;
 }
 
 .infor{
@@ -40,7 +64,7 @@
 }
 
 .nameBox{
-    
+    display: flex;
 }
 
 .name{
@@ -55,8 +79,24 @@
 
 }
 
-.mdBox{
+.addressInforBox{
 
+}
+
+.address{
+
+}
+
+.addressDetail{
+
+}
+
+.addressZipCode{
+
+}
+
+.mdBox{
+    display: flex;
 }
 
 .modify{
@@ -68,11 +108,12 @@
 }
 
 .addressMemoBox{
-
+    margin-top: 20px;
 }
 
 .memoTitle{
-
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .memoSelect{
@@ -80,11 +121,12 @@
 }
 
 .cartItemBox{
-
+    margin-top: 20px;
 }
 
 .cartTitle{
-
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .cartListBox{
@@ -92,7 +134,7 @@
 }
 
 .listHead{
-
+    display: flex;
 }
 
 .listInforHead{
@@ -104,6 +146,38 @@
 }
 
 .listPriceHead{
+
+}
+
+.listBody{
+    display: flex;
+}
+
+.listInfor{
+    display: flex;
+}
+
+.listImgBox{
+    width: 150px;
+}
+
+.listImgBox img{
+    width: 100%;
+}
+
+.listData{
+
+}
+
+.listCount{
+
+}
+
+.listPrice{
+
+}
+
+.listCouponBox{
 
 }
 
@@ -119,24 +193,38 @@
 
 }
 
-.listImgBox{
+.couponName{
 
 }
 
-.listData{
+.couponDelete{
+
+}
+
+.couponUse{
 
 }
 
 .deliveryDateBox{
-
-}
+    margin-top: 20px;
+}  
 
 .devliveryDateTitle{
-
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .deliveryDateChoice{
+    display: flex;
+}
 
+.deliveryDateChoice label{
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    user-select:none;
 }
 
 .cashBox{
