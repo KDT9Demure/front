@@ -1,3 +1,5 @@
+
+
 .buyBox{
     width: 100%;
     padding-top: 100px;
@@ -135,26 +137,47 @@
 
 .listHead{
     display: flex;
+    width: 100%;
 }
 
 .listInforHead{
-
+    width: 50%;
+    display: flex;
+    justify-content: center;
 }
 
 .listCountHead{
-
+    width: 10%;
+    display: flex;
+    justify-content: center;
 }
 
 .listPriceHead{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+}
 
+.listCouponPriceHead{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.listCouponHead{
+    width: 20%;
+    display: flex;
+    justify-content: center;
 }
 
 .listBody{
     display: flex;
+    width: 100%;
 }
 
 .listInfor{
     display: flex;
+    width: 50%;
 }
 
 .listImgBox{
@@ -170,14 +193,28 @@
 }
 
 .listCount{
-
+    width: 10%;
+    display: flex;
+    justify-content: center;
 }
 
 .listPrice{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+}
 
+.listCouponPrice{
+    width: 10%;
+    display: flex;
+    justify-content: center;
 }
 
 .listCouponBox{
+    width: 20%;
+}
+
+.couponItemBox{
 
 }
 
@@ -249,7 +286,7 @@
 .dpayItem{
     width: 320px;
     height: 200px;
-    background-color: #253f39;
+    background: linear-gradient(45deg, #253f39 0%, rgb(33 33 33) 100%);
     border-radius: 15px;
     border: 1px solid black;
     color: white;
@@ -307,7 +344,7 @@
 
 .cardNumber{
     display: flex;
-    margin-top: 25px;
+    margin-top: 30px;
     justify-content: space-between;
 }
 
@@ -343,6 +380,14 @@
 
 .dpayAddTitle{
     color: #e5e5e5;
+}
+
+.cashMethod{
+
+}
+
+.methodBox{
+
 }
 
 .cashResultBox{
