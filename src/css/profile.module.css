@@ -182,6 +182,13 @@
     border: solid 3px;
 }
 
+.couponIndex {
+    position: relative;
+    bottom: 31px;
+    left: 95px;
+
+}
+
 .coupon1 {
     position: absolute;
     top: 60px;
