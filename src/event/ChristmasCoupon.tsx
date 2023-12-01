@@ -29,7 +29,7 @@ export default function ChristmasCoupon() {
     }
 
     return (
-        <div className={styles.couponContainer}>
+        <div className={styles.couponContainer}> 
             <section className={styles.couponSection}>
                 <div className={styles.couponWrapper}>
                     <div className={styles.couponImgBox}>
