@@ -6,9 +6,77 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faCirclePlus
 } from "@fortawesome/free-solid-svg-icons";
-import Postcode from "./Postcode";
+import DaumPostcode from "react-daum-postcode";
+import Modal from "react-modal"; // 추가
+import { Link } from "react-router-dom";
+
+function CartItem(props:any){
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [couponName, setCouponName] = useState<string>("");
+    const [couponDiscount, setCouponDiscount] = useState<number>(20);
+    const [couponUse, setCouponUse] = useState<boolean>(false);
+
+    // Modal 스타일
+    const customStyles = {
+        overlay: {
+            backgroundColor: "rgba(0,0,0,0.5)",
+        },
+        content: {
+            margin: "auto",
+            width: "500px",
+            height: "600px",
+            padding: "0",
+            overflow: "hidden",
+        },
+    };
+
+    console.log(props.coupon);
+
+    return(
+        <div className={buy.listBody}>
+            <Link to={'/product/'+props.value.goods_id.id} className={buy.listInfor}>
+
+                    <div className={buy.listImgBox}>
+                        <img src={props.value.goods_id.arrange_image}/>
+                    </div>
+                    <div className={buy.listData}>
+                        {props.value.goods_id.name}
+                    </div>
+            </Link>
+            <div className={buy.listCount}>{props.value.goods_count}</div>
+            <div className={buy.listPrice}>{props.value.goods_id.price * props.value.goods_count}</div>
+            <div className={buy.listCouponPrice}>{props.value.goods_id.price * props.value.goods_count - (props.value.goods_id.price * props.value.goods_count) * couponDiscount / 100}</div>
+            <div className={buy.listCouponBox}>
+                
+                <Modal isOpen={isOpen} ariaHideApp={false} style={customStyles} onRequestClose={() => setIsOpen(false)}>
+                    <div className={buy.couponItemBox}>
+                        {props.coupon.map((value:any, index:number)=>{
+                            return (
+                                <div key={index} className={buy.couponItem}>
+
+                                    <div>{value.coupon_id.coupon_name}</div>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </Modal>
+                {couponUse ?
+                    <>
+                        <div className={buy.couponName}>연말쿠폰</div>
+                        <div className={buy.couponDelete}>삭제</div>    
+                    </>
+                    :
+                    <div className={buy.couponUse} onClick={()=>setIsOpen(true)}>사용</div>
+                }
+                
+            </div>
+        </div>
+    )
+}
 
 export default function Buy() {
+
+    // const addressStatus = useRef<HTMLInputElement>(null);
 
     const [newAddress, setNewAddress] = useState<boolean>(false);
     const [address, setAddress] = useState<any[]>([]);
@@ -16,6 +84,8 @@ export default function Buy() {
     const [deliveryArr, setdeliveryArr] = useState<any[]>([]);
     const [dpay, setDpay] = useState<any[]>([]);
     const [deliveryDate, setdeliveryDate] = useState<string>("");
+    const [coupon, setCoupon] = useState<any[]>([]);
+
     const userData = useAppSelector((state) => state.signin);
 
 
@@ -43,8 +113,6 @@ export default function Buy() {
                     cart_ids
                 }
             })
-
-            console.log(res);
             setGoods(res.data.data);
         }
 
@@ -59,9 +127,26 @@ export default function Buy() {
             setDpay(res.data.dpay);
         }
 
+        const getCoupon = async ()=>{
+            const res = await axios({
+                method:"POST",
+                url:"http://localhost:8000/buy/coupon/get",
+                data:{
+                    user_id:userData.user_id,
+                }
+            })
+
+            console.log(res.data)
+
+            if(res.data.result){
+                setCoupon(res.data.coupon);
+            }
+        }
+
         getAddress();
         getOrderGoods();
         getDpay();
+        getCoupon()
         
         // 오늘 날짜 기준으로 5일 뒤 까지
         let arr = [];
@@ -75,11 +160,95 @@ export default function Buy() {
     }, [])
 
     const formatDate = (d: Date): string => {
-            const month = d.getMonth()+ 1;
-            const date = d.getDate();
-            
+        const month = d.getMonth()+ 1;
+        const date = d.getDate();
+        
         return month + "/" + date;
     };
+
+    const handleDeleteAddress = async (id:number)=>{
+        const res = await axios({
+            method:"DELETE",
+            url:"http://localhost:8000/buy/address/delete",
+            data:{
+                id
+            }
+        })
+
+        if(res.data.result){
+            alert("삭제됐습니다.");
+            setAddress(res.data.address);
+        }
+    }
+
+
+    // 우편번호 가져오기
+    const [zipCode, setZipcode] = useState<string>("");
+    const [addressName, setAddressName] = useState<string>("");
+    const [roadAddress, setRoadAddress] = useState<string>("");
+    const [detailAddress, setDetailAddress] = useState<string>("");
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+
+    const completeHandler = (data:any) =>{
+        setZipcode(data.zonecode);
+        setRoadAddress(data.roadAddress);
+        setIsOpen(false);
+    }
+
+    // Modal 스타일
+    const customStyles = {
+        overlay: {
+            backgroundColor: "rgba(0,0,0,0.5)",
+        },
+        content: {
+            margin: "auto",
+            width: "500px",
+            height: "600px",
+            padding: "0",
+            overflow: "hidden",
+        },
+    };
+
+    const toggle = () =>{
+        setIsOpen(!isOpen);
+    }
+
+    const handleAddressName = (e:React.ChangeEvent<HTMLInputElement>) =>{
+        setAddressName(e.target.value);
+    }
+
+    const handleAddressDetail = (e:React.ChangeEvent<HTMLInputElement>) =>{
+        setDetailAddress(e.target.value);
+    }
+
+
+    const handleAddressSave = async () =>{
+        if(detailAddress===""){
+            alert("상세주소를 입력해주세요!");
+        }
+        else{
+            const res = await axios({
+                method:"POST",
+                url:"http://localhost:8000/buy/address/add",
+                data:{
+                    address:roadAddress,
+                    detail:detailAddress,
+                    zip_code:zipCode,
+                    user_id:userData.user_id,
+                    address_name:addressName,
+                }
+            })
+
+            if(res.data.result){
+                alert("저장됐습니다!");
+                setAddress(res.data.addressList);
+                setNewAddress(false);
+            }
+            else{
+                alert("오류가 발생했습니다.")
+            }
+        } 
+    }
     
 
     return (
@@ -96,7 +265,23 @@ export default function Buy() {
                                 <label className={buy.newAddress} htmlFor="new" onClick={()=>setNewAddress(true)}>신규 입력</label>
                             </div>
                             {newAddress ?
-                                <Postcode></Postcode> :
+                                <div>
+                                    <div>
+                                        <input value={addressName} placeholder="이름" onChange={handleAddressName}/>
+                                        <input value={zipCode} readOnly placeholder="우편번호" />
+                                        <div onClick={toggle}>우편번호 검색</div>
+                                    </div>
+                                    <div>
+                                        <input value={roadAddress} readOnly placeholder="도로명 주소" />
+                                        <input type="text" onChange={handleAddressDetail} value={detailAddress} placeholder="상세주소"/>
+                                    </div>
+                                    <div onClick={()=>{handleAddressSave()}}>저장</div>
+                        
+                                    <Modal isOpen={isOpen} ariaHideApp={false} style={customStyles} onRequestClose={() => setIsOpen(false)}>
+                                        <DaumPostcode onComplete={completeHandler} style={{height:"100%"}} />
+                                    </Modal>
+                                </div>
+                                :
                                 <div className={buy.addressItemBox}>
                                     {address.map((value, index) => {
                                         return (
@@ -117,7 +302,7 @@ export default function Buy() {
                                                 </div>
                                                 <div className={buy.mdBox}>
                                                     {/* <div className={buy.modify}>수정</div> */}
-                                                    <div className={buy.delete}>삭제</div>
+                                                    <div className={buy.delete} onClick={()=>{handleDeleteAddress(value.id)}}>삭제</div>
                                                 </div>
                                             </div>
                                         )
@@ -140,29 +325,15 @@ export default function Buy() {
                             <div className={buy.listHead}>
                                 <div className={buy.listInforHead}>상품 상세 정보</div>
                                 <div className={buy.listCountHead}>수량</div>
-                                <div className={buy.listPriceHead}>판매가</div>
+                                <div className={buy.listPriceHead}>가격</div>
+                                <div className={buy.listCouponPriceHead}>쿠폰적용가</div>
                                 <div className={buy.listCouponHead}>쿠폰</div>
                             </div>
+                            
                             {goods.map((value, index)=>{
                                 return (
-                                <div className={buy.listBody} key={index}>
-                                    <div className={buy.listInfor}>
-                                        <div className={buy.listImgBox}>
-                                            <img src={value.goods_id.arrange_image}/>
-                                        </div>
-                                        <div className={buy.listData}>
-                                            {value.goods_id.name}
-                                        </div>
-                                    </div>
-                                    <div className={buy.listCount}>{value.goods_count}</div>
-                                    <div className={buy.listPrice}>{value.goods_id.price}</div>
-                                    <div className={buy.listCouponBox}>
-                                        {/* <div className={buy.couponName}>연말쿠폰</div>
-                                        <div className={buy.couponDelete}>삭제</div> */}
-                                        <div className={buy.couponUse}>사용</div>
-                                    </div>
-                                </div>
-                            )
+                                    <CartItem key={index} value={value} coupon={coupon}></CartItem>
+                                )
                             })}
                             
                         </div>
@@ -210,7 +381,14 @@ export default function Buy() {
                             </div>
                         </div>
                         <div className={buy.cashMethod}>
-
+                            <div className={buy.methodBox}>
+                                <div className={buy.methodItem}>카드</div>
+                                <div className={buy.methodItem}>무통장입금</div>
+                                <div className={buy.methodItem}>계좌이체</div>
+                                <div className={buy.methodItem}>휴대폰</div>
+                                <div className={buy.methodItem}>카카오페이</div>
+                                <div className={buy.methodItem}>네이버페이</div>
+                            </div>
                         </div>
                     </div>
                     <div className={buy.cashResultBox}>
