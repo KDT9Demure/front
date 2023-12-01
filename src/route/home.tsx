@@ -72,10 +72,16 @@ const Home: React.FC = () => {
 
     // 세번째 세션 애니메이션
     const images: EventImage[] = [
-        { path: 'assets/event1.jpg', title: 'Event 1', description: 'Description 1' },
+        { path: 'assets/event1.png', title: 'Event 1', description: 'Description 1' },
         { path: 'assets/event2.jpg', title: 'Event 2', description: 'Description 2' },
         { path: 'assets/event3.jpg', title: 'Event 3', description: 'Description 3' },
         { path: 'assets/event4.jpg', title: 'Event 4', description: 'Description 4' },
+        { path: 'assets/event5.jpg', title: 'Event 5', description: 'Description 5' },
+        { path: 'assets/event6.jpg', title: 'Event 6', description: 'Description 6' },
+        { path: 'assets/event7.jpg', title: 'Event 7', description: 'Description 7' },
+        { path: 'assets/event8.jpg', title: 'Event 8', description: 'Description 8' },
+        { path: 'assets/event9.jpg', title: 'Event 9', description: 'Description 9' },
+        { path: 'assets/event10.jpg', title: 'Event 10', description: 'Description 10' },
     ];
 
     interface AnimatedImage {
