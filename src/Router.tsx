@@ -18,7 +18,6 @@ import ProfileEdit from './route/ProfileEdit';
 import Event from './route/Event';
 import Test from './route/Test';
 import Test2 from './route/Test2';
-import ChristmasCoupon from './event/ChristmasCoupon';
 
 
 
@@ -89,8 +88,12 @@ const router = createBrowserRouter([
                 element: <Event />,
                 children: [
                     {
-                        path:"christmasCoupon",
-                        element:<ChristmasCoupon/>
+                        path:"test",
+                        element:<Test />
+                    },
+                    {
+                        path:"test2",
+                        element:<Test2 />
                     }
                 ]
             }
