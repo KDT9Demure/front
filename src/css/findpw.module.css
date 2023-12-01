@@ -68,8 +68,7 @@
     border-bottom: 2px solid #253f39;
 }
 
-.signinBtn,
-.kakaoBtn {
+.signinBtn {
     width: 250px;
     height: 50px;
     border: none;
@@ -81,7 +80,7 @@
 .signinBtn {
     color: white;
     background-color: #253f39;
-    margin-top: 20px
+
 }
 
 .signinBtn2 {
@@ -107,4 +106,41 @@
 .findPassword {
     text-decoration: none;
     color: black
+}
+
+.emailNumberConfirmBtn {
+    position: absolute;
+    right: 40px;
+    top: 270px;
+    color: white;
+    background-color: #253f39;
+    width: 25%;
+    height: 40px;
+}
+
+.timer {
+    position: absolute;
+    right: 60px;
+    top: 320px;
+}
+
+.emailNumber {
+    width: 250px;
+    height: 50px;
+    border: none;
+    border-bottom: 2px solid #a0b9b3;
+    outline: none;
+
+}
+
+.title {
+    position: relative;
+    bottom: 30px;
+}
+
+.authorText {
+    position: absolute;
+    font-size: 13px;
+    color: red;
+    font-weight: bold;
 }
