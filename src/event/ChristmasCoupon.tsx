@@ -3,8 +3,68 @@ import mainImg from "../../public/assets/christmas-8331639.jpg"
 import axios from "axios";
 import { useAppSelector } from "../hook";
 
+function Snow() {
+
+    return(
+        <>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+            <div className={styles.snowflake}></div>
+        </>
+    )
+}
+
 export default function ChristmasCoupon() {
     const userData = useAppSelector((state) => state.signin);
+
+    
 
     function CouponLoad() {
 
@@ -29,7 +89,8 @@ export default function ChristmasCoupon() {
     }
 
     return (
-        <div className={styles.couponContainer}> 
+        <div className={styles.couponContainer}>
+            <Snow/>
             <section className={styles.couponSection}>
                 <div className={styles.couponWrapper}>
                     <div className={styles.couponImgBox}>
@@ -39,7 +100,7 @@ export default function ChristmasCoupon() {
                         <div className={styles.couponTitle}>크리스마스 이벤트 할인 쿠폰</div>
                     </div>
                     <div className={styles.couponMainBox} onClick={CouponLoad}>
-                        <div className={styles.couponMain1}>30%</div>
+                        <div className={styles.couponMain1}>15%</div>
                         <div className={styles.couponMain2}>2023 크리스마스 할인 쿠폰~23.12.31</div>
                     </div>
                     <div className={styles.couponMoveBox}>
