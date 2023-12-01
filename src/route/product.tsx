@@ -101,6 +101,10 @@ export default function Product() {
         if(!userData.user_id) {
             alert("로그인을 해야 이용가능한 서비스입니다.");
         }
+        if(score === 0 || null) {
+            alert("0점은 불가합니다.");
+            return;
+        }
         const res = await axios({
             method: "post",
             url: "http://localhost:8000/product/review",
