@@ -16,10 +16,8 @@ import Buy from './route/Buy';
 import Profile from './route/Profile';
 import ProfileEdit from './route/ProfileEdit';
 import Event from './route/Event';
-import Christmas from './route/Christmas';
-import Coupon from './route/Coupon';
-import Newyear from './route/Newyear';
-import First from './route/First';
+import Test from './route/Test';
+import Test2 from './route/Test2';
 
 
 
@@ -90,20 +88,12 @@ const router = createBrowserRouter([
                 element: <Event />,
                 children: [
                     {
-                        path:"Christmas",
-                        element:<Christmas />
+                        path:"test",
+                        element:<Test />
                     },
                     {
-                        path:"Coupon",
-                        element:<Coupon />
-                    },
-                    {
-                        path: "Newyear",
-                        element:<Newyear />
-                    },
-                    {
-                        path: "First",
-                        element:<First />
+                        path:"test2",
+                        element:<Test2 />
                     }
                 ]
             }
