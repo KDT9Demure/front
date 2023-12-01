@@ -2,10 +2,15 @@ import axios from "axios";
 import { useAppSelector } from "../hook";
 import { useEffect, useState } from "react"
 import buy from "../css/buy.module.css";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faCirclePlus
+} from "@fortawesome/free-solid-svg-icons";
+import Postcode from "./Postcode";
 
 export default function Buy() {
 
+    const [newAddress, setNewAddress] = useState<boolean>(false);
     const [address, setAddress] = useState<any[]>([]);
     const [goods, setGoods] = useState<any[]>([]);
     const [deliveryArr, setdeliveryArr] = useState<any[]>([]);
@@ -85,37 +90,40 @@ export default function Buy() {
                         <div className={buy.title}>배송 정보</div>
                         <div className={buy.infoBox}>
                             <div className={buy.choiceBox}>
-                                <input type="radio" name="choice" id="address" className={buy.addressInput} defaultChecked/>
+                                <input type="radio" name="choice" id="address" className={buy.addressInput} defaultChecked onClick={()=>setNewAddress(false)}/>
                                 <label className={buy.addressChoice} htmlFor="address">배송지 선택</label>
                                 <input type="radio" name="choice" id="new" className={buy.addressInput}/>
-                                <label className={buy.newAddress} htmlFor="new">신규 입력</label>
+                                <label className={buy.newAddress} htmlFor="new" onClick={()=>setNewAddress(true)}>신규 입력</label>
                             </div>
-                            <div className={buy.addressItemBox}>
-                                {address.map((value, index) => {
-                                    return (
-                                        <div className={buy.addressItem} key={index}>
-                                            <input type="radio" name="address" value={value.id}></input>
-                                            <div className={buy.infor}>
-                                                <div className={buy.nameBox}>
-                                                    <div className={buy.name}>{value.address_name}</div>
-                                                    <div className={buy.defaultBox}>
-                                                        <div className={buy.default}>기본</div>
+                            {newAddress ?
+                                <Postcode></Postcode> :
+                                <div className={buy.addressItemBox}>
+                                    {address.map((value, index) => {
+                                        return (
+                                            <div className={buy.addressItem} key={index}>
+                                                <input type="radio" name="address" value={value.id}></input>
+                                                <div className={buy.infor}>
+                                                    <div className={buy.nameBox}>
+                                                        <div className={buy.name}>{value.address_name}</div>
+                                                        <div className={buy.defaultBox}>
+                                                            <div className={buy.default}>기본</div>
+                                                        </div>
+                                                    </div>
+                                                    <div className={buy.addressInforBox}>
+                                                        <div className={buy.address}>{value.address}</div>
+                                                        <div className={buy.addressDetail}>{value.detail}</div>
+                                                        <div className={buy.addressZipCode}>({value.zip_code})</div>
                                                     </div>
                                                 </div>
-                                                <div className={buy.addressInforBox}>
-                                                    <div className={buy.address}>{value.address}</div>
-                                                    <div className={buy.addressDetail}>{value.detail}</div>
-                                                    <div className={buy.addressZipCode}>({value.zip_code})</div>
+                                                <div className={buy.mdBox}>
+                                                    {/* <div className={buy.modify}>수정</div> */}
+                                                    <div className={buy.delete}>삭제</div>
                                                 </div>
                                             </div>
-                                            <div className={buy.mdBox}>
-                                                {/* <div className={buy.modify}>수정</div> */}
-                                                <div className={buy.delete}>삭제</div>
-                                            </div>
-                                        </div>
-                                    )
-                                })}
-                            </div>
+                                        )
+                                    })}
+                                </div>
+                            }
                         </div>
                         <div className={buy.addressMemoBox}>
                             <div className={buy.memoTitle}>배송 메모</div>
@@ -171,15 +179,34 @@ export default function Buy() {
                     </div>
                     <div className={buy.cashBox}>
                         <div className={buy.dpayBox}>
+                            <div className={buy.dpayTitle}>D-Pay</div>
                             <div className={buy.dpayListBox}>
                                 {dpay.map((value, index)=>{
                                     return (
-                                        <></>
+                                        <div className={buy.dpayItem} key={index}>
+                                            <div className={buy.bankName}>{value.bank_name}은행</div>
+                                            <div className={buy.icChip}>
+                                                <div className={buy.icLineOne}></div>
+                                                <div className={buy.icLineTwo}></div>
+                                                <div className={buy.icLineThree}></div>
+                                            </div>
+                                            <div className={buy.cardNumber}>
+                                                {value.card_number.split('-').map((num:string, idx:number)=>{
+                                                    return(
+                                                        <div key={idx} className={buy.cardNumberSplit}>{num}</div>
+                                                    )
+                                                })}
+                                            </div>
+                                            <div className={buy.demureLogo}>Demure</div>
+                                        </div>
                                     )
                                 })}
-                            </div>
-                            <div className={buy.dpayAddBox}>
-
+                                <div className={buy.dpayAddBox}>
+                                    <div className={buy.dpayAddItem}>
+                                        <FontAwesomeIcon icon={faCirclePlus} className={buy.dpayAddIcon} />
+                                        <div className={buy.dpayAddTitle}>결제 수단 추가</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div className={buy.cashMethod}>
