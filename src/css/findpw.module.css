@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.bodys {
+    width: 100vw;
+    height: 100vh;
+    background-color: #253f39;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+.wrapper {
+    /* display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center; */
+
+    background-color: white;
+    border-radius: 16px;
+    height: 100%;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 330px;
+    height: 400px;
+    padding: 16px;
+    gap: 10px;
+}
+
+.main2 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 330px;
+    height: 520px;
+    padding: 16px;
+    gap: 10px;
+}
+
+.id,
+.password {
+    width: 250px;
+    height: 50px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #a0b9b3;
+
+}
+
+.id:focus,
+.password:focus {
+    border-bottom: 2px solid #253f39;
+}
+
+.signinBtn,
+.kakaoBtn {
+    width: 250px;
+    height: 50px;
+    border: none;
+    outline: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.signinBtn {
+    color: white;
+    background-color: #253f39;
+    margin-top: 20px
+}
+
+.signinBtn2 {
+    color: white;
+    background-color: #253f39;
+    margin-top: 40px
+}
+
+
+
+.Link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 13px;
+    gap: 5px;
+    bottom: 50px;
+    position: relative;
+}
+
+.signup,
+.findPassword {
+    text-decoration: none;
+    color: black
+}
