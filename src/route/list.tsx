@@ -289,7 +289,7 @@ export default function List() {
                                     onClick={() => moveProduct(product.goods_id.id)}
                                 >
 
-                                    <div className={styles.productImg}>
+                                    <div className={`${styles.productImg} ${productImgHover ? styles.productImgHover : ''}`}>
                                         <img loading="lazy"
                                             id="img"
 
@@ -310,7 +310,7 @@ export default function List() {
                                             }}
 
                                             src={productImgHover ? product.goods_id.arrange_image || product.goods_id.image : product.goods_id.image}
-                                            style={{ width: 300, height: 300, borderRadius: 8 }}
+                                            style={{ width: 280, height: 280, borderRadius: 8 }}
                                             alt={`${product.goods_id.name}`} />
                                     </div>
 

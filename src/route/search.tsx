@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"
 
-import { useParams } from 'react-router-dom';
-
 import axios from "axios";
 
 import styles from "../css/search.module.css";
@@ -10,7 +8,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 
 export default function Search() {
     const [search, setSearch] = useState<any[]>([]);
-    const [searchName, setSearchName] = useState<String | null>("");
+    // const [searchName, setSearchName] = useState<String | null>("");
 
     const [scrollPosition, setScrollPosition] = useState<number>(0);
     const [divHeight, setDivHeight] = useState<number>(0);
@@ -27,7 +25,8 @@ export default function Search() {
     const [colors, setColors] = useState<String>("")
     const [selectedColor, setSelectedColor] = useState<string>("")
 
-
+    const params = new URLSearchParams(location.search);
+    const searchName = params.get("q");
 
 
     useEffect(() => {
@@ -41,7 +40,7 @@ export default function Search() {
                     data: {
                         page: 1,
                         sort: sort,
-                        searchName: "의자"
+                        searchName
 
                     }
                 });
@@ -168,7 +167,7 @@ export default function Search() {
             data: {
                 sort: sort,
                 page: Page,
-                searchName: "의자"
+                searchName
             }
         })
             .then((res) => {
@@ -205,7 +204,7 @@ export default function Search() {
 
 
                     <div className={styles.searchAndResult}>
-                        <h1>"검색어" 에 대한 검색결과</h1>
+                        <h1>"{searchName}" 에 대한 검색결과</h1>
                         {/* <span className={styles.result}>result 몇개 </span> */}
                     </div>
 
@@ -248,7 +247,7 @@ export default function Search() {
                         return (
                             <div key={index} className={styles.productContainer} onClick={() => moveProduct(product.id)}>
 
-                                <div className={styles.productImg}>
+                                <div className={`${styles.productImg} ${productImgHover ? styles.productImgHover : ''}`}>
                                     <img loading="lazy"
                                         id="img"
 
@@ -269,7 +268,7 @@ export default function Search() {
                                         }}
 
                                         src={productImgHover ? product.arrange_image || product.image : product.image}
-                                        style={{ width: 300, height: 300, borderRadius: 8 }}
+                                        style={{ width: 280, height: 280, borderRadius: 8 }}
                                         alt={`${product.name}`} />
                                 </div>
 
