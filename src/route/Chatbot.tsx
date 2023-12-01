@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { faMessage } from "@fortawesome/free-regular-svg-icons";
 import { faComment } from "@fortawesome/free-regular-svg-icons";
 import styles from "../css/chatbot.module.css";
-
+import { useParams } from "react-router-dom";
 
 function ChatbotTalk() {
 
@@ -30,6 +30,7 @@ function ChatbotTalk() {
 interface Chat {
     message: string;
     type: "question" | "answer";
+    tag: any;
 }
 
 function MainChatbot({ openChatbot, setOpenChatbot }: { openChatbot: boolean, setOpenChatbot: any }) {
@@ -51,21 +52,58 @@ function MainChatbot({ openChatbot, setOpenChatbot }: { openChatbot: boolean, se
         }
     };
       
-    function EnterChat() { 
+    function EnterChat() {
         let answer = "";
+        let tags : any = "";
+        const myPage = <a href="/profile">마이페이지 이동</a>
+        const qna = <a href="/question">Q&A페이지로 이동</a>
+        
+
         if (inputValue.includes("배송")) {
-            answer = "배송관련 머시기"
+            answer = "배송일은 마이페이지의 주문내역란에서 확인 가능합니다."
+            tags = myPage
+            if (inputValue.includes("배송상태")) {
+                answer = "배송상태는 마이페이지의 주문내역란에서 확인 가능합니다."
+                tags = myPage
+            }
         } else if (inputValue.includes("주문")) {
-            answer = "주문관련 머시기"
+            answer = "주문내역은 마이페이지의 주문내역란에서 확인 가능합니다."
+            tags = myPage
+        } else if (inputValue.includes("선물포장")) {
+            answer = "선물포장은 불가합니다."
         } else if (inputValue.includes("포인트")) {
-            answer = "포인트관련 머시기"
-        } else if (inputValue.includes("이원노")) {
-            answer = "좀 씻어라"
+            answer = "포인트 사용방법은 결제페이지 포인트란에서 사용하시면 됩니다."
+            if(inputValue.includes("포인트확인")) {
+                answer = "포인트 확인은 마이페이지에서 확인하시면 됩니다."
+                tags = myPage
+            }
+        } else if (inputValue.includes("직접수령")) {
+            answer = "방문하여 직접수령하심은 불가합니다."
+        } else if (inputValue.includes("탈퇴")) {
+            answer = "회원탈퇴는 마이페이지에서 하시면 됩니다."
+            tags = myPage
+            if(inputValue.includes("탈퇴취소")) {
+                answer = "탈퇴취소는 마이페이지에서 하시면 됩니다."
+                tags = myPage
+            }
+        } else if (inputValue.includes("회원")) {
+            answer = "회원정보는 마이페이지에서 확인 가능하십니다."
+            tags = myPage
+            if(inputValue.includes("회원정보수정")) {
+                answer = "회원정보수정은 마이페이지에서 가능하십니다."
+                tags = myPage
+            }
+        } else if (inputValue.includes("비밀번호")) {
+            answer = "비밀번호수정은 마이페이지에서 가능하십니다."
+            tags = myPage
+        } else if (inputValue.includes("안녕")) {
+            answer = "큭큭큭 반갑다 인간이여... 난 챗봇 원노 혹은 원선이라고 한다."
         } else {
-            answer = "올바르게 입력해주세요"
+            answer = "자세한건 qna페이지에서 질문해주세요."
+            tags = qna
         }
         setChats((prevChat) => {
-            return [...prevChat, { message: inputValue, type: "question" }, { message: answer, type: "answer" }]
+            return [...prevChat, { message: inputValue, type: "question", tag:null}, { message: answer, type: "answer", tag: tags }]
         })
         setInputValue("");
     }
@@ -95,6 +133,7 @@ function MainChatbot({ openChatbot, setOpenChatbot }: { openChatbot: boolean, se
                             return (
                                 <div className={styles.answerBox} key={index}>
                                     <div className={styles.answer}>{chat.message}</div>
+                                    {chat.tag && <div className={styles.answerLink}>{chat.tag}</div>}
                                 </div>
                             )
                         }
@@ -104,7 +143,7 @@ function MainChatbot({ openChatbot, setOpenChatbot }: { openChatbot: boolean, se
                     <input className={styles.chatbotChatting} onChange={e => setInputValue(e.currentTarget.value)} value={inputValue} onKeyDown={(e) => {
                         if (e.key === "Enter") { EnterChat() }
                     }} />
-                    <div className={styles.chatbotChattingBtn}><FontAwesomeIcon icon={faMessage} onClick={() => { EnterChat()}} /></div>
+                    <div className={styles.chatbotChattingBtn}><FontAwesomeIcon icon={faPaperPlane} onClick={() => { EnterChat()}} /></div>
                 </div>
             </div>
         </section>

@@ -143,8 +143,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px;
-    padding-top: 10px;
+    margin: 15px;
 }
 
 .firstTalkWrapper {
@@ -156,7 +155,7 @@
 .talkFirst, .talkSecond, .talkThird {
     background-color: #e5e5e5;
     border-radius: 6px;
-    margin: 10px;
+    margin-bottom: 7px;
     width: fit-content;
     padding: 5px;
     position: relative;
@@ -197,25 +196,49 @@
     background-color: rgb(214 246 213);
     border-radius: 6px;
     width: fit-content;
+    max-width: 300px;
     padding: 5px;
     position: relative;
-    margin: 10px;
+    margin-bottom: 7px;
     right: 10px;
     box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.05);
 }
 
 .answerBox {
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
+
 }
 
 .answer {
     background-color: #e5e5e5;
     border-radius: 6px;
     width: fit-content;
+    max-width: 300px;
     padding: 5px;
     position: relative;
-    margin: 10px;
+    margin-bottom: 7px;
     left: 10px;
     box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.05);
+}
+
+.answerLink {
+    background-color: #e3bbbb;
+    border-radius: 6px;
+    width: fit-content;
+    padding: 5px;
+    position: relative;
+    margin-bottom: 7px;
+    left: 10px;
+    box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.05);
+}
+
+.answerLink > a {
+    text-decoration: none;
+    color:black
+}
+
+.answerLink:hover {
+    scale: 1.04;
 }
