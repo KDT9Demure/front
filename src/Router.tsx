@@ -18,6 +18,8 @@ import ProfileEdit from './route/ProfileEdit';
 import Event from './route/Event';
 import Test from './route/Test';
 import Test2 from './route/Test2';
+import Christmas from './route/Christmas';
+import First from './route/First';
 
 
 
@@ -88,12 +90,12 @@ const router = createBrowserRouter([
                 element: <Event />,
                 children: [
                     {
-                        path:"test",
-                        element:<Test />
+                        path:"christmas",
+                        element:<Christmas />
                     },
                     {
-                        path:"test2",
-                        element:<Test2 />
+                        path:"first",
+                        element:<First />
                     }
                 ]
             }
