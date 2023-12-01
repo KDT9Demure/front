@@ -19,6 +19,7 @@ import Event from './route/Event';
 import Test from './route/Test';
 import Test2 from './route/Test2';
 import ChristmasCoupon from './event/ChristmasCoupon';
+import FindPw from './route/FindPw';
 
 
 
@@ -89,10 +90,14 @@ const router = createBrowserRouter([
                 element: <Event />,
                 children: [
                     {
-                        path:"christmasCoupon",
-                        element:<ChristmasCoupon/>
+                        path: "christmasCoupon",
+                        element: <ChristmasCoupon />
                     }
                 ]
+            },
+            {
+                path: "findPw",
+                element: <FindPw />
             }
         ]
     },
