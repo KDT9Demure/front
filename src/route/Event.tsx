@@ -22,7 +22,7 @@ export default function Event() {
           </Link>
         </div>
         <div>
-          <Link to="/event/First" className={event.link} style={{ textDecoration: 'none' }}>
+          <Link to="/event/FirstPurchase" className={event.link} style={{ textDecoration: 'none' }}>
             <div className={event.linkTitle}>첫 구매 할인</div>
           </Link>
         </div>
