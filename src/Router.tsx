@@ -16,7 +16,7 @@ import Buy from './route/Buy';
 import Profile from './route/Profile';
 import ProfileEdit from './route/ProfileEdit';
 import Event from './route/Event';
-import First from './event/First';
+import FirstPurchase from './event/FirstPurchase';
 import FindPw from './route/FindPw';
 import ChristmasCoupon from './event/ChristmasCoupon';
 
@@ -92,8 +92,8 @@ const router = createBrowserRouter([
                         element: <ChristmasCoupon />
                     },
                     {
-                        path: "first",
-                        element: <First />
+                        path: "firstpurchase",
+                        element: <FirstPurchase />
                     }
                 ]
             },
