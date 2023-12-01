@@ -39,7 +39,7 @@ export default function ChristmasCoupon() {
                         <div className={styles.couponTitle}>크리스마스 이벤트 할인 쿠폰</div>
                     </div>
                     <div className={styles.couponMainBox} onClick={CouponLoad}>
-                        <div className={styles.couponMain1}>30%</div>
+                        <div className={styles.couponMain1}>15%</div>
                         <div className={styles.couponMain2}>2023 크리스마스 할인 쿠폰~23.12.31</div>
                     </div>
                     <div className={styles.couponMoveBox}>
