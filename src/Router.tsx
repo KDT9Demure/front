@@ -19,6 +19,7 @@ import Event from './route/Event';
 import First from './event/First';
 import FindPw from './route/FindPw';
 import ChristmasCoupon from './event/ChristmasCoupon';
+import Showing from './route/Showing';
 
 
 
@@ -100,6 +101,10 @@ const router = createBrowserRouter([
             {
                 path: "find/password",
                 element: <FindPw />
+            },
+            {
+                path: "showing",
+                element: <Showing />
             }
         ]
     },

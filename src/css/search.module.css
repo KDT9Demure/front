@@ -314,6 +314,7 @@
 .category {
     margin: 0 7px 0 0;
     color: rgb(183, 163, 97);
+    font-size: 18px;
 
 }
 
@@ -404,4 +405,12 @@
         z-index: -1;
 
     }
+}
+
+.productImg {
+    transition: transform 0.3s ease;
+}
+
+.productImgHover {
+    transform: scale(1.03);
 }
