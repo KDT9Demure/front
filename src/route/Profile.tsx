@@ -191,6 +191,7 @@ export default function Profile() {
 
                     <div className={styles.couponContainer}>
                         <h2 style={{ marginBottom: 10, fontWeight: "normal" }}>보유쿠폰</h2>
+                        <span className={styles.couponIndex} >{couponData.length}개</span>
                         <div className={styles.couponFlex}>
                             {couponData.map((value) => {
 
