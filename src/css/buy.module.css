@@ -235,12 +235,114 @@
 
 }
 
-.dpayListBox{
+.dpayTitle{
 
 }
 
-.dpayAddBox{
+.dpayListBox{
+    display: flex;
+    gap: 20px;
+    user-select: none;
+    overflow: hidden;
+}
 
+.dpayItem{
+    width: 320px;
+    height: 200px;
+    background-color: #253f39;
+    border-radius: 15px;
+    border: 1px solid black;
+    color: white;
+    padding: 30px;
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+}
+
+.bankName{
+    font-size: 20px;
+}
+
+.icChip{
+    width: 45px;
+    height: 35px;
+    background-color: lightgray;
+    border-radius: 5px;
+    border: 1px solid white;
+    margin-top: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.icLineOne, .icLineTwo{
+    width: 110%;
+    height: 1px;
+    background-color: white;
+    position: absolute;
+}
+
+.icLineOne{
+    top: 10px;
+}
+
+.icLineTwo{
+    top: 25px;
+}
+
+.icLineThree{
+    width: 1px;
+    height: 110%;
+    background-color: white;
+    position: absolute;
+    left: 10px;
+}
+
+.demureLogo{
+    font-family: 'Monsieur La Doulaise';
+    font-size: 30px;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+}
+
+.cardNumber{
+    display: flex;
+    margin-top: 25px;
+    justify-content: space-between;
+}
+
+.cardNumberSplit{
+    font-size: 22px;
+}
+
+.dpayAddBox{
+    border-left: 1px solid #e5e5e5;
+}
+
+.dpayAddItem{
+    width: 260px;
+    height: 200px;
+    border-radius: 15px;
+    border: 1px solid #e5e5e5;
+    padding: 30px;
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.dpayAddIcon{
+    color: #e5e5e5;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.dpayAddTitle{
+    color: #e5e5e5;
 }
 
 .cashResultBox{
