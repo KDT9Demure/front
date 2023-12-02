@@ -13,8 +13,9 @@ import { Link } from "react-router-dom";
 function CartItem(props:any){
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [couponName, setCouponName] = useState<string>("");
-    const [couponDiscount, setCouponDiscount] = useState<number>(20);
+    const [couponDiscount, setCouponDiscount] = useState<number>(0);
     const [couponUse, setCouponUse] = useState<boolean>(false);
+    const [couponId, setCouponId] = useState<number>(0);
 
     // Modal 스타일
     const customStyles = {
@@ -30,7 +31,39 @@ function CartItem(props:any){
         },
     };
 
-    console.log(props.coupon);
+    const handleUseCoupon = async (id:number, discount:number)=>{
+        const res = await axios({
+            method:"PATCH",
+            url:"http://localhost:8000/event/coupon/use",
+            data:{
+                id
+            }
+        })
+
+        if(res.data.result){
+            setCouponDiscount(discount);
+            setCouponUse(true);
+            setCouponId(id);
+        }
+        
+        console.log(res);
+    }
+
+    const handleCancelCoupon = async()=>{
+        const res = await axios({
+            method:"PATCH",
+            url:"http://localhost:8000/event/coupon/cancel",
+            data:{
+                id:couponId
+            }
+        })
+
+        if(res.data.result){
+            setCouponDiscount(0);
+            setCouponUse(false);
+            setCouponId(0);
+        }
+    }
 
     return(
         <div className={buy.listBody}>
@@ -53,8 +86,9 @@ function CartItem(props:any){
                         {props.coupon.map((value:any, index:number)=>{
                             return (
                                 <div key={index} className={buy.couponItem}>
-
+                                    <div>{value.coupon_id.discount}</div>
                                     <div>{value.coupon_id.coupon_name}</div>
+                                    <div onClick={()=>handleUseCoupon(value.id, value.coupon_id.discount)}>적용</div>
                                 </div>
                             )
                         })}
@@ -63,7 +97,7 @@ function CartItem(props:any){
                 {couponUse ?
                     <>
                         <div className={buy.couponName}>연말쿠폰</div>
-                        <div className={buy.couponDelete}>삭제</div>    
+                        <div className={buy.couponDelete} onClick={()=>handleCancelCoupon()}>삭제</div>    
                     </>
                     :
                     <div className={buy.couponUse} onClick={()=>setIsOpen(true)}>사용</div>
