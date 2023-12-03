@@ -14,7 +14,7 @@ export default function Signin() {
     
     const signinData = async () => {
         const res = await axios({
-            url: 'http://localhost:8000/user/signin',
+            url: 'http://localhost:8000/user/signin', 
             method: 'POST',
             headers:{'Content-Type' : 'application/json'},
             data: {

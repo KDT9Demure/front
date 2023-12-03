@@ -14,7 +14,7 @@ export default function Order() {
     const { id } = useParams<{ id: string }>();
     console.log('현재 주문 ID:', id);
     useEffect(() => {
-        const orderData = async () => {
+        const orderData = async () => { 
             try {
 
                 const res = await axios({

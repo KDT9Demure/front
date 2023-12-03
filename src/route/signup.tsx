@@ -13,7 +13,7 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 config.autoAddCss = false
 
 
-export default function Signup() {
+export default function Signup() { 
 
 
     const [userid, setUserid] = useState<string | null>(null);

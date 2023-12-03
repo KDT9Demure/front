@@ -10,7 +10,7 @@ const Home: React.FC = () => {
         'assets/slide3.jpg',
         'assets/slide4.jpg',
         'assets/slide5.jpg',
-        'assets/slide6.jpg',
+        'assets/slide6.jpg', 
     ];
 
     const [slideImg, setSlideImg] = useState<SlideImage>(initialSlides);

@@ -17,7 +17,7 @@ export default function Search() {
 
     const [Page, setPage] = useState<number>(2)
 
-    const [isListEnd, setIsListEnd] = useState<boolean>(false)
+    const [isListEnd, setIsListEnd] = useState<boolean>(false) 
 
     const [sort, setSort] = useState<String>("best")
     const [selectedSort, setSelectedSort] = useState<String>("best")
