@@ -113,6 +113,24 @@
     height: 60px;
 }
 
+.cartAllCheck {
+    display: none;
+}
+
+.cartAllCheckLabel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 40px;
+    border: none;
+    color: white;
+    background-color: #253f39;
+    border-radius: 7px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
 .orderBtn {
     display: flex;
     justify-content: center;
