@@ -1,15 +1,15 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import App from "./App";
-import Home from './route/home';
+import Home from './route/Home';
 import Signin from './route/Signin';
 import Signup from './route/Signup';
-import Product from './route/product';
+import Product from './route/Product';
 import List from './route/List';
 import Cart from './route/Cart';
 import QnA from './route/Qna';
-import Search from './route/search';
-import Order from './route/order';
+import Search from './route/Search';
+import Order from './route/Order';
 import Notice from './route/Notice';
 import Kakao from './route/Kakao';
 import Buy from './route/Buy';
@@ -95,6 +95,10 @@ const router = createBrowserRouter([
                     {
                         path: "firstpurchase",
                         element: <FirstPurchase />
+                    },
+                    {
+                        path: "showing",
+                        element: <Showing />
                     }
                 ]
             },
@@ -102,10 +106,7 @@ const router = createBrowserRouter([
                 path: "find/password",
                 element: <FindPw />
             },
-            {
-                path: "showing",
-                element: <Showing />
-            }
+            
         ]
     },
 ]);

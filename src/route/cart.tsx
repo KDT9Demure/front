@@ -11,7 +11,7 @@ function Counter({data} : {data:any}) {
     const [number, setNumber] = useState<number>(data.goods_count);
     
     //수량 +
-    const handleIncrement = () => {
+    const handleIncrement = () => { 
         setNumber(number + 1);
 
         const countPatch = async () => {

@@ -19,7 +19,7 @@ function ReviewBox({review} : {review : any}) {
             <div>댓글내용:{review.content}</div>
             <div>별점:{review.rate}</div>
         </div>
-    )
+    ) 
 }
 
 export default function Product() {
