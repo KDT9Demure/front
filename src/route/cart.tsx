@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 
-function Counter({data} : {data:any}) {
+function Counter({data, setDatas} : {data:any, setDatas:any}) {
     const [number, setNumber] = useState<number>(data.goods_count);
     
     //수량 +
@@ -23,6 +23,13 @@ function Counter({data} : {data:any}) {
                     id: data.id,
                     objectCount:number+1
                 }
+            })
+            //갯수 추가에 따른 금액 증가
+            setDatas((prevs: any) => {
+                const newDatas = [...prevs];
+                const dataIndex = newDatas.findIndex((prevData) => prevData.id === data.id);
+                newDatas[dataIndex].goods_count += 1;
+                return newDatas;
             })
         }
         countPatch();
@@ -41,6 +48,13 @@ function Counter({data} : {data:any}) {
                     id: data.id,
                     objectCount:number-1
                 }
+            })
+            //갯수 추가에 따른 금액 감소
+            setDatas((prevs: any) => {
+                const newDatas = [...prevs];
+                const dataIndex = newDatas.findIndex((prevData) => prevData.id === data.id);
+                newDatas[dataIndex].goods_count -= 1;
+                return newDatas;
             })
         }
         countPatch();
@@ -86,7 +100,7 @@ export default function Cart() {
                 }
             })
             setDatas(res.data.cart);
-            console.log(res)
+            console.log("setdatas", res.data.cart)
         }
         datas();
     }, [userData])
@@ -111,13 +125,11 @@ export default function Cart() {
         ProductDelete();
     }
 
-
-
     //check된 id 확인
     console.log('checkedIds', checkedIds)
 
     //금액 총액
-    const sumPrice = datas.reduce((acc, data) => acc + data.goods_id.price, 0);
+    const sumPrice = datas.reduce((acc, data) => acc + data.goods_id.price*data.goods_count, 0);
 
     return (
         <div className={styles.container}>
@@ -147,7 +159,7 @@ export default function Cart() {
                                     </div>
                                     <div className={styles.cartInfo}>
                                         <div>배송비 무료</div>
-                                        <Counter data={data}/>
+                                        <Counter data={data} setDatas={setDatas}/>
                                     </div>
                                 </div>
                             </div>)
@@ -155,6 +167,8 @@ export default function Cart() {
                     <div className={styles.priceWrapper}>
                         <div>총 주문금액 : {sumPrice} 원</div>
                     </div>
+                    <input type="checkbox" id="allcheck" className={styles.cartAllCheck}/>
+                    <label htmlFor="allcheck" className={styles.cartAllCheckLabel}>전체선택</label>
                     <button className={styles.cartDeleteBtn} onClick={Delete}>선택상품 삭제</button>
                 </div>
 

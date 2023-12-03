@@ -208,7 +208,7 @@ export default function QnA() {
                     </div>
                     <div className={styles.inquireWrapper}>
                         <div className={styles.inquireHeaderTitle}>1:1 문의</div>
-                        <input placeholder="검색" className={styles.inquireSearch} />
+                        {/* <input placeholder="검색" className={styles.inquireSearch} /> */}
                         {comments.map((comment, index) => {
                             return (
                                 <Inquire key={index} comment={comment} userData={userData}/>
