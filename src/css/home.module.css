@@ -28,6 +28,7 @@ body {
 .mainSwiper {
     position: relative;
     overflow: hidden;
+    cursor: url('../../public/assets/mouse_cursor_text.png') 5 5, progress;
 }
 
 .slide {
