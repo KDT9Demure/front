@@ -1,17 +1,19 @@
 import { combineReducers, configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 // import counterReducer from "../reducer/counter";
-import signinReducer, { signinSlice } from "../reducer/singin";
+import { signinSlice } from "../reducer/singin";
 import storage from 'redux-persist/lib/storage'
 import { persistReducer } from 'redux-persist';
+import { buySlice } from "../reducer/buy";
 
 const reducers = combineReducers({
     signin: signinSlice.reducer,
+    buy:buySlice.reducer,
 })
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['signin'],
+    whitelist: ['signin', 'buy'],
 }
 
 const persistedReducer = persistReducer(persistConfig, reducers);
