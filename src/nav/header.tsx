@@ -30,6 +30,14 @@ export default function Header() {
         window.location.reload();
     }
 
+    const [value, setValue] = useState("");
+      
+    const handleEnterKey = (e) => {
+        if (e.key === "Enter") {
+            window.location.href = `/search?q=${value}`;
+        }
+    };
+
     return (
         <div className={header.box}>
             <div className={`${header.container} ${openMenu && header.openMenu}`}>
@@ -75,7 +83,16 @@ export default function Header() {
                 <div>
                     <div className={`${header.searchBox} ${!openMenu && header.displayNone}`} >
                         <span className={header.headerSearch}>
-                        <input type="text" className={header.headerSearchInput} placeholder="What are you looking for?" />
+                        <input
+                            type="text"
+                            className={header.headerSearchInput}
+                            placeholder="What are you looking for?"
+                            value={value}
+                            onChange={(e) => {
+                                setValue(e.target.value);
+                            }}
+                            onKeyDown={handleEnterKey}
+                        />
                         <FontAwesomeIcon className={header.headerSearchIcon} icon={faMagnifyingGlass} />
                         </span>
                     </div>
