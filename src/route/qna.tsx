@@ -112,6 +112,7 @@ function Inquire({ comment , userData }: { comment: any, userData:any[] | any })
         }
     }
 
+    //자기계정만 비밀글 보기
     const secret = () => {
         if(!comment.secret) {
             setVisible(false);
@@ -173,10 +174,7 @@ export default function QnA() {
     const [title, setTitle] = useState<string>("");
     const [content, setContent] = useState<string>("");
     const [secret, setSecret] = useState<boolean>(false);
-
     const userData = useAppSelector((state) => state.signin);
-    
-    console.log("킥킥",userData)
 
     useEffect(() => {
         const datas = async () => {
@@ -187,7 +185,7 @@ export default function QnA() {
             setComments(res.data);
         }
         datas();
-        console.log("Aa", comments)
+        
     }, []);
 
     const register = async () => {
