@@ -7,7 +7,7 @@
 
 .container1 {
     margin-top: 50px;
-    background-color: white;
+    background-color: #253f39;
     position: relative;
 
 }
@@ -24,10 +24,12 @@
     display: flex;
     justify-content: space-between;
     align-items: end;
+    color: white;
 }
 
 .colorText {
     font-size: 18px;
+    color: white;
 }
 
 .colorContainer {
@@ -102,7 +104,7 @@
     background-color: rgba(255, 0, 0, 0.8);
     border-radius: 10px;
     cursor: pointer;
-    border: 3px solid rgba(0, 0, 0, 0.5);
+    border: 3px solid rgba(255, 255, 255, 0.5);
 }
 
 .selectedColorGreen {
@@ -111,7 +113,7 @@
     background-color: rgba(0, 128, 0, 0.8);
     border-radius: 10px;
     cursor: pointer;
-    border: 3px solid rgba(0, 0, 0, 0.5);
+    border: 3px solid rgba(255, 255, 255, 0.5);
 }
 
 .selectedColorBlue {
@@ -120,7 +122,7 @@
     background-color: rgba(0, 0, 255, 0.8);
     border-radius: 10px;
     cursor: pointer;
-    border: 3px solid rgba(0, 0, 0, 0.5);
+    border: 3px solid rgba(255, 255, 255, 0.5);
 }
 
 .selectedColorBlack {
@@ -138,13 +140,13 @@
     background-color: rgba(128, 128, 128, 0.8);
     border-radius: 10px;
     cursor: pointer;
-    border: 3px solid rgba(0, 0, 0, 0.5);
+    border: 3px solid rgba(255, 255, 255, 0.5);
 }
 
 .selectedColorWhite {
     width: 35px;
     height: 35px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgb(255, 255, 255);
     border-radius: 10px;
     cursor: pointer;
     border: 3px solid rgb(0, 0, 0);
@@ -156,10 +158,11 @@
     background-color: rgba(165, 42, 42, 0.8);
     border-radius: 10px;
     cursor: pointer;
-    border: 3px solid rgba(0, 0, 0, 0.5);
+    border: 3px solid rgba(255, 255, 255, 0.5);
 }
 
 .resetColor {
+    color: white;
     font-size: 24px;
     cursor: pointer;
 }
@@ -168,12 +171,14 @@
 .sort {
     cursor: pointer;
     font-size: 18px;
+    color: white;
     margin: 10px 0 0 20px;
 }
 
 .selectedSort {
     font-weight: bold;
     font-size: 20px;
+
 }
 
 .container2 {
@@ -210,6 +215,7 @@
 
 .productName {
     font-size: 26px;
+    color: white;
 }
 
 /*  */
@@ -225,7 +231,7 @@
     padding: 40px 60px 20px 60px;
     width: auto;
     height: auto;
-    background-color: white;
+    background-color: #253f39;
 }
 
 
@@ -239,6 +245,7 @@
 
 .title {
     font-size: 36px;
+    color: white;
 }
 
 .titleHr {
@@ -248,6 +255,7 @@
 .sort {
     cursor: pointer;
     font-size: 18px;
+    color: white;
     margin: 10px 0 0 20px;
 }
 
@@ -324,6 +332,7 @@
     align-items: center;
     text-align: center;
     font-size: 22px;
+    color: white;
     text-size-adjust: auto;
     height: 45px;
     font-weight: bold;
@@ -338,6 +347,7 @@
 
 .price {
     font-size: 22px;
+    color: white;
 }
 
 .listEndDiv {
@@ -347,7 +357,8 @@
     height: 50px;
     align-items: end;
     justify-content: center;
-    border-top: solid 20px white;
+    border-top: solid 20px #253f39;
+
     z-index: 2;
 
 }
@@ -355,8 +366,9 @@
 .listEndText {
 
 
-    background-color: white;
+    background-color: #253f39;
 
+    color: white;
     font-size: 20px;
     font-weight: bold;
 
@@ -380,7 +392,8 @@
     height: 50px;
     align-items: end;
     justify-content: center;
-    border-top: solid 20px white;
+    border-top: solid 20px #253f39;
+
     z-index: 2;
 
 }
@@ -388,8 +401,9 @@
 .listMoreText {
 
     cursor: pointer;
-    background-color: white;
+    background-color: #253f39;
 
+    color: white;
     font-size: 20px;
     font-weight: bold;
 
