@@ -120,6 +120,28 @@ export default function Buy() {
     const [deliveryDate, setdeliveryDate] = useState<string>("");
     const [coupon, setCoupon] = useState<any[]>([]);
 
+    // 배송지 선택
+    const [delivery, setDelivery] = useState<string>("");
+
+    // 우편번호 가져오기
+    const [zipCode, setZipcode] = useState<string>("");
+    const [addressName, setAddressName] = useState<string>("");
+    const [roadAddress, setRoadAddress] = useState<string>("");
+    const [detailAddress, setDetailAddress] = useState<string>("");
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [dpayIsOpen, setDpayIsOpen] = useState<boolean>(false);
+
+    // D-pay 등록하기
+    const [dpayBankName, setDpayBankName] = useState<string>("");
+    const [dpayCardNum1, setDpayCardNum1] = useState<string>("");
+    const [dpayCardNum2, setDpayCardNum2] = useState<string>("");
+    const [dpayCardNum3, setDpayCardNum3] = useState<string>("");
+    const [dpayCardNum4, setDpayCardNum4] = useState<string>("");
+    const [dpayCardPeriodMM, setDpayCardPeriodMM] = useState<string>("");
+    const [dpayCardPeriodYY, setDpayCardPeriodYY] = useState<string>("");
+    const [dpayCardCVC, setDpayCardCVC] = useState<string>("");
+    const [dpayCardPassword, setDpayCardPassword] = useState<string>("");
+
     const userData = useAppSelector((state) => state.signin);
 
 
@@ -135,6 +157,13 @@ export default function Buy() {
                     user_id:userData.user_id,
                 }
             })
+
+            for(let i = 0; i<res.data.data.length; i++){
+                if(res.data.data[i].default_address){
+                    setDelivery(res.data.data[i].address + " " + res.data.data[i].detail);
+                }
+            }
+
             setAddress(res.data.data);
         }
 
@@ -182,6 +211,7 @@ export default function Buy() {
         getDpay();
         getCoupon()
         
+        
         // 오늘 날짜 기준으로 5일 뒤 까지
         let arr = [];
         const today = new Date();
@@ -212,16 +242,10 @@ export default function Buy() {
         if(res.data.result){
             alert("삭제됐습니다.");
             setAddress(res.data.address);
+        }else{
+            alert(res.data.message);
         }
     }
-
-
-    // 우편번호 가져오기
-    const [zipCode, setZipcode] = useState<string>("");
-    const [addressName, setAddressName] = useState<string>("");
-    const [roadAddress, setRoadAddress] = useState<string>("");
-    const [detailAddress, setDetailAddress] = useState<string>("");
-    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const completeHandler = (data:any) =>{
         setZipcode(data.zonecode);
@@ -283,7 +307,78 @@ export default function Buy() {
             }
         } 
     }
+
+    const handleDefaultAddress = async (id:number)=>{
+        const res = await axios({
+            method:"PATCH",
+            url:"http://localhost:8000/buy/address/default",
+            data:{
+                id:id,
+                user_id:userData.user_id
+            }
+        })
+
+        setAddress(res.data.address);
+    }
+
+    // const handleInput = (e:KeyboardEvent)=>{
+    //     if(e.target.value.length === e.target.maxLength){
+    //         e.target.next('input').focus();
+    //     }
+    // }
     
+    const handleAddDpay = async ()=>{
+
+        const cardNumber = dpayCardNum1 + "-" + dpayCardNum2 + "-" + dpayCardNum3 + "-" + dpayCardNum4;
+
+        if(userData.user_id === 0){
+            alert("로그인 후 이용해 주세요.");
+        }
+        else if(dpayBankName.length < 1 ){
+            alert("은행을 선택해주세요.");
+        }
+        else if(dpayCardNum1.length < 4 || dpayCardNum2.length < 4 || dpayCardNum3.length < 4 || dpayCardNum4.length < 4  ){
+            console.log(dpayCardNum1)
+            alert("카드 번호를 모두 입력해주세요.");
+        }
+        else if(dpayCardCVC.length < 3){
+            alert("CVC 번호를 입력해주세요.");
+        }
+        else if(dpayCardPassword.length < 2){
+            alert("카드 비밀번호를 입력해주세요.")
+        }
+        else{
+            const res = await axios({
+                method:"POST",
+                url:"http://localhost:8000/buy/dpay/add",
+                data:{
+                    user_id:userData.user_id,
+                    bank_name:dpayBankName,
+                    card_number: cardNumber
+                }
+            })
+
+            console.log(res);
+            if(res.data.result){
+                setDpay(res.data.dpay);
+                setDpayIsOpen(false);
+                // 입력한 데이터 초기화
+                setDpayBankName("");
+                setDpayCardCVC("");
+                setDpayCardNum1("");
+                setDpayCardNum2("");
+                setDpayCardNum3("");
+                setDpayCardNum4("");
+                setDpayCardPassword("");
+                setDpayCardPeriodMM("");
+                setDpayCardPeriodYY("");
+            }else{
+                alert("에러가 발생했습니다.");
+            }
+        }
+
+        
+    }
 
     return (
         <>
@@ -320,12 +415,22 @@ export default function Buy() {
                                     {address.map((value, index) => {
                                         return (
                                             <div className={buy.addressItem} key={index}>
-                                                <input type="radio" name="address" value={value.id}></input>
+                                                {value.default_address?
+                                                    <input type="radio" name="address" value={value.id} defaultChecked></input>
+                                                    :
+                                                    <input type="radio" name="address" value={value.id}></input>
+                                                }
                                                 <div className={buy.infor}>
                                                     <div className={buy.nameBox}>
                                                         <div className={buy.name}>{value.address_name}</div>
                                                         <div className={buy.defaultBox}>
-                                                            <div className={buy.default}>기본</div>
+                                                            {
+                                                                value.default_address ?
+                                                                <div className={buy.default} style={{backgroundColor:"#253f59", color:"white"}}>기본</div>
+                                                                :
+                                                                <div className={buy.default} onClick={()=>handleDefaultAddress(value.id)}>기본</div>
+                                                            }
+                                                            
                                                         </div>
                                                     </div>
                                                     <div className={buy.addressInforBox}>
@@ -406,12 +511,65 @@ export default function Buy() {
                                         </div>
                                     )
                                 })}
-                                <div className={buy.dpayAddBox}>
+                                <div className={buy.dpayAddBox} onClick={()=>setDpayIsOpen(!dpayIsOpen)}>
                                     <div className={buy.dpayAddItem}>
                                         <FontAwesomeIcon icon={faCirclePlus} className={buy.dpayAddIcon} />
                                         <div className={buy.dpayAddTitle}>결제 수단 추가</div>
                                     </div>
                                 </div>
+
+                                <Modal isOpen={dpayIsOpen} ariaHideApp={false} style={customStyles} onRequestClose={() => setDpayIsOpen(false)}>
+                                    <div className={buy.dpayAddModalBox}>
+                                        <div className={buy.dpayBank}>
+                                            <div className={buy.dpayBankItem}>
+                                                <input id="nh" type="radio" name="bank" className={buy.dpayBankRadio}/>
+                                                <label htmlFor="nh" className={buy.dpayBankName} onClick={()=>setDpayBankName("NH농협")} >NH농협은행</label>
+                                            </div>
+                                            <div className={buy.dpayBankItem}>
+                                                <input id="kb" type="radio" name="bank" className={buy.dpayBankRadio}/>
+                                                <label htmlFor="kb" className={buy.dpayBankName} onClick={()=>setDpayBankName("국민")}>국민은행</label>
+                                            </div>
+                                            <div className={buy.dpayBankItem}>
+                                                <input id="wr" type="radio" name="bank" className={buy.dpayBankRadio}/>
+                                                <label htmlFor="wr" className={buy.dpayBankName} onClick={()=>setDpayBankName("우리")}>우리은행</label>
+                                            </div>
+                                            <div className={buy.dpayBankItem}>
+                                                <input id="sh" type="radio" name="bank" className={buy.dpayBankRadio}/>
+                                                <label htmlFor="sh" className={buy.dpayBankName} onClick={()=>setDpayBankName("신한")}>신한</label>
+                                            </div>
+                                            <div className={buy.dpayBankItem}>
+                                                <input id="ibk" type="radio" name="bank" className={buy.dpayBankRadio}/>
+                                                <label htmlFor="ibk" className={buy.dpayBankName} onClick={()=>setDpayBankName("IBK기업")}>IBK기업은행</label>
+                                            </div>
+                                        </div>
+                                        <div className={buy.dpayInforBox}>
+                                            <div className={buy.dpayInforTitle}> 카드 정보 입력</div>
+                                            <div className={buy.dpayInformation}>
+                                                <div className={buy.dpayCardNumber}>
+                                                    <div className={buy.dpayCardNumberTitle}>카드번호</div>
+                                                    <div className={buy.dpayCardNumberInputBox}>
+                                                        <input type="text" value={dpayCardNum1} maxLength={4} onChange={(e)=>setDpayCardNum1(e.target.value)}/>
+                                                        <input type="text" value={dpayCardNum2} maxLength={4} onChange={(e)=>setDpayCardNum2(e.target.value)}/>
+                                                        <input type="text" value={dpayCardNum3} maxLength={4} onChange={(e)=>setDpayCardNum3(e.target.value)}/>
+                                                        <input type="text" value={dpayCardNum4} maxLength={4} onChange={(e)=>setDpayCardNum4(e.target.value)}/>
+                                                    </div>
+                                                    <div className={buy.dpayPeriodBox}>
+                                                        <input type="text" value={dpayCardPeriodMM} maxLength={2} placeholder="MM" onChange={(e)=>setDpayCardPeriodMM(e.target.value)}/>
+                                                        <div>/</div>
+                                                        <input type="text" value={dpayCardPeriodYY} maxLength={2} placeholder="YY" onChange={(e)=>setDpayCardPeriodYY(e.target.value)}/>
+                                                    </div>
+                                                    <div className={buy.dpayCardCVCBox}>
+                                                        <input type="text" value={dpayCardCVC} maxLength={3} placeholder="카드 뒷면 3자리" onChange={(e)=>setDpayCardCVC(e.target.value)}/>
+                                                    </div>
+                                                    <div className={buy.dpayCardPasswordBox}>
+                                                        <input type="password" value={dpayCardPassword} maxLength={2} placeholder="비밀번호 앞 2자리" onChange={(e)=>setDpayCardPassword(e.target.value)}/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div onClick={()=>handleAddDpay()}>저장</div>
+                                    </div>
+                                </Modal>
                             </div>
                         </div>
                         <div className={buy.cashMethod}>
@@ -427,11 +585,11 @@ export default function Buy() {
                     </div>
                     <div className={buy.cashResultBox}>
                         <div className={buy.cashResult}>
-                            <div className={buy.cashResultTitle}></div>
+                            <div className={buy.cashResultTitle}>가격</div>
                             <div className={buy.cashResultContent}></div>
                         </div>
                         <div className={buy.cashDiscountResult}>
-                            <div className={buy.cashDiscountResultTitle}></div>
+                            <div className={buy.cashDiscountResultTitle}>할인된 가격</div>
                             <div className={buy.cashDiscountResultContent}></div>
                         </div>
                     </div>
