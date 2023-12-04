@@ -112,7 +112,8 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    
+    cursor: url('../../public/assets/mouse_cursor_gradient.png') 5 5, progress;
+
 }
 
 .mouseEvent {
