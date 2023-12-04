@@ -89,9 +89,17 @@
     scale: 1.2;
 }
 
+.qnaInforBox {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    padding-top: 10px;
+    gap: 10px;
+}
+
 .qnaInfor {
     padding-left: 10px;
-    padding-bottom: 80px;
+    padding-right: 10px;
 }
 
 .inquireWrapper {

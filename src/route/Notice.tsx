@@ -4,25 +4,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 
-function Day() {
-    const formatDate = (d: Date): string => {
-        const year = d.getFullYear();
-        const month = d.getMonth() + 1;
-        const day = d.getDate();
+// function Day() {
+//     const formatDate = (d: Date): string => {
+//         const year = d.getFullYear();
+//         const month = d.getMonth() + 1;
+//         const day = d.getDate();
     
-        return `${year}년 ${month}월 ${day}일`;
-    };
+//         return `${year}년 ${month}월 ${day}일`;
+//     };
 
-    const today = formatDate(new Date());
-    // const date = new Date().toISOString().substr(0, 10);
-    return (
-        <div>{today}</div>
-    )
-}
+//     const today = formatDate(new Date());
+//     // const date = new Date().toISOString().substr(0, 10);
+//     return (
+        
+//     )
+// }
 
 
 
-function Notices({ que, anw, anw1 }: { que: string, anw: string, anw1: string}) {
+function Notices({ que, anw, anw1, day }: { que: string, anw: string, anw1: string, day: string}) {
     
     const [visible, setVisible] = useState<boolean>(true);
 
@@ -42,7 +42,7 @@ function Notices({ que, anw, anw1 }: { que: string, anw: string, anw1: string}) 
                 </div>
                 <div className={styles.notionInforWrapper}>
                     <div className={styles.notionDaterWrapper}>
-                        <Day/>
+                    <div>{day}</div>
                     </div>
                     <div className={styles.notionInfor}>{anw}</div>
                     <div className={styles.notionInfor}>{anw1}</div>
@@ -60,25 +60,43 @@ export default function Notion() {
                 <section className={styles.notionSection}>
                     <div className={styles.notionWrapper}>
                         <div className={styles.notionTitle}>공지사항</div>
-                        <Notices que="배송은 언제 오나요?"
-                            anw="[배송일정]"
-                            anw1="마이페이지에서 배송관련 정보를 볼 수 있습니다.
-                            배송은 주문 일 기준으로 하루 뒤 발송시작되며 배송이 시작 된 이후로는 택배사에 문의하셔야 합니다." />
-                        <Notices que="상품을 교환/반품하고 싶어요."
-                            anw="[교환/반품 신청 기간]"
-                            anw1 ="교환/취소/반품/교환/환불은 배송 완료 후 7일 이내에 가능합니다.
-                            고객님이 받으신 상품의 내용이 표시 광고 및 계약 내용과 다른 경우 상품을 수령하신 날로부터 3개월 이내,
-                            그 사실을 안 날(알 수 있었던 날)부터30일 이내에 신청이 가능합니다." />
-                        <Notices que="교환/반품을 철회하고 싶어요." 
-                            anw="[교환/반품 철회]"
-                            anw1="반품 요청 후 반송 물품을 발송 하기전 상태인 '반품 요청중' 상태라면
-                            구매 내역 페이지나 반품 정보 페이지에서 반품 철회가 가능합니다." />
-                        <Notices que="회원탈퇴는 어떻게 하나요?"
-                            anw="회원탈퇴는 로그인한 상태에서 회원님께서 직접 진행해야 합니다."
-                            anw1="회원탈퇴는 마이페이지에서 가능하며 탈퇴한 뒤에는 아이디 및 데이터를 복구할 수 없으니 신중히 진행하세요." />
-                        <Notices que="배송 받은 상품이 파손/누락 되었어요."
-                            anw="[상품 파손/누락]"
-                            anw1="상품이 파손 및 누락되었다면 교환을 통해 상품을 다시 받거나 반품하고 환불을 받으실 수 있습니다."/>
+                        <Notices que="[기획전] 신학기 맞이 기획전"
+                            anw="[신학기 맞이 기획전을 진행합니다]"
+                            anw1="Demure에서 신학기 맞이 기획전을 진행합니다.
+                            신학기를 맞이하여 새로운 마음으로 시작하는 학생들을 위해 Demure에서 가구들을 추천하여 기획전을 진행합니다.
+                            학생들의 공부능률을 올려주고, 휴식시 편안함과 아늑함을 느낄 수 있는 가구들을 추천드립니다.
+                            자세한 것은 이벤트페이지에서 확인가능합니다."
+                            day="2023-12-08" />
+                        <Notices que="[EVENT] Demure 크리스마스 이벤트"
+                            anw="[Demure 크리스마스 할인 쿠폰 이벤트]"
+                            anw1="Demure에서 크리스마스를 맞이하여 크리스마스 기념 할인 쿠폰 이벤트를 진행합니다.
+                            기간은 12월31일까지이며 자세한 것은 이벤트페이지에서 확인가능합니다."
+                            day="2023-12-07" />
+                        <Notices que="선물포장 관련"
+                            anw="[선물포장은 불가합니다]"
+                            anw1="크리스마스와 연말이라 제품을 선물포장 요청하시는 분들이 많습니다.
+                            아쉽게도 저희 Demure에서는 선물포장은 따로 해드리지 않음을 알려드립니다.
+                            오늘도 저희 Demure를 이용해주셔서 감사합니다."
+                            day="2023-12-05" />
+                        <Notices que="[기획전] 크리스마스 기획전" 
+                            anw="[크리스마스 기획전을 진행합니다]"
+                            anw1="Demure에서 크리스마스 기획전을 진행합니다.
+                            크리스마스를 맞이하여 관련된 상품을 판매합니다.
+                            크리스마스 분위기를 내고 싶으신 고객님들께 추천드리는 제품들을 모아두었습니다.
+                            자세한 것은 이벤트페이지에서 확인가능합니다."
+                            day="2023-12-01" />
+                        <Notices que="[EVENT] 첫 구매 할인 이벤트"
+                            anw="[Demure 첫 구매 할인 이벤트]"
+                            anw1 ="Demure에서 첫 구매를 할 시 할인쿠폰을 드리는 이벤트를 진행합니다.
+                            쿠폰 사용기한은 발급 후 7일 입니다.
+                            자세한 것은 이벤트페이지에서 확인가능합니다."
+                            day="2023-11-27햣" />    
+                        <Notices que="카카오연동 로그인"
+                            anw="[카카오연동 로그인]"
+                            anw1="Demure에서 카카오계정으로 로그인이 가능해졌습니다.
+                            고객님들의 이용에 조금 더 쾌적함을 드릴 수 있는 Demure가 되도록 노력하겠습니다.
+                            오늘도 Demure를 이용해 주셔서 감사합니다."
+                            day="2023-11-22"/>
                     </div>
                 </section>
             </div>
