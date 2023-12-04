@@ -4,23 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 
-// function Day() {
-//     const formatDate = (d: Date): string => {
-//         const year = d.getFullYear();
-//         const month = d.getMonth() + 1;
-//         const day = d.getDate();
-    
-//         return `${year}년 ${month}월 ${day}일`;
-//     };
-
-//     const today = formatDate(new Date());
-//     // const date = new Date().toISOString().substr(0, 10);
-//     return (
-        
-//     )
-// }
-
-
 
 function Notices({ que, anw, anw1, day }: { que: string, anw: string, anw1: string, day: string}) {
     
@@ -90,7 +73,7 @@ export default function Notion() {
                             anw1 ="Demure에서 첫 구매를 할 시 할인쿠폰을 드리는 이벤트를 진행합니다.
                             쿠폰 사용기한은 발급 후 7일 입니다.
                             자세한 것은 이벤트페이지에서 확인가능합니다."
-                            day="2023-11-27햣" />    
+                            day="2023-11-27" />    
                         <Notices que="카카오연동 로그인"
                             anw="[카카오연동 로그인]"
                             anw1="Demure에서 카카오계정으로 로그인이 가능해졌습니다.
