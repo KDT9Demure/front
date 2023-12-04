@@ -167,9 +167,14 @@ export default function Cart() {
                     <div className={styles.priceWrapper}>
                         <div>총 주문금액 : {sumPrice} 원</div>
                     </div>
-                    <input type="checkbox" id="allcheck" className={styles.cartAllCheck}/>
-                    <label htmlFor="allcheck" className={styles.cartAllCheckLabel}>전체선택</label>
-                    <button className={styles.cartDeleteBtn} onClick={Delete}>선택상품 삭제</button>
+                    <div className={styles.cartAllCheck}>
+                        <input type="checkbox" id="allcheck" className={styles.cartAllCheckBtn}/>
+                        <label htmlFor="allcheck" className={styles.cartAllCheckLabel} onClick={() => {
+                            const ids = datas.map((data) => data.id);
+                            setCheckedIds(ids);
+                        }}>전체선택</label>
+                        <div className={styles.cartDeleteBtn} onClick={Delete}>선택상품 삭제</div>
+                    </div> 
                 </div>
 
                 <Link className={styles.orderBtn} to={`/buy?cart=${checkedIds}`}>주문하기</Link>
