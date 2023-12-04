@@ -1,7 +1,14 @@
 * {
     box-sizing: border-box;
   }
-  
+ 
+@font-face {
+    font-family: 'MapoDacapo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoDacapoA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @font-face {
     font-family: 'yleeMortalHeartImmortalMemory';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/yleeMortalHeartImmortalMemory.woff2') format('woff2');
@@ -51,16 +58,18 @@
     width: 730px;
 }
 
-.logo{
+.logo {
     position: absolute;
     top: 20px;
     cursor: pointer;
     font-size: 50px;
-    color: black;
+    color: #fff;
+    text-shadow: 0 0 10px rgb(255 255 255 / 80%);
     font-family: 'Monsieur La Doulaise';
-    user-select:none;
+    user-select: none;
     z-index: 5;
 }
+
 
 .openMenu {
     animation: fadeInWithScale 0.5s ease-out;
@@ -193,11 +202,13 @@
     align-items: flex-start;
     color: #ffff;
     width: 100%;
+    font-family: 'MapoFlowerIsland';
 }
 
 .itemBox{
     font-size: 22px;
     margin-bottom: 10px;
+    font-family: 'MapoFlowerIsland';
 }
   
 .headerMenu div:nth-child(1) {
@@ -207,9 +218,9 @@
 .linkCategoryBox, .linkCSBox{
     position: absolute;
     left: 260px;
-    background-color: #232323;;
+    /* background-color: #232323; */
     border-radius: 15px;
-    padding: 10px;
+    /* padding: 10px; */
     box-sizing: content-box;
     display: flex;
     margin-right: 50px;

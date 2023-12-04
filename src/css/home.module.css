@@ -112,7 +112,7 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    cursor: url('../../public/assets/one.png'), url(two.svg) 5 5, progress;
+    
 }
 
 .mouseEvent {
@@ -173,6 +173,6 @@ body {
     100% {
         opacity: 0;
         width: 100px;
-        height: 50px;
+        height: 150px;
     }
 }
