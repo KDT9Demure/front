@@ -24,7 +24,7 @@ const Home: React.FC = () => {
           setSlideImg((prevImges) => [...prevImges,nextSlide]);
 
           setSlideCount((prevSlideCount) => (prevSlideCount + 1) % slideImg.length);
-      }, 2000);
+      }, 5000);
 
       return () => clearInterval(interval);
    }, [slideCount, slideImg]);
