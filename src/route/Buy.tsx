@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useAppSelector } from "../hook";
+import { useAppDispatch, useAppSelector } from "../hook";
 import { useEffect, useState } from "react"
 import buy from "../css/buy.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,6 +9,7 @@ import {
 import DaumPostcode from "react-daum-postcode";
 import Modal from "react-modal"; // 추가
 import { Link } from "react-router-dom";
+import { setDiscountPrice } from "../reducer/buy";
 
 function CartItem(props:any){
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -16,6 +17,9 @@ function CartItem(props:any){
     const [couponDiscount, setCouponDiscount] = useState<number>(0);
     const [couponUse, setCouponUse] = useState<boolean>(false);
     const [couponId, setCouponId] = useState<number>(0);
+
+    const buyData = useAppSelector((state) => state.buy);
+    const dispatch = useAppDispatch();
 
     // Modal 스타일
     const customStyles = {
@@ -44,6 +48,7 @@ function CartItem(props:any){
             setCouponDiscount(discount);
             setCouponUse(true);
             setCouponId(id);
+            dispatch(setDiscountPrice(buyData.discountPrice + (props.value.goods_id.price * props.value.goods_count) * discount / 100))
         }
         
         console.log(res);
@@ -120,6 +125,9 @@ export default function Buy() {
     const [deliveryDate, setdeliveryDate] = useState<string>("");
     const [coupon, setCoupon] = useState<any[]>([]);
 
+    const [allPrice, setAllPrice] = useState<number>(0);
+    const [discountPrice, setDiscountPrice] = useState<number>(0);
+
     // 배송지 선택
     const [delivery, setDelivery] = useState<string>("");
 
@@ -143,7 +151,7 @@ export default function Buy() {
     const [dpayCardPassword, setDpayCardPassword] = useState<string>("");
 
     const userData = useAppSelector((state) => state.signin);
-
+    const buyData = useAppSelector((state) => state.buy);
 
     useEffect(() => {
         const params = new URLSearchParams(location.search);
@@ -177,6 +185,13 @@ export default function Buy() {
                 }
             })
             setGoods(res.data.data);
+            console.log(res.data.data);
+
+            let tempPrice:number = 0;
+            for(let i = 0; i<res.data.data.length; i++){
+                tempPrice += res.data.data[i].goods_id.price * res.data.data[i].goods_count;
+            }
+            setAllPrice(tempPrice);
         }
 
         const getDpay = async ()=>{
@@ -376,9 +391,11 @@ export default function Buy() {
                 alert("에러가 발생했습니다.");
             }
         }
-
-        
     }
+
+    useEffect(()=>{
+        setDiscountPrice(allPrice - buyData.discountPrice);
+    }, [buyData.discountPrice])
 
     return (
         <>
@@ -586,11 +603,11 @@ export default function Buy() {
                     <div className={buy.cashResultBox}>
                         <div className={buy.cashResult}>
                             <div className={buy.cashResultTitle}>가격</div>
-                            <div className={buy.cashResultContent}></div>
+                            <div className={buy.cashResultContent}>{allPrice}</div>
                         </div>
                         <div className={buy.cashDiscountResult}>
                             <div className={buy.cashDiscountResultTitle}>할인된 가격</div>
-                            <div className={buy.cashDiscountResultContent}></div>
+                            <div className={buy.cashDiscountResultContent}>{discountPrice}</div>
                         </div>
                     </div>
                     <div className={buy.goBox}>

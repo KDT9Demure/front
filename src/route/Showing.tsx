@@ -20,6 +20,11 @@ export default function Showing() {
         showingData();
     }, [])
 
+    // 상품 페이지로 이동
+    const moveProduct = (id: number) => {
+        window.location.href = `http://localhost:3000/product/${id}`
+    }
+
     return (
         <>
             <div className={styles.bodys}>
@@ -42,7 +47,8 @@ export default function Showing() {
 
                         return (
                             <>
-                                <div key={value.goods_id.id}>
+                                <div key={value.goods_id.id}
+                                    onClick={() => moveProduct(value.goods_id.id)}>
                                     <img
                                         src={productImgHover ? value.goods_id.arrange_image || value.goods_id.image : value.goods_id.image}
                                         className={`${styles.productImg} ${productImgHover ? styles.productImgHover : ''}`}

@@ -61,12 +61,13 @@
     outline: none;
     border-radius: 7px;
     cursor: pointer;
+    transition: 0.25s;
 }
 
 .signinBtn {
     color: white;
     background-color: #253f39;
-    margin-top: 20px
+    margin-top: 20px;
 }
 
 .kakaoBtn {
@@ -74,7 +75,9 @@
     background-color: #f9e000;
 }
 
-
+.signinBtn:hover, .kakaoBtn:hover {
+    transform: scale(1.03);
+}
 
 .Link {
     display: flex;
@@ -89,5 +92,9 @@
 
 .signup, .findPassword {
     text-decoration: none;
-    color:black
+    color:black;
+}
+
+.signup:hover, .findPassword:hover {
+    scale: 1.03;
 }
