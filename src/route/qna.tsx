@@ -112,13 +112,28 @@ function Inquire({ comment , userData }: { comment: any, userData:any[] | any })
         }
     }
 
+    const secret = () => {
+        if(!comment.secret) {
+            setVisible(false);
+        } else if(comment.secret) {
+            if(comment.user_id === userData.user_id) {
+                setVisible(false);
+            } else {
+                alert("권한이 없습니다.");
+            }
+        }
+        
+    }
+
     return (
         visible ?
-            (<div className={styles.inquireBox} onClick={() => setVisible(false)}>
+            (<div className={styles.inquireBox} onClick={secret}>
                 {(comment.answer_status) && <div className={styles.inquireResponse}>답변완료</div>}
                 {(comment.answer_status) || <div className={styles.inquireResponse}>답변대기</div>}
                 {(comment.secret) || <div className={styles.inquireTitle}>{comment.title}</div>}
-                {(comment.secret) && <div className={styles.inquireTitle}>비밀글</div>}
+                {(comment.secret) && <div className={styles.inquireTitle}>비밀글
+                    {(comment.user_id === userData.user_id) && <div className={styles.inquireTitleNickname}>작성자: {userData.userid}</div>}
+                </div>}
             </div>) :
 
             (<div className={styles.inquireMainBox}>
