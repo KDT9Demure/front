@@ -22,6 +22,7 @@
 .title{
     font-size: 20px;
     font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .infoBox{
@@ -59,6 +60,15 @@
 
 .addressItem{
     display: flex;
+    width: 100%;
+    border: 1px solid #e5e5e5;
+    padding: 20px 10px;
+}
+
+.addressItem > input {
+    padding-left: 5px;
+    margin-right: 20px;
+    width: 20px;
 }
 
 .infor{
@@ -70,12 +80,15 @@
 }
 
 .name{
-
+    display: flex;
+    align-items: center;
+    font-size: 18px;
 }
 
 .defaultBox{
     margin-left: 10px;
     cursor: pointer;
+    display: flex;
 }
 
 .default{
@@ -85,7 +98,8 @@
 }
 
 .addressInforBox{
-
+    display: flex;
+    margin-top: 10px;
 }
 
 .address{
@@ -93,11 +107,11 @@
 }
 
 .addressDetail{
-
+    margin-left: 5px;
 }
 
 .addressZipCode{
-
+    margin-left: 5px;
 }
 
 .mdBox{
@@ -109,7 +123,12 @@
 }
 
 .delete{
-
+    padding: 5px 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    margin-left: 5px;
+    background-color: white;
+    color: red;
 }
 
 .addressMemoBox{
@@ -119,6 +138,7 @@
 .memoTitle{
     font-size: 20px;
     font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .memoSelect{
@@ -132,6 +152,7 @@
 .cartTitle{
     font-size: 20px;
     font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .cartListBox{
@@ -139,32 +160,40 @@
 }
 
 .listHead{
-    display: flex;
     width: 100%;
+    height: 50px;
+    border: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+    font-size: 17px;
 }
 
 .listInforHead{
     width: 50%;
     display: flex;
     justify-content: center;
+    border-right: 1px solid #e5e5e5;
 }
 
 .listCountHead{
     width: 10%;
     display: flex;
     justify-content: center;
+    border-right: 1px solid #e5e5e5;
 }
 
 .listPriceHead{
     width: 10%;
     display: flex;
     justify-content: center;
+    border-right: 1px solid #e5e5e5;
 }
 
 .listCouponPriceHead{
     width: 10%;
     display: flex;
     justify-content: center;
+    border-right: 1px solid #e5e5e5;
 }
 
 .listCouponHead{
@@ -176,49 +205,66 @@
 .listBody{
     display: flex;
     width: 100%;
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    border-top: none;
 }
 
 .listInfor{
     display: flex;
     width: 50%;
+    text-decoration: none;
 }
 
 .listImgBox{
     width: 150px;
+    
 }
 
 .listImgBox img{
     width: 100%;
+    border-radius: 5px;
 }
 
 .listData{
-
+    margin-left: 20px;
+    font-size: 18px;
+    color: black;
+    display: flex;
+    align-items: center;
 }
 
 .listCount{
     width: 10%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .listPrice{
     width: 10%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .listCouponPrice{
     width: 10%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .listCouponBox{
     width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .couponItemBox{
-
+    border: 1px solid #e5e5e5;
+    padding: 20px;
 }
 
 .couponName{
@@ -230,7 +276,12 @@
 }
 
 .couponUse{
-
+    border: 1px solid #e5e5e5;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    background-color: #253f39;
+    color: white;
 }
 
 .couponName{
@@ -252,6 +303,7 @@
 .devliveryDateTitle{
     font-size: 20px;
     font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .deliveryDateChoice{

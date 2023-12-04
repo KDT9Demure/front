@@ -64,6 +64,7 @@ function CartItem(props:any){
         })
 
         if(res.data.result){
+            dispatch(setDiscountPrice(buyData.discountPrice - (props.value.goods_id.price * props.value.goods_count) * couponDiscount / 100));
             setCouponDiscount(0);
             setCouponUse(false);
             setCouponId(0);
@@ -87,6 +88,7 @@ function CartItem(props:any){
             <div className={buy.listCouponBox}>
                 
                 <Modal isOpen={isOpen} ariaHideApp={false} style={customStyles} onRequestClose={() => setIsOpen(false)}>
+                    <div className={buy.couponList}>쿠폰함</div>
                     <div className={buy.couponItemBox}>
                         {props.coupon.map((value:any, index:number)=>{
                             return (
@@ -192,6 +194,7 @@ export default function Buy() {
                 tempPrice += res.data.data[i].goods_id.price * res.data.data[i].goods_count;
             }
             setAllPrice(tempPrice);
+            setDiscountPrice(tempPrice);
         }
 
         const getDpay = async ()=>{
@@ -277,7 +280,7 @@ export default function Buy() {
             margin: "auto",
             width: "500px",
             height: "600px",
-            padding: "0",
+            padding: "25px",
             overflow: "hidden",
         },
     };
@@ -447,7 +450,7 @@ export default function Buy() {
                                                                 :
                                                                 <div className={buy.default} onClick={()=>handleDefaultAddress(value.id)}>기본</div>
                                                             }
-                                                            
+                                                            <div className={buy.delete} onClick={()=>{handleDeleteAddress(value.id)}}>삭제</div>
                                                         </div>
                                                     </div>
                                                     <div className={buy.addressInforBox}>
@@ -458,7 +461,7 @@ export default function Buy() {
                                                 </div>
                                                 <div className={buy.mdBox}>
                                                     {/* <div className={buy.modify}>수정</div> */}
-                                                    <div className={buy.delete} onClick={()=>{handleDeleteAddress(value.id)}}>삭제</div>
+                                                    
                                                 </div>
                                             </div>
                                         )
