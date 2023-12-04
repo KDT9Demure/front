@@ -11,6 +11,7 @@
     display: flex;
     justify-content: center;
     position: relative;
+    width: auto;
 
 }
 
@@ -148,6 +149,7 @@
 }
 
 .gradient {
+    padding: 15px;
     position: absolute;
     bottom: 0;
     width: 1250px;
