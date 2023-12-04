@@ -134,7 +134,11 @@ export default function Showing() {
                             </div>
                         </div>
 
-                        <div className={styles.gradient} >기획전 설명 멘트</div>
+                        <div className={styles.gradient} >
+                            <div style={{ fontSize: 24, fontWeight: "bold" }}>나만의 가장 완벽한 크리스마스</div>
+                            <div style={{ marginTop: 10, marginLeft: 10 }}> 우리 집에서 열리는 화려한 북유럽의 크리스마스 마켓!
+                                스칸디나비아 전통문화와 수공예에서 영감을 얻은 새로운 겨울 컬렉션으로 나만의 크리스마스를 준비해 보세요.</div>
+                        </div>
                     </div>
 
                 </div>
