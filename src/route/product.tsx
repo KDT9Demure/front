@@ -155,7 +155,7 @@ export default function Product() {
                                 </select>
                             </div> */}
                         </div>
-                        <div className={styles.amount}>금액 : {data.price} 원</div>
+                        <div className={styles.amount}>금액 : {data.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원</div>
                         <div className={styles.bottom}>
                             <button className={styles.buyBtn} onClick={Buy}>구매</button>
                             <button className={styles.pickBtn} onClick={Cart}>장바구니</button>
