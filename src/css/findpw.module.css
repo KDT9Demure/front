@@ -37,7 +37,7 @@
     flex-direction: column;
     align-items: center;
     width: 330px;
-    height: 400px;
+    height: 385.2px;
     padding: 16px;
     gap: 10px;
 }
@@ -143,4 +143,22 @@
     font-size: 13px;
     color: red;
     font-weight: bold;
+}
+
+.findId {
+    width: 250px;
+    height: 50px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #a0b9b3;
+
+}
+
+.findName {
+    width: 250px;
+    height: 50px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #a0b9b3;
+
 }

@@ -5,7 +5,7 @@ import { useAppSelector } from "../hook";
 
 function Snow() {
 
-    return(
+    return (
         <>
             <div className={styles.snowflake}></div>
             <div className={styles.snowflake}></div>
@@ -64,7 +64,7 @@ function Snow() {
 export default function ChristmasCoupon() {
     const userData = useAppSelector((state) => state.signin);
 
-    
+
 
     function CouponLoad() {
 
@@ -73,8 +73,8 @@ export default function ChristmasCoupon() {
                 method: "post",
                 url: 'http://localhost:8000/event/coupon',
                 data: {
-                    user_id:userData.user_id,
-                    coupon_id:7
+                    user_id: userData.user_id,
+                    coupon_id: 7
                 }
             })
             console.log(res)
@@ -90,11 +90,11 @@ export default function ChristmasCoupon() {
 
     return (
         <div className={styles.couponContainer}>
-            <Snow/>
+            <Snow />
             <section className={styles.couponSection}>
                 <div className={styles.couponWrapper}>
                     <div className={styles.couponImgBox}>
-                        <img src={mainImg} className={styles.couponImg}/>
+                        <img src={mainImg} className={styles.couponImg} />
                     </div>
                     <div className={styles.couponTitleBox}>
                         <div className={styles.couponTitle}>크리스마스 이벤트 할인 쿠폰</div>
@@ -103,9 +103,9 @@ export default function ChristmasCoupon() {
                         <div className={styles.couponMain1}>15%</div>
                         <div className={styles.couponMain2}>2023 크리스마스 할인 쿠폰~23.12.31</div>
                     </div>
-                    <div className={styles.couponMoveBox}>
+                    <a style={{ color: "white", textDecoration: "none" }} href="/event/showing"><div className={styles.couponMoveBox}>
                         <div className={styles.couponMove}>크리스마스 기획전 →</div>
-                    </div>
+                    </div></a>
                 </div>
             </section>
         </div>
