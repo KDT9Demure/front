@@ -129,7 +129,8 @@ export default function Cart() {
     console.log('checkedIds', checkedIds)
 
     //금액 총액
-    const sumPrice = datas.reduce((acc, data) => acc + data.goods_id.price*data.goods_count, 0);
+    const resultPrice = datas.filter(data => checkedIds.includes(data.id)).reduce((acc, data) => acc + data.goods_id.price*data.goods_count, 0);
+    const price = resultPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
     return (
         <div className={styles.container}>
@@ -155,7 +156,7 @@ export default function Cart() {
                                     <div className={styles.cartTitle}>{data.goods_id.type_name}</div>
                                     <div className={styles.cartInfo}>
                                         <div>({today}) 도착예정</div>
-                                        <div>{data.goods_id.price} 원</div>
+                                        <div>{data.goods_id.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원</div>
                                     </div>
                                     <div className={styles.cartInfo}>
                                         <div>배송비 무료</div>
@@ -165,7 +166,7 @@ export default function Cart() {
                             </div>)
                     })}
                     <div className={styles.priceWrapper}>
-                        <div>총 주문금액 : {sumPrice} 원</div>
+                        <div>총 주문금액 : {price} 원</div>
                     </div>
                     <div className={styles.cartAllCheck}>
                         {!checkedIds.length && <><input type="checkbox" id="allcheck" className={styles.cartAllCheckBtn}/>
@@ -173,7 +174,7 @@ export default function Cart() {
                             const ids = datas.map((data) => data.id);
                             setCheckedIds(ids);
                         }}>전체선택</label></>}
-                        {checkedIds.length !== 0 && <><input type="checkbox" id="allcheck" className={styles.cartAllCheckBtn}/>
+                        {!!checkedIds.length && <><input type="checkbox" id="allcheck" className={styles.cartAllCheckBtn}/>
                         <label htmlFor="allcheck" className={styles.cartAllCheckLabel} onClick={() => {
                             setCheckedIds([]);
                         }}>전체해제</label></>}
