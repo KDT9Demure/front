@@ -56,7 +56,7 @@
     align-items: center;
     background-color: white;
     width: 565px;
-    height: 200px;
+    height: fit-content;
     margin-bottom: 10px;
     border: 1px solid #253f39;
     border-radius: 7px;
@@ -88,8 +88,9 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    height: 300px;
+    height: auto;
     gap: 10px;
+    margin-bottom: 10px;
 }
 
 .notionDaterWrapper {
@@ -103,7 +104,9 @@
 
 .notionInfor {
     padding-left: 10px;
+    padding-right: 10px;
     width: 100%;
     height: auto;
     word-break:break-all;
+    line-height: 2;
 }
