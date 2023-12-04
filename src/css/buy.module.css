@@ -75,6 +75,7 @@
 
 .defaultBox{
     margin-left: 10px;
+    cursor: pointer;
 }
 
 .default{
@@ -382,6 +383,38 @@
 
 .dpayAddTitle{
     color: #e5e5e5;
+}
+
+.dpayAddModalBox{
+
+}
+
+.dpayBank{
+
+}
+
+.dpayInforBox{
+
+}
+
+.dpayBankRadio{
+    display: none;
+}
+
+.dpayBankName{
+
+}
+
+.dpayPeriodBox{
+
+}
+
+.dpayCardCVCBox{
+
+}
+
+.dpayCardPasswordBox{
+    
 }
 
 .cashMethod{
