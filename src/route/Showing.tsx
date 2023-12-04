@@ -73,7 +73,7 @@ export default function Showing() {
                     <div className={styles.imgBox}>
                         <img src={showingImg} className={styles.mainImg} />
                         {/* 리스 */}
-                        <div className={styles.circleDiv} onClick={() => productID(8)} style={{ left: 190, top: 120 }}>
+                        <div className={styles.circleDiv} onClick={() => productID(8)} style={{ left: 180, top: 100 }}>
                             <span className={styles.circle}></span>
                         </div>
                         <div className={styles.additionalDiv} style={{ left: 280, top: 75 }}>
@@ -90,7 +90,7 @@ export default function Showing() {
 
 
                         {/* 별 */}
-                        <div className={styles.circleDiv} onClick={() => productID(4)} style={{ right: 95, top: 60 }}>
+                        <div className={styles.circleDiv} onClick={() => productID(4)} style={{ right: 88, top: 55 }}>
                             <span className={styles.circle}></span>
                         </div>
                         <div className={styles.additionalDiv} style={{ right: 170, top: 20 }}>
@@ -105,7 +105,7 @@ export default function Showing() {
                         </div>
 
                         {/* LED */}
-                        <div className={styles.circleDiv} onClick={() => productID(3)} style={{ right: 680, top: 260 }}>
+                        <div className={styles.circleDiv} onClick={() => productID(3)} style={{ right: 650, top: 260 }}>
                             <span className={styles.circle}></span>
                         </div>
                         <div className={styles.additionalDiv} style={{ right: 500, top: 220 }}>
@@ -120,7 +120,7 @@ export default function Showing() {
                         </div>
 
                         {/* 양초 */}
-                        <div className={styles.circleDiv} onClick={() => productID(2)} style={{ right: 900, top: 230 }}>
+                        <div className={styles.circleDiv} onClick={() => productID(2)} style={{ right: 870, top: 210 }}>
                             <span className={styles.circle}></span>
                         </div>
                         <div className={styles.additionalDiv} style={{ right: 720, top: 190 }}>
@@ -145,53 +145,55 @@ export default function Showing() {
 
 
 
+                <div className={styles.flexBox}>
+                    <div className={styles.contentBox}>
 
-                <div className={styles.contentBox}>
+                        {product.map((value, index) => {
 
-                    {product.map((value, index) => {
+                            // 가격에 , 추가
+                            const commaPrice = value.goods_id.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-                        // 가격에 , 추가
-                        const commaPrice = value.goods_id.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            // 이미지 호버 시 이미지 체인지
+                            const productImgHover = value.imgHover || false;
 
-                        // 이미지 호버 시 이미지 체인지
-                        const productImgHover = value.imgHover || false;
+                            return (
+                                <>
+                                    <div key={value.goods_id.id}
+                                        onClick={() => moveProduct(value.goods_id.id)}
 
-                        return (
-                            <>
-                                <div key={value.goods_id.id}
-                                    onClick={() => moveProduct(value.goods_id.id)}>
-                                    <img
-                                        src={productImgHover ? value.goods_id.arrange_image || value.goods_id.image : value.goods_id.image}
-                                        className={`${styles.productImg} ${productImgHover ? styles.productImgHover : ''}`}
-                                        // 이미지 호버 시 이미지 체인지
-                                        onMouseOver={() => {
-                                            setProduct((prevProduct) =>
-                                                prevProduct.map((prevProduct, idx) =>
-                                                    idx === index ? { ...prevProduct, imgHover: true } : prevProduct
-                                                )
-                                            );
-                                        }}
+                                    >
+                                        <img
+                                            src={productImgHover ? value.goods_id.arrange_image || value.goods_id.image : value.goods_id.image}
+                                            className={`${styles.productImg} ${productImgHover ? styles.productImgHover : ''}`}
+                                            // 이미지 호버 시 이미지 체인지
+                                            onMouseOver={() => {
+                                                setProduct((prevProduct) =>
+                                                    prevProduct.map((prevProduct, idx) =>
+                                                        idx === index ? { ...prevProduct, imgHover: true } : prevProduct
+                                                    )
+                                                );
+                                            }}
 
-                                        onMouseOut={() => {
-                                            setProduct((prevProduct) =>
-                                                prevProduct.map((prevProduct, idx) =>
-                                                    idx === index ? { ...prevProduct, imgHover: false } : prevProduct
-                                                )
-                                            );
-                                        }}
-                                    />
-                                    <div className={styles.typeName}>{value.goods_id.type_name}</div>
-                                    <div className={styles.name}>{value.goods_id.name}</div>
-                                    {value.goods_id.discount ? <div className={styles.price}>sale {commaPrice}원</div> :
-                                        <div className={styles.price}>{commaPrice}원</div>
-                                    }
+                                            onMouseOut={() => {
+                                                setProduct((prevProduct) =>
+                                                    prevProduct.map((prevProduct, idx) =>
+                                                        idx === index ? { ...prevProduct, imgHover: false } : prevProduct
+                                                    )
+                                                );
+                                            }}
+                                        />
+                                        <div className={styles.typeName}>{value.goods_id.type_name}</div>
+                                        <div className={styles.name}>{value.goods_id.name}</div>
+                                        {value.goods_id.discount ? <div className={styles.price}>sale {commaPrice}원</div> :
+                                            <div className={styles.price}>{commaPrice}원</div>
+                                        }
 
-                                </div>
-                            </>
-                        )
-                    })}
+                                    </div>
+                                </>
+                            )
+                        })}
+                    </div>
                 </div>
-
             </div>
         </>
     )
