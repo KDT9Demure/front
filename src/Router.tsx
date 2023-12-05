@@ -24,6 +24,7 @@ import Showing2 from './route/Showing2';
 
 
 
+
 const router = createBrowserRouter([
     {
         path: "/",
