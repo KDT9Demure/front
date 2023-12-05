@@ -284,26 +284,59 @@
     color: white;
 }
 
-.couponName{
+.couponList{
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.couponItemBox{
 
 }
 
-.couponDelete{
-
+.couponItem{
+    display: flex;
+    font-size: 17px;
 }
 
-.couponUse{
+.couponDiscountGet{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.couponNameGet{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.couponSetButton{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 20px;
+    cursor: pointer;
+    color: white;
+    background-color: #253f39;
 }
 
 .deliveryDateBox{
     margin-top: 20px;
+    
 }  
 
 .devliveryDateTitle{
     font-size: 20px;
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .deliveryDateChoice{
@@ -319,16 +352,31 @@
     user-select:none;
 }
 
-.cashBox{
+.deliveryDateChoice input:checked + label{
+    background-color: #253f39;
+    color: white;
+}
 
+.cashBox{
+    margin-top: 30px;
 }
 
 .dpayBox{
 
 }
 
-.dpayTitle{
+.cashMethodTitle{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
 
+.dpayTitle{
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .dpayListBox{
@@ -336,10 +384,12 @@
     gap: 20px;
     user-select: none;
     overflow: hidden;
+    overflow-x: scroll;
+    padding-bottom: 10px;
 }
 
 .dpayItem{
-    width: 320px;
+    min-width: 320px;
     height: 200px;
     background: linear-gradient(45deg, #253f39 0%, rgb(33 33 33) 100%);
     border-radius: 15px;
@@ -349,6 +399,7 @@
     box-sizing: border-box;
     position: relative;
     cursor: pointer;
+    display: block;
 }
 
 .bankName{
@@ -412,7 +463,7 @@
 }
 
 .dpayAddItem{
-    width: 260px;
+    width: 320px;
     height: 200px;
     border-radius: 15px;
     border: 1px solid #e5e5e5;
