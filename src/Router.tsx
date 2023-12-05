@@ -1,15 +1,17 @@
 // import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import App from "./App";
-import Home from './route/home.tsx';
-import Signin from './route/signin.tsx';
-import Signup from './route/signup.tsx';
-import Product from './route/product.tsx';
-import List from './route/list.tsx';
-import Cart from './route/cart.tsx';
-import QnA from './route/qna.tsx';
-import Search from './route/search.tsx';
-import Order from './route/order.tsx';
+
+import Home from './route/home';
+import Signin from './route/signin';
+import Signup from './route/signup';
+import Product from './route/product';
+import List from './route/list';
+import Cart from './route/cart';
+import QnA from './route/qna';
+import Search from './route/search';
+import Order from './route/order';
+
 import Notice from './route/Notice';
 import Kakao from './route/Kakao';
 import Buy from './route/Buy';
@@ -20,6 +22,8 @@ import FirstPurchase from './event/FirstPurchase';
 import FindPw from './route/FindPw';
 import ChristmasCoupon from './event/ChristmasCoupon';
 import Showing from './route/Showing';
+import Showing2 from './route/Showing2';
+
 
 
 
@@ -99,6 +103,10 @@ const router = createBrowserRouter([
                     {
                         path: "showing",
                         element: <Showing />
+                    },
+                    {
+                        path: "showing2",
+                        element: <Showing2 />
                     }
                 ]
             },
@@ -106,7 +114,7 @@ const router = createBrowserRouter([
                 path: "find/password",
                 element: <FindPw />
             },
-            
+
         ]
     },
 ]);

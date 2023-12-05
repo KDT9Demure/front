@@ -13,7 +13,7 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 config.autoAddCss = false
 
 
-export default function Signup() { 
+export default function Signup() {
 
 
     const [userid, setUserid] = useState<string | null>(null);
@@ -205,7 +205,7 @@ export default function Signup() {
 
     // 타이머
 
-    const [time, setTime] = useState<number>(20); // 시간(초)
+    const [time, setTime] = useState<number>(180); // 시간(초)
     const [isActive, setIsActive] = useState<boolean | null>(null);
     const [timerZero, setTimerZero] = useState<boolean | null>(null);
 
@@ -250,7 +250,7 @@ export default function Signup() {
             console.log(res.data)
             alert("인증번호가 발송되었습니다")
             setIsActive(true)
-            setTime(20)
+            setTime(180)
             if (res.data.result) {
                 setAuthor(res.data.verifyNumber)
 

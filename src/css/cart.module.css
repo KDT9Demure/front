@@ -6,7 +6,7 @@
 
 .container {
     width: 100vw;
-    height: auto;
+    height: 100vh;
     background-color: #253f39;
     display: flex;
     flex-direction: column;
@@ -98,6 +98,10 @@
     border-radius: 7px;
     margin-top: 15px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
 }
 
 .cartDeleteBtn:hover {
@@ -114,6 +118,11 @@
 }
 
 .cartAllCheck {
+    display: flex;
+    gap: 20px;
+}
+
+.cartAllCheckBtn {
     display: none;
 }
 
@@ -129,6 +138,10 @@
     border-radius: 7px;
     margin-top: 15px;
     cursor: pointer;
+}
+
+.cartAllCheckLabel:hover {
+    scale:1.02;
 }
 
 .orderBtn {
