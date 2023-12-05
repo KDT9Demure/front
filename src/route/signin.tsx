@@ -4,6 +4,7 @@ import styles from "../css/signin.module.css";
 import axios from "axios";
 import { Cookies } from "react-cookie";
 import kakao from "assets/kakao_login_large_narrow.png";
+import Loading from "../item/Loading";
 
 // import {} as dotenv from 'dotenv';
 // dotenv.config();
@@ -12,6 +13,7 @@ export default function Signin() {
 
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const signinData = async () => {
         const res = await axios({
@@ -23,10 +25,10 @@ export default function Signin() {
                 password: pw,
             }
         });
+        setIsLoading(false);
         console.log(res.data)
 
         if (res.data.result) {
-            alert("로그인이 되었습니다.");
             document.location.href = "/";
 
             //쿠키에 value로 token 넣기
@@ -48,6 +50,7 @@ export default function Signin() {
 
 
     return (
+        isLoading ?
         <div className={styles.bodys}>
             <div className={styles.container}>
                 <div className={styles.wrapper}>
@@ -66,8 +69,28 @@ export default function Signin() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div> :
 
+        (<><Loading/>
+        <div className={styles.bodys}>
+            <div className={styles.container}>
+                <div className={styles.wrapper}>
+                    <div className={styles.main}>
+                        <input className={styles.id} name="id" type="id" placeholder="ID" onChange={e => { setId(e.target.value); }} />
+                        <input className={styles.password} name="password" type="password" placeholder="Password" onChange={e => { setPw(e.target.value) }} onKeyDown={(e) => {
+                            if(e.key === "Enter") {signinData()} //enter키로 로그인
+                        }}/>
+                        <button className={styles.signinBtn} type="button" onClick={signinData}>로그인</button>
+                        <button className={styles.kakaoBtn} onClick={kakaoSignIn}>카카오로 로그인</button>
+                    </div>
+                    <div className={styles.Link}>
+                        <Link className={styles.signup} to="/signup">회원가입</Link>
+                        |
+                        <Link className={styles.findPassword} to="/find/password"> 비밀번호 찾기</Link>
+                    </div>
+                </div>
+            </div>
+        </div></>)
 
     )
 }

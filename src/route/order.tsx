@@ -14,7 +14,7 @@ export default function Order() {
     const { id } = useParams<{ id: string }>();
     console.log('현재 주문 ID:', id);
     useEffect(() => {
-        const orderData = async () => { 
+        const orderData = async () => {
             try {
 
                 const res = await axios({
@@ -53,7 +53,7 @@ export default function Order() {
             })
             console.log(res.data)
             alert("주문이 취소되었습니다")
-            window.location.reload()
+            window.location.href = "/profile"
         }
     }
 
@@ -122,7 +122,7 @@ export default function Order() {
                                                             <span className={styles.productCount}>수량ㅤㅤ ㅤ{order.goods_count}</span>
                                                             <span className={styles.delivery}>배송지ㅤㅤ{order.address}</span>
                                                             <div className={styles.priceAndDelivery}>
-                                                                <span className={styles.price}>결제금액ㅤ</span><span className={styles.paymentPrice}>{Number(order.price) * Number(order.goods_count)} 원</span>
+                                                                <span className={styles.price}>상품가격ㅤ</span><span className={styles.paymentPrice}>{Number(order.price) * Number(order.goods_count)} 원</span>
                                                                 <span className={styles.deliveryStatus}>배송상태ㅤ{order.delivery_status} </span>
                                                             </div>
                                                         </div>
