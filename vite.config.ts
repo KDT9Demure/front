@@ -8,7 +8,14 @@ export default defineConfig({
     host: "0.0.0.0",
     watch: {
       usePolling: true
-    }
+    },
+    proxy: {
+      '/socket.io': {
+        target: 'http://43.200.163.174/',
+        changeOrigin: true,
+        ws: true,
+      },
+    },
   },
   plugins: [react()],
   assetsInclude: ['**/*.jpg'],
