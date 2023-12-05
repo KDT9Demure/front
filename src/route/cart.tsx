@@ -91,8 +91,6 @@ export default function Cart() {
     const today = formatDate(new Date());
 
     useEffect(() => {
-        // if (!userData?.user_id) return;
-
         const datas = async () => {
             const res = await axios({
                 method: "post",
@@ -102,13 +100,10 @@ export default function Cart() {
                 }
             })
             setDatas(res.data.cart);
+            setIsLoading(false);
             console.log("setdatas", res.data.cart)
         }
         datas();
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 2000);
-        
     },[])
 
     const Delete = () => {
@@ -129,6 +124,14 @@ export default function Cart() {
             }
         }
         ProductDelete();
+    }
+
+    const buyProduct = () => {
+        if(checkedIds.length === 0) {
+            alert("상품을 선택해주세요.");
+            return;
+        }
+        document.location.href = `/buy?cart=${checkedIds}`
     }
 
     //check된 id 확인
@@ -212,8 +215,8 @@ export default function Cart() {
                         <div className={styles.cartDeleteBtn} onClick={Delete}>선택상품 삭제</div>
                     </div>
                 </div>
-
-                <Link className={styles.orderBtn} to={`/buy?cart=${checkedIds}`}>주문하기</Link>
+                
+                <div className={styles.orderBtn} onClick={buyProduct} >주문하기</div>
             </section>
         </div>)
         
