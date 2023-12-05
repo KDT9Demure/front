@@ -135,7 +135,8 @@ export default function Buy() {
             method: "DELETE",
             url: "http://localhost:8000/buy/address/delete",
             data: {
-                id
+                id,
+                user_id:userData.user_id,
             }
         })
 
@@ -323,15 +324,8 @@ export default function Buy() {
         });
     };
 
-    const handleOrderSave = async ()=>{
-
-        const params = new URLSearchParams(location.search);
-        const cart_ids = params.get("cart");
-        const arr:string[] = cart_ids?.split(',');
-
-        console.log(userData.user_id);
-
-        for(let i = 0; i<arr.length; i++){
+    const arrSave = (arrLength:number)=>{
+        for(let i = 0; i<arrLength; i++){
             const goodsData = {
                 goods_id:goods[i].goods_id.id,
                 address:delivery,
@@ -348,19 +342,31 @@ export default function Buy() {
             }
             setSendData((prev) => [...prev, goodsData])
         }
+    }
 
-        const res = await axios({
-            method:"POST",
-            url:"http://localhost:8000/buy",
-            data:{
-                orderArray:sendData,
-            }
-        })
+    const handleOrderSave = async ()=>{
+        const params = new URLSearchParams(location.search);
+        const cart_ids = params.get("cart");
+        const arr:string[] | undefined = cart_ids?.split(',');
 
-        if(res.data.result){
-            alert("결제되었습니다.");
+        if(arr === undefined){
+            alert("상품이 존재하지 않습니다.")
         }else{
-            alert(res.data.message);
+            arrSave(arr.length);
+
+            const res = await axios({
+                method:"POST",
+                url:"http://localhost:8000/buy",
+                data:{
+                    orderArray:sendData,
+                }
+            })
+    
+            if(res.data.result){
+                alert("결제되었습니다.");
+            }else{
+                alert(res.data.message);
+            }
         }
     }
 

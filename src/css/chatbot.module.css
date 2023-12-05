@@ -9,28 +9,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 80px;
+    height: 80px;
     position: fixed;
-    width: 90px;
-    height: 90px;
-    cursor: pointer;
     bottom: 50px;
     right: 50px;
     background-color: white;
     border-radius: 50%;
-    box-shadow: 2px 2px 3px rgb(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 1px 1px rgb(0, 0, 0, 0.025);
     z-index: 101;
+    cursor: pointer;
 }
 
 .chatbotIconContainer svg {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     transition: all 0.7s;
-    color:black
+    color:#253f39
 }
 
 .chatbotIcon:hover {
-    transform: scale(1.1);
-    color: rgb(98 17 17 / 80%);
+    /* transform: scale(1.1); */
+    /* color: rgb(98 17 17 / 80%); */
 }
 
 /* main icon 눌렀을 때 */
@@ -46,7 +46,7 @@
     height: 550px;
     background-color: white;
     border-radius: 6px;
-    box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.02);
     z-index: 101;
 }
 
@@ -88,6 +88,7 @@
     border-radius: 30px;
     width:20px;
     text-align: center;
+    transition: all 0.3s;
 }
 
 .chatbotCloseBtn:hover{
@@ -101,10 +102,19 @@
     overflow-x: hidden;
 }
 
+.chatbotBody::-webkit-scrollbar {
+    width: 10px;  /* 스크롤바의 너비 */
+}
+
+.chatbotBody::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: #e5e5e5; /* 스크롤바의 색상 */
+    border-radius: 5px;
+}
+
 .chatbotChattingBox {
     display: flex;
     width: 400px;
-    border-top: 1px solid black;
 }
 
 .chatbotChatting {
@@ -113,8 +123,10 @@
     resize: none;
     border-bottom-left-radius: 6px;
     outline: none;
-    border:none;
-    background-color: aliceblue;
+    border: none;
+    background-color: rgb(235 219 219);
+    font-size: 16px;
+    padding: 0px 15px;
 }
 
 .chatbotChattingBtn {
@@ -124,12 +136,12 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    background-color: aliceblue;
+    background-color: rgb(235 219 219);
     border-bottom-right-radius: 6px;
 }
 
 .chatbotChattingBtn svg:hover {
-    scale: 1.1;
+    /* scale: 1.1; */
 } 
 
 /* 처음 인사 talk */
@@ -160,7 +172,7 @@
     padding: 5px;
     position: relative;
     left:10px;
-    box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.02);
 }
 
 .talkFirst {
@@ -193,15 +205,15 @@
 }
 
 .question{
-    background-color: rgb(214 246 213);
+    background-color: rgb(235 219 219);
     border-radius: 6px;
-    width: fit-content;
     max-width: 300px;
     padding: 5px;
     position: relative;
     margin-bottom: 7px;
     right: 10px;
-    box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.02);
+    word-break: break-all;
 }
 
 .answerBox {
@@ -220,7 +232,7 @@
     position: relative;
     margin-bottom: 7px;
     left: 10px;
-    box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.02);
 }
 
 .answerLink {
@@ -231,7 +243,7 @@
     position: relative;
     margin-bottom: 7px;
     left: 10px;
-    box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.02);
 }
 
 .answerLink > a {

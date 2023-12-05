@@ -178,8 +178,8 @@ export default function Chatbot() {
     return (
         openChatbot ?
             <MainChatbot openChatbot={openChatbot} setOpenChatbot={setOpenChatbot} /> :
-            <div className={styles.chatbotIconContainer}>
-                <FontAwesomeIcon icon={faMessage} className={styles.chatbotIcon} onClick={() => { setOpenChatbot(true) }} />
+            <div className={styles.chatbotIconContainer} onClick={() => { setOpenChatbot(true) }}>
+                <FontAwesomeIcon icon={faMessage} className={styles.chatbotIcon} />
             </div>
     )
 }
