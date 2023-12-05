@@ -16,6 +16,8 @@ export default function Buy() {
 
     // const addressStatus = useRef<HTMLInputElement>(null);
 
+    const [sendData, setSendData] = useState<any[]>([]);
+
     const [newAddress, setNewAddress] = useState<boolean>(false);
     const [address, setAddress] = useState<any[]>([]);
     const [goods, setGoods] = useState<any[]>([]);
@@ -26,6 +28,7 @@ export default function Buy() {
 
     const [allPrice, setAllPrice] = useState<number>(0);
     const [discountPrice, setDiscountPrice] = useState<number>(0);
+    const [cashMethod, setCashMethod] = useState<string>("");
 
     // 배송지 선택
     const [delivery, setDelivery] = useState<string>("");
@@ -154,6 +157,7 @@ export default function Buy() {
     const customStyles = {
         overlay: {
             backgroundColor: "rgba(0,0,0,0.5)",
+            zIndex: 3,
         },
         content: {
             margin: "auto",
@@ -178,8 +182,20 @@ export default function Buy() {
 
 
     const handleAddressSave = async () => {
-        if (detailAddress === "") {
-            alert("상세주소를 입력해주세요!");
+        if(userData.user_id===0){
+            alert("로그인 후 이용해주세요.")
+        }
+        else if(addressName===""){
+            alert("사용할 배송지 이름을 입력해주세요.")
+        }
+        else if(zipCode===""){
+            alert("우편번호를 입력해주세요.")
+        }
+        else if(roadAddress===""){
+            alert("도로명 주소를 입력해주세요.")
+        }
+        else if (detailAddress === "") {
+            alert("상세주소를 입력해주세요.");
         }
         else {
             const res = await axios({
@@ -195,7 +211,7 @@ export default function Buy() {
             })
 
             if (res.data.result) {
-                alert("저장됐습니다!");
+                alert("저장되었습니다.");
                 setAddress(res.data.addressList);
                 setNewAddress(false);
             }
@@ -307,6 +323,47 @@ export default function Buy() {
         });
     };
 
+    const handleOrderSave = async ()=>{
+
+        const params = new URLSearchParams(location.search);
+        const cart_ids = params.get("cart");
+        const arr:string[] = cart_ids?.split(',');
+
+        console.log(userData.user_id);
+
+        for(let i = 0; i<arr.length; i++){
+            const goodsData = {
+                goods_id:goods[i].goods_id.id,
+                address:delivery,
+                payment_type:cashMethod,
+                goods_count:goods[i].goods_count,
+                user_id:userData.user_id,
+                delivery_memo:"메모",
+                delivery_date:deliveryDate,
+                delivery_status:"배송전",
+                create_date:new Date(),
+                amount:discountPrice,
+                price:goods[i].goods_id.price,
+                use_point:0,
+            }
+            setSendData((prev) => [...prev, goodsData])
+        }
+
+        const res = await axios({
+            method:"POST",
+            url:"http://localhost:8000/buy",
+            data:{
+                orderArray:sendData,
+            }
+        })
+
+        if(res.data.result){
+            alert("결제되었습니다.");
+        }else{
+            alert(res.data.message);
+        }
+    }
+
     return (
         <>
             <section className={buy.buyBox}>
@@ -321,17 +378,17 @@ export default function Buy() {
                                 <label className={buy.newAddress} htmlFor="new" onClick={() => setNewAddress(true)}>신규 입력</label>
                             </div>
                             {newAddress ?
-                                <div>
-                                    <div>
-                                        <input value={addressName} placeholder="이름" onChange={handleAddressName} />
-                                        <input value={zipCode} readOnly placeholder="우편번호" />
-                                        <div onClick={toggle}>우편번호 검색</div>
+                                <div className={buy.newAddressBox}>
+                                    <div className={buy.getPostBox}>
+                                        <input value={addressName} placeholder="이름" onChange={handleAddressName} className={buy.addressName}/>
+                                        <div className={buy.zipCodeBox}>
+                                            <input value={zipCode} readOnly placeholder="우편번호" className={buy.zipCode} />
+                                            <div onClick={toggle} className={buy.zipCodeButton}>우편번호 검색</div>
+                                        </div>
+                                        <input value={roadAddress} readOnly placeholder="도로명 주소" className={buy.loadName} />
+                                        <input type="text" onChange={handleAddressDetail} value={detailAddress} placeholder="상세주소" className={buy.detailAddress} />
                                     </div>
-                                    <div>
-                                        <input value={roadAddress} readOnly placeholder="도로명 주소" />
-                                        <input type="text" onChange={handleAddressDetail} value={detailAddress} placeholder="상세주소" />
-                                    </div>
-                                    <div onClick={() => { handleAddressSave() }}>저장</div>
+                                    <div onClick={() => { handleAddressSave()}} className={buy.addressSaveButton}>저장</div>
 
                                     <Modal isOpen={isOpen} ariaHideApp={false} style={customStyles} onRequestClose={() => setIsOpen(false)}>
                                         <DaumPostcode onComplete={completeHandler} style={{ height: "100%" }} />
@@ -426,7 +483,7 @@ export default function Buy() {
                                     return (
                                         <div key={index}>
                                             <input name="cashmethod" id={"dpay"+index} hidden type="radio"></input>
-                                            <label className={buy.dpayItem} htmlFor={"dpay"+index}>
+                                            <label className={buy.dpayItem} htmlFor={"dpay"+index} onClick={()=>setCashMethod("DPAY")}>
                                                 <div className={buy.bankName}>{value.bank_name}은행</div>
                                                 <div className={buy.icChip}>
                                                     <div className={buy.icLineOne}></div>
@@ -480,28 +537,32 @@ export default function Buy() {
                                             <div className={buy.dpayInforTitle}> 카드 정보 입력</div>
                                             <div className={buy.dpayInformation}>
                                                 <div className={buy.dpayCardNumber}>
-                                                    <div className={buy.dpayCardNumberTitle}>카드번호</div>
+                                                    
                                                     <div className={buy.dpayCardNumberInputBox}>
+                                                        <div className={buy.dpayInputTitle}>카드번호</div>
                                                         <input type="text" value={dpayCardNum1} maxLength={4} onChange={(e) => setDpayCardNum1(e.target.value)} />
                                                         <input type="text" value={dpayCardNum2} maxLength={4} onChange={(e) => setDpayCardNum2(e.target.value)} />
                                                         <input type="text" value={dpayCardNum3} maxLength={4} onChange={(e) => setDpayCardNum3(e.target.value)} />
                                                         <input type="text" value={dpayCardNum4} maxLength={4} onChange={(e) => setDpayCardNum4(e.target.value)} />
                                                     </div>
                                                     <div className={buy.dpayPeriodBox}>
+                                                        <div className={buy.dpayInputTitle}>유효기간</div>
                                                         <input type="text" value={dpayCardPeriodMM} maxLength={2} placeholder="MM" onChange={(e) => setDpayCardPeriodMM(e.target.value)} />
-                                                        <div>/</div>
+                                                        <div className={buy.dpayPeriodMiddle}>/</div>
                                                         <input type="text" value={dpayCardPeriodYY} maxLength={2} placeholder="YY" onChange={(e) => setDpayCardPeriodYY(e.target.value)} />
                                                     </div>
                                                     <div className={buy.dpayCardCVCBox}>
+                                                        <div className={buy.dpayInputTitle}>CVC</div>
                                                         <input type="text" value={dpayCardCVC} maxLength={3} placeholder="카드 뒷면 3자리" onChange={(e) => setDpayCardCVC(e.target.value)} />
                                                     </div>
                                                     <div className={buy.dpayCardPasswordBox}>
+                                                        <div className={buy.dpayInputTitle}>비밀번호</div>
                                                         <input type="password" value={dpayCardPassword} maxLength={2} placeholder="비밀번호 앞 2자리" onChange={(e) => setDpayCardPassword(e.target.value)} />
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div onClick={() => handleAddDpay()}>저장</div>
+                                        <div onClick={() => handleAddDpay()} className={buy.dpaySaveButton}>저장</div>
                                     </div>
                                 </Modal>
                             </div>
@@ -510,27 +571,27 @@ export default function Buy() {
                             <div className={buy.methodBox}>
                                 <div className={buy.methodItem}>
                                     <input type="radio" name="cashmethod" id="card" hidden></input>
-                                    <label htmlFor="card">카드</label>
+                                    <label htmlFor="card" onClick={()=>setCashMethod("카드")}>카드</label>
                                 </div>
                                 <div className={buy.methodItem}>
                                     <input type="radio" name="cashmethod" id="bankbook" hidden></input>
-                                    <label htmlFor="bankbook">무통장입금</label>
+                                    <label htmlFor="bankbook" onClick={()=>setCashMethod("무통장입금")}>무통장입금</label>
                                 </div>
                                 <div className={buy.methodItem}>
                                     <input type="radio" name="cashmethod" id="transfer" hidden></input>
-                                    <label htmlFor="transfer">계좌이체</label>
+                                    <label htmlFor="transfer" onClick={()=>setCashMethod("계좌이체")}>계좌이체</label>
                                 </div>
                                 <div className={buy.methodItem}>
                                     <input type="radio" name="cashmethod" id="phone" hidden></input>
-                                    <label htmlFor="phone">휴대폰</label>
+                                    <label htmlFor="phone" onClick={()=>setCashMethod("휴대폰")}>휴대폰</label>
                                 </div>
                                 <div className={buy.methodItem}>
                                     <input type="radio" name="cashmethod" id="kakao" hidden></input>
-                                    <label htmlFor="kakao">카카오페이</label>
+                                    <label htmlFor="kakao" onClick={()=>setCashMethod("카카오페이")}>카카오페이</label>
                                 </div>
                                 <div className={buy.methodItem}>
                                     <input type="radio" name="cashmethod" id="naver" hidden></input>
-                                    <label htmlFor="naver">네이버페이</label>
+                                    <label htmlFor="naver" onClick={()=>setCashMethod("네이버페이")}>네이버페이</label>
                                 </div>
                             </div>
                         </div>
@@ -546,7 +607,7 @@ export default function Buy() {
                         </div>
                     </div>
                     <div className={buy.goBox}>
-                        <div className={buy.go}>결제하기</div>
+                        <div className={buy.go} onClick={handleOrderSave}>결제하기</div>
                     </div>
                 </div>
             </section>
