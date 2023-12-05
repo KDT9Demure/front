@@ -20,7 +20,8 @@ import FirstPurchase from './event/FirstPurchase';
 import FindPw from './route/FindPw';
 import ChristmasCoupon from './event/ChristmasCoupon';
 import Showing from './route/Showing';
-import Loading from './item/Loading';
+import Showing2 from './route/Showing2';
+
 
 
 
@@ -86,10 +87,6 @@ const router = createBrowserRouter([
                 element: <ProfileEdit />
             },
             {
-                path:"loading",
-                element: <Loading/>
-            },
-            {
                 path: "event",
                 element: <Event />,
                 children: [
@@ -104,6 +101,10 @@ const router = createBrowserRouter([
                     {
                         path: "showing",
                         element: <Showing />
+                    },
+                    {
+                        path: "showing2",
+                        element: <Showing2 />
                     }
                 ]
             },
@@ -111,7 +112,7 @@ const router = createBrowserRouter([
                 path: "find/password",
                 element: <FindPw />
             },
-            
+
         ]
     },
 ]);
