@@ -9,12 +9,14 @@ import styles from "../css/list.module.css";
 
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import Loading from "../item/Loading";
 
 
-config.autoAddCss = false 
+config.autoAddCss = false
 
 
 export default function List() {
+    const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const [categories, setCategories] = useState<any[]>([]);
 
@@ -53,7 +55,7 @@ export default function List() {
                 console.log('useEffect running')
                 setCategories([])
                 setCategories(res.data);
-
+                setIsLoading(true)
 
             } catch (error) {
                 console.log(error);
@@ -256,97 +258,123 @@ export default function List() {
             title = 'Category';
     }
 
-    return (
-        <>
-            <div className={styles.top}></div>
-            <div ref={divRef} className={styles.bodys}>
-                <div className={styles.container1}>
-                    <div className={styles.categoryInfo}>
+    if (isLoading) {
+        return (
+            <>
+                <div className={styles.top}></div>
+                <div ref={divRef} className={styles.bodys}>
+                    <div className={styles.container1}>
+                        <div className={styles.categoryInfo}>
 
-                        <h1 className={styles.title}>{title}</h1>
+                            <h1 className={styles.title}>{title}</h1>
 
-                        <div className={styles.sort}>
-                            <span className={selectedSort === 'best' ? styles.selectedSort : ''} onClick={best}>인기상품순   </span>
-                            <span>|</span>
-                            <span className={selectedSort === 'low' ? styles.selectedSort : ''} onClick={low}>   낮은 가격순   </span>
-                            <span>|</span>
-                            <span className={selectedSort === 'high' ? styles.selectedSort : ''} onClick={high}>   높은 가격순</span>
+                            <div className={styles.sort}>
+                                <span className={selectedSort === 'best' ? styles.selectedSort : ''} onClick={best}>인기상품순   </span>
+                                <span>|</span>
+                                <span className={selectedSort === 'low' ? styles.selectedSort : ''} onClick={low}>   낮은 가격순   </span>
+                                <span>|</span>
+                                <span className={selectedSort === 'high' ? styles.selectedSort : ''} onClick={high}>   높은 가격순</span>
+                            </div>
+
                         </div>
+                        <div className={styles.container2}>
+                            {categories.map((product, index) => {
 
+                                // 가격에 , 추가
+                                const commaPrice = product.goods_id.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+                                const productImgHover = product.imgHover || false;
+
+                                return (
+
+                                    <div key={index}
+                                        className={styles.productContainer}
+                                        onClick={() => moveProduct(product.goods_id.id)}
+                                    >
+
+                                        <div className={`${styles.productImg} ${productImgHover ? styles.productImgHover : ''}`}>
+                                            <img loading="lazy"
+                                                id="img"
+
+                                                onMouseOver={() => {
+                                                    setCategories((prevCategories) =>
+                                                        prevCategories.map((prevProduct, idx) =>
+                                                            idx === index ? { ...prevProduct, imgHover: true } : prevProduct
+                                                        )
+                                                    );
+                                                }}
+
+                                                onMouseOut={() => {
+                                                    setCategories((prevCategories) =>
+                                                        prevCategories.map((prevProduct, idx) =>
+                                                            idx === index ? { ...prevProduct, imgHover: false } : prevProduct
+                                                        )
+                                                    );
+                                                }}
+
+                                                src={productImgHover ? product.goods_id.arrange_image || product.goods_id.image : product.goods_id.image}
+                                                style={{ width: 280, height: 280, borderRadius: 8 }}
+                                                alt={`${product.goods_id.name}`} />
+                                        </div>
+
+                                        <div className={styles.productTextHeader}>
+                                            <span className={styles.category}>{product.goods_id.type_name}</span>
+                                        </div>
+
+                                        <div className={styles.productTextTop}>
+                                            <span className={styles.productName}>{product.goods_id.name}</span>
+
+                                        </div>
+
+                                        <div className={styles.productTextBot}>
+                                            <span className={styles.sale}>{product.goods_id.discount ? `sale` : " "}</span>
+                                            <span className={styles.price}>{commaPrice}원</span>
+                                        </div>
+                                        <hr className={styles.listHr} />
+
+                                    </div>
+
+                                )
+                            })}
+
+                        </div>
                     </div>
-                    <div className={styles.container2}>
-                        {categories.map((product, index) => {
+                    {isListEnd &&
+                        <div className={styles.listEndDiv}>
+                            <div className={styles.listEndText}>ㅤEndㅤ</div>
+                        </div>
+                    }
+                    {!isListEnd &&
+                        <div className={styles.listMoreDiv}>
+                            <div onClick={moreList} className={styles.listMoreText}>ㅤMore ▼ㅤ</div>
+                        </div>
+                    }
+                </div >
+            </>
+        )
+    } else {
+        return (
+            <>
+                <div className={styles.top}></div>
+                <div ref={divRef} className={styles.bodys}>
+                    <div className={styles.container1}>
+                        <div className={styles.categoryInfo}>
 
-                            // 가격에 , 추가
-                            const commaPrice = product.goods_id.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            <h1 className={styles.title}>{title}</h1>
 
-                            const productImgHover = product.imgHover || false;
-
-                            return (
-
-                                <div key={index}
-                                    className={styles.productContainer}
-                                    onClick={() => moveProduct(product.goods_id.id)}
-                                >
-
-                                    <div className={`${styles.productImg} ${productImgHover ? styles.productImgHover : ''}`}>
-                                        <img loading="lazy"
-                                            id="img"
-
-                                            onMouseOver={() => {
-                                                setCategories((prevCategories) =>
-                                                    prevCategories.map((prevProduct, idx) =>
-                                                        idx === index ? { ...prevProduct, imgHover: true } : prevProduct
-                                                    )
-                                                );
-                                            }}
-
-                                            onMouseOut={() => {
-                                                setCategories((prevCategories) =>
-                                                    prevCategories.map((prevProduct, idx) =>
-                                                        idx === index ? { ...prevProduct, imgHover: false } : prevProduct
-                                                    )
-                                                );
-                                            }}
-
-                                            src={productImgHover ? product.goods_id.arrange_image || product.goods_id.image : product.goods_id.image}
-                                            style={{ width: 280, height: 280, borderRadius: 8 }}
-                                            alt={`${product.goods_id.name}`} />
-                                    </div>
-
-                                    <div className={styles.productTextHeader}>
-                                        <span className={styles.category}>{product.goods_id.type_name}</span>
-                                    </div>
-
-                                    <div className={styles.productTextTop}>
-                                        <span className={styles.productName}>{product.goods_id.name}</span>
-
-                                    </div>
-
-                                    <div className={styles.productTextBot}>
-                                        <span className={styles.sale}>{product.goods_id.discount ? `sale` : " "}</span>
-                                        <span className={styles.price}>{commaPrice}원</span>
-                                    </div>
-                                    <hr className={styles.listHr} />
-
-                                </div>
-
-                            )
-                        })}
-
+                            <div className={styles.sort}>
+                                <span className={selectedSort === 'best' ? styles.selectedSort : ''} onClick={best}>인기상품순   </span>
+                                <span>|</span>
+                                <span className={selectedSort === 'low' ? styles.selectedSort : ''} onClick={low}>   낮은 가격순   </span>
+                                <span>|</span>
+                                <span className={selectedSort === 'high' ? styles.selectedSort : ''} onClick={high}>   높은 가격순</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                {isListEnd &&
-                    <div className={styles.listEndDiv}>
-                        <div className={styles.listEndText}>ㅤEndㅤ</div>
-                    </div>
-                }
-                {!isListEnd &&
-                    <div className={styles.listMoreDiv}>
-                        <div onClick={moreList} className={styles.listMoreText}>ㅤMore ▼ㅤ</div>
-                    </div>
-                }
-            </div >
-        </>
-    )
+                <Loading />
+            </>
+        )
+    }
+
 }
