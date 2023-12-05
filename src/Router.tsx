@@ -20,6 +20,7 @@ import FirstPurchase from './event/FirstPurchase';
 import FindPw from './route/FindPw';
 import ChristmasCoupon from './event/ChristmasCoupon';
 import Showing from './route/Showing';
+import Loading from './item/Loading';
 
 
 
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
             {
                 path: "profile/user",
                 element: <ProfileEdit />
+            },
+            {
+                path:"loading",
+                element: <Loading/>
             },
             {
                 path: "event",
