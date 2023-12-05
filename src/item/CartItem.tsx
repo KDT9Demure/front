@@ -91,13 +91,12 @@ export default function CartItem(props:any){
     return(
         <div className={buy.listBody}>
             <Link to={'/product/'+props.value.goods_id.id} className={buy.listInfor}>
-
-                    <div className={buy.listImgBox}>
-                        <img src={props.value.goods_id.arrange_image}/>
-                    </div>
-                    <div className={buy.listData}>
-                        {props.value.goods_id.name}
-                    </div>
+                <div className={buy.listImgBox}>
+                    <img src={props.value.goods_id.arrange_image}/>
+                </div>
+                <div className={buy.listData}>
+                    {props.value.goods_id.name}
+                </div>
             </Link>
             <div className={buy.listCount}>{props.value.goods_count}</div>
             <div className={buy.listPrice}>{props.value.goods_id.price * props.value.goods_count}</div>
