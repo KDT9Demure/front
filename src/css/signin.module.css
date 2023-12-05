@@ -7,17 +7,15 @@
 .bodys {
     width: 100vw;
     height: 100vh;
-    background-color: #253f39;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
 }
 
 .wrapper {
@@ -26,8 +24,8 @@
     flex-direction: column;
     align-items: center;
     background-color: white;
-    border-radius: 16px;
-    height: 100%;
+    border-radius: 12px;
+    box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.05);
 }
 
 .main {
@@ -85,7 +83,7 @@
     width: 100%;
     font-size: 13px;
     gap: 5px;
-    bottom: 50px;
+    bottom: 60px;
     position: relative;
 }
 
@@ -94,6 +92,6 @@
     color:black;
 }
 
-.signup:hover, .findPassword:hover {
+/* .signup:hover, .findPassword:hover {
     scale: 1.03;
-}
+} */
