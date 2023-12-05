@@ -10,6 +10,11 @@ export default defineConfig({
       usePolling: true
     },
     proxy: {
+      '/api': {
+        target: 'http://43.200.163.174:8000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
       '/socket.io': {
         target: 'http://43.200.163.174:8000/',
         changeOrigin: true,
