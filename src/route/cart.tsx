@@ -79,7 +79,7 @@ export default function Cart() {
     const userData = useAppSelector((state) => state.signin);
     const [datas, setDatas] = useState<any[]>([]);
     const [checkedIds, setCheckedIds] = useState<number[]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(true)
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     //배송날짜 오늘 + 1일
     const formatDate = (d: Date): string => {
