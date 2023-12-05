@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import styles from "../css/findpw.module.css";
 import axios from "axios";
+import Loading from "../item/Loading";
 
 export default function FindPw() {
 
@@ -23,8 +24,10 @@ export default function FindPw() {
     const [confirmPassword, setConfirmPassword] = useState<string | null>(null);
     const [isPasswordMatch, setIsPasswordMatch] = useState<boolean | null>(null);
 
-    //이름 확인
+    // 로딩바
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
+    //이름 확인
     const nameCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newName: string = e.target.value;
         setName(newName)
@@ -68,7 +71,7 @@ export default function FindPw() {
     //인증번호 전송 온클릭
     const authorToggleBtn = async () => {
         if (name.length > 0 && id.length > 0) {
-
+            setIsLoading(false)
             const res = await axios({
                 method: "post",
                 url: "http://localhost:8000/user/password/find",
@@ -77,7 +80,8 @@ export default function FindPw() {
                     user_name: name
                 }
             })
-            console.log(res.data)
+            setIsLoading(true)
+
             if (res.data.result) {
                 setAuthor(res.data.verifyNumber)
                 setIdNumber(res.data.id)
@@ -107,7 +111,7 @@ export default function FindPw() {
         if (authorInput === author) {
             setIsAuthorTrue(true)
             setIsActive(false)
-            alert("인증이 완료되었습니다. 비밀번호를 변경해주세요.")
+            alert("인증에 성공했습니다.")
             setToggleComp(true)
         } else {
             setIsAuthorTrue(false)
@@ -116,6 +120,7 @@ export default function FindPw() {
 
     // 인증번호 재전송
     const reAuthorBtn = async () => {
+        setIsLoading(false)
         const res = await axios({
             method: "post",
             url: "http://localhost:8000/user/password/find",
@@ -124,13 +129,14 @@ export default function FindPw() {
                 user_name: name
             }
         })
-        console.log(res.data)
+        
         if (res.data.result) {
             setAuthor(res.data.verifyNumber)
             setIdNumber(res.data.id)
             alert(`${res.data.email} 으로 인증번호가 재전송되었습니다`)
             setIsActive(true)
             setTime(180)
+            setIsLoading(true)
         }
 
     }
@@ -173,8 +179,8 @@ export default function FindPw() {
     };
 
     const editConfirm = async () => {
-
         if (isPwTrue === true && isPasswordMatch === true) {
+            setIsLoading(false)
             const res = await axios({
                 method: "patch",
                 url: "http://localhost:8000/user/password/find/update",
@@ -183,30 +189,32 @@ export default function FindPw() {
                     password: password
                 }
             })
-            console.log(res.data)
-            alert("비밀번호가 변경되었습니다.")
-            window.location.href = "/signin"
-            return;
+            
+            if(res.data.result){
+                alert("비밀번호가 변경되었습니다.")
+                setIsLoading(true);
+                window.location.href = "/signin"
+            }else{
+                alert(res.data.message);
+            }
         } else {
-            alert("입력한 정보를 확인해주세요")
+            alert("비밀번호를 확인해주세요.")
         }
     }
 
     if (toggleComp === false) {
         return (
             <div className={styles.bodys}>
+                {isLoading?<></>:<Loading />}
                 <div className={styles.container}>
                     <div className={styles.wrapper}>
                         <div className={styles.main}>
-                            <div className={styles.title}>
-                                <h2 >비밀번호 찾기</h2>
-                            </div>
-                            <div style={{ fontSize: 16, fontWeight: "bold" }}>가입시 기재한 아이디와 이름을 입력해 주세요</div>
-
+                            <div className={styles.title}>비밀번호 찾기</div>
+                            {/* <div className={styles.description}>아이디와 이름을 입력해 주세요</div> */}
                             <input type="text" maxLength={20} defaultValue={''} className={styles.findId} onChange={idCheck} placeholder="ID" />
                             <input type="text" maxLength={20} defaultValue={''} className={styles.findName} onChange={nameCheck} placeholder="Name" />
                             {isEmailBtnVisible && (
-                                <button className={styles.signinBtn} onClick={authorToggleBtn} type="button">인증번호 전송</button>
+                                <button className={styles.signinBtn} onClick={authorToggleBtn} type="button">확인</button>
                             )}
 
                             {authorToggle && (
@@ -246,19 +254,16 @@ export default function FindPw() {
                     <div className={styles.container}>
                         <div className={styles.wrapper}>
                             <div className={styles.main}>
-                                <div className={styles.title}>
-                                    <h2 >비밀번호 변경</h2>
-                                </div>
-
+                                <div className={styles.title}>비밀번호 변경</div>
                                 <div className={styles.pwEditDiv}>
                                     <input
                                         className={styles.password} placeholder="Password" type="password"
                                         onChange={pwCheck} defaultValue={""} />
                                     <br />
                                     {isPwTrue === true ? (
-                                        <span style={{ color: 'green', fontSize: 13, fontWeight: "bold" }}>사용가능한 비밀번호입니다.</span>
+                                        <span style={{ color: 'green', fontSize: 13 }}>사용가능한 비밀번호입니다.</span>
                                     ) : isPwTrue === false ? (
-                                        <span style={{ color: 'red', fontSize: 13, fontWeight: "bold" }}>
+                                        <span style={{ color: 'red', fontSize: 13 }}>
                                             8자 이상 / 숫자,문자,특수문자를 포함해 주세요
                                         </span>
                                     ) : null}
@@ -270,9 +275,9 @@ export default function FindPw() {
                                         onChange={confirmPw} />
                                     <br />
                                     {isPasswordMatch === true ? (
-                                        <span style={{ color: 'green', fontSize: 13, fontWeight: "bold" }}>비밀번호 일치</span>
+                                        <span style={{ color: 'green', fontSize: 13 }}>비밀번호 일치</span>
                                     ) : isPasswordMatch === false ? (
-                                        <span style={{ color: 'red', fontSize: 13, fontWeight: "bold" }}>
+                                        <span style={{ color: 'red', fontSize: 13 }}>
                                             비밀번호가 일치하지 않습니다
                                         </span>
                                     ) : null}

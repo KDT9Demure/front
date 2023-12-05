@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react"
-
 import axios from "axios";
-
-// import { useForm, SubmitHandler } from "react-hook-form"
-
 import styles from "../css/signup.module.css";
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { IconProp, config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
