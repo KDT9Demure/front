@@ -68,26 +68,23 @@ export default function Showing() {
             <div className={styles.bodys}>
                 <div className={styles.header}>
 
-
-
                     <div className={styles.imgBox}>
                         <img src={showingImg} className={styles.mainImg} />
+
                         {/* 리스 */}
                         <div className={styles.circleDiv} onClick={() => productID(8)} style={{ left: 180, top: 100 }}>
                             <span className={styles.circle}></span>
                         </div>
                         <div className={styles.additionalDiv} style={{ left: 280, top: 75 }}>
                             <div className={styles.DivInInfo} >
-                                <div className={styles.PN}> {productName(8)} </div>
+                                <div className={styles.PN}> {productName(8)}</div>
                                 <div className={styles.PT}> {productType(8)}</div>
-                                <div className={styles.PP}> {productPrice(8)}원</div>
+                                <div className={styles.PP}> {productPrice(8)}<span style={{ fontSize: 16 }}> 원</span></div>
                             </div>
                             <div className={styles.DivInShape}>
                                 <div style={{ fontSize: 22 }}><FontAwesomeIcon icon={faChevronRight} /></div>
                             </div>
                         </div>
-
-
 
                         {/* 별 */}
                         <div className={styles.circleDiv} onClick={() => productID(4)} style={{ right: 88, top: 55 }}>
@@ -97,7 +94,7 @@ export default function Showing() {
                             <div className={styles.DivInInfo} >
                                 <div className={styles.PN}> {productName(4)} </div>
                                 <div className={styles.PT}> {productType(4)}</div>
-                                <div className={styles.PP}> {productPrice(4)}원</div>
+                                <div className={styles.PP}> {productPrice(4)}<span style={{ fontSize: 16 }}> 원</span></div>
                             </div>
                             <div className={styles.DivInShape}>
                                 <div style={{ fontSize: 22 }}><FontAwesomeIcon icon={faChevronRight} /></div>
@@ -112,7 +109,7 @@ export default function Showing() {
                             <div className={styles.DivInInfo} >
                                 <div className={styles.PN}> {productName(3)} </div>
                                 <div className={styles.PT}> {productType(3)}</div>
-                                <div className={styles.PP}> {productPrice(3)}원</div>
+                                <div className={styles.PP}> {productPrice(3)}<span style={{ fontSize: 16 }}> 원</span></div>
                             </div>
                             <div className={styles.DivInShape}>
                                 <div style={{ fontSize: 22 }}><FontAwesomeIcon icon={faChevronRight} /></div>
@@ -123,11 +120,11 @@ export default function Showing() {
                         <div className={styles.circleDiv} onClick={() => productID(2)} style={{ right: 870, top: 210 }}>
                             <span className={styles.circle}></span>
                         </div>
-                        <div className={styles.additionalDiv} style={{ right: 720, top: 190 }}>
+                        <div className={styles.additionalDiv} style={{ right: 700, top: 170 }}>
                             <div className={styles.DivInInfo} >
                                 <div className={styles.PN}> {productName(2)} </div>
                                 <div className={styles.PT}> {productType(2)}</div>
-                                <div className={styles.PP}> {productPrice(2)}원</div>
+                                <div className={styles.PP}> {productPrice(2)}<span style={{ fontSize: 16 }}> 원</span></div>
                             </div>
                             <div className={styles.DivInShape}>
                                 <div style={{ fontSize: 22 }}><FontAwesomeIcon icon={faChevronRight} /></div>
@@ -142,8 +139,6 @@ export default function Showing() {
                     </div>
 
                 </div>
-
-
 
                 <div className={styles.flexBox}>
                     <div className={styles.contentBox}>

@@ -10,21 +10,34 @@
 .header {
     margin: 0 0 20px 0;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     position: relative;
-    width: auto;
+    width: 1250px;
+    margin-left: 75px;
 
 }
 
 .imgBox {
     position: relative;
+    width: 1250px;
+    height: 600px;
 }
 
 .mainImg {
     cursor: pointer;
-    width: 1200px;
-    height: auto;
+    width: 655px;
+    height: 600px;
+    border: solid 2px white;
 
+}
+
+.mainImg2 {
+    position: relative;
+    cursor: pointer;
+    width: 595px;
+    height: 495px;
+    bottom: 105px;
+    border: solid 2px white;
 }
 
 .contentBox {
@@ -106,6 +119,7 @@
     transition: transform 0.3s ease;
 }
 
+
 .circleDiv:hover {
     opacity: 1;
 
@@ -164,13 +178,61 @@
     border-left: solid 2px rgb(207, 207, 207);
 }
 
-.gradient {
+.textBox {
     padding: 15px;
-    position: absolute;
-    bottom: 0;
-    width: 1200px;
-    height: 100px;
-    background-color: rgb(189, 57, 57);
+    position: relative;
+    bottom: 110px;
+    width: 1250px;
+    height: 106px;
+    background-color: rgb(91, 91, 91);
     border: solid 2px rgb(255, 255, 255);
-    color: white;
+    color: rgb(255, 255, 255);
+}
+
+.couponMainBox {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 90px;
+    cursor: pointer;
+    left: 870px;
+    bottom: 63px;
+    transition: transform 0.3s ease;
+}
+
+.couponMainBox:hover {
+    transform: scale(1.03);
+}
+
+.couponMain1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 70px;
+    background-color: #1E3932;
+    color: #ffffff;
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
+    border: 1px solid black;
+    font-size: 20px;
+    border: solid 2px white;
+}
+
+.couponMain2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 70px;
+    background-color: #ffffff00;
+    color: #ffffff;
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+    border: 1px solid black;
+    font-size: 20px;
+    text-align: center;
+    border: solid 2px white;
 }
