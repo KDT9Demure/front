@@ -133,7 +133,7 @@ function Inquire({ comment , userData }: { comment: any, userData:any[] | any })
                 {(comment.answer_status) || <div className={styles.inquireResponse}>답변대기</div>}
                 {(comment.secret) || <div className={styles.inquireTitle}>{comment.title}</div>}
                 {(comment.secret) && <div className={styles.inquireTitle}>비밀글
-                    {(comment.user_id === userData.user_id) && <div className={styles.inquireTitleNickname}>작성자: {userData.userid}</div>}
+                    {(comment.user_id === userData.user_id) && <div className={styles.inquireTitleNickname}>My</div>}
                 </div>}
             </div>) :
 
