@@ -118,7 +118,7 @@ function Inquire({ comment , userData }: { comment: any, userData:any[] | any })
         if(!comment.secret) {
             setVisible(false);
         } else if(comment.secret) {
-            if(comment.user_id === userData.user_id) {
+            if(comment.user_id === userData.user_id || isAdmin) {
                 setVisible(false);
             } else {
                 alert("권한이 없습니다.");
