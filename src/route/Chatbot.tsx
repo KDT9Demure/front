@@ -138,7 +138,7 @@ function MainChatbot({ openChatbot, setOpenChatbot }: { openChatbot: boolean, se
                         <div>Demure 챗봇</div>
                     </div>
                     <div className={styles.chatbotHeaderBtnBox}>
-                        <div className={styles.chatbotCloseBtn}><FontAwesomeIcon icon={faXmark} onClick={() => { setOpenChatbot(false) }}/></div>
+                        <div className={styles.chatbotCloseBtn} onClick={() => { setOpenChatbot(false) }}><FontAwesomeIcon icon={faXmark}/></div>
                     </div>
                 </div>
                 <div className={styles.chatbotBody} ref={chatRef}>
@@ -179,7 +179,7 @@ export default function Chatbot() {
         openChatbot ?
             <MainChatbot openChatbot={openChatbot} setOpenChatbot={setOpenChatbot} /> :
             <div className={styles.chatbotIconContainer} onClick={() => { setOpenChatbot(true) }}>
-                <FontAwesomeIcon icon={faMessage} className={styles.chatbotIcon} />
+                <FontAwesomeIcon icon={faComment} className={styles.chatbotIcon} />
             </div>
     )
 }
