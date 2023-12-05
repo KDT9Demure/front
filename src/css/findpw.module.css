@@ -1,33 +1,21 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 .bodys {
     width: 100vw;
     height: 100vh;
-    background-color: #253f39;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
 }
 
 .wrapper {
-    /* display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center; */
-
     background-color: white;
-    border-radius: 16px;
+    border-radius: 12px;
     height: 100%;
 }
 
@@ -36,10 +24,42 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    width: 330px;
-    height: 385.2px;
+    width: 320px;
+    height: 400px;
     padding: 16px;
-    gap: 10px;
+    gap: 8px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+
+.findId {
+    width: 250px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #a0b9b3;
+}
+
+.findName {
+    width: 250px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #a0b9b3;
+}
+
+.findId:focus, .findName:focus{
+    border-bottom: 2px solid #253f39;
+}
+
+.emailDiv{
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .main2 {
@@ -49,14 +69,13 @@
     align-items: center;
     width: 330px;
     height: 520px;
-    padding: 16px;
     gap: 10px;
 }
 
 .id,
 .password {
     width: 250px;
-    height: 50px;
+    height: 40px;
     border: none;
     outline: none;
     border-bottom: 2px solid #a0b9b3;
@@ -70,11 +89,13 @@
 
 .signinBtn {
     width: 250px;
-    height: 50px;
-    border: none;
-    outline: none;
-    border-radius: 7px;
+    height: 30px;
+    color: white;
+    border-radius: 5px;
+    background-color: #253f39;
     cursor: pointer;
+    border: none;
+    margin-top: 35px;
 }
 
 .signinBtn {
@@ -109,34 +130,34 @@
 }
 
 .emailNumberConfirmBtn {
-    position: absolute;
-    right: 40px;
-    top: 270px;
     color: white;
     background-color: #253f39;
-    width: 25%;
-    height: 40px;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    margin-top: 30px;
 }
 
 .timer {
     position: absolute;
-    right: 60px;
-    top: 320px;
+    right: 0px;
+    top: 40px;
 }
 
 .emailNumber {
     width: 250px;
-    height: 50px;
+    height: 40px;
     border: none;
     border-bottom: 2px solid #a0b9b3;
     outline: none;
-
 }
 
-.title {
-    position: relative;
-    bottom: 30px;
+.emailNumber:focus{
+    border-bottom: 2px solid #253f39;
 }
+
+
 
 .authorText {
     position: absolute;
@@ -145,20 +166,3 @@
     font-weight: bold;
 }
 
-.findId {
-    width: 250px;
-    height: 50px;
-    border: none;
-    outline: none;
-    border-bottom: 2px solid #a0b9b3;
-
-}
-
-.findName {
-    width: 250px;
-    height: 50px;
-    border: none;
-    outline: none;
-    border-bottom: 2px solid #a0b9b3;
-
-}
