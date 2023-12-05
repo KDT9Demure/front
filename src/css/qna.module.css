@@ -89,9 +89,17 @@
     scale: 1.2;
 }
 
+.qnaInforBox {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    padding-top: 10px;
+    gap: 10px;
+}
+
 .qnaInfor {
     padding-left: 10px;
-    padding-bottom: 80px;
+    padding-right: 10px;
 }
 
 .inquireWrapper {
@@ -143,6 +151,23 @@
     justify-content: center;
     align-self: center;
     width: 100%;
+    position: relative;
+}
+
+.inquireTitleNickname {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 23px;
+    height: 23px;
+    right: 275px;
+    bottom: -2px;
+    font-size: 11px;
+    background-color: white;
+    border-radius: 50%;
+    color: black;
+    
 }
 
 .inquireMainBox {

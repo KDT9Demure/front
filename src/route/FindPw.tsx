@@ -6,8 +6,8 @@ export default function FindPw() {
 
     const [toggleComp, setToggleComp] = useState<boolean>(false);
 
-    const [name, setName] = useState<string | null>();
-    const [id, setId] = useState<string | null>();
+    const [name, setName] = useState<string>("");
+    const [id, setId] = useState<string>("");
 
     const [author, setAuthor] = useState<string | null>(null);
     const [authorInput, setAuthorInput] = useState<string | null>(null);
@@ -24,6 +24,7 @@ export default function FindPw() {
     const [isPasswordMatch, setIsPasswordMatch] = useState<boolean | null>(null);
 
     //이름 확인
+
     const nameCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newName: string = e.target.value;
         setName(newName)
@@ -35,7 +36,7 @@ export default function FindPw() {
     }
 
     // 타이머
-    const [time, setTime] = useState<number>(60); // 시간(초)
+    const [time, setTime] = useState<number>(180); // 시간(초)
     const [isActive, setIsActive] = useState<boolean | null>(null);
     const [timerZero, setTimerZero] = useState<boolean | null>(null);
 
@@ -66,24 +67,30 @@ export default function FindPw() {
 
     //인증번호 전송 온클릭
     const authorToggleBtn = async () => {
-        const res = await axios({
-            method: "post",
-            url: "http://localhost:8000/user/password/find",
-            data: {
-                id: id,
-                user_name: name
+        if (name.length > 0 && id.length > 0) {
+
+            const res = await axios({
+                method: "post",
+                url: "http://localhost:8000/user/password/find",
+                data: {
+                    userid: id,
+                    user_name: name
+                }
+            })
+            console.log(res.data)
+            if (res.data.result) {
+                setAuthor(res.data.verifyNumber)
+                setIdNumber(res.data.id)
+                setIsEmailBtnVisible(false)
+                alert(`${res.data.email} 으로 인증번호가 전송되었습니다`)
+                setAuthorToggle(true)
+                setIsActive(true)
             }
-        })
-        console.log(res.data)
-        if (res.data.result) {
-            setAuthor(res.data.verifyNumber)
-            setIdNumber(res.data.id)
-            setIsEmailBtnVisible(false)
-            alert(`${res.data.email} 으로 인증번호가 전송되었습니다`)
-            setAuthorToggle(true)
-            setIsActive(true)
-        }
-        else {
+            else {
+                alert("사용자 정보를 확인해주세요")
+                return;
+            }
+        } else {
             alert("사용자 정보를 확인해주세요")
             return;
         }
@@ -113,7 +120,7 @@ export default function FindPw() {
             method: "post",
             url: "http://localhost:8000/user/password/find",
             data: {
-                id: id,
+                userid: id,
                 user_name: name
             }
         })
@@ -123,7 +130,7 @@ export default function FindPw() {
             setIdNumber(res.data.id)
             alert(`${res.data.email} 으로 인증번호가 재전송되었습니다`)
             setIsActive(true)
-            setTime(60)
+            setTime(180)
         }
 
     }
@@ -196,8 +203,8 @@ export default function FindPw() {
                             </div>
                             <div style={{ fontSize: 16, fontWeight: "bold" }}>가입시 기재한 아이디와 이름을 입력해 주세요</div>
 
-                            <input type="text" maxLength={20} className={styles.password} onChange={idCheck} placeholder="ID" />
-                            <input type="text" maxLength={20} className={styles.password} onChange={nameCheck} placeholder="Name" />
+                            <input type="text" maxLength={20} defaultValue={''} className={styles.findId} onChange={idCheck} placeholder="ID" />
+                            <input type="text" maxLength={20} defaultValue={''} className={styles.findName} onChange={nameCheck} placeholder="Name" />
                             {isEmailBtnVisible && (
                                 <button className={styles.signinBtn} onClick={authorToggleBtn} type="button">인증번호 전송</button>
                             )}

@@ -81,7 +81,7 @@ function MainChatbot({ openChatbot, setOpenChatbot }: { openChatbot: boolean, se
         } else if (inputValue.includes("포인트")) {
             answer = "포인트 사용방법은 결제페이지 포인트란에서 사용하시면 됩니다."
             if(inputValue.includes("포인트확인")) {
-                answer = "포인트 확인은 마이페이지에서 확인하시면 됩니다."
+                answer = "포인트 확인은 마이페이지에서 확인 가능합니다."
                 if(userData.user_id) {
                     tags = myPage
                 }
@@ -89,36 +89,36 @@ function MainChatbot({ openChatbot, setOpenChatbot }: { openChatbot: boolean, se
         } else if (inputValue.includes("직접수령")) {
             answer = "방문하여 직접수령하심은 불가합니다."
         } else if (inputValue.includes("탈퇴")) {
-            answer = "회원탈퇴는 마이페이지에서 하시면 됩니다."
+            answer = "회원탈퇴는 마이페이지에서 가능합니다."
             if(userData.user_id) {
                 tags = myPage
             }
             if(inputValue.includes("탈퇴취소")) {
-                answer = "탈퇴취소는 마이페이지에서 하시면 됩니다."
+                answer = "탈퇴취소는 마이페이지에서 가능합니다."
                 if(userData.user_id) {
                     tags = myPage
                 }
             }
         } else if (inputValue.includes("회원")) {
-            answer = "회원정보는 마이페이지에서 확인 가능하십니다."
+            answer = "회원정보는 마이페이지에서 확인 가능합니다."
             if(userData.user_id) {
                 tags = myPage
             }
             if(inputValue.includes("회원정보수정")) {
-                answer = "회원정보수정은 마이페이지에서 가능하십니다."
+                answer = "회원정보수정은 마이페이지에서 가능합니다."
                 if(userData.user_id) {
                     tags = myPage
                 }
             }
         } else if (inputValue.includes("비밀번호")) {
-            answer = "비밀번호수정은 마이페이지에서 가능하십니다."
+            answer = "비밀번호수정은 마이페이지에서 가능합니다."
             if(userData.user_id) {
                 tags = myPage
             }
         } else if (inputValue.includes("안녕")) {
-            answer = "큭큭큭 반갑다 인간이여... 난 챗봇 원노 혹은 원선이라고 한다."
+            answer = "큭큭큭 반갑다 인간이여... 난 챗봇 원노라고 한다."
         } else {
-            answer = "자세한건 qna페이지에서 질문해주세요."
+            answer = "자세한건 Q&A페이지에서 질문해주세요."
             if(userData.user_id) {
                 tags = qna
             }
