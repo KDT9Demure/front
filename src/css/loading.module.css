@@ -19,12 +19,12 @@
 }
 
 .loader {
-    border: 16px solid black;
-    border-top: 16px solid #2d5048;
+    border: 5px solid rgb(241, 77, 77);
+    border-top: 5px solid black;
     border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: loading 2s linear infinite;
+    width: 60px;
+    height: 60px;
+    animation: loading 2s ease-out infinite;
 }
 
 @keyframes loading {
