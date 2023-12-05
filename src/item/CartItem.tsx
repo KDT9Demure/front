@@ -22,6 +22,7 @@ export default function CartItem(props:any){
     const customStyles = {
         overlay: {
             backgroundColor: "rgba(0,0,0,0.5)",
+            zIndex:3,
         },
         content: {
             margin: "auto",

@@ -21,7 +21,7 @@
 
 body {
     overflow-x: hidden;
-    background-color: #253f39;
+    background: linear-gradient(90deg, rgb(27 45 41) 0%, rgb(73 112 103) 100%);
 }
 
 /* section1 슬라이더보드 스타일 */
