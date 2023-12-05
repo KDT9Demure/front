@@ -10,7 +10,7 @@ const Home: React.FC = () => {
         'assets/slide3.jpg',
         'assets/slide4.jpg',
         'assets/slide5.jpg',
-        'assets/slide6.jpg', 
+        'assets/slide6.jpg',
     ];
 
     const [slideImg, setSlideImg] = useState<SlideImage>(initialSlides);
@@ -18,16 +18,16 @@ const Home: React.FC = () => {
 
     // 첫번째 세션 애니메이션
     useEffect(() => {
-      const interval = setInterval(() => {
-          const nextSlideIndex = slideImg.length % initialSlides.length;
-          const nextSlide = initialSlides[nextSlideIndex];
-          setSlideImg((prevImges) => [...prevImges,nextSlide]);
+        const interval = setInterval(() => {
+            const nextSlideIndex = slideImg.length % initialSlides.length;
+            const nextSlide = initialSlides[nextSlideIndex];
+            setSlideImg((prevImges) => [...prevImges, nextSlide]);
 
-          setSlideCount((prevSlideCount) => (prevSlideCount + 1) % slideImg.length);
-      }, 5000);
+            setSlideCount((prevSlideCount) => (prevSlideCount + 1) % slideImg.length);
+        }, 5000);
 
-      return () => clearInterval(interval);
-   }, [slideCount, slideImg]);
+        return () => clearInterval(interval);
+    }, [slideCount, slideImg]);
 
     const slideStyle: CSSProperties = {
         transform: `translate(-${slideCount * 100}%, 0px)`,
@@ -49,15 +49,15 @@ const Home: React.FC = () => {
 
     // 두번째 세션 애니메이션
     useEffect(() => {
-      const intervalFur = setInterval(() => {
-        const nextImageIndex = furImg.length % initialFurniture.length;
-        const nextImage = initialFurniture[nextImageIndex];
-        setFurImg((prevSlides) => [...prevSlides, nextImage]);
-    
-        setFurCount((prevCount) => (prevCount + 1) % furImg.length);
-      }, 2000);
-    
-      return () => clearInterval(intervalFur);
+        const intervalFur = setInterval(() => {
+            const nextImageIndex = furImg.length % initialFurniture.length;
+            const nextImage = initialFurniture[nextImageIndex];
+            setFurImg((prevSlides) => [...prevSlides, nextImage]);
+
+            setFurCount((prevCount) => (prevCount + 1) % furImg.length);
+        }, 2000);
+
+        return () => clearInterval(intervalFur);
     }, [furCount, furImg]);
 
     const furStyle: CSSProperties = {
@@ -100,20 +100,20 @@ const Home: React.FC = () => {
             const newImage: EventImage = getRandomImage();
             const newPosition = { x: event.clientX, y: event.clientY };
             const newAnimatedImage: AnimatedImage = { id: Date.now(), image: newImage, position: newPosition };
-            
+
             setAnimatedImages((prevImages) => {
                 return [...prevImages, newAnimatedImage];
             });
 
-            setTimeout(() => {    
+            setTimeout(() => {
                 setTimeout(() => {
                     setAnimatedImages((prevImages) => {
                         return prevImages.filter((img) => img.id !== newAnimatedImage.id);
                     });
-                }, 3000);
+                }, 2000);
 
                 setAddingImage(false)
-            }, 150);
+            }, 200);
 
         }
     };
@@ -151,7 +151,7 @@ const Home: React.FC = () => {
                     </div>
                 </div>
             </section>
-            <section className={homeStyles.mainEvent} onMouseMove={(e:MouseEvent) => handleMouseMove(e)}>
+            <section className={homeStyles.mainEvent} onMouseMove={(e: MouseEvent) => handleMouseMove(e)}>
                 <div className={homeStyles.innerText}>
                     <h4>
                         <span className={homeStyles.bigText}>Create</span>

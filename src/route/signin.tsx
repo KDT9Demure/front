@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "../css/signin.module.css";
 import axios from "axios";
 import { Cookies } from "react-cookie";
+import kakao from "assets/kakao_login_large_narrow.png";
 import Loading from "../item/Loading";
 
 // import {} as dotenv from 'dotenv';
@@ -59,7 +60,7 @@ export default function Signin() {
                             if(e.key === "Enter") {signinData()} //enter키로 로그인
                         }}/>
                         <button className={styles.signinBtn} type="button" onClick={signinData}>로그인</button>
-                        <button className={styles.kakaoBtn} onClick={kakaoSignIn}>카카오로 로그인</button>
+                        <img src={'assets/kakao_login_large_wide.png'} alt="카카오 로그인" onClick={kakaoSignIn} className={styles.kakaoBtn}></img>
                     </div>
                     <div className={styles.Link}>
                         <Link className={styles.signup} to="/signup">회원가입</Link>
