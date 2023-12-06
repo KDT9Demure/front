@@ -12,7 +12,7 @@ export default function Kakao() {
             console.log(code)
             const token = await axios({
                 method: "POST",
-                url: "http://localhost:8000/user/kakao/code",
+                url:`${import.meta.env.VITE_ADDRESS}/user/kakao/code`,
                 data: {
                     code
                 }
@@ -21,6 +21,7 @@ export default function Kakao() {
             //쿠키에 value로 token 넣기
             const cookie = new Cookies();
             cookie.set("DEMURE", token);
+            window.location.href = '/';
         }
         kakao_code();
 

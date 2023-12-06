@@ -42,7 +42,7 @@ function PatchBox({ comment, patch, setPatch }: { comment: any, patch : boolean,
     const Patch = async () => {
         const res = await axios({
             method: "patch",
-            url: "http://localhost:8000/question/update",
+            url: `${import.meta.env.VITE_ADDRESS}/question/update`,
             data: {
                 id: comment?.id,
                 title,
@@ -85,7 +85,7 @@ function Inquire({ comment , userData }: { comment: any, userData:any[] | any })
             }
             const res = await axios({
                 method: "delete",
-                url: "http://localhost:8000/question/delete",
+                url: `${import.meta.env.VITE_ADDRESS}/question/delete`,
                 data: {
                     id: comment.id
                 }
@@ -101,7 +101,7 @@ function Inquire({ comment , userData }: { comment: any, userData:any[] | any })
 
         const res = await axios({
             method: "post",
-            url: "http://localhost:8000/question/answer",
+            url: `${import.meta.env.VITE_ADDRESS}/question/answer`,
             data: {
                 question_id: comment.id,
                 content: Answer
@@ -182,7 +182,7 @@ export default function QnA() {
         const datas = async () => {
             const res = await axios({
                 method: "get",
-                url: 'http://localhost:8000/question/load',
+                url: `${import.meta.env.VITE_ADDRESS}/question/load`,
             })
             setComments(res.data);
         }
@@ -195,7 +195,7 @@ export default function QnA() {
 
         const res = await axios({
             method: "post",
-            url: "http://localhost:8000/question/write",
+            url: `${import.meta.env.VITE_ADDRESS}/question/write`,
             data: {
                 title,
                 content,

@@ -22,7 +22,7 @@ export default function Profile() {
         const userData = async () => {
             const res = await axios({
                 method: "post",
-                url: `http://localhost:8000/profile/user`,
+                url: `${import.meta.env.VITE_ADDRESS}/profile/user`,
                 data: {
                     user_id: userInfo.user_id
                 }
@@ -40,7 +40,7 @@ export default function Profile() {
         const orderData = async () => {
             const res = await axios({
                 method: "post",
-                url: `http://localhost:8000/profile/order`,
+                url: `${import.meta.env.VITE_ADDRESS}/profile/order`,
                 data: {
                     user_id: userInfo.user_id
                 }
@@ -56,7 +56,7 @@ export default function Profile() {
         const addressData = async () => {
             const res = await axios({
                 method: "post",
-                url: `http://localhost:8000/profile/address`,
+                url: `${import.meta.env.VITE_ADDRESS}/profile/address`,
                 data: {
                     user_id: userInfo.user_id
                 }
@@ -72,7 +72,7 @@ export default function Profile() {
         const askData = async () => {
             const res = await axios({
                 method: "post",
-                url: `http://localhost:8000/profile/question`,
+                url: `${import.meta.env.VITE_ADDRESS}/profile/question`,
                 data: {
                     user_id: userInfo.user_id
                 }
@@ -88,7 +88,7 @@ export default function Profile() {
         const couponData = async () => {
             const res = await axios({
                 method: "post",
-                url: `http://localhost:8000/profile/coupon`,
+                url: `${import.meta.env.VITE_ADDRESS}/profile/coupon`,
                 data: {
                     user_id: userInfo.user_id
                 }

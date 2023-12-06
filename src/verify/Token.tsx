@@ -20,7 +20,7 @@ export default function Token(){
         const signIn = async ()=>{
             const res = await axios({
                 method:"POST",
-                url:"http://localhost:8000/user/token",
+                url:`${import.meta.env.VITE_ADDRESS}/user/token`,
                 headers:{
                     Authorization: `Bearer ${cookies.get("DEMURE")}`
                 }

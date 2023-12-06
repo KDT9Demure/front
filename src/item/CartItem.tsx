@@ -36,7 +36,7 @@ export default function CartItem(props:any){
     const handleUseCoupon = async (id:number, discount:number)=>{
         const res = await axios({
             method:"PATCH",
-            url:"http://localhost:8000/event/coupon/use",
+            url:`${import.meta.env.VITE_ADDRESS}/event/coupon/use`,
             data:{
                 id
             }
@@ -57,7 +57,7 @@ export default function CartItem(props:any){
     const handleCancelCoupon = async()=>{
         const res = await axios({
             method:"PATCH",
-            url:"http://localhost:8000/event/coupon/cancel",
+            url:`${import.meta.env.VITE_ADDRESS}/event/coupon/cancel`,
             data:{
                 id:couponId
             }
@@ -74,7 +74,7 @@ export default function CartItem(props:any){
     const getCoupon = async ()=>{
         const res = await axios({
             method:"POST",
-            url:"http://localhost:8000/buy/coupon/get",
+            url:`${import.meta.env.VITE_ADDRESS}/buy/coupon/get`,
             data:{
                 user_id:userData.user_id,
             }

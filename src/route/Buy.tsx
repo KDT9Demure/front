@@ -62,7 +62,7 @@ export default function Buy() {
         const getAddress = async () => {
             const res = await axios({
                 method: "POST",
-                url: "http://localhost:8000/buy/address/get",
+                url: `${import.meta.env.VITE_ADDRESS}/buy/address/get`,
                 data: {
                     user_id: userData.user_id,
                 }
@@ -81,7 +81,7 @@ export default function Buy() {
         const getOrderGoods = async () => {
             const res = await axios({
                 method: "GET",
-                url: "http://localhost:8000/buy/goods/get",
+                url: `${import.meta.env.VITE_ADDRESS}/buy/goods/get`,
                 params: {
                     cart_ids
                 }
@@ -100,7 +100,7 @@ export default function Buy() {
         const getDpay = async () => {
             const res = await axios({
                 method: "GET",
-                url: "http://localhost:8000/buy/dpay",
+                url: `${import.meta.env.VITE_ADDRESS}/buy/dpay`,
                 params: {
                     user: userData.user_id
                 }
@@ -133,7 +133,7 @@ export default function Buy() {
     const handleDeleteAddress = async (id: number) => {
         const res = await axios({
             method: "DELETE",
-            url: "http://localhost:8000/buy/address/delete",
+            url: `${import.meta.env.VITE_ADDRESS}/buy/address/delete`,
             data: {
                 id,
                 user_id:userData.user_id,
@@ -201,7 +201,7 @@ export default function Buy() {
         else {
             const res = await axios({
                 method: "POST",
-                url: "http://localhost:8000/buy/address/add",
+                url: `${import.meta.env.VITE_ADDRESS}/buy/address/add`,
                 data: {
                     address: roadAddress,
                     detail: detailAddress,
@@ -225,7 +225,7 @@ export default function Buy() {
     const handleDefaultAddress = async (id: number) => {
         const res = await axios({
             method: "PATCH",
-            url: "http://localhost:8000/buy/address/default",
+            url: `${import.meta.env.VITE_ADDRESS}/buy/address/default`,
             data: {
                 id: id,
                 user_id: userData.user_id
@@ -258,7 +258,7 @@ export default function Buy() {
         else {
             const res = await axios({
                 method: "POST",
-                url: "http://localhost:8000/buy/dpay/add",
+                url: `${import.meta.env.VITE_ADDRESS}/buy/dpay/add`,
                 data: {
                     user_id: userData.user_id,
                     bank_name: dpayBankName,
@@ -356,7 +356,7 @@ export default function Buy() {
 
             const res = await axios({
                 method:"POST",
-                url:"http://localhost:8000/buy",
+                url:`${import.meta.env.VITE_ADDRESS}/buy`,
                 data:{
                     orderArray:sendData,
                 }
