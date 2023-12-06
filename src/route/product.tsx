@@ -38,7 +38,7 @@ export default function Product() {
         const datas = async () => {
             const res = await axios({
                 method: "get",
-                url: `http://localhost:8000/product/${id}`,
+                url: `${import.meta.env.VITE_ADDRESS}/product/${id}`,
             })
             console.log(res.data)
             setData(res.data.goodsInfo);
@@ -58,7 +58,7 @@ export default function Product() {
     const reviewCheck = async () => {
         const res = await axios({
             method: "post",
-            url: "http://localhost:8000/product/review/verify",
+            url: `${import.meta.env.VITE_ADDRESS}/product/review/verify`,
             data: {
                 user_id: userData.user_id,
                 goods_id:data.id,
@@ -69,7 +69,7 @@ export default function Product() {
     const Buy = async () => {
         const res = await axios({
             method: "post",
-            url: "http://localhost:8000/cart",
+            url: `${import.meta.env.VITE_ADDRESS}/cart`,
             data: {
                 user_id: userData.user_id,
                 goods_id:data.id,
@@ -85,7 +85,7 @@ export default function Product() {
     const Cart = async () => {
         const res = await axios({
             method: "post",
-            url: "http://localhost:8000/cart",
+            url: `${import.meta.env.VITE_ADDRESS}/cart`,
             data: {
                 user_id: userData.user_id,
                 goods_id:data.id,
@@ -108,7 +108,7 @@ export default function Product() {
         }
         const res = await axios({
             method: "post",
-            url: "http://localhost:8000/product/review",
+            url: `${import.meta.env.VITE_ADDRESS}/product/review`,
             data: {
                 user_id: userData.user_id,
                 content: review,
