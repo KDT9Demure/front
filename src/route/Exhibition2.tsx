@@ -117,6 +117,7 @@ export default function Showing2() {
 
 
 
+
     return (
         <div className={styles.bodys}>
             {isLoading ? <></> : <Loading />}
@@ -180,6 +181,7 @@ export default function Showing2() {
 
                 </div>
 
+
             </div>
 
             <div className={styles.flexBox}>
@@ -220,6 +222,7 @@ export default function Showing2() {
                                                 );
                                             }}
                                         />
+
                                     </div>
                                     <div className={styles.productTextHeader}>
                                         <div className={styles.typeName}>{value.goods_id.type_name}</div>

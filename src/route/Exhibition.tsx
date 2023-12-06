@@ -67,6 +67,7 @@ export default function Showing() {
 
 
 
+
     return (
         <>
             <div className={styles.bodys}>
@@ -164,6 +165,7 @@ export default function Showing() {
 
                                     >
                                         <div className={styles.productImgBox}>
+
                                             <img
                                                 src={productImgHover ? value.goods_id.arrange_image || value.goods_id.image : value.goods_id.image}
                                                 className={`${styles.productImg} ${productImgHover ? styles.productImgHover : ''}`}
@@ -184,6 +186,7 @@ export default function Showing() {
                                                     );
                                                 }}
                                             />
+
                                         </div>
                                         <div className={styles.productTextHeader}>
                                             <div className={styles.typeName}>{value.goods_id.type_name}</div>
