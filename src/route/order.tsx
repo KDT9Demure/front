@@ -19,7 +19,7 @@ export default function Order() {
 
                 const res = await axios({
                     method: "get",
-                    url: `http://localhost:8000/order/${id}`,
+                    url: `${import.meta.env.VITE_ADDRESS}/order/${id}`,
                 });
                 console.log('useEffect running')
 
@@ -46,7 +46,7 @@ export default function Order() {
         if (confirm(`${id}번 주문을 취소하시겠습니까?`)) {
             const res = await axios({
                 method: "delete",
-                url: `http://localhost:8000/order/cancel`,
+                url: `${import.meta.env.VITE_ADDRESS}/order/cancel`,
                 data: {
                     id
                 }

@@ -25,7 +25,7 @@ export default function ProfileEdit() {
     const confirm = async () => {
         const res = await axios({
             method: "post",
-            url: "http://localhost:8000/user/password/check",
+            url: `${import.meta.env.VITE_ADDRESS}/user/password/check`,
             data: {
                 password: pw,
                 userid: userInfo.userid
@@ -36,7 +36,7 @@ export default function ProfileEdit() {
             //비밀번호가 일치하면
             const res2 = await axios({
                 method: "post",
-                url: "http://localhost:8000/user/profile/get",
+                url: `${import.meta.env.VITE_ADDRESS}/user/profile/get`,
                 data: {
                     id: userInfo.user_id
                 }
@@ -60,7 +60,7 @@ export default function ProfileEdit() {
         if (isPwTrue === true && isPasswordMatch === true) {
             const res = await axios({
                 method: "patch",
-                url: "http://localhost:8000/user/update",
+                url: `${import.meta.env.VITE_ADDRESS}/user/update`,
                 data: {
                     id: userInfo.user_id,
                     user_name: name,
@@ -77,7 +77,7 @@ export default function ProfileEdit() {
         if (isPwTrue === null && isPasswordMatch === null) {
             const res = await axios({
                 method: "patch",
-                url: "http://localhost:8000/user/update/nopw",
+                url: `${import.meta.env.VITE_ADDRESS}/user/update/nopw`,
                 data: {
                     id: userInfo.user_id,
                     user_name: name,
@@ -144,7 +144,7 @@ export default function ProfileEdit() {
 
             const res = await axios({
                 method: "delete",
-                url: "http://localhost:8000/user/update",
+                url: `${import.meta.env.VITE_ADDRESS}/user/update`,
                 data: {
                     id: userInfo.user_id
                 }

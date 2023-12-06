@@ -50,7 +50,7 @@ export default function Signup() {
             console.log(userid, email, name, password)
             const res = await axios({
                 method: "post",
-                url: 'http://localhost:8000/user/signup',
+                url: `${import.meta.env.VITE_ADDRESS}/user/signup`,
                 data: info
             })
             console.log(data)
@@ -78,7 +78,7 @@ export default function Signup() {
 
         const res = await axios({
             method: "post",
-            url: "http://localhost:8000/user/duplicate",
+            url: `${import.meta.env.VITE_ADDRESS}/user/duplicate`,
             data: {
                 userid: newId
             }
@@ -157,7 +157,7 @@ export default function Signup() {
 
             const res = await axios({
                 method: "post",
-                url: "http://localhost:8000/user/email",
+                url: `${import.meta.env.VITE_ADDRESS}/user/email`,
                 data: {
                     useremail: email
                 }
@@ -237,7 +237,7 @@ export default function Signup() {
 
             const res = await axios({
                 method: "post",
-                url: "http://localhost:8000/user/email",
+                url: `${import.meta.env.VITE_ADDRESS}/user/email`,
                 data: {
                     useremail: email
                 }

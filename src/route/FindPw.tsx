@@ -74,7 +74,7 @@ export default function FindPw() {
             setIsLoading(false)
             const res = await axios({
                 method: "post",
-                url: "http://localhost:8000/user/password/find",
+                url: `${import.meta.env.VITE_ADDRESS}/user/password/find`,
                 data: {
                     userid: id,
                     user_name: name
@@ -123,7 +123,7 @@ export default function FindPw() {
         setIsLoading(false)
         const res = await axios({
             method: "post",
-            url: "http://localhost:8000/user/password/find",
+            url: `${import.meta.env.VITE_ADDRESS}/user/password/find`,
             data: {
                 userid: id,
                 user_name: name
@@ -183,7 +183,7 @@ export default function FindPw() {
             setIsLoading(false)
             const res = await axios({
                 method: "patch",
-                url: "http://localhost:8000/user/password/find/update",
+                url: `${import.meta.env.VITE_ADDRESS}/user/password/find/update`,
                 data: {
                     id: idNumber,
                     password: password

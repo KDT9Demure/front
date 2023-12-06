@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import styles from "../css/signin.module.css";
 import axios from "axios";
 import { Cookies } from "react-cookie";
-import kakao from "assets/kakao_login_large_narrow.png";
 import Loading from "../item/Loading";
 
 // import {} as dotenv from 'dotenv';
@@ -18,7 +17,7 @@ export default function Signin() {
     const signinData = async () => {
         setIsLoading(false);
         const res = await axios({
-            url: 'http://localhost:8000/user/signin',
+            url: `${import.meta.env.VITE_ADDRESS}/user/signin`,
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             data: {
