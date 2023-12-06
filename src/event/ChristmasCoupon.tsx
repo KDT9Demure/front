@@ -71,7 +71,7 @@ export default function ChristmasCoupon() {
         const Coupon = async () => {
             const res = await axios({
                 method: "post",
-                url: 'http://localhost:8000/event/coupon',
+                url: `${import.meta.env.VITE_ADDRESS}/event/coupon`,
                 data: {
                     user_id: userData.user_id,
                     coupon_id: 7
