@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 
 import axios from "axios";
 
@@ -39,7 +39,7 @@ export default function Search() {
                 setIsLoading(false)
                 const res = await axios({
                     method: "post",
-                    url: `http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`,
+                    url: `${import.meta.env.VITE_ADDRESS}/search?q=${searchName}&sort=${sort}&color=${colors}`,
                     data: {
                         page: 1,
                         sort: sort,
@@ -116,7 +116,7 @@ export default function Search() {
                     setPage(Page + 1);
                     console.log("현재 페이지", Page);
 
-                    const response = await axios.post(`http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`, {
+                    const response = await axios.post(`${import.meta.env.VITE_ADDRESS}/search?q=${searchName}&sort=${sort}&color=${colors}`, {
                         sort: sort,
                         page: Page,
                         searchName: "의자"
@@ -193,7 +193,7 @@ export default function Search() {
 
     // 상품 페이지로 이동
     const moveProduct = (id: number) => {
-        window.location.href = `http://localhost:3000/product/${id}`
+        window.location.href = `/product/${id}`
     }
 
     return (

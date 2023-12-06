@@ -21,7 +21,7 @@ export default function Showing() {
         const showingData = async () => {
             const res = await axios({
                 method: "get",
-                url: `http://localhost:8000/event/list?query=wt001`,
+                url: `${import.meta.env.VITE_ADDRESS}/event/list?query=wt001`,
             })
             console.log(res.data)
             setProduct(res.data.category)
@@ -32,7 +32,7 @@ export default function Showing() {
 
     // 상품 페이지로 이동
     const moveProduct = (id: number) => {
-        window.location.href = `http://localhost:3000/product/${id}`
+        window.location.href = `${import.meta.env.VITE_ADDRESS}/product/${id}`
     }
 
 
@@ -61,7 +61,7 @@ export default function Showing() {
     const productID = (n: number) => {
         if (product.length > 0) {
             const Num = product[n].goods_id.id
-            window.location.href = `http://localhost:3000/product/${Num}`
+            window.location.href = `/product/${Num}`
         }
     }
 
