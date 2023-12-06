@@ -1,11 +1,13 @@
-import React, { useState, useEffect, } from "react"
+import { useState, useEffect, } from "react"
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import styles from "../css/order.module.css";
 import '@fortawesome/fontawesome-svg-core/styles.css'
-import { useAppSelector } from "../hook";
+import Loading from "../item/Loading";
+
 
 export default function Order() {
+    const [isLoading, setIsLoading] = useState<boolean>(true)
 
     // const userInfo = useAppSelector((state) => state.signin);
 
@@ -16,7 +18,7 @@ export default function Order() {
     useEffect(() => {
         const orderData = async () => {
             try {
-
+                setIsLoading(false)
                 const res = await axios({
                     method: "get",
                     url: `${import.meta.env.VITE_ADDRESS}/order/${id}`,
@@ -25,7 +27,7 @@ export default function Order() {
 
                 setOrderList(res.data);
                 console.log(res.data)
-
+                setIsLoading(true)
 
             } catch (error) {
                 console.log(error);
@@ -72,6 +74,7 @@ export default function Order() {
         <>
 
             <div className={styles.top}></div>
+            {isLoading ? <></> : <Loading />}
             <div className={styles.bodys}>
                 <div className={styles.container}>
                     <div className={styles.orderList}>

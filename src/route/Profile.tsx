@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import axios from "axios";
 import styles from "../css/profile.module.css";
 import '@fortawesome/fontawesome-svg-core/styles.css'
@@ -108,6 +108,7 @@ export default function Profile() {
         return (
             <>
                 <div className={styles.bodys}>
+                    {isLoading ? <></> : <Loading />}
                     <div className={styles.container}>
 
                         <div className={styles.infoBox}>
