@@ -115,89 +115,93 @@ export default function Showing2() {
         }
     }
 
-    if (isLoading) {
 
-        return (
-            <div className={styles.bodys}>
-                <div className={styles.header}>
 
-                    <div className={styles.imgBox}>
-                        <img src={showingImg} className={styles.mainImg} />
-                        <img src={showingImg2} className={styles.mainImg2} />
-                        <div className={styles.textBox}>
-                            <div style={{ fontSize: 22, fontWeight: "bold" }}>편안함과 스타일의 조화, 신학기 기획전 & 쿠폰</div>
-                            <div style={{ marginTop: 10, marginLeft: 20 }}> 편안한 자세와 훌륭한 디자인이 결합된 신학기 기획전을 놓치지 마세요. 효율적이고 편안한 공부 환경을 위한 제품들을 만나보세요.</div>
-                            <div className={styles.couponMainBox} onClick={CouponLoad}>
-                                <div className={styles.couponMain1}>20%</div>
-                                <div className={styles.couponMain2}>2024 신학기 쿠폰 ~24.03.30</div>
-                            </div>
-                        </div>
-                        {/* 테이블 */}
-                        <div className={styles.circleDiv} onClick={() => productID(0)} style={{ left: 100, top: 270 }}>
-                            <span className={styles.circle}></span>
-                        </div>
-                        <div className={styles.additionalDiv} style={{ left: 50, top: 145 }}>
-                            <div className={styles.DivInInfo} >
-                                <div className={styles.PN}> {productName(0)}</div>
-                                <div className={styles.PT}> {productType(0)}</div>
-                                <div className={styles.PP}> {productPrice(0)}<span style={{ fontSize: 16 }}> 원</span></div>
-                            </div>
-                            <div className={styles.DivInShape}>
-                                <div style={{ fontSize: 22 }}><FontAwesomeIcon icon={faChevronRight} /></div>
-                            </div>
-                        </div>
 
-                        {/* 의자 */}
-                        <div className={styles.circleDiv} onClick={() => productID(10)} style={{ right: 430, top: 250 }}>
-                            <span className={styles.circle}></span>
-                        </div>
-                        <div className={styles.additionalDiv} style={{ right: 300, top: 125 }}>
-                            <div className={styles.DivInInfo} >
-                                <div className={styles.PN}> {productName(10)}</div>
-                                <div className={styles.PT}> {productType(10)}</div>
-                                <div className={styles.PP}> {productPrice(10)}<span style={{ fontSize: 16 }}> 원</span></div>
-                            </div>
-                            <div className={styles.DivInShape}>
-                                <div style={{ fontSize: 22 }}><FontAwesomeIcon icon={faChevronRight} /></div>
-                            </div>
-                        </div>
+    return (
+        <div className={styles.bodys}>
+            {isLoading ? <></> : <Loading />}
+            <div className={styles.header}>
 
-                        {/* 의자 */}
-                        <div className={styles.circleDiv} onClick={() => productID(10)} style={{ right: 620, top: 250 }}>
-                            <span className={styles.circle}></span>
+                <div className={styles.imgBox}>
+                    <img src={showingImg} className={styles.mainImg} />
+                    <img src={showingImg2} className={styles.mainImg2} />
+                    <div className={styles.textBox}>
+                        <div className={styles.mainTitle}>편안함과 스타일의 조화, 신학기 기획전 & 쿠폰</div>
+                        <div className={styles.mainText}> 편안한 자세와 훌륭한 디자인이 결합된 신학기 기획전을 놓치지 마세요. 효율적이고 편안한 공부 환경을 위한 제품들을 만나보세요.</div>
+                        <div className={styles.couponMainBox} onClick={CouponLoad}>
+                            <div className={styles.couponMain1}>20%</div>
+                            <div className={styles.couponMain2}>2024 신학기 쿠폰 ~24.03.30</div>
                         </div>
-                        <div className={styles.additionalDiv} style={{ right: 650, top: 125 }}>
-                            <div className={styles.DivInInfo} >
-                                <div className={styles.PN}> {productName(11)}</div>
-                                <div className={styles.PT}> {productType(11)}</div>
-                                <div className={styles.PP}> {productPrice(11)}<span style={{ fontSize: 16 }}> 원</span></div>
-                            </div>
-                            <div className={styles.DivInShape}>
-                                <div style={{ fontSize: 22 }}><FontAwesomeIcon icon={faChevronRight} /></div>
-                            </div>
+                    </div>
+                    {/* 테이블 */}
+                    <div className={styles.circleDiv} onClick={() => productID(0)} style={{ left: 100, top: 270 }}>
+                        <span className={styles.circle}></span>
+                    </div>
+                    <div className={styles.additionalDiv} style={{ left: 50, top: 145 }}>
+                        <div className={styles.DivInInfo} >
+                            <div className={styles.PN}> {productName(0)}</div>
+                            <div className={styles.PT}> {productType(0)}</div>
+                            <div className={styles.PP}> {productPrice(0)}<span className={styles.won}> 원</span></div>
                         </div>
+                        <div className={styles.DivInShape}>
+                            <div className={styles.icon}><FontAwesomeIcon icon={faChevronRight} /></div>
+                        </div>
+                    </div>
 
+                    {/* 의자 */}
+                    <div className={styles.circleDiv} onClick={() => productID(10)} style={{ right: 430, top: 250 }}>
+                        <span className={styles.circle}></span>
+                    </div>
+                    <div className={styles.additionalDiv} style={{ right: 300, top: 125 }}>
+                        <div className={styles.DivInInfo} >
+                            <div className={styles.PN}> {productName(10)}</div>
+                            <div className={styles.PT}> {productType(10)}</div>
+                            <div className={styles.PP}> {productPrice(10)}<span className={styles.won}> 원</span></div>
+                        </div>
+                        <div className={styles.DivInShape}>
+                            <div className={styles.icon}><FontAwesomeIcon icon={faChevronRight} /></div>
+                        </div>
+                    </div>
+
+                    {/* 의자 */}
+                    <div className={styles.circleDiv} onClick={() => productID(10)} style={{ right: 620, top: 250 }}>
+                        <span className={styles.circle}></span>
+                    </div>
+                    <div className={styles.additionalDiv} style={{ right: 650, top: 125 }}>
+                        <div className={styles.DivInInfo} >
+                            <div className={styles.PN}> {productName(11)}</div>
+                            <div className={styles.PT}> {productType(11)}</div>
+                            <div className={styles.PP}> {productPrice(11)}<span className={styles.won}> 원</span></div>
+                        </div>
+                        <div className={styles.DivInShape}>
+                            <div className={styles.icon}><FontAwesomeIcon icon={faChevronRight} /></div>
+                        </div>
                     </div>
 
                 </div>
 
-                <div className={styles.flexBox}>
-                    <div className={styles.contentBox}>
 
-                        {product.map((value, index) => {
+            </div>
 
-                            // 가격에 , 추가
-                            const commaPrice = value.goods_id.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            <div className={styles.flexBox}>
+                <div className={styles.contentBox}>
 
-                            // 이미지 호버 시 이미지 체인지
-                            const productImgHover = value.imgHover || false;
+                    {product.map((value, index) => {
 
-                            return (
-                                <>
-                                    <div key={value.goods_id.id}
-                                        onClick={() => moveProduct(value.goods_id.id)}
+                        // 가격에 , 추가
+                        const commaPrice = value.goods_id.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-                                    >
+                        // 이미지 호버 시 이미지 체인지
+                        const productImgHover = value.imgHover || false;
+
+                        return (
+                            <>
+                                <div key={value.goods_id.id}
+                                    onClick={() => moveProduct(value.goods_id.id)}
+                                    className={styles.productContainer}
+                                >
+                                    <div className={styles.productImgBox}>
                                         <img
                                             src={productImgHover ? value.goods_id.arrange_image || value.goods_id.image : value.goods_id.image}
                                             className={`${styles.productImg} ${productImgHover ? styles.productImgHover : ''}`}
@@ -218,42 +222,30 @@ export default function Showing2() {
                                                 );
                                             }}
                                         />
-                                        <div className={styles.typeName}>{value.goods_id.type_name}</div>
-                                        <div className={styles.name}>{value.goods_id.name}</div>
-                                        {value.goods_id.discount ? <div className={styles.price}>sale {commaPrice}원</div> :
-                                            <div className={styles.price}>{commaPrice}원</div>
-                                        }
 
                                     </div>
-                                </>
-                            )
-                        })}
-                    </div>
-                </div>
-            </div >
-        )
-    } else {
-        return (
-            <>
-                <div className={styles.bodys}>
-                    <div className={styles.header}>
+                                    <div className={styles.productTextHeader}>
+                                        <div className={styles.typeName}>{value.goods_id.type_name}</div>
+                                    </div>
 
-                        <div className={styles.imgBox}>
-                            <img src={showingImg} className={styles.mainImg} />
-                            <img src={showingImg2} className={styles.mainImg2} />
-                            <div className={styles.textBox}>
-                                <div style={{ fontSize: 22, fontWeight: "bold" }}>편안함과 스타일의 조화, 신학기 기획전 & 쿠폰</div>
-                                <div style={{ marginTop: 10, marginLeft: 20 }}> 편안한 자세와 훌륭한 디자인이 결합된 신학기 기획전을 놓치지 마세요. 효율적이고 편안한 공부 환경을 위한 제품들을 만나보세요.</div>
-                                <div className={styles.couponMainBox} onClick={CouponLoad}>
-                                    <div className={styles.couponMain1}>20%</div>
-                                    <div className={styles.couponMain2}>2024 신학기 쿠폰 ~24.03.30</div>
+                                    <div className={styles.productTextTop}>
+                                        <div className={styles.name}>{value.goods_id.name}</div>
+                                    </div>
+
+                                    <div className={styles.productTextBot}>
+                                        {value.goods_id.discount ?
+                                            <span className={styles.sale}>sale</span>
+                                            :
+                                            <></>
+                                        }
+                                        <div className={styles.price}>{commaPrice}원</div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
+                            </>
+                        )
+                    })}
                 </div>
-                <Loading />
-            </>
-        )
-    }
+            </div>
+        </div >
+    )
 }
