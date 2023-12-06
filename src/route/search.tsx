@@ -229,7 +229,7 @@ export default function Search() {
 
 
                         <div className={styles.sort}>
-                            <span className={selectedSort === 'best' ? styles.selectedSort : ''} onClick={best}>인기상품순   </span>
+                            <span className={selectedSort === 'best' ? styles.selectedSort : ''} onClick={best}>인기순   </span>
                             <span>|</span>
                             <span className={selectedSort === 'low' ? styles.selectedSort : ''} onClick={low}>   낮은 가격순   </span>
                             <span>|</span>
