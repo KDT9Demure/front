@@ -103,7 +103,7 @@ export default function ChristmasCoupon() {
                         <div className={styles.couponMain1}>15%</div>
                         <div className={styles.couponMain2}>2023 크리스마스 할인 쿠폰~23.12.31</div>
                     </div>
-                    <a style={{ color: "white", textDecoration: "none" }} href="/event/showing"><div className={styles.couponMoveBox}>
+                    <a style={{ color: "white", textDecoration: "none" }} href="/exhibition/christmas"><div className={styles.couponMoveBox}>
                         <div className={styles.couponMove}>크리스마스 기획전 →</div>
                     </div></a>
                 </div>
