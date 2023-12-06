@@ -20,7 +20,7 @@ export default function Search() {
 
     const [Page, setPage] = useState<number>(2)
 
-    const [isListEnd, setIsListEnd] = useState<boolean>(false)
+    // const [isListEnd, setIsListEnd] = useState<boolean>(false)
 
     const [sort, setSort] = useState<String>("best")
     const [selectedSort, setSelectedSort] = useState<String>("best")
@@ -36,7 +36,7 @@ export default function Search() {
 
         const searchData = async () => {
             try {
-
+                setIsLoading(false)
                 const res = await axios({
                     method: "post",
                     url: `http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`,
@@ -110,7 +110,9 @@ export default function Search() {
     useEffect(() => {
         const fetchData = async () => {
             try {
+
                 if (scrollEnd === true) {
+                    setIsLoading(false)
                     setPage(Page + 1);
                     console.log("현재 페이지", Page);
 
@@ -130,12 +132,8 @@ export default function Search() {
 
                     console.log("현재 스크롤 위치 ", scrollPosition);
                     console.log("divHeight", divHeight);
+                    setIsLoading(true)
 
-                    if (response.data.length < 20) {
-                        setIsListEnd(true);
-                    }
-                } else {
-                    setScrollEnd(false);
                 }
             } catch (error) {
                 console.error(error);
@@ -201,6 +199,7 @@ export default function Search() {
     return (
         <>
             <div className={styles.top}></div>
+            {isLoading ? <></> : <Loading />}
             <div ref={divRef} className={styles.bodys}>
                 <div className={styles.container1}>
 

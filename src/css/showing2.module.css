@@ -10,11 +10,9 @@
 .header {
     margin: 0 0 20px 0;
     display: flex;
-    justify-content: start;
+    justify-content: center;
     position: relative;
-    width: 1250px;
-    margin-left: 75px;
-
+    width: auto;
 }
 
 .imgBox {
@@ -44,43 +42,32 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
-    align-items: center;
-    text-align: center;
-
-    width: 1200px;
-
+    width: 1000px;
 }
 
 .flexBox {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
 .productImg {
-    border-radius: 8px;
-    width: 280px;
-    height: 280px;
+    border-radius: 10px;
+    width: 230px;
+    height: 230px;
     cursor: pointer;
 }
 
-.typeName {
-    color: rgb(183, 163, 97);
-    font-size: 18px;
+.productContainer {
     cursor: pointer;
+    width: 250px;
+    max-height: 290px;
+    margin-bottom: 25px;
 }
 
-.name {
-    font-size: 22px;
-    font-weight: bold;
-    width: 300px;
-    color: white;
-    cursor: pointer;
-
-}
 
 .price {
     font-size: 22px;
-    margin-bottom: 10px;
     cursor: pointer;
     color: white;
 }
@@ -235,4 +222,73 @@
     font-size: 20px;
     text-align: center;
     border: solid 2px white;
+}
+
+.won {
+    font-size: 16;
+}
+
+.icon {
+    font-size: 22;
+}
+
+.productTextHeader {
+    display: flex;
+    justify-content: center;
+}
+
+.productTextTop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.productTextBot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.sale {
+    padding: 0px 8px;
+    border-radius: 20px;
+    background-color: rgb(255 216 89);
+    margin-right: 5px;
+}
+
+.price {
+    font-size: 14px;
+    color: white;
+}
+
+.typeName {
+    color: rgb(255 216 89);
+    font-size: 15px;
+}
+
+.name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 0px 10px;
+}
+
+.productImgBox {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.mainTitle {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.mainText {
+    margin: 10px 0 0 20px;
 }
