@@ -19,11 +19,8 @@ export default function List() {
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const [categories, setCategories] = useState<any[]>([]);
-
     const [scrollPosition, setScrollPosition] = useState<number>(0);
-
     const [divHeight, setDivHeight] = useState<number>(0);
-
     const [scrollEnd, setScrollEnd] = useState<boolean>(false)
 
     const [Page, setPage] = useState<number>(2)
@@ -213,9 +210,6 @@ export default function List() {
         setCategories(res.data);
     }
 
-    // const best = () => { setSelectedSort("best"), setSort("best") }
-    // const high = () => { setSelectedSort("high"), setSort("high") }
-    // const low = () => { setSelectedSort("low"), setSort("low") }
 
     // 상품 페이지로 이동
     const moveProduct = (id: number) => {
@@ -258,7 +252,6 @@ export default function List() {
             title = 'Category';
     }
 
-    if (isLoading) {
         return (
             <>
                 <div className={styles.top}></div>
@@ -266,14 +259,14 @@ export default function List() {
                     <div className={styles.container1}>
                         <div className={styles.categoryInfo}>
 
-                            <h1 className={styles.title}>{title}</h1>
+                            <div className={styles.title}>{title}</div>
 
                             <div className={styles.sort}>
-                                <span className={selectedSort === 'best' ? styles.selectedSort : ''} onClick={best}>인기상품순   </span>
+                                <span className={selectedSort === 'best' ? styles.selectedSort : ''} onClick={best}>인기상품순</span>
                                 <span>|</span>
-                                <span className={selectedSort === 'low' ? styles.selectedSort : ''} onClick={low}>   낮은 가격순   </span>
+                                <span className={selectedSort === 'low' ? styles.selectedSort : ''} onClick={low}>낮은 가격순</span>
                                 <span>|</span>
-                                <span className={selectedSort === 'high' ? styles.selectedSort : ''} onClick={high}>   높은 가격순</span>
+                                <span className={selectedSort === 'high' ? styles.selectedSort : ''} onClick={high}>높은 가격순</span>
                             </div>
 
                         </div>
@@ -282,7 +275,6 @@ export default function List() {
 
                                 // 가격에 , 추가
                                 const commaPrice = product.goods_id.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
                                 const productImgHover = product.imgHover || false;
 
                                 return (
@@ -294,7 +286,6 @@ export default function List() {
 
                                         <div className={`${styles.productImg} ${productImgHover ? styles.productImgHover : ''}`}>
                                             <img loading="lazy"
-                                                id="img"
 
                                                 onMouseOver={() => {
                                                     setCategories((prevCategories) =>
@@ -311,9 +302,8 @@ export default function List() {
                                                         )
                                                     );
                                                 }}
-
+                                                className={styles.listItemImg}
                                                 src={productImgHover ? product.goods_id.arrange_image || product.goods_id.image : product.goods_id.image}
-                                                style={{ width: 280, height: 280, borderRadius: 8 }}
                                                 alt={`${product.goods_id.name}`} />
                                         </div>
 
@@ -339,42 +329,17 @@ export default function List() {
 
                         </div>
                     </div>
-                    {isListEnd &&
+                    {/* {isListEnd &&
                         <div className={styles.listEndDiv}>
-                            <div className={styles.listEndText}>ㅤEndㅤ</div>
+                            <div className={styles.listEndText}>End</div>
                         </div>
                     }
                     {!isListEnd &&
                         <div className={styles.listMoreDiv}>
-                            <div onClick={moreList} className={styles.listMoreText}>ㅤMore ▼ㅤ</div>
+                            <div onClick={moreList} className={styles.listMoreText}>More ▼ㅤ</div>
                         </div>
-                    }
+                    } */}
                 </div >
             </>
         )
-    } else {
-        return (
-            <>
-                <div className={styles.top}></div>
-                <div ref={divRef} className={styles.bodys}>
-                    <div className={styles.container1}>
-                        <div className={styles.categoryInfo}>
-
-                            <h1 className={styles.title}>{title}</h1>
-
-                            <div className={styles.sort}>
-                                <span className={selectedSort === 'best' ? styles.selectedSort : ''} onClick={best}>인기상품순   </span>
-                                <span>|</span>
-                                <span className={selectedSort === 'low' ? styles.selectedSort : ''} onClick={low}>   낮은 가격순   </span>
-                                <span>|</span>
-                                <span className={selectedSort === 'high' ? styles.selectedSort : ''} onClick={high}>   높은 가격순</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <Loading />
-            </>
-        )
-    }
-
 }
