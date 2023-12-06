@@ -35,6 +35,7 @@ export default function Product() {
     const userData = useAppSelector((state) => state.signin);
 
     useEffect(() => {
+        setIsLoading(false);
         const datas = async () => {
             const res = await axios({
                 method: "get",
@@ -43,8 +44,9 @@ export default function Product() {
             console.log(res.data)
             setData(res.data.goodsInfo);
             setReviews(res.data.goodsInfo.reviews);
+            console.log(res.data.avg)
             setAvg(res.data.avg);
-            setIsLoading(false);
+            setIsLoading(true);
             if(!res.data.avg){
                 setAvg(0);
             }
@@ -131,24 +133,22 @@ export default function Product() {
     }
 
     return (
-        isLoading ?
-            (<><div className={styles.inforcontainer}>
-                <Loading/>
+        <div className={styles.box}>
+            <div className={styles.inforcontainer}>
+                {isLoading? <></>: <Loading/>}
                 <div className={styles.inforBox}>
                     <div className={styles.imageWrapper}>
                         <img src={data.arrange_image} className={styles.image} />
                     </div>
                     <div className={styles.inforWrapper}>
                         <div className={styles.inforHeader}>
-                            <div className={styles.inforTitle}>{data.type_name}</div>
+                            <div className={styles.inforRate}>{avg}</div>
                             <div className={styles.inforName}>{data.name}</div>
-                            <div className={styles.inforRate}>
-                                {avg}
-                            </div>
+                            <div className={styles.inforTitle}>{data.type_name}</div>
                         </div>
-                        <div className={styles.inforBody}>
-                        </div>
-                        <div className={styles.amount}>금액 : {data.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원</div>
+                            {/* <div className={styles.inforBody}>
+                            </div> */}
+                        <div className={styles.amount}>{data.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원</div>
                         <div className={styles.bottom}>
                             <button className={styles.buyBtn} onClick={Buy}>구매</button>
                             <button className={styles.pickBtn} onClick={Cart}>장바구니</button>
@@ -202,77 +202,7 @@ export default function Product() {
                         <button className={styles.commentCreateBtn} onClick={CreaeteReview}>등록</button>
                     </div>
                 </div>
-            </div></>) :
-
-            (<><div className={styles.inforcontainer}>
-                <div className={styles.inforBox}>
-                    <div className={styles.imageWrapper}>
-                        <img src={data.arrange_image} className={styles.image} />
-                    </div>
-                    <div className={styles.inforWrapper}>
-                        <div className={styles.inforHeader}>
-                            <div className={styles.inforTitle}>{data.type_name}</div>
-                            <div className={styles.inforName}>{data.name}</div>
-                            <div className={styles.inforRate}>
-                                {avg}
-                            </div>
-                        </div>
-                        <div className={styles.inforBody}>
-                        </div>
-                        <div className={styles.amount}>금액 : {data.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원</div>
-                        <div className={styles.bottom}>
-                            <button className={styles.buyBtn} onClick={Buy}>구매</button>
-                            <button className={styles.pickBtn} onClick={Cart}>장바구니</button>
-                        </div>
-                    </div>
-                </div>
             </div>
-            <div className={styles.detailContainer}>
-                <div className={styles.detailWrapper}>
-                    <div className={styles.detailHeader}>
-                        <div className={styles.title}>상품상세정보</div>
-                    </div>
-                    <div className={styles.detailInfor} style={visible?noneStyle:openStyle}>
-                        <img className={styles.datailImg} src={data.image}/>
-                        {
-                        visible? <div className={styles.detailBtn} onClick={() => setVisible(false)}><FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faSquareCaretDown} /></div>
-                        :
-                        <div className={styles.detailBtn} onClick={() => setVisible(true)}><FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faSquareCaretUp} /></div>
-                        }
-                    </div>
-                    
-                </div>
-            </div>
-            <div className={styles.commentContainer}>
-                <div className={styles.commentWrapper}>
-                    <div className={styles.commentHeader}>
-                        <div className={styles.title}>상품평</div>
-                    </div>
-                    {reviews.map((review, index) => {
-                        return (
-                            <ReviewBox key = {index} review={review} />
-                        )
-                    })}
-                </div>
-            </div>
-            <div className={styles.createCommentContainer}>
-                <div className={styles.createCommentWrapper}>
-                    <div className={styles.createCommentTitle}>상품평 작성</div>
-                    <div className={styles.starIconContainer}>
-                        {[1, 2, 3, 4, 5].map((number, index) => (
-                            <div key={index} className={styles.starIconWrapper}>
-                                <input type="radio" id="score" className={styles.starIconCover} />
-                                <label htmlFor="score" className={styles.starIconLabel}><FontAwesomeIcon className={score < number ? styles.starIcon : styles.starIcon2} icon={faStar} onClick={() => setScore(number)} /></label>
-                            </div>
-                        ))}
-                    </div>
-
-
-                    <div className={styles.createCommentMain}>
-                        <textarea placeholder="상품평을 입력해주세요" className={styles.comment} onChange={e => {setReview(e.target.value)}}></textarea>
-                        <button className={styles.commentCreateBtn} onClick={CreaeteReview}>등록</button>
-                    </div>
-                </div>
-            </div></>)
+        </div>
     )
 };
