@@ -21,8 +21,8 @@ import Event from './route/Event';
 import FirstPurchase from './event/FirstPurchase';
 import FindPw from './route/FindPw';
 import ChristmasCoupon from './event/ChristmasCoupon';
-import Showing from './route/Showing';
-import Showing2 from './route/Showing2';
+import Exhibition from './route/Exhibition';
+import Exhibition2 from './route/Exhibition2';
 
 
 
@@ -101,12 +101,12 @@ const router = createBrowserRouter([
                         element: <FirstPurchase />
                     },
                     {
-                        path: "showing",
-                        element: <Showing />
+                        path: "exhibition/christmas",
+                        element: <Exhibition />
                     },
                     {
-                        path: "showing2",
-                        element: <Showing2 />
+                        path: "exhibition/new",
+                        element: <Exhibition2 />
                     }
                 ]
             },
