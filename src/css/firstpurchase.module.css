@@ -3,15 +3,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90%;
-  margin: 5% auto;
 }
 
 .firstSection {
   background-color: #f9f9f9;
-  border-radius: 12px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  width: 750px;
   padding: 20px;
   text-align: center;
 }
@@ -42,18 +40,27 @@
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 .couponTitleBox {
-  background-color: #253f39;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 70px;
   margin-bottom: 15px;
+  border-radius: 6px;
 }
 
 .couponTitle {
-  color: #fff !important;
+  color: black;
   font-weight: bold;
   font-size: 22px;
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .couponTitle:before {
@@ -63,10 +70,17 @@
 }
 
 .couponMainBox {
+  display: flex;
+  width: 400px;
+  height: 70px;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   background-color: #253f39;
   color: #fff;
   transition: background-color 0.3s ease;
+  gap: 20px;
 }
 
 .couponMainBox:hover {
@@ -75,12 +89,12 @@
 
 .couponDetail1 {
   color: #fff !important;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: bold;
 }
 
 .couponDetail2 {
   color: #fff !important;
-  font-size: 14px;
+  font-size: 22px;
   opacity: 0.8;
 }

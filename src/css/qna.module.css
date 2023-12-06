@@ -132,7 +132,6 @@
     transform: scale(1.02);
 }
 
-
 .inquireResponse {
     display: flex;
     justify-content: center;
@@ -357,8 +356,8 @@
     margin-right: 45px;
     cursor: pointer;
     height: 20px;
+    width: 50px;
 }
-
 
 .answerRegisterBtn:hover {
     scale:1.1;
