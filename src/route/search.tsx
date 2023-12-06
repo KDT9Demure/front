@@ -160,143 +160,145 @@ export default function Search() {
     const white = () => { setSelectedColor("white"), setColors("화이트") }
     const brown = () => { setSelectedColor("brown"), setColors("브라운") }
 
-    //리스트 더 가져오기
-    const moreList = () => {
-        setPage(Page + 1)
-        console.log("현재 페이지", Page)
-        axios({
-            method: "post",
-            url: `http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`,
-            data: {
-                sort: sort,
-                page: Page,
-                searchName
-            }
-        })
-            .then((res) => {
-                setSearch((prevSearch) => [...prevSearch, ...res.data]);
-                console.log("Axios 요청");
-                console.log(search)
-                console.log("scrollend false")
-                setScrollEnd(false)
+    // //리스트 더 가져오기
+    // const moreList = () => {
+    //     setPage(Page + 1)
+    //     console.log("현재 페이지", Page)
+    //     axios({
+    //         method: "post",
+    //         url: `http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`,
+    //         data: {
+    //             sort: sort,
+    //             page: Page,
+    //             searchName
+    //         }
+    //     })
+    //         .then((res) => {
+    //             setSearch((prevSearch) => [...prevSearch, ...res.data]);
+    //             console.log("Axios 요청");
+    //             console.log(search)
+    //             console.log("scrollend false")
+    //             setScrollEnd(false)
 
-                console.log("현재 스크롤 위치 ", scrollPosition)
-                console.log("divHeight", divHeight)
+    //             console.log("현재 스크롤 위치 ", scrollPosition)
+    //             console.log("divHeight", divHeight)
 
-                if (res.data.length < 20) {
+    //             if (res.data.length < 20) {
 
-                    setIsListEnd(true)
-                }
-            })
-            .catch((error) => {
-                console.log(error)
-            });
-    }
+    //                 setIsListEnd(true)
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             console.log(error)
+    //         });
+    // }
 
     // 상품 페이지로 이동
     const moveProduct = (id: number) => {
         window.location.href = `http://localhost:3000/product/${id}`
     }
 
-    if (isLoading) {
-        return (
-            <>
-                <div className={styles.top}></div>
-                <div ref={divRef} className={styles.bodys}>
-                    <div className={styles.container1}>
+    return (
+        <>
+            <div className={styles.top}></div>
+            <div ref={divRef} className={styles.bodys}>
+                <div className={styles.container1}>
 
 
-                        <div className={styles.searchAndResult}>
-                            <h1>"{searchName}" 에 대한 검색결과</h1>
-                            {/* <span className={styles.result}>result 몇개 </span> */}
-                        </div>
-
-                        <hr className={styles.titleHr} />
-
-                        <div style={{ marginLeft: 20 }}>
-                            <div className={styles.colorContainer}>
-                                <span className={styles.colorText}>색상</span>
-
-                                <div className={selectedColor === "red" ? styles.selectedColorRed : styles.colorBoxRed} onClick={red} ></div>
-                                <div className={selectedColor === "green" ? styles.selectedColorGreen : styles.colorBoxGreen} onClick={green} ></div>
-                                <div className={selectedColor === "blue" ? styles.selectedColorBlue : styles.colorBoxBlue} onClick={blue}></div>
-                                <div className={selectedColor === "black" ? styles.selectedColorBlack : styles.colorBoxBlack} onClick={black} ></div>
-                                <div className={selectedColor === "gray" ? styles.selectedColorGray : styles.colorBoxGray} onClick={gray}></div>
-                                <div className={selectedColor === "white" ? styles.selectedColorWhite : styles.colorBoxWhite} onClick={white}></div>
-                                <div className={selectedColor === "brown" ? styles.selectedColorBrown : styles.colorBoxBrown} onClick={brown} style={{ width: 35, height: 35, backgroundColor: "brown" }}></div>
-                                <div className={styles.resetColor} onClick={noColor}>↻</div>
-
-
-                            </div>
-
-
-                            <div className={styles.sort}>
-                                <span className={selectedSort === 'best' ? styles.selectedSort : ''} onClick={best}>인기상품순   </span>
-                                <span>|</span>
-                                <span className={selectedSort === 'low' ? styles.selectedSort : ''} onClick={low}>   낮은 가격순   </span>
-                                <span>|</span>
-                                <span className={selectedSort === 'high' ? styles.selectedSort : ''} onClick={high}>   높은 가격순</span>
-                            </div>
-
-                        </div>
+                    <div className={styles.searchAndResult}>
+                        <div className={styles.result}>"{searchName}" 에 대한 검색결과</div>
+                        {/* <span className={styles.result}>result 몇개 </span> */}
                     </div>
-                    <div className={styles.container2}>
-                        {search.map((product, index) => {
-                            // 가격에 , 추가
-                            const commaPrice = product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-                            const productImgHover = product.imgHover || false;
+                    <hr className={styles.titleHr} />
 
-                            return (
-                                <div key={index} className={styles.productContainer} onClick={() => moveProduct(product.id)}>
+                    <div className={styles.sortContainer}>
+                        <div className={styles.colorContainer}>
+                            <span className={styles.colorText}>색상</span>
 
-                                    <div className={`${styles.productImg} ${productImgHover ? styles.productImgHover : ''}`}>
-                                        <img loading="lazy"
-                                            id="img"
+                            <div className={selectedColor === "red" ? styles.selectedColorRed : styles.colorBoxRed} onClick={red} ></div>
+                            <div className={selectedColor === "green" ? styles.selectedColorGreen : styles.colorBoxGreen} onClick={green} ></div>
+                            <div className={selectedColor === "blue" ? styles.selectedColorBlue : styles.colorBoxBlue} onClick={blue}></div>
+                            <div className={selectedColor === "black" ? styles.selectedColorBlack : styles.colorBoxBlack} onClick={black} ></div>
+                            <div className={selectedColor === "gray" ? styles.selectedColorGray : styles.colorBoxGray} onClick={gray}></div>
+                            <div className={selectedColor === "white" ? styles.selectedColorWhite : styles.colorBoxWhite} onClick={white}></div>
+                            <div className={selectedColor === "brown" ? styles.selectedColorBrown : styles.colorBoxBrown} onClick={brown} style={{ width: 35, height: 35, backgroundColor: "brown" }}></div>
+                            <div className={styles.resetColor} onClick={noColor}>↻</div>
 
-                                            onMouseOver={() => {
-                                                setSearch((prevSearch) =>
-                                                    prevSearch.map((prevProduct, idx) =>
-                                                        idx === index ? { ...prevProduct, imgHover: true } : prevProduct
-                                                    )
-                                                );
-                                            }}
 
-                                            onMouseOut={() => {
-                                                setSearch((prevSearch) =>
-                                                    prevSearch.map((prevProduct, idx) =>
-                                                        idx === index ? { ...prevProduct, imgHover: false } : prevProduct
-                                                    )
-                                                );
-                                            }}
+                        </div>
 
-                                            src={productImgHover ? product.arrange_image || product.image : product.image}
-                                            style={{ width: 280, height: 280, borderRadius: 8 }}
-                                            alt={`${product.name}`} />
-                                    </div>
 
-                                    <div className={styles.productTextHeader}>
-                                        <span className={styles.category}>{product.type_name}</span>
-                                    </div>
+                        <div className={styles.sort}>
+                            <span className={selectedSort === 'best' ? styles.selectedSort : ''} onClick={best}>인기상품순   </span>
+                            <span>|</span>
+                            <span className={selectedSort === 'low' ? styles.selectedSort : ''} onClick={low}>   낮은 가격순   </span>
+                            <span>|</span>
+                            <span className={selectedSort === 'high' ? styles.selectedSort : ''} onClick={high}>   높은 가격순</span>
+                        </div>
 
-                                    <div className={styles.productTextTop}>
-                                        <span className={styles.productName}>{product.name}</span>
+                    </div>
+                </div>
+                <div className={styles.container2}>
+                    {search.map((product, index) => {
+                        // 가격에 , 추가
+                        const commaPrice = product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-                                    </div>
+                        const productImgHover = product.imgHover || false;
 
-                                    <div className={styles.productTextBot}>
-                                        <span className={styles.sale}>{product.discount ? `sale` : " "}</span>
-                                        <span className={styles.price}>{commaPrice}원</span>
-                                    </div>
-                                    <hr className={styles.hr} />
+                        return (
+                            <div key={index}
+                                className={styles.productContainer}
+                                onClick={() => moveProduct(product.id)}>
+
+                                <div className={`${styles.productImg} ${productImgHover ? styles.productImgHover : ''}`}>
+                                    <img loading="lazy"
+                                        onMouseOver={() => {
+                                            setSearch((prevSearch) =>
+                                                prevSearch.map((prevProduct, idx) =>
+                                                    idx === index ? { ...prevProduct, imgHover: true } : prevProduct
+                                                )
+                                            );
+                                        }}
+
+                                        onMouseOut={() => {
+                                            setSearch((prevSearch) =>
+                                                prevSearch.map((prevProduct, idx) =>
+                                                    idx === index ? { ...prevProduct, imgHover: false } : prevProduct
+                                                )
+                                            );
+                                        }}
+                                        className={styles.listItemImg}
+                                        src={productImgHover ? product.arrange_image || product.image : product.image}
+                                        alt={`${product.name}`} />
+                                </div>
+
+                                <div className={styles.productTextHeader}>
+                                    <span className={styles.category}>{product.type_name}</span>
+                                </div>
+
+                                <div className={styles.productTextTop}>
+                                    <span className={styles.productName}>{product.name}</span>
 
                                 </div>
-                            )
 
-                        })}
+                                <div className={styles.productTextBot}>
+                                    {product.discount ?
+                                        <span className={styles.sale}>sale</span>
+                                        :
+                                        <></>
+                                    }
+                                    <span className={styles.price}>{commaPrice}원</span>
+                                </div>
+                                {/* <hr className={styles.hr} /> */}
 
-                    </div>
-                    {isListEnd &&
+                            </div>
+                        )
+
+                    })}
+
+                </div>
+                {/* {isListEnd &&
                         <div className={styles.listEndDiv}>
                             <div className={styles.listEndText}>ㅤEndㅤ</div>
                         </div>
@@ -305,58 +307,11 @@ export default function Search() {
                         <div className={styles.listMoreDiv}>
                             <div onClick={moreList} className={styles.listMoreText}>ㅤMore ▼ㅤ</div>
                         </div>
-                    }
-                </div>
+                    } */}
+            </div>
 
 
-            </>
-        )
-    } else {
-        return (
-            <>
-                <div className={styles.top}></div>
-                <div ref={divRef} className={styles.bodys}>
-                    <div className={styles.container1}>
-
-
-                        <div className={styles.searchAndResult}>
-                            <h1>"{searchName}" 에 대한 검색결과</h1>
-                            {/* <span className={styles.result}>result 몇개 </span> */}
-                        </div>
-
-                        <hr className={styles.titleHr} />
-
-                        <div style={{ marginLeft: 20 }}>
-                            <div className={styles.colorContainer}>
-                                <span className={styles.colorText}>색상</span>
-
-                                <div className={selectedColor === "red" ? styles.selectedColorRed : styles.colorBoxRed} onClick={red} ></div>
-                                <div className={selectedColor === "green" ? styles.selectedColorGreen : styles.colorBoxGreen} onClick={green} ></div>
-                                <div className={selectedColor === "blue" ? styles.selectedColorBlue : styles.colorBoxBlue} onClick={blue}></div>
-                                <div className={selectedColor === "black" ? styles.selectedColorBlack : styles.colorBoxBlack} onClick={black} ></div>
-                                <div className={selectedColor === "gray" ? styles.selectedColorGray : styles.colorBoxGray} onClick={gray}></div>
-                                <div className={selectedColor === "white" ? styles.selectedColorWhite : styles.colorBoxWhite} onClick={white}></div>
-                                <div className={selectedColor === "brown" ? styles.selectedColorBrown : styles.colorBoxBrown} onClick={brown} style={{ width: 35, height: 35, backgroundColor: "brown" }}></div>
-                                <div className={styles.resetColor} onClick={noColor}>↻</div>
-
-
-                            </div>
-
-
-                            <div className={styles.sort}>
-                                <span className={selectedSort === 'best' ? styles.selectedSort : ''} onClick={best}>인기상품순   </span>
-                                <span>|</span>
-                                <span className={selectedSort === 'low' ? styles.selectedSort : ''} onClick={low}>   낮은 가격순   </span>
-                                <span>|</span>
-                                <span className={selectedSort === 'high' ? styles.selectedSort : ''} onClick={high}>   높은 가격순</span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <Loading />
-            </>
-        )
-    }
+        </>
+    )
 
 }
