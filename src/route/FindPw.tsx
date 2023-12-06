@@ -129,7 +129,7 @@ export default function FindPw() {
                 user_name: name
             }
         })
-        
+
         if (res.data.result) {
             setAuthor(res.data.verifyNumber)
             setIdNumber(res.data.id)
@@ -189,12 +189,12 @@ export default function FindPw() {
                     password: password
                 }
             })
-            
-            if(res.data.result){
+
+            if (res.data.result) {
                 alert("비밀번호가 변경되었습니다.")
                 setIsLoading(true);
                 window.location.href = "/signin"
-            }else{
+            } else {
                 alert(res.data.message);
             }
         } else {
@@ -205,7 +205,7 @@ export default function FindPw() {
     if (toggleComp === false) {
         return (
             <div className={styles.bodys}>
-                {isLoading?<></>:<Loading />}
+                {isLoading ? <></> : <Loading />}
                 <div className={styles.container}>
                     <div className={styles.wrapper}>
                         <div className={styles.main}>
