@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, } from "react"
-import { Link, useParams } from "react-router-dom";
+import { useState, useEffect, useRef, } from "react"
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import styles from "../css/list.module.css";
 import { config } from '@fortawesome/fontawesome-svg-core'
@@ -22,7 +22,7 @@ export default function List() {
     const [Page, setPage] = useState<number>(2)
     const [sort, setSort] = useState<String>("best")
 
-    const [isListEnd, setIsListEnd] = useState<boolean>(false)
+    // const [isListEnd, setIsListEnd] = useState<boolean>(false)
 
     const { number } = useParams();
 
@@ -104,9 +104,9 @@ export default function List() {
                     console.log(categories)
                     setScrollEnd(false)
 
-                    if (res.data.length < 20) {
-                        setIsListEnd(true)
-                    }
+                    // if (res.data.length < 20) {
+                    //     setIsListEnd(true)
+                    // }
                     setIsLoading(true)
                 })
                 .catch((error) => {
@@ -117,84 +117,86 @@ export default function List() {
         }
     }, [scrollEnd, sort])
 
-    const moreList = () => {
-        setPage(Page + 1)
-        console.log("현재 페이지", Page)
-        axios({
-            method: "post",
-            url: `http://localhost:8000/list/${number}?sort=${sort}`,
-            data: {
-                sort: sort,
-                page: Page
-            }
-        })
-            .then((res) => {
-                setCategories((prevCategories) => [...prevCategories, ...res.data]);
-                console.log("Axios 요청");
-                console.log(categories)
-                setScrollEnd(false)
+    // const moreList = () => {
+    //     setPage(Page + 1)
+    //     console.log("현재 페이지", Page)
+    //     axios({
+    //         method: "post",
+    //         url: `http://localhost:8000/list/${number}?sort=${sort}`,
+    //         data: {
+    //             sort: sort,
+    //             page: Page
+    //         }
+    //     })
+    //         .then((res) => {
+    //             setCategories((prevCategories) => [...prevCategories, ...res.data]);
+    //             console.log("Axios 요청");
+    //             console.log(categories)
+    //             setScrollEnd(false)
 
-                if (res.data.length < 20) {
-                    setIsListEnd(true)
-                }
-            })
-            .catch((error) => {
-                console.log(error)
-            });
-    }
+    //             // if (res.data.length < 20) {
+    //             //     setIsListEnd(true)
+    //             // }
+    //         })
+    //         .catch((error) => {
+    //             console.log(error)
+    //         });
+    // }
 
     // 정렬
     const best = async () => {
         setSort("best")
-        // setCategories([])
         setPage(2)
-        setIsListEnd(false)
+        // setCategories([])
+        // setIsListEnd(false)
         const res = await axios({
             method: "post",
-            url: `http://localhost:8000/list/${number}?sort=${sort}`,
+            url: `http://localhost:8000/list/${number}?sort=best`,
             data: {
-                sort: sort,
+                sort: "best",
                 page: 1
             }
 
         })
-        console.log('sort running');
         setCategories(res.data);
+        console.log('sort running');
+        console.log(res.data)
     }
 
     const high = async () => {
         setSort("high")
-        // setCategories([])
         setPage(2)
-        setIsListEnd(false)
+        // setCategories([])
+        // setIsListEnd(false)
         const res = await axios({
             method: "post",
-            url: `http://localhost:8000/list/${number}?sort=${sort}`,
+            url: `http://localhost:8000/list/${number}?sort=high`,
             data: {
-                sort: sort,
+                sort: "high",
                 page: 1
             }
         })
-        console.log('sort running');
         setCategories(res.data);
+        console.log('sort running');
         console.log(res.data)
     }
 
     const low = async () => {
         setSort("low")
-        // setCategories([])
         setPage(2)
-        setIsListEnd(false)
+        // setCategories([])
+        // setIsListEnd(false)
         const res = await axios({
             method: "post",
-            url: `http://localhost:8000/list/${number}?sort=${sort}`,
+            url: `http://localhost:8000/list/${number}?sort=low`,
             data: {
                 sort: "low",
                 page: 1
             }
         })
-        console.log('sort running');
         setCategories(res.data);
+        console.log('sort running');
+        console.log(res.data)
     }
 
 
@@ -203,7 +205,7 @@ export default function List() {
         window.location.href = `http://localhost:3000/product/${id}`
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log("실행")
         setCategoriesTemp(categories);
     }, [categories])
@@ -244,86 +246,86 @@ export default function List() {
             title = 'Category';
     }
 
-        return (
-            <>
-                <div className={styles.top}></div>
-                {isLoading ? <></> : <Loading />}
-                <div ref={divRef} className={styles.bodys}>
-                    <div className={styles.container1}>
-                        <div className={styles.categoryInfo}>
+    return (
+        <>
+            <div className={styles.top}></div>
+            {isLoading ? <></> : <Loading />}
+            <div ref={divRef} className={styles.bodys}>
+                <div className={styles.container1}>
+                    <div className={styles.categoryInfo}>
 
-                            <div className={styles.title}>{title}</div>
+                        <div className={styles.title}>{title}</div>
 
-                            <div className={styles.sort}>
-                                <span className={sort === 'best' ? styles.selectedSort : ''} onClick={best}>인기순</span>
-                                <span>|</span>
-                                <span className={sort === 'low' ? styles.selectedSort : ''} onClick={low}>낮은 가격순</span>
-                                <span>|</span>
-                                <span className={sort === 'high' ? styles.selectedSort : ''} onClick={high}>높은 가격순</span>
-                            </div>
-
+                        <div className={styles.sort}>
+                            <span className={sort === 'best' ? styles.selectedSort : ''} onClick={best}>인기순</span>
+                            <span>|</span>
+                            <span className={sort === 'low' ? styles.selectedSort : ''} onClick={low}>낮은 가격순</span>
+                            <span>|</span>
+                            <span className={sort === 'high' ? styles.selectedSort : ''} onClick={high}>높은 가격순</span>
                         </div>
-                        <div className={styles.container2}>
-                            {categoriesTemp.map((product, index) => {
 
-                                // 가격에 , 추가
-                                const commaPrice = product.goods_id.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                                const productImgHover = product.imgHover || false;
+                    </div>
+                    <div className={styles.container2}>
+                        {categoriesTemp.map((product, index) => {
 
-                                return (
+                            // 가격에 , 추가
+                            const commaPrice = product.goods_id.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            const productImgHover = product.imgHover || false;
 
-                                    <div key={index}
-                                        className={styles.productContainer}
-                                        onClick={() => moveProduct(product.goods_id.id)}
-                                    >
+                            return (
 
-                                        <div className={`${styles.productImg} ${productImgHover ? styles.productImgHover : ''}`}>
-                                            <img loading="lazy"
-                                                onMouseOver={() => {
-                                                    setCategories((prevCategories) =>
-                                                        prevCategories.map((prevProduct, idx) =>
-                                                            idx === index ? { ...prevProduct, imgHover: true } : prevProduct
-                                                        )
-                                                    );
-                                                }}
-                                                onMouseOut={() => {
-                                                    setCategories((prevCategories) =>
-                                                        prevCategories.map((prevProduct, idx) =>
-                                                            idx === index ? { ...prevProduct, imgHover: false } : prevProduct
-                                                        )
-                                                    );
-                                                }}
-                                                className={styles.listItemImg}
-                                                src={productImgHover ? product.goods_id.arrange_image || product.goods_id.image : product.goods_id.image}
-                                                alt={`${product.goods_id.name}`} />
-                                        </div>
+                                <div key={index}
+                                    className={styles.productContainer}
+                                    onClick={() => moveProduct(product.goods_id.id)}
+                                >
 
-                                        <div className={styles.productTextHeader}>
-                                            <span className={styles.category}>{product.goods_id.type_name}</span>
-                                        </div>
+                                    <div className={`${styles.productImg} ${productImgHover ? styles.productImgHover : ''}`}>
+                                        <img loading="lazy"
+                                            onMouseOver={() => {
+                                                setCategories((prevCategories) =>
+                                                    prevCategories.map((prevProduct, idx) =>
+                                                        idx === index ? { ...prevProduct, imgHover: true } : prevProduct
+                                                    )
+                                                );
+                                            }}
+                                            onMouseOut={() => {
+                                                setCategories((prevCategories) =>
+                                                    prevCategories.map((prevProduct, idx) =>
+                                                        idx === index ? { ...prevProduct, imgHover: false } : prevProduct
+                                                    )
+                                                );
+                                            }}
+                                            className={styles.listItemImg}
+                                            src={productImgHover ? product.goods_id.arrange_image || product.goods_id.image : product.goods_id.image}
+                                            alt={`${product.goods_id.name}`} />
+                                    </div>
 
-                                        <div className={styles.productTextTop}>
-                                            <span className={styles.productName}>{product.goods_id.name}</span>
+                                    <div className={styles.productTextHeader}>
+                                        <span className={styles.category}>{product.goods_id.type_name}</span>
+                                    </div>
 
-                                        </div>
-
-                                        <div className={styles.productTextBot}>
-                                            {product.goods_id.discount?
-                                                <span className={styles.sale}>sale</span>
-                                            :
-                                                <></>
-                                            }
-                                            <span className={styles.price}>{commaPrice}원</span>
-                                        </div>
-                                        {/* <hr className={styles.listHr} /> */}
+                                    <div className={styles.productTextTop}>
+                                        <span className={styles.productName}>{product.goods_id.name}</span>
 
                                     </div>
-                                )
-                            })}
 
-                        </div>
+                                    <div className={styles.productTextBot}>
+                                        {product.goods_id.discount ?
+                                            <span className={styles.sale}>sale</span>
+                                            :
+                                            <></>
+                                        }
+                                        <span className={styles.price}>{commaPrice}원</span>
+                                    </div>
+                                    {/* <hr className={styles.listHr} /> */}
+
+                                </div>
+                            )
+                        })}
+
                     </div>
-                    {/* {isListEnd &&
+                </div>
+                {/* {isListEnd &&
                         <div className={styles.listEndDiv}>
                             <div className={styles.listEndText}>End</div>
                         </div>
@@ -333,7 +335,7 @@ export default function List() {
                             <div onClick={moreList} className={styles.listMoreText}>More ▼ㅤ</div>
                         </div>
                     } */}
-                </div >
-            </>
-        )
+            </div >
+        </>
+    )
 }
