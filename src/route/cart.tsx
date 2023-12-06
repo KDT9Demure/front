@@ -2,27 +2,26 @@ import { useEffect, useState } from "react";
 import styles from "../css/cart.module.css";
 import axios from "axios";
 import { useAppSelector } from "../hook";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import Loading from "../item/Loading";
 
-function Counter({data, setDatas} : {data:any, setDatas:any}) {
+function Counter({ data, setDatas }: { data: any, setDatas: any }) {
     const [number, setNumber] = useState<number>(data.goods_count);
-    
+
     //수량 +
-    const handleIncrement = () => { 
+    const handleIncrement = () => {
         setNumber(number + 1);
 
         const countPatch = async () => {
-            
+
             const res = await axios({
                 method: "patch",
-                url: 'http://localhost:8000/cart/update',
+                url: `${import.meta.env.VITE_ADDRESS}/cart/update`,
                 data: {
                     id: data.id,
-                    objectCount:number+1
+                    objectCount: number + 1
                 }
             })
             //갯수 추가에 따른 금액 증가
@@ -38,16 +37,16 @@ function Counter({data, setDatas} : {data:any, setDatas:any}) {
 
     //수량 -
     const handleDecrement = () => {
-        if(number < 1) return;
+        if (number < 1) return;
         setNumber(number - 1);
-        
+
         const countPatch = async () => {
             const res = await axios({
                 method: "patch",
-                url: 'http://localhost:8000/cart/update',
+                url: `${import.meta.env.VITE_ADDRESS}/cart/update`,
                 data: {
                     id: data.id,
-                    objectCount:number-1
+                    objectCount: number - 1
                 }
             })
             //갯수 추가에 따른 금액 감소
@@ -61,15 +60,15 @@ function Counter({data, setDatas} : {data:any, setDatas:any}) {
         countPatch();
     }
 
-    
+
 
 
     return (
         <div className={styles.amountWrapper}>
             <div className={styles.amountTitle}>수량</div>
-            <button onClick={handleDecrement} className={styles.amountBtn}><FontAwesomeIcon icon={faMinus} className={styles.amountIcon}/></button>
+            <button onClick={handleDecrement} className={styles.amountBtn}><FontAwesomeIcon icon={faMinus} className={styles.amountIcon} /></button>
             <div className={styles.amountPrice}>  {number}  </div>
-            <button onClick={handleIncrement} className={styles.amountBtn}><FontAwesomeIcon icon={faPlus} className={styles.amountIcon}/></button>
+            <button onClick={handleIncrement} className={styles.amountBtn}><FontAwesomeIcon icon={faPlus} className={styles.amountIcon} /></button>
         </div>
     )
 }
@@ -91,20 +90,21 @@ export default function Cart() {
     const today = formatDate(new Date());
 
     useEffect(() => {
+        setIsLoading(false);
         const datas = async () => {
             const res = await axios({
                 method: "post",
-                url: 'http://localhost:8000/cart/user',
+                url: `${import.meta.env.VITE_ADDRESS}/cart/user`,
                 data: {
                     user_id: userData.user_id
                 }
             })
             setDatas(res.data.cart);
-            setIsLoading(false);
+            setIsLoading(true);
             console.log("setdatas", res.data.cart)
         }
         datas();
-    },[])
+    }, [])
 
     const Delete = () => {
         if (!confirm('제품을 삭제하시겠습니까?')) {
@@ -114,7 +114,7 @@ export default function Cart() {
         const ProductDelete = async () => {
             const res = await axios({
                 method: "delete",
-                url: 'http://localhost:8000/cart/delete',
+                url: `${import.meta.env.VITE_ADDRESS}/cart/delete`,
                 data: {
                     id: checkedIds,
                 }
@@ -127,7 +127,7 @@ export default function Cart() {
     }
 
     const buyProduct = () => {
-        if(checkedIds.length === 0) {
+        if (checkedIds.length === 0) {
             alert("상품을 선택해주세요.");
             return;
         }
@@ -138,44 +138,20 @@ export default function Cart() {
     console.log('checkedIds', checkedIds)
 
     //금액 총액
-    const resultPrice = datas.filter(data => checkedIds.includes(data.id)).reduce((acc, data) => acc + data.goods_id.price*data.goods_count, 0);
+    const resultPrice = datas.filter(data => checkedIds.includes(data.id)).reduce((acc, data) => acc + data.goods_id.price * data.goods_count, 0);
     const price = resultPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
     return (
-        isLoading ? 
-        (<div className={styles.container}>
+        <div className={styles.container}>
             <section className={styles.cartWrapper}>
                 <div className={styles.cartMain}>
-                    <Loading/>
-                    <div className={styles.priceWrapper}>
-                        <div>총 주문금액 : {price} 원</div>
-                    </div>
-                    <div className={styles.cartAllCheck}>
-                        {!checkedIds.length && <><input type="checkbox" id="allcheck" className={styles.cartAllCheckBtn}/>
-                        <label htmlFor="allcheck" className={styles.cartAllCheckLabel} onClick={() => {
-                            const ids = datas.map((data) => data.id);
-                            setCheckedIds(ids);
-                        }}>전체선택</label></>}
-                        {!!checkedIds.length && <><input type="checkbox" id="allcheck" className={styles.cartAllCheckBtn}/>
-                        <label htmlFor="allcheck" className={styles.cartAllCheckLabel} onClick={() => {
-                            setCheckedIds([]);
-                        }}>전체해제</label></>}
-                        <div className={styles.cartDeleteBtn} onClick={Delete}>선택상품 삭제</div>
-                    </div>
-                </div>
-
-                <Link className={styles.orderBtn} to={`/buy?cart=${checkedIds}`}>주문하기</Link>
-            </section>
-        </div>) :
-        (<div className={styles.container}>
-            <section className={styles.cartWrapper}>
-                <div className={styles.cartMain}>
+                    {isLoading ? <></> : <Loading />}
                     {datas.map((data, index) => {
                         return (
                             <div key={index} className={styles.main}>
                                 <div className={styles.cartImg}>
                                     <input type="checkbox"
-                                    checked={checkedIds.some(checkedId => checkedId === data.id)}
+                                        checked={checkedIds.some(checkedId => checkedId === data.id)}
                                         onChange={e => {
                                             if (e.currentTarget.checked) {
                                                 setCheckedIds(prev => ([...prev, data.id]))
@@ -194,7 +170,7 @@ export default function Cart() {
                                     </div>
                                     <div className={styles.cartInfo}>
                                         <div>배송비 무료</div>
-                                        <Counter data={data} setDatas={setDatas}/>
+                                        <Counter data={data} setDatas={setDatas} />
                                     </div>
                                 </div>
                             </div>)
@@ -203,22 +179,20 @@ export default function Cart() {
                         <div>총 주문금액 : {price} 원</div>
                     </div>
                     <div className={styles.cartAllCheck}>
-                        {!checkedIds.length && <><input type="checkbox" id="allcheck" className={styles.cartAllCheckBtn}/>
-                        <label htmlFor="allcheck" className={styles.cartAllCheckLabel} onClick={() => {
-                            const ids = datas.map((data) => data.id);
-                            setCheckedIds(ids);
-                        }}>전체선택</label></>}
-                        {!!checkedIds.length && <><input type="checkbox" id="allcheck" className={styles.cartAllCheckBtn}/>
-                        <label htmlFor="allcheck" className={styles.cartAllCheckLabel} onClick={() => {
-                            setCheckedIds([]);
-                        }}>전체해제</label></>}
+                        {!checkedIds.length && <><input type="checkbox" id="allcheck" className={styles.cartAllCheckBtn} />
+                            <label htmlFor="allcheck" className={styles.cartAllCheckLabel} onClick={() => {
+                                const ids = datas.map((data) => data.id);
+                                setCheckedIds(ids);
+                            }}>전체선택</label></>}
+                        {!!checkedIds.length && <><input type="checkbox" id="allcheck" className={styles.cartAllCheckBtn} />
+                            <label htmlFor="allcheck" className={styles.cartAllCheckLabel} onClick={() => {
+                                setCheckedIds([]);
+                            }}>전체해제</label></>}
                         <div className={styles.cartDeleteBtn} onClick={Delete}>선택상품 삭제</div>
                     </div>
                 </div>
-                
                 <div className={styles.orderBtn} onClick={buyProduct} >주문하기</div>
             </section>
-        </div>)
-        
+        </div>
     )
 }
