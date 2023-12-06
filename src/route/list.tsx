@@ -38,7 +38,7 @@ export default function List() {
                 setIsLoading(false)
                 const res = await axios({
                     method: "post",
-                    url: `http://localhost:8000/list/${number}?sort=${sort}`,
+                    url: `${import.meta.env.VITE_ADDRESS}/list/${number}?sort=${sort}`,
                     data: {
                         page: 1,
                         sort: sort
@@ -90,7 +90,7 @@ export default function List() {
             console.log("현재 페이지", Page)
             axios({
                 method: "post",
-                url: `http://localhost:8000/list/${number}?sort=${sort}`,
+                url: `${import.meta.env.VITE_ADDRESS}/list/${number}?sort=${sort}`,
                 data: {
                     sort: sort,
                     page: Page
@@ -151,7 +151,7 @@ export default function List() {
         // setIsListEnd(false)
         const res = await axios({
             method: "post",
-            url: `http://localhost:8000/list/${number}?sort=best`,
+            url: `${import.meta.env.VITE_ADDRESS}/list/${number}?sort=best`,
             data: {
                 sort: "best",
                 page: 1
@@ -170,7 +170,7 @@ export default function List() {
         // setIsListEnd(false)
         const res = await axios({
             method: "post",
-            url: `http://localhost:8000/list/${number}?sort=high`,
+            url: `${import.meta.env.VITE_ADDRESS}/list/${number}?sort=high`,
             data: {
                 sort: "high",
                 page: 1
@@ -188,7 +188,7 @@ export default function List() {
         // setIsListEnd(false)
         const res = await axios({
             method: "post",
-            url: `http://localhost:8000/list/${number}?sort=low`,
+            url: `${import.meta.env.VITE_ADDRESS}/list/${number}?sort=low`,
             data: {
                 sort: "low",
                 page: 1
@@ -202,7 +202,7 @@ export default function List() {
 
     // 상품 페이지로 이동
     const moveProduct = (id: number) => {
-        window.location.href = `http://localhost:3000/product/${id}`
+        window.location.href = `/product/${id}`
     }
 
     useEffect(() => {

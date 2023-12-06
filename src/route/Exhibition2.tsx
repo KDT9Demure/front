@@ -25,7 +25,7 @@ export default function Showing2() {
         const Data = async () => {
             const Tres = await axios({
                 method: "post",
-                url: `http://localhost:8000/list/fu004`,
+                url: `${import.meta.env.VITE_ADDRESS}/list/fu004`,
                 data: {
                     page: 2
                 }
@@ -35,7 +35,7 @@ export default function Showing2() {
 
             const Cres = await axios({
                 method: "post",
-                url: `http://localhost:8000/list/fu002`,
+                url: `${import.meta.env.VITE_ADDRESS}/list/fu002`,
                 data: {
                     page: 2
                 }
@@ -64,7 +64,7 @@ export default function Showing2() {
         const Coupon = async () => {
             const res = await axios({
                 method: "post",
-                url: 'http://localhost:8000/event/coupon',
+                url: `${import.meta.env.VITE_ADDRESS}/event/coupon`,
                 data: {
                     user_id: userData.user_id,
                     coupon_id: 9
@@ -84,7 +84,7 @@ export default function Showing2() {
 
     // 상품 페이지로 이동
     const moveProduct = (id: number) => {
-        window.location.href = `http://localhost:3000/product/${id}`
+        window.location.href = `/product/${id}`
     }
 
     /** 배열 번호 넘기면 이름 반환 */
@@ -111,7 +111,7 @@ export default function Showing2() {
     const productID = (n: number) => {
         if (product.length > 10) {
             const Num = product[n].goods_id.id
-            window.location.href = `http://localhost:3000/product/${Num}`
+            window.location.href = `/product/${Num}`
         }
     }
 
