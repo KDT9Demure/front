@@ -12,12 +12,12 @@ export default function Event() {
           </Link>
         </div>
         <div>
-          <Link to="/event/Coupon" className={event.link} style={{ textDecoration: 'none' }}>
+          <Link to="exhibition/christmas" className={event.link} style={{ textDecoration: 'none' }}>
             <div className={event.linkTitle}><div className={event.linkDiv}>크리스마스 기획전</div></div>
           </Link>
         </div>
         <div>
-          <Link to="/event/Newyear" className={event.link} style={{ textDecoration: 'none' }}>
+          <Link to="exhibition/new" className={event.link} style={{ textDecoration: 'none' }}>
             <div className={event.linkTitle}><div className={event.linkDiv}>신학기 얼리버드 이벤트</div></div>
           </Link>
         </div>
