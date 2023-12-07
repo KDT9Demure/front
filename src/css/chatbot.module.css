@@ -146,7 +146,7 @@
 
 .chatbotChattingBtn svg:hover {
     scale: 1.1;
-} 
+}
 
 /* 처음 인사 talk */
 
@@ -202,6 +202,17 @@
     }
 }
 
+@keyframes que {
+    from {
+        right: -10px;
+        opacity: 0;
+    }
+    to {
+        right:10px;
+        opacity: 1;
+    }
+}
+
 /* 질문 및 응답 */
 .questionBox {
     display: flex;
@@ -218,13 +229,13 @@
     right: 10px;
     box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.02);
     word-break: break-all;
+    animation: que 0.2s linear;
 }
 
 .answerBox {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-
 }
 
 .answer {
@@ -237,6 +248,7 @@
     margin-bottom: 7px;
     left: 10px;
     box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.02);
+    animation: move 0.7s linear;
 }
 
 .answerLink {
@@ -248,6 +260,7 @@
     margin-bottom: 7px;
     left: 10px;
     box-shadow: 1px 1px 3px 2px rgba(0, 0, 0, 0.02);
+    animation: move 0.9s linear;
 }
 
 .answerLink > a {
