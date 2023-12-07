@@ -37,7 +37,7 @@ function Counter({ data, setDatas }: { data: any, setDatas: any }) {
 
     //수량 -
     const handleDecrement = () => {
-        if (number < 1) return;
+        if (number < 2) return;
         setNumber(number - 1);
 
         const countPatch = async () => {
