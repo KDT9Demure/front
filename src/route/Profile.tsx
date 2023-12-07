@@ -221,7 +221,6 @@ export default function Profile() {
                                         {/* <span className={styles.dis}>할인 쿠폰</span> */}
                                         <hr className={styles.couponHr} />
                                         <div className={styles.couponDate}>유효기간 {newDate}</div>
-
                                     </div>
                                 )
                             })}

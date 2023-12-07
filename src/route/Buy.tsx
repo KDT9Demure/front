@@ -365,7 +365,7 @@ export default function Buy() {
             if(res.data.result){
                 alert("결제되었습니다.");
             }else{
-                alert(res.data.message);
+                // alert(res.data.message);
             }
         }
     }
