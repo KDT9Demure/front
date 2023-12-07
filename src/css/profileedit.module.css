@@ -1,31 +1,18 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .bodys {
     width: 100vw;
     height: 100vh;
-    /* background-color: #253f39; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
 }
 
 .wrapper {
-    /* display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center; */
-
     background-color: white;
     border-radius: 16px;
     height: 100%;
@@ -36,10 +23,15 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    width: 330px;
-    height: 280px;
-    padding: 16px;
-    gap: 10px;
+    width: 280px;
+    height: 315px;
+    gap: 30px;
+}
+
+.inputPassword{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
 }
 
 .main2 {
@@ -48,19 +40,18 @@
     flex-direction: column;
     align-items: center;
     width: 330px;
-    height: 520px;
+    height: 430px;
     padding: 16px;
     gap: 10px;
 }
 
 .id,
 .password {
-    width: 250px;
-    height: 50px;
+    width: 210px;
+    height: 40px;
     border: none;
     outline: none;
     border-bottom: 2px solid #a0b9b3;
-
 }
 
 .id:focus,
@@ -70,11 +61,11 @@
 
 .signinBtn,
 .kakaoBtn {
-    width: 250px;
-    height: 50px;
+    width: 210px;
+    height: 30px;
     border: none;
     outline: none;
-    border-radius: 7px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
@@ -89,8 +80,6 @@
     background-color: #253f39;
     margin-top: 40px
 }
-
-
 
 .Link {
     display: flex;
@@ -109,12 +98,6 @@
     color: black
 }
 
-
-
-
-
-
-
 .bodys2 {
     width: 100vw;
     height: 100vh;
@@ -124,15 +107,11 @@
 
 .main2 {
     position: relative;
-    background-color: white;
-    margin-top: 50px;
-    margin: 30px 30px 10px 30px;
-    border-radius: 7px;
 }
 
 .email {
-    width: 250px;
-    height: 50px;
+    width: 210px;
+    height: 40px;
     border: none;
     outline: none;
     border-bottom: 2px solid #a0b9b3;
@@ -147,12 +126,42 @@ input {
 .delete {
     cursor: pointer;
     position: absolute;
-    right: -10px;
-    top: -15px;
+    right: 15px;
+    top: 15px;
     width: 75px;
     height: 30px;
     border: solid 2px #253f39;
     background-color: white;
-    border-radius: 10px;
+    border-radius: 5px;
+}
 
+.modifyTitle{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.modifyEmail{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.modifyName{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.modifyPassword{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.modifyPasswordCheck{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.modifyBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

@@ -218,7 +218,7 @@ export default function Profile() {
                                         <div className={styles.coupon1}></div>
                                         <div className={styles.couponName}>{value.coupon_id.coupon_name}</div>
                                         <div className={styles.couponDis}>{value.coupon_id.discount}%</div>
-                                        <span className={styles.dis}>할인 쿠폰</span>
+                                        {/* <span className={styles.dis}>할인 쿠폰</span> */}
                                         <hr className={styles.couponHr} />
                                         <div className={styles.couponDate}>유효기간 {newDate}</div>
 

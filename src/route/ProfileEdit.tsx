@@ -1,8 +1,6 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom";
 import styles from "../css/profileedit.module.css";
 import axios from "axios";
-import { Cookies } from "react-cookie";
 import { useAppSelector } from "../hook";
 
 
@@ -162,12 +160,11 @@ export default function ProfileEdit() {
 
     if (toggleComp === false) {
         return (
-
             <div className={styles.bodys}>
                 <div className={styles.container}>
                     <div className={styles.wrapper}>
                         <div className={styles.main}>
-                            <div style={{ fontSize: 20, fontWeight: "bold" }}>비밀번호를 한번 더 입력해 주세요.</div>
+                            <div className={styles.inputPassword}>비밀번호를 입력해 주세요</div>
                             <input className={styles.password} name="password" type="password" placeholder="Password" onChange={e => { setPw(e.target.value); }} />
                             {isPwTrue === false ? (
                                 <span style={{ color: 'red', paddingRight: 120, }}>
@@ -180,8 +177,6 @@ export default function ProfileEdit() {
                     </div>
                 </div>
             </div>
-
-
         )
     } else {
         return (
@@ -190,15 +185,13 @@ export default function ProfileEdit() {
                     <div className={styles.wrapper}>
                         <div className={styles.main2}>
                             <button type="button" onClick={userDelete} className={styles.delete}>회원탈퇴</button>
-                            <h2>회원정보 수정</h2>
-                            <div style={{ marginTop: 10, marginRight: 25, marginBottom: 25, marginLeft: 25 }}>
-                                <h3>이메일</h3>
+                            <div className={styles.modifyTitle}>회원정보 수정</div>
+                            <div className={styles.modifyBox}>
+                                <div className={styles.modifyEmail}>이메일</div>
                                 <input type="text" value={userData.user.email} className={styles.email} />
-                                <br /><br />
-                                <h3>이름</h3>
+                                <div className={styles.modifyName}>이름</div>
                                 <input type="text" defaultValue={userData.user.user_name} maxLength={20} className={styles.password} onChange={nameCheck} placeholder="Name" />
-                                <br /><br />
-                                <h3>비밀번호</h3>
+                                <div className={styles.modifyPassword}>비밀번호</div>
                                 <input
                                     className={styles.password} placeholder="Password" type="password"
                                     onChange={pwCheck} />
@@ -209,8 +202,7 @@ export default function ProfileEdit() {
                                         8자 이상 / 숫자,문자,특수문자를 포함해 주세요
                                     </span>
                                 ) : null}
-                                <br /><br />
-                                <h3>비밀번호 확인</h3>
+                                <div className={styles.modifyPasswordCheck}>비밀번호 확인</div>
 
                                 <input
 
