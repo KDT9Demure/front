@@ -15,10 +15,10 @@ function ReviewBox({review} : {review : any}) {
     
     return (
         <div className={styles.commentInfor}>
-            <div>ID:{review.user_id}</div>
-            <div>날짜:{review.create_date}</div>
-            <div>댓글내용:{review.content}</div>
-            <div>별점:{review.rate}</div>
+            <div className={styles.rateStyle}>{review.rate}</div>
+            {/* <div>ID:{review.user_id}</div> */}
+            <div className={styles.dateStyle}>{review.create_date}</div>
+            <div>{review.content}</div>
         </div>
     ) 
 }
@@ -162,11 +162,12 @@ export default function Product() {
                         <div className={styles.title}>상품상세정보</div>
                     </div>
                     <div className={styles.detailInfor} style={visible?noneStyle:openStyle}>
-                        <img className={styles.datailImg} src={data.image}/>
+                        <img className={styles.datailImg} src={'/assets/product.png'} />
+                        <img className={styles.datailImg} src={data.image} style={{marginTop:"-5px"}}/>
                         {
-                        visible? <div className={styles.detailBtn} onClick={() => setVisible(false)}><FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faSquareCaretDown} /></div>
+                        visible? <div className={styles.detailBtn} onClick={() => setVisible(false)}><div className={styles.detailButton}>자세히보기</div></div>
                         :
-                        <div className={styles.detailBtn} onClick={() => setVisible(true)}><FontAwesomeIcon className={styles.FontAwesomeIcon} icon={faSquareCaretUp} /></div>
+                        <div className={styles.detailBtn} onClick={() => setVisible(true)}><div className={styles.detailButton}>닫기</div></div>
                         }
                     </div>
                     
@@ -177,11 +178,13 @@ export default function Product() {
                     <div className={styles.commentHeader}>
                         <div className={styles.title}>상품평</div>
                     </div>
+                    <div className={styles.reviewBox}>
                     {reviews.map((review, index) => {
                         return (
                             <ReviewBox key = {index} review={review} />
                         )
                     })}
+                    </div>
                 </div>
             </div>
             <div className={styles.createCommentContainer}>

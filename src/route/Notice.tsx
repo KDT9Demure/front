@@ -11,17 +11,17 @@ function Notices({ que, anw, anw1, day }: { que: string, anw: string, anw1: stri
 
     return (
         visible ?
-            (<div className={styles.notionBox}>
+            (<div className={styles.notionBox} onClick={() => setVisible(false)} >
                 <div>{que}</div>
                 <div className={styles.notionBtn}>
-                    <FontAwesomeIcon icon={faCaretDown} onClick={() => setVisible(false)} />
+                    <FontAwesomeIcon icon={faCaretDown}/>
                 </div>
             </div >) :
 
             (<div className={styles.notionBox2Wrapper}>
-                <div className={styles.notionBox2}>
+                <div className={styles.notionBox2} onClick={() => setVisible(true)} >
                     <div>{que}</div>
-                    <div className={styles.notionBtn}><FontAwesomeIcon icon={faCaretUp} onClick={() => setVisible(true)} /></div>
+                    <div className={styles.notionBtn}><FontAwesomeIcon icon={faCaretUp}/></div>
                 </div>
                 <div className={styles.notionInforWrapper}>
                     <div className={styles.notionDaterWrapper}>

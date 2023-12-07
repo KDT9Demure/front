@@ -1,9 +1,3 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .notionContainer {
     display: flex;
     flex-direction: column;
@@ -21,17 +15,19 @@
     border-radius: 7px;
     padding: 50px;
     width: 700px;
+    padding-bottom: 75px;
+    padding-top: 75px;
 }
 
 .notionWrapper {
-    border: 3px solid #253f39;
-    border-radius: 7px;
+    border: 2px solid #253f39;
+    border-radius: 5px;
     padding: 16px;
     width: 600px;
 }
 
 .notionTitle {
-    font-size: 30px;
+    font-size: 25px;
     margin-bottom: 20px;
 }
 
@@ -41,11 +37,12 @@
     align-items: center;
     background-color: #253f39;
     color: white;
-    border-radius: 7px;
+    border-radius: 5px;
     width: 565px;
     height: 50px;
     padding: 16px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .notionBox2Wrapper {
@@ -58,7 +55,7 @@
     height: fit-content;
     margin-bottom: 10px;
     border: 1px solid #253f39;
-    border-radius: 7px;
+    border-radius: 5px;
 }
 
 .notionBox2 {
@@ -73,10 +70,12 @@
     height: 50px;
     padding: 16px;
     color: white;
+    cursor: pointer;
 }
 
 .notionBtn {
     cursor: pointer;
+    transition: all 0.3s;
 }
 
 .notionBtn:hover {

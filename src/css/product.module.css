@@ -159,7 +159,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-bottom: 150px;
+    margin-bottom: 110px;
 }
 
 .detailWrapper, .commentWrapper {
@@ -175,17 +175,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #253f39;
+    color: white;
     height: 45px;
     width: 100%;
-    border-top: 5px solid #253f39;
-    border-bottom: 1px solid #253f39;
+    /* border-top: 5px solid #253f39; */
+    border-bottom: 1px solid white;
     margin-bottom: 20px;
 }
 
 .title {
-    margin-left: 10px;
     font-size: 20px;
+    color: white;
 }
 
 .detailBtn {
@@ -197,8 +197,15 @@
     width: 100%;
     height: 200px;
     position: absolute;
-    bottom: -60px;
-    background: linear-gradient(to bottom, rgb(252, 252, 2520, 0.0) 0%, rgba(255, 255, 255, 0.6), rgb(255 255 255) 100%);
+    bottom: 0px;
+    /* background: linear-gradient(to bottom, rgb(252, 252, 2520, 0.0) 0%, rgba(255, 255, 255, 0.6), rgb(255 255 255) 100%); */
+    margin-bottom: 15px;
+}
+
+.detailButton{
+    padding: 10px 25px;
+    border: 1px solid;
+    font-size: 18px;
 }
 
 .FontAwesomeIcon {
@@ -207,12 +214,35 @@
 }
 
 .detailInfor, .commentInfor {
-    /* border: 1px solid #253f39; */
-    height: 300px;
     width: 100%;
     overflow: hidden;
     text-align: center;
-    border-radius: 5px;
+    border: 1px solid #e5e5e5;
+    padding: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.reviewBox{
+    background-color: white;
+    width: 100%;
+    padding: 20px;
+}
+
+.rateStyle{
+    font-size: 25px;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.dateStyle{
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
 
 .datailImg {
@@ -251,7 +281,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 900px;
     background-color: white;
     
 }
@@ -267,6 +297,8 @@
 
 .createCommentTitle {
     font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 20px;
 }
 
 .starIconContainer{
@@ -284,14 +316,17 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    color: #bdbdbd;
+    font-size: 25px;
 }
 
 .startIcon {
+    fill: #bdbdbd;
     cursor: pointer;
 }
 
 .starIcon2 path {
-    fill: yellow;
+    fill: #253f39;
     cursor: pointer;
 }
 
@@ -310,6 +345,9 @@
     width: 100%;
     height: 50px;
     resize: none;
+    outline: none;
+    padding: 10px;
+    font-size: 16px;
 }
 
 .commentCreateBtn {
@@ -317,6 +355,6 @@
     background-color: #253f39;
     color:white;
     width: 60px;
-    height: 40px;
+    height: 50px;
     cursor: pointer;
 }

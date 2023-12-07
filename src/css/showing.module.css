@@ -22,8 +22,7 @@
 
 .mainImg {
     cursor: pointer;
-    width: 1200px;
-    height: auto;
+    width: 1250px;
 
 }
 
@@ -31,14 +30,14 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: start;
-    width: 1000px;
-
+    width: 1250px;
 }
 
 .flexBox {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 80px
 }
 
 .productImg {
@@ -165,7 +164,7 @@
     width: 1200px;
     height: 100px;
     background-color: rgb(189, 57, 57);
-    border: solid 2px rgb(255, 255, 255);
+    /* border: solid 2px rgb(255, 255, 255); */
     color: white;
 }
 
@@ -236,5 +235,5 @@
 }
 
 .mainText {
-    margin: 10px 0 0 20px;
+    margin: 10px 0 0 0px;
 }
