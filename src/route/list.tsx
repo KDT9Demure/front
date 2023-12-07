@@ -104,9 +104,6 @@ export default function List() {
                     console.log(categories)
                     setScrollEnd(false)
 
-                    // if (res.data.length < 20) {
-                    //     setIsListEnd(true)
-                    // }
                     setIsLoading(true)
                 })
                 .catch((error) => {
@@ -117,38 +114,12 @@ export default function List() {
         }
     }, [scrollEnd, sort])
 
-    // const moreList = () => {
-    //     setPage(Page + 1)
-    //     console.log("현재 페이지", Page)
-    //     axios({
-    //         method: "post",
-    //         url: `http://localhost:8000/list/${number}?sort=${sort}`,
-    //         data: {
-    //             sort: sort,
-    //             page: Page
-    //         }
-    //     })
-    //         .then((res) => {
-    //             setCategories((prevCategories) => [...prevCategories, ...res.data]);
-    //             console.log("Axios 요청");
-    //             console.log(categories)
-    //             setScrollEnd(false)
-
-    //             // if (res.data.length < 20) {
-    //             //     setIsListEnd(true)
-    //             // }
-    //         })
-    //         .catch((error) => {
-    //             console.log(error)
-    //         });
-    // }
 
     // 정렬
     const best = async () => {
         setSort("best")
         setPage(2)
-        // setCategories([])
-        // setIsListEnd(false)
+
         const res = await axios({
             method: "post",
             url: `${import.meta.env.VITE_ADDRESS}/list/${number}?sort=best`,
@@ -166,8 +137,7 @@ export default function List() {
     const high = async () => {
         setSort("high")
         setPage(2)
-        // setCategories([])
-        // setIsListEnd(false)
+
         const res = await axios({
             method: "post",
             url: `${import.meta.env.VITE_ADDRESS}/list/${number}?sort=high`,
@@ -184,8 +154,7 @@ export default function List() {
     const low = async () => {
         setSort("low")
         setPage(2)
-        // setCategories([])
-        // setIsListEnd(false)
+
         const res = await axios({
             method: "post",
             url: `${import.meta.env.VITE_ADDRESS}/list/${number}?sort=low`,
@@ -317,7 +286,6 @@ export default function List() {
                                         }
                                         <span className={styles.price}>{commaPrice}원</span>
                                     </div>
-                                    {/* <hr className={styles.listHr} /> */}
 
                                 </div>
                             )
@@ -325,16 +293,6 @@ export default function List() {
 
                     </div>
                 </div>
-                {/* {isListEnd &&
-                        <div className={styles.listEndDiv}>
-                            <div className={styles.listEndText}>End</div>
-                        </div>
-                    }
-                    {!isListEnd &&
-                        <div className={styles.listMoreDiv}>
-                            <div onClick={moreList} className={styles.listMoreText}>More ▼ㅤ</div>
-                        </div>
-                    } */}
             </div >
         </>
     )
