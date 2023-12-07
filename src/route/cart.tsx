@@ -107,6 +107,10 @@ export default function Cart() {
     }, [])
 
     const Delete = () => {
+        if (checkedIds.length === 0) {
+            alert("상품을 선택해주세요.");
+            return;
+        }
         if (!confirm('제품을 삭제하시겠습니까?')) {
             return;
         }
