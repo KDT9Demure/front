@@ -138,7 +138,7 @@ export default function Showing2() {
                     <div className={styles.circleDiv} onClick={() => productID(0)} style={{ left: 100, top: 270 }}>
                         <span className={styles.circle}></span>
                     </div>
-                    <div className={styles.additionalDiv} style={{ left: 50, top: 145 }}>
+                    <div className={styles.additionalDiv} style={{ left: 50, top: 125 }}>
                         <div className={styles.DivInInfo} >
                             <div className={styles.PN}> {productName(0)}</div>
                             <div className={styles.PT}> {productType(0)}</div>
@@ -168,7 +168,7 @@ export default function Showing2() {
                     <div className={styles.circleDiv} onClick={() => productID(10)} style={{ right: 620, top: 250 }}>
                         <span className={styles.circle}></span>
                     </div>
-                    <div className={styles.additionalDiv} style={{ right: 650, top: 125 }}>
+                    <div className={styles.additionalDiv} style={{ right: 670, top: 160 }}>
                         <div className={styles.DivInInfo} >
                             <div className={styles.PN}> {productName(11)}</div>
                             <div className={styles.PT}> {productType(11)}</div>
