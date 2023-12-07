@@ -60,7 +60,7 @@
     align-items: center;
     background-color: white;
     width: 565px;
-    height: 200px;
+    height: auto;
     margin-bottom: 10px;
     border: 1px solid #253f39;
     border-radius: 7px;
@@ -91,14 +91,19 @@
 .qnaInforBox {
     display: flex;
     flex-direction: column;
-    height: 200px;
     padding-top: 10px;
     gap: 10px;
+    width: 100%;
 }
 
-.qnaInfor {
+.qnaInfor, .qnaInfor2 {
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.qnaInfor2 {
+    line-height: 2;
+    white-space: pre-line;
 }
 
 .inquireWrapper {
@@ -201,14 +206,18 @@
 }
 
 .inquireMainContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 450px;
-    height: 100px;
+    height: auto;
     text-align: center;
     background-color: white;
     color: black;
     padding: 16px;
     border-radius: 7px;
     margin-top: 10px;
+    position: relative;
 }
 
 .AnswerBox {
@@ -225,6 +234,7 @@
     cursor: pointer;
     height: 30px;
     margin-top: 20px;
+    width: 80px;
 }
 
 .openAnswerBtn:hover, .closeAnswerBtn:hover {
@@ -271,6 +281,7 @@
     margin-top: 10px;
     cursor: pointer;
     height: 20px;
+    width: 80px;
 }
 
 .inquireMainBtn:hover {
@@ -287,6 +298,7 @@
     width: 450px;
     height: 100px;
     resize: none;
+    outline: none;
 }
 
 .inquireMainAdiminAnswer {
@@ -296,9 +308,24 @@
     border-radius: 7px;
     margin-top: 10px;
     width: 450px;
-    height: 100px;
+    height: auto;
     background-color: white;
     color: black;
+    position: relative;
+    padding: 16px;
+}
+
+.inquireMainAdiminAnswerTitle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 10px;
+}
+
+.inquireMainAdiminAnswerContent {
+    margin-top: 20px;
+    padding-bottom: 20px;
+    word-break: break-all;
 }
 
 .answerBox {
@@ -325,6 +352,7 @@
     width: 450px;
     height: 50px;
     resize: none;
+    outline: none;
 }
 
 .answerMain {
@@ -333,6 +361,7 @@
     width: 450px;
     height: 100px;
     resize: none;
+    outline: none;
 }
 
 .answerBtnWrapper {

@@ -18,7 +18,7 @@ function ChatbotTalk() {
                 <div className={styles.talkFirst}>안녕하세요! 고객지원 도우미 챗봇 원노 🤖입니다.</div>
             </div>
             <div className={styles.firstTalkWrapper}>
-                <div className={styles.talkSecond}>간단한 단어를 활용해 한 문장으로 문의해 주세요.</div>
+                <div className={styles.talkSecond}>간단한 단어나 문장으로 문의해 주세요.</div>
             </div>
             <div className={styles.firstTalkWrapper}>
                 <div className={styles.talkThird}>무엇을 도와드릴까요?</div>
@@ -116,7 +116,7 @@ function MainChatbot({ openChatbot, setOpenChatbot }: { openChatbot: boolean, se
                 tags = myPage
             }
         } else if (inputValue.includes("안녕")) {
-            answer = "큭큭큭 반갑다 인간이여... 난 챗봇 원노라고 한다."
+            answer = "큭큭 반갑다 인간이여... 난 챗봇 원노라고 한다."
         } else {
             answer = "자세한건 Q&A페이지에서 질문해주세요."
             if(userData.user_id) {

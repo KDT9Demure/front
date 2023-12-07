@@ -25,13 +25,13 @@
     align-items: center;
     width: 280px;
     height: 315px;
-    gap: 30px;
+
 }
 
-.inputPassword{
+.inputPassword {
     font-size: 20px;
     font-weight: 600;
-    margin-bottom: 15px;
+    margin-bottom: 40px;
 }
 
 .main2 {
@@ -135,33 +135,59 @@ input {
     border-radius: 5px;
 }
 
-.modifyTitle{
+.modifyTitle {
     font-size: 20px;
     font-weight: 600;
 }
 
-.modifyEmail{
+.modifyEmail {
     width: 100%;
     margin-top: 10px;
 }
 
-.modifyName{
+.modifyName {
     width: 100%;
     margin-top: 10px;
 }
 
-.modifyPassword{
+.modifyPassword {
     width: 100%;
     margin-top: 10px;
 }
 
-.modifyPasswordCheck{
+.modifyPasswordCheck {
     width: 100%;
     margin-top: 10px;
 }
 
-.modifyBox{
+.modifyBox {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
+}
+
+.wrongPw {
+    color: red;
+    font-size: 16px;
+    padding: 0 80px 10px 0;
+    font-weight: bold;
+
+}
+
+.green {
+    font-size: 13px;
+    color: green;
+    font-weight: bold;
+}
+
+.red {
+    font-size: 12px;
+    color: red;
+    font-weight: bold;
+}
+
+.red13 {
+    font-size: 13px;
+    color: red;
+    font-weight: bold;
 }

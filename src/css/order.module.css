@@ -1,15 +1,11 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .bodys {
-    padding: 40px 200px 140px 200px;
-    width: 100vw;
+    padding: 80px 150px 140px 150px;
+    width: 1500px;
+    display: flex;
+    justify-content: center;
     height: auto;
-    /* background-color: #253f39; */
 
+    /* background-color: #253f39; */
 }
 
 .map {
@@ -23,27 +19,33 @@
 }
 
 .id {
-    margin-left: 35px;
-    font-size: 20px;
+    display: flex;
+    width: 270px;
+    justify-content: space-between;
+    align-items: end;
+    font-size: 16px;
 
 }
 
 .date {
-    font-size: 26px;
-    font-weight: bold;
+    font-size: 17px;
+    width: auto;
+
+
 }
 
 .titleHr {
-    margin: 5px 0 5px 0;
+    margin: 5px 0 0 0;
 }
 
-.cancleBtn {
+.cancelBtn {
 
-
+    cursor: pointer;
     background-color: white;
     color: #253f39;
     border-radius: 10px;
     font-weight: bold;
+    padding: 2px;
 }
 
 .container {
@@ -52,6 +54,7 @@
     background-color: white;
     margin-top: 50px;
     padding: 30px 30px 10px 30px;
+    width: 750px;
 }
 
 .mainContainer {
@@ -59,21 +62,34 @@
 }
 
 .orderList {
-    padding: 0 0 0 15px;
-    width: 100vw;
-    height: 100%;
+
     font-size: 20px;
+    font-weight: bold;
 }
 
 .containerBox {}
 
 
+.map {
+    width: 680px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
 
+.map2 {
+    display: flex;
+    justify-content: start;
+    height: auto;
 
-.orderContainer {
-    position: relative;
-    padding: 0 0 0 200px;
-    height: auto
+    margin: 10px 0 10px 0;
+}
+
+.productInfoContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
 }
 
 .infoContainer {
@@ -88,75 +104,78 @@
 }
 
 .reBuy {
-    position: absolute;
-    left: 20px;
-    bottom: 0;
+    cursor: pointer;
     width: 150px;
+    height: 35px;
     border-radius: 10px;
     color: white;
     background-color: #253f39
 }
 
 .imgContainer {
-    position: absolute;
-    left: 20px;
-    width: 150px;
-    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 175px;
+    min-width: 175px;
+    height: auto;
+
 }
 
 .img {
     width: 150px;
     height: 150px;
+    border: solid 2px rgb(167, 166, 166);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.space {
+    width: 20px;
+    min-width: 20px;
+    height: auto;
 }
 
 .productName {
-    font-size: 32px;
+    font-size: 25px;
     font-weight: bold;
-    margin: 7px 0 7px 0;
+    padding-bottom: 5px;
+
 }
 
 .productColor {
-    margin-left: 10px;
-    font-size: 18px;
-    margin: 7px 0 7px 0;
-}
+    font-size: 16px;
+    color: rgb(148, 121, 31);
 
-.productPrice {
-    font-size: 25px;
-    margin: 7px 0 7px 0;
 }
 
 .productCount {
-    font-size: 19px;
-    margin: 7px 0 7px 0;
+    font-size: 17px;
+    width: 80px;
+
 }
 
 .delivery {
-    font-size: 19px;
-    margin: 7px 0 7px 0;
+    font-size: 17px;
+    width: 80px;
+    min-width: 80px;
 
 }
 
 .price {
-    font-size: 19px;
-    margin: 7px 0 7px 0;
+    font-size: 17px;
+    width: 80px;
+
 }
 
-.priceAndDelivery {
-    margin: 7px 0 7px 0;
-}
+.priceAndDelivery {}
 
 .deliveryStatus {
-    font-size: 19px;
-    margin: 7px 0 7px 0;
-    padding-left: 50px;
-
+    font-size: 17px;
+    width: 80px;
 }
 
-.paymentPrice {
-    font-size: 20px;
-    font-weight: bold;
-}
 
 
 .hr {
@@ -171,8 +190,9 @@
     justify-content: end;
     border-top: dashed 2px;
     font-weight: bold;
-    font-size: 24px;
-    padding: 10px 20px 0 0;
+    font-size: 22px;
+    padding: 8px 0 8px 0;
+    margin: 5px 0 0 0;
 
 
 }
@@ -188,4 +208,87 @@
     flex-direction: column;
 
     margin-bottom: 10px;
+}
+
+.Pc {
+    display: flex;
+    align-items: center;
+    margin: 5px 0 5px 0;
+}
+
+.productCountText {
+    font-size: 17px;
+    width: auto;
+}
+
+.Pd {
+    display: flex;
+    align-items: center;
+    margin: 5px 0 5px 0;
+
+}
+
+.deliveryText {
+    font-size: 17px;
+}
+
+.Pp {
+    display: flex;
+    align-items: center;
+    margin: 10px 0 5px 0;
+
+}
+
+.paymentPrice {
+    font-size: 18px;
+
+
+}
+
+.Ps {
+    display: flex;
+    align-items: center;
+    margin: 5px 0 0 0;
+
+}
+
+.deliveryStatusText {
+    background-color: rgb(175, 48, 48);
+    padding: 5px;
+    color: white;
+    border-radius: 10px;
+
+    font-size: 16px;
+}
+
+.deliveryStatusText2 {
+    background-color: rgb(40, 31, 132);
+    padding: 5px;
+    color: white;
+    border-radius: 10px;
+
+    font-size: 16px;
+}
+
+.topInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: 50px;
+}
+
+.botInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+
+}
+
+.headerInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: solid 2px #aeaeae;
+    padding: 5px 0 5px 15px;
 }

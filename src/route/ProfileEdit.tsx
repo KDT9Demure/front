@@ -167,9 +167,9 @@ export default function ProfileEdit() {
                             <div className={styles.inputPassword}>비밀번호를 입력해 주세요</div>
                             <input className={styles.password} name="password" type="password" placeholder="Password" onChange={e => { setPw(e.target.value); }} />
                             {isPwTrue === false ? (
-                                <span style={{ color: 'red', paddingRight: 120, }}>
+                                <div className={styles.wrongPw}>
                                     비밀번호가 틀립니다
-                                </span>
+                                </div>
                             ) : null}
                             <button className={styles.signinBtn} onClick={confirm} type="button">확인</button>
 
@@ -196,10 +196,10 @@ export default function ProfileEdit() {
                                     className={styles.password} placeholder="Password" type="password"
                                     onChange={pwCheck} />
                                 {isPwTrue === true ? (
-                                    <span style={{ color: 'green', fontSize: 13, fontWeight: "bold" }}>사용가능한 비밀번호입니다.</span>
+                                    <span className={styles.green}>사용가능한 비밀번호입니다.</span>
                                 ) : isPwTrue === false ? (
-                                    <span style={{ color: 'red', fontSize: 13, fontWeight: "bold" }}>
-                                        8자 이상 / 숫자,문자,특수문자를 포함해 주세요
+                                    <span className={styles.red}>
+                                        8자 이상/숫자,문자,특수문자를 포함해주세요
                                     </span>
                                 ) : null}
                                 <div className={styles.modifyPasswordCheck}>비밀번호 확인</div>
@@ -209,9 +209,9 @@ export default function ProfileEdit() {
                                     className={styles.password} placeholder="Confirm Password" type="password"
                                     onChange={confirmPw} />
                                 {isPasswordMatch === true ? (
-                                    <span style={{ color: 'green', fontSize: 13, fontWeight: "bold" }}>비밀번호 일치</span>
+                                    <span className={styles.green}>비밀번호 일치</span>
                                 ) : isPasswordMatch === false ? (
-                                    <span style={{ color: 'red', fontSize: 13, fontWeight: "bold" }}>
+                                    <span className={styles.red13}>
                                         비밀번호가 일치하지 않습니다
                                     </span>
                                 ) : null}

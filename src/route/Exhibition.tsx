@@ -32,7 +32,7 @@ export default function Showing() {
 
     // 상품 페이지로 이동
     const moveProduct = (id: number) => {
-        window.location.href = `${import.meta.env.VITE_ADDRESS}/product/${id}`
+        window.location.href = `/product/${id}`
     }
 
 

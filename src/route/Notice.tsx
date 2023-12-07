@@ -25,9 +25,10 @@ function Notices({ que, anw, anw1, day }: { que: string, anw: string, anw1: stri
                 </div>
                 <div className={styles.notionInforWrapper}>
                     <div className={styles.notionDaterWrapper}>
-                    <div>{day}</div>
+                        <div className={styles.notionInfor}>{anw}</div>
+                        <div>{day}</div>
                     </div>
-                    <div className={styles.notionInfor}>{anw}</div>
+                    
                     <div className={styles.notionInfor}>{anw1}</div>
                 </div>
             </div>)
@@ -47,7 +48,7 @@ export default function Notion() {
                             anw="[신학기 맞이 기획전을 진행합니다]"
                             anw1="Demure에서 신학기 맞이 기획전을 진행합니다.
                             신학기를 맞이하여 새로운 마음으로 시작하는 학생들을 위해 Demure에서 가구들을 추천하여 기획전을 진행합니다.
-                            학생들의 공부능률을 올려주고, 휴식시 편안함과 아늑함을 느낄 수 있는 가구들을 추천드립니다.
+                            학생들의 공부 능률을 높여주고, 휴식시 편안함과 아늑함을 느낄 수 있는 가구들을 추천드립니다.
                             자세한 것은 이벤트페이지에서 확인가능합니다."
                             day="2023-12-08" />
                         <Notices que="[EVENT] Demure 크리스마스 이벤트"
@@ -58,7 +59,8 @@ export default function Notion() {
                         <Notices que="[공지] 선물포장 관련"
                             anw="[선물포장은 불가합니다]"
                             anw1="크리스마스와 연말이라 제품을 선물포장 요청하시는 분들이 많습니다.
-                            아쉽게도 저희 Demure에서는 선물포장은 따로 해드리지 않음을 알려드립니다.
+                            아쉽게도 선물포장은 따로 해드리지 않음을 알려드립니다.
+                            고객님들의 이용에 조금 더 쾌적함을 드릴 수 있는 Demure가 되도록 노력하겠습니다.
                             오늘도 저희 Demure를 이용해주셔서 감사합니다."
                             day="2023-12-05" />
                         <Notices que="[공지] 주문취소 후 쿠폰반환 관련"
@@ -73,7 +75,7 @@ export default function Notion() {
                             anw="[크리스마스 기획전을 진행합니다]"
                             anw1="Demure에서 크리스마스 기획전을 진행합니다.
                             크리스마스를 맞이하여 관련된 상품을 판매합니다.
-                            크리스마스 분위기를 내고 싶으신 고객님들께 추천드리는 제품들을 모아두었습니다.
+                            크리스마스의 분위기를 내고 싶으신 고객님들께 추천드리는 제품들을 모아두었습니다.
                             자세한 것은 이벤트페이지에서 확인가능합니다."
                             day="2023-12-01" />
                         <Notices que="[EVENT] 첫 구매 할인 이벤트"

@@ -9,7 +9,6 @@ export default function Kakao() {
     useEffect(() => {
         const kakao_code = async () => {
             const code = new URL(window.location.href).searchParams.get("code");
-            console.log(code)
             const token = await axios({
                 method: "POST",
                 url:`${import.meta.env.VITE_ADDRESS}/user/kakao/code`,
@@ -17,7 +16,7 @@ export default function Kakao() {
                     code
                 }
             })
-
+            console.log("token",token)
             //쿠키에 value로 token 넣기
             const cookie = new Cookies();
             cookie.set("DEMURE", token);

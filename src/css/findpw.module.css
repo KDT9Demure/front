@@ -161,7 +161,19 @@
 
 .authorText {
     position: absolute;
-    font-size: 13px;
+    font-size: 14px;
+    color: red;
+    font-weight: bold;
+}
+
+.green {
+    font-size: 14px;
+    color: green;
+    font-weight: bold;
+}
+
+.red {
+    font-size: 14px;
     color: red;
     font-weight: bold;
 }
