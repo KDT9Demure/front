@@ -13,17 +13,17 @@ function OneQna({ que, anw, anw1 }: { que: string, anw: string, anw1: string }) 
 
     return (
         visible ?
-            (<div className={styles.qnaBox}>
+            (<div className={styles.qnaBox} onClick={() => setVisible(false)}>
                 <div>{que}</div>
                 <div className={styles.qnaBtn}>
-                    <FontAwesomeIcon icon={faCaretDown} onClick={() => setVisible(false)} />
+                    <FontAwesomeIcon icon={faCaretDown} />
                 </div>
             </div >) :
 
             (<div className={styles.qnaBox2Wrapper}>
-                <div className={styles.qnaBox2}>
+                <div className={styles.qnaBox2} onClick={() => setVisible(true)} >
                     <div>{que}</div>
-                    <div className={styles.qnaBtn}><FontAwesomeIcon icon={faCaretUp} onClick={() => setVisible(true)} /></div>
+                    <div className={styles.qnaBtn}><FontAwesomeIcon icon={faCaretUp}/></div>
                 </div>
                 <div className={styles.qnaInforBox}>
                     <div className={styles.qnaInfor}>{anw}</div>
@@ -62,8 +62,8 @@ function PatchBox({ comment, patch, setPatch }: { comment: any, patch: boolean, 
             <textarea className={styles.patchMainName} placeholder="제목" onChange={e => { setTitle(e.target.value) }}>{comment.title}</textarea>
             <textarea className={styles.patchMain} placeholder="문의내용" onChange={e => { setContent(e.target.value) }}>{comment.content}</textarea>
             <div className={styles.patchBtnWrapper}>
-                <input className={styles.patchCheck} type="checkbox" onChange={e => { setSecret(e.target.checked) }} />
-                <div className={styles.patchSecret}>비밀글</div>
+                <input className={styles.patchCheck} type="checkbox" onChange={e => { setSecret(e.target.checked) }} id="modify_secret" />
+                <label className={styles.patchSecret} htmlFor="modify_secret">비밀글</label>
                 <button className={styles.patchRegisterBtn} onClick={Patch}>수정</button>
                 <button className={styles.patchCancelBtn} onClick={() => setPatch(false)}>취소</button>
             </div>
@@ -130,8 +130,8 @@ function Inquire({ comment, userData }: { comment: any, userData: any[] | any })
     return (
         visible ?
             (<div className={styles.inquireBox} onClick={secret}>
-                {(comment.answer_status) && <div className={styles.inquireResponse}>답변완료</div>}
-                {(comment.answer_status) || <div className={styles.inquireResponse}>답변대기</div>}
+                {(comment.answer_status) && <div className={styles.inquireResponse}>완료</div>}
+                {(comment.answer_status) || <div className={styles.inquireResponse}>대기</div>}
                 {(comment.secret) || <div className={styles.inquireTitle}>{comment.title}</div>}
                 {(comment.secret) && <div className={styles.inquireTitle}>비밀글
                     {(comment.user_id === userData.user_id) && <div className={styles.inquireTitleNickname}>My</div>}
@@ -140,7 +140,7 @@ function Inquire({ comment, userData }: { comment: any, userData: any[] | any })
 
             (<div className={styles.inquireMainBox}>
                 <div className={styles.inquireMainHeader}>
-                    <div className={styles.inquireMainTitle}>Title: {comment.title}</div>
+                    <div className={styles.inquireMainTitle}>{comment.title}</div>
                     <div className={styles.inquireMainBtnWrapper}>
                         {(comment.user_id === userData.user_id) && <button className={styles.inquireMainPatch} onClick={() => setPatch(true)}>수정</button>}
                         {(comment.user_id === userData.user_id) && <button className={styles.inquireMainBtnDelete} onClick={Delete}>삭제</button>}
@@ -150,7 +150,7 @@ function Inquire({ comment, userData }: { comment: any, userData: any[] | any })
                 {patch && <PatchBox comment={comment} patch={patch} setPatch={setPatch} />}
 
                 <div className={styles.inquireMainContent}>
-                    <div className={styles.inquireMainAdiminAnswerTitle}>질문</div>
+                    {/* <div className={styles.inquireMainAdiminAnswerTitle}>질문</div> */}
                     <div className={styles.inquireMainAdiminAnswerContent}>{comment.content}</div>
                 </div>
                 {(comment.answer_status && openAnswer && !!comment.answer?.content) &&
@@ -221,8 +221,8 @@ export default function QnA() {
             {isLoading ? <></> : <Loading />}
             <section className={styles.qnaSection}>
                 <div className={styles.qnaWrapper}>
-                    <div className={styles.qnaTitle}>QnA</div>
-                    <div className={styles.qnaName}>자주 묻는 질문</div>
+                    <div className={styles.qnaTitle}>자주 묻는 질문</div>
+                    <div className={styles.qnaName}></div>
                     <OneQna que="배송은 언제 오나요?"
                         anw="[배송일정]"
                         anw1="마이페이지에서 배송관련 정보를 볼 수 있습니다.
@@ -263,8 +263,8 @@ export default function QnA() {
                         <textarea className={styles.answerMainName} placeholder="제목" onChange={e => { setTitle(e.target.value) }}></textarea>
                         <textarea className={styles.answerMain} placeholder="문의내용" onChange={e => { setContent(e.target.value) }}></textarea>
                         <div className={styles.answerBtnWrapper}>
-                            <input className={styles.answerCheck} type="checkbox" onChange={e => { setSecret(e.target.checked) }} />
-                            <div className={styles.answerSecret}>비밀글</div>
+                            <input className={styles.answerCheck} id="secret" type="checkbox" onChange={e => { setSecret(e.target.checked) }} />
+                            <label className={styles.answerSecret} htmlFor="secret">비밀글</label>
                             <button className={styles.answerRegisterBtn} onClick={register}>등록</button>
                         </div>
                     </div>
