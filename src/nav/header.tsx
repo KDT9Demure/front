@@ -147,7 +147,7 @@ export default function Header() {
                             </div>
                         </div>
                         <div className={header.itemBox}>
-                            <Link to={"/event"} className={header.linkName}>Event</Link>
+                            <Link to={"/event/Christmas"} className={header.linkName}>Event</Link>
                         </div>
                     </div>
                 </div>
