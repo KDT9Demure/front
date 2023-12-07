@@ -41,7 +41,7 @@ export default function Order() {
 
 
     const reBuy = (id: number) => {
-        window.location.href = `http://localhost:3000/product/${id}`
+        window.location.href = `/product/${id}`
     }
 
     const orderCancel = async (id: string) => {
@@ -77,60 +77,76 @@ export default function Order() {
             {isLoading ? <></> : <Loading />}
             <div className={styles.bodys}>
                 <div className={styles.container}>
-                    <div className={styles.orderList}>
-                        <h1>주문내역</h1>
-                    </div>
+
+                    <div className={styles.orderList}>주문내역</div>
+
                     <div className={styles.containerBox}>
 
                         {Object.entries(ordersByDate).map(([id, orders]) => {
                             const date = orders[0].create_date.split("T");
                             const newDate = date[0];
                             const amount = orders[0].amount
-
-                            // 가격에 , 추가
-                            // const commaPrice = orders[0].price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                            // const PaymentPrice = orders[0].price * orders[0].goods_count;
-                            // const commaPayment = PaymentPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                             const commaAmount = amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
                             console.log(orders.length)
 
                             return (
                                 <div key={id} className={styles.map}>
-                                    <hr className={styles.titleHr} />
-                                    <div className={styles.header}>
+
+
+                                    <div className={styles.map}>
+                                        <hr className={styles.titleHr} />
                                         <div>
-                                            <span className={styles.date}>{`${newDate}`}</span>
-                                            <span className={styles.id}>주문번호 : {id}</span>
+                                            <div className={styles.headerInfo}>
+                                                <div>
+                                                    <div className={styles.id}>{`${newDate}`}
+                                                        <span className={styles.date}>주문번호 : {id}</span>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <button className={styles.cancelBtn} onClick={() => orderCancel(id)}>주문 취소</button>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <button className={styles.cancleBtn} onClick={() => orderCancel(id)}>주문 취소</button>
-
-                                    </div>
-                                    <div>
                                         {orders.map((order) => (
-                                            <div key={order.id}>
-                                                <div className={styles.mainContainer}>
-                                                    <div className={styles.orderContainer}>
-                                                        <div className={styles.imgContainer} >
-                                                            <img src={order.goods_id.image} className={styles.img} alt="상품 이미지"></img>
-                                                        </div>
-                                                        <button onClick={() => reBuy(order.goods_id.id)} className={styles.reBuy}>재구매</button>
+                                            <div key={order.id} className={styles.map2}>
 
-                                                        <div className={styles.infoContainer}>
-                                                            <div>
-                                                                <span className={styles.productName}> {order.goods_id.name} </span>
-                                                                <span className={styles.productColor} > {order.goods_id.color}</span>
-                                                                <div className={styles.productPrice}>{order.price} 원</div>
+                                                <div className={styles.imgContainer} >
+
+                                                    <img src={order.goods_id.image} className={styles.img} alt="상품 이미지"></img>
+                                                    <button onClick={() => reBuy(order.goods_id.id)} className={styles.reBuy}>재구매</button>
+                                                </div>
+                                                <div className={styles.space}></div>
+                                                <div className={styles.productInfoContainer}>
+                                                    <div className={styles.topInfo}>
+
+                                                        <div className={styles.productName}> {order.goods_id.name} </div>
+                                                        <div className={styles.productColor} > {order.goods_id.color}</div>
+
+                                                    </div>
+                                                    <div className={styles.botInfo}>
+
+                                                        <div className={styles.Pp}>
+                                                            <span className={styles.price}>상품가격 </span><span className={styles.paymentPrice}>{Number(order.price) * Number(order.goods_count)} 원</span>
+                                                        </div>
+                                                        <div className={styles.Pc}>
+                                                            <div className={styles.productCount}>수량</div><div className={styles.productCountText}>{order.goods_count} 개</div>
+                                                        </div>
+                                                        <div className={styles.priceAndDelivery}>
+
+                                                            <div className={styles.Pd}>
+                                                                <span className={styles.delivery}>배송지</span><span className={styles.deliveryText}>{order.address} </span>
                                                             </div>
-                                                            <span className={styles.productCount}>수량ㅤㅤ ㅤ{order.goods_count}</span>
-                                                            <span className={styles.delivery}>배송지ㅤㅤ{order.address}</span>
-                                                            <div className={styles.priceAndDelivery}>
-                                                                <span className={styles.price}>상품가격ㅤ</span><span className={styles.paymentPrice}>{Number(order.price) * Number(order.goods_count)} 원</span>
-                                                                <span className={styles.deliveryStatus}>배송상태ㅤ{order.delivery_status} </span>
+                                                            <div className={styles.Ps}>
+                                                                <span className={styles.deliveryStatus}>배송상태</span>
+                                                                {order.delivery_status === "배송전" ?
+                                                                    <span className={styles.deliveryStatusText}>{order.delivery_status}</span>
+                                                                    :
+                                                                    <span className={styles.deliveryStatusText2}>{order.delivery_status}</span>
+                                                                }
                                                             </div>
                                                         </div>
-
-                                                    </div >
+                                                    </div>
                                                 </div>
                                                 <br />
                                             </div>

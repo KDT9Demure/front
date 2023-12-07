@@ -261,10 +261,10 @@ export default function FindPw() {
                                         onChange={pwCheck} defaultValue={""} />
                                     <br />
                                     {isPwTrue === true ? (
-                                        <span style={{ color: 'green', fontSize: 13 }}>사용가능한 비밀번호입니다.</span>
+                                        <span className={styles.green} >사용가능한 비밀번호입니다.</span>
                                     ) : isPwTrue === false ? (
-                                        <span style={{ color: 'red', fontSize: 13 }}>
-                                            8자 이상 / 숫자,문자,특수문자를 포함해 주세요
+                                        <span className={styles.red} >
+                                            8자 이상/숫자,문자,특수문자를 포함해주세요
                                         </span>
                                     ) : null}
                                     <br />
@@ -275,9 +275,9 @@ export default function FindPw() {
                                         onChange={confirmPw} />
                                     <br />
                                     {isPasswordMatch === true ? (
-                                        <span style={{ color: 'green', fontSize: 13 }}>비밀번호 일치</span>
+                                        <span className={styles.green} >비밀번호 일치</span>
                                     ) : isPasswordMatch === false ? (
-                                        <span style={{ color: 'red', fontSize: 13 }}>
+                                        <span className={styles.red}>
                                             비밀번호가 일치하지 않습니다
                                         </span>
                                     ) : null}

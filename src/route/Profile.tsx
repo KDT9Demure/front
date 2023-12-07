@@ -104,7 +104,7 @@ export default function Profile() {
     }, [])
 
     const moveOrder = (id: any) => {
-        window.location.href = `http://localhost:3000/order/${id}`
+        window.location.href = `/order/${id}`
     }
 
 
@@ -131,7 +131,7 @@ export default function Profile() {
                         </div>
                     </div>
                     <div className={styles.btnFlex}>
-                        <a href="profile/user" className={styles.editBtn}>회원정보수정</a>
+                        <a href="/profile/user" className={styles.editBtn}>회원정보수정</a>
                     </div>
                     <div className={styles.orderListContainer}>
                         <div className={styles.orderTitle}>최근 주문 내역</div>
@@ -142,7 +142,7 @@ export default function Profile() {
                                     <div className={styles.box}>주문내용</div>
                                     <div className={styles.box}>배송상태</div>
                                 </div>
-                                
+
                                 {orderData.map((value) => {
 
                                     const date = value.create_date.split("T");
@@ -167,7 +167,7 @@ export default function Profile() {
                                 {addressData.map((value) => {
                                     return (
                                         <div className={styles.addressItem}>
-                                            <FontAwesomeIcon icon={faHouseChimney} className={styles.homeIcon}/>
+                                            <FontAwesomeIcon icon={faHouseChimney} className={styles.homeIcon} />
                                             <div className={styles.addressName}>{value.address_name}</div>
                                             <div className={styles.address}>{value.address} {value.detail}</div>
                                         </div>

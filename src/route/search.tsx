@@ -158,39 +158,6 @@ export default function Search() {
     const white = () => { setSelectedColor("white"), setColors("화이트") }
     const brown = () => { setSelectedColor("brown"), setColors("브라운") }
 
-    // //리스트 더 가져오기
-    // const moreList = () => {
-    //     setPage(Page + 1)
-    //     console.log("현재 페이지", Page)
-    //     axios({
-    //         method: "post",
-    //         url: `http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`,
-    //         data: {
-    //             sort: sort,
-    //             page: Page,
-    //             searchName
-    //         }
-    //     })
-    //         .then((res) => {
-    //             setSearch((prevSearch) => [...prevSearch, ...res.data]);
-    //             console.log("Axios 요청");
-    //             console.log(search)
-    //             console.log("scrollend false")
-    //             setScrollEnd(false)
-
-    //             console.log("현재 스크롤 위치 ", scrollPosition)
-    //             console.log("divHeight", divHeight)
-
-    //             if (res.data.length < 20) {
-
-    //                 setIsListEnd(true)
-    //             }
-    //         })
-    //         .catch((error) => {
-    //             console.log(error)
-    //         });
-    // }
-
     // 상품 페이지로 이동
     const moveProduct = (id: number) => {
         window.location.href = `/product/${id}`
@@ -206,7 +173,6 @@ export default function Search() {
 
                     <div className={styles.searchAndResult}>
                         <div className={styles.result}>"{searchName}" 에 대한 검색결과</div>
-                        {/* <span className={styles.result}>result 몇개 </span> */}
                     </div>
 
                     <hr className={styles.titleHr} />
@@ -289,24 +255,12 @@ export default function Search() {
                                     }
                                     <span className={styles.price}>{commaPrice}원</span>
                                 </div>
-                                {/* <hr className={styles.hr} /> */}
-
                             </div>
                         )
 
                     })}
 
                 </div>
-                {/* {isListEnd &&
-                        <div className={styles.listEndDiv}>
-                            <div className={styles.listEndText}>ㅤEndㅤ</div>
-                        </div>
-                    }
-                    {!isListEnd &&
-                        <div className={styles.listMoreDiv}>
-                            <div onClick={moreList} className={styles.listMoreText}>ㅤMore ▼ㅤ</div>
-                        </div>
-                    } */}
             </div>
 
 
