@@ -9,13 +9,13 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, auto);
-    gap: 13px;
+    gap: 10px;
     align-items: center;
     justify-content: center;
     padding-top: 13%;
     padding-bottom: 5%;
     color: aliceblue;
-    width: 1200px;
+    width: 900px;
     margin: auto;
 }
 

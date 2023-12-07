@@ -66,9 +66,9 @@ function Counter({ data, setDatas }: { data: any, setDatas: any }) {
     return (
         <div className={styles.amountWrapper}>
             <div className={styles.amountTitle}>수량</div>
-            <button onClick={handleDecrement} className={styles.amountBtn}><FontAwesomeIcon icon={faMinus} className={styles.amountIcon} /></button>
+            <button onClick={handleDecrement} className={styles.amountBtn}><FontAwesomeIcon icon={faMinus} className={styles.amountIcon} style={{color:"black"}}/></button>
             <div className={styles.amountPrice}>  {number}  </div>
-            <button onClick={handleIncrement} className={styles.amountBtn}><FontAwesomeIcon icon={faPlus} className={styles.amountIcon} /></button>
+            <button onClick={handleIncrement} className={styles.amountBtn}><FontAwesomeIcon icon={faPlus} className={styles.amountIcon} style={{color:"black"}}/></button>
         </div>
     )
 }
@@ -148,6 +148,7 @@ export default function Cart() {
     return (
         <div className={styles.container}>
             <section className={styles.cartWrapper}>
+                <div className={styles.cartWrapperTitle}>장바구니</div>
                 <div className={styles.cartMain}>
                     {isLoading ? <></> : <Loading />}
                     {datas.map((data, index) => {
@@ -168,14 +169,17 @@ export default function Cart() {
                                 </div>
                                 <div className={styles.cartInfoWrapper}>
                                     <div className={styles.cartTitle}>{data.goods_id.type_name}</div>
-                                    <div className={styles.cartInfo}>
-                                        <div>({today}) 도착예정</div>
-                                        <div>{data.goods_id.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원</div>
-                                    </div>
-                                    <div className={styles.cartInfo}>
-                                        <div>배송비 무료</div>
-                                        <Counter data={data} setDatas={setDatas} />
-                                    </div>
+                                    <div>
+                                        <div className={styles.cartInfo}>
+                                            <div>({today}) 도착예정</div>
+                                            <div>{data.goods_id.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원</div>
+                                        </div>
+                                        <div className={styles.cartInfo}>
+                                            <div>배송비 무료</div>
+                                            <Counter data={data} setDatas={setDatas} />
+                                        </div>
+                                    </div>    
+                                    
                                 </div>
                             </div>)
                     })}

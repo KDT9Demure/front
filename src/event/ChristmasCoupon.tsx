@@ -97,7 +97,7 @@ export default function ChristmasCoupon() {
                         <img src={mainImg} className={styles.couponImg} />
                     </div>
                     <div className={styles.couponTitleBox}>
-                        <div className={styles.couponTitle}>크리스마스 이벤트 할인 쿠폰</div>
+                        <div className={styles.couponTitle}>크리스마스 할인 쿠폰 이벤트</div>
                     </div>
                     <div className={styles.couponMainBox} onClick={CouponLoad}>
                         <div className={styles.couponMain1}>15%</div>
