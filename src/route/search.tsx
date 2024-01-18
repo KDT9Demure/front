@@ -1,18 +1,17 @@
-import React, { useState, useEffect, useRef } from "react"
-
-import { useParams } from 'react-router-dom';
+import { useState, useEffect, useRef } from "react"
 
 import axios from "axios";
 
 import styles from "../css/search.module.css";
 
-import { config } from '@fortawesome/fontawesome-svg-core'
-
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import Loading from "../item/Loading";
 
 export default function Search() {
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+
     const [search, setSearch] = useState<any[]>([]);
-    const [searchName, setSearchName] = useState<String | null>("");
+    // const [searchName, setSearchName] = useState<String | null>("");
 
     const [scrollPosition, setScrollPosition] = useState<number>(0);
     const [divHeight, setDivHeight] = useState<number>(0);
@@ -21,28 +20,30 @@ export default function Search() {
 
     const [Page, setPage] = useState<number>(2)
 
-    const [isListEnd, setIsListEnd] = useState<boolean>(false)
+    // const [isListEnd, setIsListEnd] = useState<boolean>(false)
 
     const [sort, setSort] = useState<String>("best")
     const [selectedSort, setSelectedSort] = useState<String>("best")
 
     const [colors, setColors] = useState<String>("")
+    const [selectedColor, setSelectedColor] = useState<string>("")
 
-
+    const params = new URLSearchParams(location.search);
+    const searchName = params.get("q");
 
 
     useEffect(() => {
 
         const searchData = async () => {
             try {
-
+                setIsLoading(false)
                 const res = await axios({
                     method: "post",
-                    url: `http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`,
+                    url: `${import.meta.env.VITE_ADDRESS}/search?q=${searchName}&sort=${sort}&color=${colors}`,
                     data: {
                         page: 1,
                         sort: sort,
-                        searchName: "의자"
+                        searchName
 
                     }
                 });
@@ -54,7 +55,7 @@ export default function Search() {
 
                 console.log("현재 스크롤 위치 ", scrollPosition)
                 console.log("divHeight", divHeight)
-
+                setIsLoading(true)
             } catch (error) {
                 console.log(error);
             }
@@ -109,11 +110,13 @@ export default function Search() {
     useEffect(() => {
         const fetchData = async () => {
             try {
+
                 if (scrollEnd === true) {
+                    setIsLoading(false)
                     setPage(Page + 1);
                     console.log("현재 페이지", Page);
 
-                    const response = await axios.post(`http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`, {
+                    const response = await axios.post(`${import.meta.env.VITE_ADDRESS}/search?q=${searchName}&sort=${sort}&color=${colors}`, {
                         sort: sort,
                         page: Page,
                         searchName: "의자"
@@ -129,12 +132,8 @@ export default function Search() {
 
                     console.log("현재 스크롤 위치 ", scrollPosition);
                     console.log("divHeight", divHeight);
+                    setIsLoading(true)
 
-                    if (response.data.length < 20) {
-                        setIsListEnd(true);
-                    }
-                } else {
-                    setScrollEnd(false);
                 }
             } catch (error) {
                 console.error(error);
@@ -150,87 +149,53 @@ export default function Search() {
     const low = () => { setSelectedSort("low"), setSort("low") }
 
     // 색정렬
-    const noColor = () => { setColors("") }
-    const red = () => { setColors("레드") }
-    const green = () => { setColors("그린") }
-    const blue = () => { setColors("블루") }
-    const black = () => { setColors("블랙") }
-    const gray = () => { setColors("그레이") }
-    const white = () => { setColors("화이트") }
-    const brown = () => { setColors("브라운") }
-
-    //리스트 더 가져오기
-    const moreList = () => {
-        setPage(Page + 1)
-        console.log("현재 페이지", Page)
-        axios({
-            method: "post",
-            url: `http://localhost:8000/search?q=${searchName}&sort=${sort}&color=${colors}`,
-            data: {
-                sort: sort,
-                page: Page,
-                searchName: "의자"
-            }
-        })
-            .then((res) => {
-                setSearch((prevSearch) => [...prevSearch, ...res.data]);
-                console.log("Axios 요청");
-                console.log(search)
-                console.log("scrollend false")
-                setScrollEnd(false)
-
-                console.log("현재 스크롤 위치 ", scrollPosition)
-                console.log("divHeight", divHeight)
-
-                if (res.data.length < 20) {
-
-                    setIsListEnd(true)
-                }
-            })
-            .catch((error) => {
-                console.log(error)
-            });
-    }
+    const noColor = () => { setSelectedColor(""), setColors("") }
+    const red = () => { setSelectedColor("red"), setColors("레드") }
+    const green = () => { setSelectedColor("green"), setColors("그린") }
+    const blue = () => { setSelectedColor("blue"), setColors("블루") }
+    const black = () => { setSelectedColor("black"), setColors("블랙") }
+    const gray = () => { setSelectedColor("gray"), setColors("그레이") }
+    const white = () => { setSelectedColor("white"), setColors("화이트") }
+    const brown = () => { setSelectedColor("brown"), setColors("브라운") }
 
     // 상품 페이지로 이동
     const moveProduct = (id: number) => {
-        window.location.href = `http://localhost:3000/product/${id}`
+        window.location.href = `/product/${id}`
     }
-
 
     return (
         <>
             <div className={styles.top}></div>
+            {isLoading ? <></> : <Loading />}
             <div ref={divRef} className={styles.bodys}>
                 <div className={styles.container1}>
 
 
                     <div className={styles.searchAndResult}>
-                        <h1>"검색어" 에 대한 검색결과</h1>
-                        <span className={styles.result}>result 몇개 </span>
+                        <div className={styles.result}>"{searchName}" 에 대한 검색결과</div>
                     </div>
 
-                    <hr className={styles.hr} />
+                    <hr className={styles.titleHr} />
 
-                    <div>
+                    <div className={styles.sortContainer}>
                         <div className={styles.colorContainer}>
-                            색상
+                            <span className={styles.colorText}>색상</span>
 
-                            <div onClick={red} style={{ width: 50, height: 50, backgroundColor: "red" }}></div>
-                            <div onClick={green} style={{ width: 50, height: 50, backgroundColor: "green" }}></div>
-                            <div onClick={blue} style={{ width: 50, height: 50, backgroundColor: "blue" }}></div>
-                            <div onClick={black} style={{ width: 50, height: 50, backgroundColor: "black" }}></div>
-                            <div onClick={gray} style={{ width: 50, height: 50, backgroundColor: "gray" }}></div>
-                            <div onClick={white} style={{ width: 50, height: 50, backgroundColor: "white" }} className={styles.white}></div>
-                            <div onClick={brown} style={{ width: 50, height: 50, backgroundColor: "brown" }}></div>
-
+                            <div className={selectedColor === "red" ? styles.selectedColorRed : styles.colorBoxRed} onClick={red} ></div>
+                            <div className={selectedColor === "green" ? styles.selectedColorGreen : styles.colorBoxGreen} onClick={green} ></div>
+                            <div className={selectedColor === "blue" ? styles.selectedColorBlue : styles.colorBoxBlue} onClick={blue}></div>
+                            <div className={selectedColor === "black" ? styles.selectedColorBlack : styles.colorBoxBlack} onClick={black} ></div>
+                            <div className={selectedColor === "gray" ? styles.selectedColorGray : styles.colorBoxGray} onClick={gray}></div>
+                            <div className={selectedColor === "white" ? styles.selectedColorWhite : styles.colorBoxWhite} onClick={white}></div>
+                            <div className={selectedColor === "brown" ? styles.selectedColorBrown : styles.colorBoxBrown} onClick={brown} style={{ width: 35, height: 35, backgroundColor: "brown" }}></div>
+                            <div className={styles.resetColor} onClick={noColor}>↻</div>
 
 
                         </div>
 
 
                         <div className={styles.sort}>
-                            <span className={selectedSort === 'best' ? styles.selectedSort : ''} onClick={best}>인기상품순   </span>
+                            <span className={selectedSort === 'best' ? styles.selectedSort : ''} onClick={best}>인기순   </span>
                             <span>|</span>
                             <span className={selectedSort === 'low' ? styles.selectedSort : ''} onClick={low}>   낮은 가격순   </span>
                             <span>|</span>
@@ -247,12 +212,12 @@ export default function Search() {
                         const productImgHover = product.imgHover || false;
 
                         return (
-                            <div key={index} className={styles.productContainer} onClick={() => moveProduct(product.id)}>
+                            <div key={index}
+                                className={styles.productContainer}
+                                onClick={() => moveProduct(product.id)}>
 
-                                <div className={styles.productImg}>
+                                <div className={`${styles.productImg} ${productImgHover ? styles.productImgHover : ''}`}>
                                     <img loading="lazy"
-                                        id="img"
-
                                         onMouseOver={() => {
                                             setSearch((prevSearch) =>
                                                 prevSearch.map((prevProduct, idx) =>
@@ -268,9 +233,8 @@ export default function Search() {
                                                 )
                                             );
                                         }}
-
+                                        className={styles.listItemImg}
                                         src={productImgHover ? product.arrange_image || product.image : product.image}
-                                        style={{ width: 300, height: 300, borderRadius: 8 }}
                                         alt={`${product.name}`} />
                                 </div>
 
@@ -284,30 +248,23 @@ export default function Search() {
                                 </div>
 
                                 <div className={styles.productTextBot}>
-                                    <span className={styles.sale}>{product.discount ? `sale` : " "}</span>
+                                    {product.discount ?
+                                        <span className={styles.sale}>sale</span>
+                                        :
+                                        <></>
+                                    }
                                     <span className={styles.price}>{commaPrice}원</span>
                                 </div>
-                                <hr />
-
                             </div>
                         )
 
                     })}
 
                 </div>
-                {isListEnd &&
-                    <div className={styles.listEndDiv}>
-                        <div className={styles.listEndText}>ㅤEndㅤ</div>
-                    </div>
-                }
-                {!isListEnd &&
-                    <div className={styles.listMoreDiv}>
-                        <div onClick={moreList} className={styles.listMoreText}>ㅤMore 🔽ㅤ</div>
-                    </div>
-                }
             </div>
 
 
         </>
     )
+
 }

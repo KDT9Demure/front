@@ -21,16 +21,15 @@
 
 body {
     overflow-x: hidden;
-}
-
-.main {
-
+    background: linear-gradient(90deg, rgb(27 45 41) 0%, rgb(73 112 103) 100%);
 }
 
 /* section1 슬라이더보드 스타일 */
 .mainSwiper {
     position: relative;
     overflow: hidden;
+    cursor: url('../../public/assets/mouse_cursor_text.png') 5 5, progress;
+    height: 100vh;
 }
 
 .slide {
@@ -63,7 +62,7 @@ body {
 
 .brandText h5 {
     text-transform: uppercase;
-    color: #625f5f;
+    color: #dedede;
     font-weight: 500;
     font-size: 12px;
     letter-spacing: 1.8px;
@@ -74,7 +73,7 @@ body {
 .brandText h3 {
     font-size: 70px;
     line-height: 80px;
-    color: #333;
+    color: #ffff;
     font-weight: 400;
     font-family: 'Monsieur La Doulaise';
     margin-top: 25px;
@@ -84,6 +83,7 @@ body {
     width: 34em;
     margin: 15px auto;
     font-family: 'MapoFlowerIsland';
+    color: #dedede;
 }
 
 .brandSlide {
@@ -110,8 +110,16 @@ body {
 .mainEvent {
     width: 100%;
     height: 100vh;
-    background-color: #ffff;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    cursor: url('../../public/assets/mouse_cursor_gradient.png') 5 5, progress;
+
+}
+
+.mouseEvent {
+    flex: 1;
+    position: absolute;
 }
 
 .innerText {
@@ -124,7 +132,7 @@ body {
 }
 
 .bigText {
-    background: linear-gradient(90deg,#7d7d7d,#030303);
+    background: linear-gradient(90deg,#7d7d7d,#ffff);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -143,20 +151,30 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(90deg,#7d7d7d,#030303);
+    background: linear-gradient(90deg,#7d7d7d,#ffff);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .randomImage {
-    position: relative;
-    max-width: 100px;
-    max-height: 100px;
-    transition: opacity 0.5s ease-in-out;
+    position: absolute;
+    transition: opacity 0.5s ease-in-out, width 0.5s ease-in-out, height 0.5s ease-in-out;
+    animation: mouseImg 2s ease-in-out;
+    animation-fill-mode: forwards;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
-.randomImageHidden {
-    opacity: 1;
+@keyframes mouseImg {
+    0% {
+        opacity: 1;
+        width: 280px;
+        height: 320px;
+    }
+    100% {
+        opacity: 0;
+        width: 140px;
+        height: 160px;
+    }
 }
-  

@@ -1,0 +1,811 @@
+
+
+.buyBox{
+    width: 100%;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container{
+    width: 1000px;
+    padding: 20px;
+    box-sizing: content-box;
+    background-color: white;
+}
+
+.addressBox{
+    
+}
+
+.title{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.infoBox{
+    display: flex;
+    flex-direction: column;
+}
+
+.choiceBox{
+    display: flex;
+}
+
+.addressInput{
+    display: none;
+}
+
+.addressChoice{
+    cursor: pointer;
+    border: 1px solid #e5e5e5;
+    padding: 10px 25px;
+    z-index: 2;
+    position: relative;
+    top: 1px;
+    background-color: white;
+}
+
+.newAddress{
+    cursor: pointer;
+    border: 1px solid #e5e5e5;
+    padding: 10px 25px;
+    z-index: 2;
+    position: relative;
+    top: 1px;
+    background-color: white;
+}
+
+.addressInput:checked + .addressChoice, .addressInput:checked + .newAddress{
+    border-bottom: none;
+}
+
+.newAddressBox{
+    padding: 20px;
+    border: 1px solid #e5e5e5;
+}
+
+.getPostBox{
+    display: flex;
+    flex-direction: column;
+}
+
+.getPostBox input{
+    height: 35px;
+    outline: none;
+    border: 1px solid #e5e5e5;
+    margin-bottom: 6px;
+}
+
+.addressName{
+    width: 200px;
+}
+
+.loadName{
+    width: 300px;
+}
+
+.detailAddress{
+    width: 300px;
+}
+
+.zipCodeBox{
+    display: flex;
+    align-items: center;
+}
+
+.zipCode{
+    width: 200px;
+}
+
+.zipCodeButton{
+    border: 1px solid #e5e5e5;
+    border-radius: 15px;
+    padding: 5px 15px;
+    width: fit-content;
+    cursor: pointer;
+    color: white;
+    background-color: #253f39;
+    margin-bottom: 6px;
+    height: fit-content;
+    margin-left: 10px;
+}
+
+.addressSaveButton{
+    border: 1px solid #e5e5e5;
+    border-radius: 15px;
+    padding: 5px 15px;
+    width: fit-content;
+    cursor: pointer;
+    color: white;
+    background-color: #253f39;
+    margin-bottom: 6px;
+}
+
+.addressItemBox{
+
+}
+
+.addressItem{
+    display: flex;
+    width: 100%;
+    border: 1px solid #e5e5e5;
+    padding: 20px 10px;
+}
+
+.addressItem > input {
+    padding-left: 5px;
+    margin-right: 20px;
+    width: 20px;
+}
+
+.infor{
+
+}
+
+.nameBox{
+    display: flex;
+}
+
+.name{
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+
+.defaultBox{
+    margin-left: 10px;
+    cursor: pointer;
+    display: flex;
+}
+
+.default{
+    padding: 5px 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+}
+
+.addressInforBox{
+    display: flex;
+    margin-top: 10px;
+}
+
+.address{
+
+}
+
+.addressDetail{
+    margin-left: 5px;
+}
+
+.addressZipCode{
+    margin-left: 5px;
+}
+
+.mdBox{
+    display: flex;
+}
+
+.modify{
+
+}
+
+.delete{
+    padding: 5px 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    margin-left: 5px;
+    background-color: white;
+    color: red;
+}
+
+.addressMemoBox{
+    margin-top: 20px;
+}
+
+.memoTitle{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.memoSelect{
+
+}
+
+.cartItemBox{
+    margin-top: 20px;
+}
+
+.cartTitle{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.cartListBox{
+
+}
+
+.listHead{
+    width: 100%;
+    height: 50px;
+    border: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+}
+
+.listInforHead{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    border-right: 1px solid #e5e5e5;
+}
+
+.listCountHead{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    border-right: 1px solid #e5e5e5;
+}
+
+.listPriceHead{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    border-right: 1px solid #e5e5e5;
+}
+
+.listCouponPriceHead{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    border-right: 1px solid #e5e5e5;
+}
+
+.listCouponHead{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.listBody{
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    border-top: none;
+}
+
+.listInfor{
+    display: flex;
+    width: 50%;
+    text-decoration: none;
+}
+
+.listImgBox{
+    width: 150px;
+    
+}
+
+.listImgBox img{
+    width: 100%;
+    border-radius: 5px;
+}
+
+.listData{
+    margin-left: 20px;
+    font-size: 18px;
+    color: black;
+    display: flex;
+    align-items: center;
+}
+
+.listCount{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.listPrice{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.listCouponPrice{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.listCouponBox{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.couponItemBox{
+    border: 1px solid #e5e5e5;
+    padding: 20px;
+}
+
+.couponName{
+
+}
+
+.couponDelete{
+
+}
+
+.couponUse{
+    border: 1px solid #e5e5e5;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    background-color: #253f39;
+    color: white;
+}
+
+.couponList{
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.couponItemBox{
+
+}
+
+.couponItem{
+    display: flex;
+    font-size: 17px;
+}
+
+.couponDiscountGet{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.couponNameGet{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.couponSetButton{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 20px;
+    cursor: pointer;
+    color: white;
+    background-color: #253f39;
+}
+
+.deliveryDateBox{
+    margin-top: 20px;
+    
+}  
+
+.devliveryDateTitle{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.deliveryDateChoice{
+    display: flex;
+}
+
+.deliveryDateChoice label{
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    user-select:none;
+}
+
+.deliveryDateChoice input:checked + label{
+    background-color: #253f39;
+    color: white;
+}
+
+.cashBox{
+    margin-top: 30px;
+}
+
+.dpayBox{
+
+}
+
+.cashMethodTitle{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.dpayTitle{
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.dpayListBox{
+    display: flex;
+    gap: 20px;
+    user-select: none;
+    overflow: hidden;
+    overflow-x: scroll;
+    padding: 15px;
+    padding-bottom: 20px;
+}
+
+.dpayListBox::-webkit-scrollbar {
+    height: 10px;
+}
+
+.dpayListBox::-webkit-scrollbar-thumb{
+    background: #253f39;
+    border-radius: 10px;
+}
+
+.dpayListBox::-webkit-scrollbar-track {
+    /* background: rgba(33, 122, 244, .1);  스크롤바 뒷 배경 색상 */
+}
+
+.dpayListBox input:checked + label{
+    outline: 5px solid rgb(77 142 0 / 30%);
+}
+
+.dpayItem{
+    min-width: 320px;
+    height: 200px;
+    background: linear-gradient(45deg, #253f39 0%, rgb(33 33 33) 100%);
+    border-radius: 15px;
+    border: 1px solid black;
+    color: white;
+    padding: 30px;
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+    display: block;
+}
+
+.bankName{
+    font-size: 20px;
+}
+
+.icChip{
+    width: 45px;
+    height: 35px;
+    background-color: lightgray;
+    border-radius: 5px;
+    border: 1px solid white;
+    margin-top: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.icLineOne, .icLineTwo{
+    width: 110%;
+    height: 1px;
+    background-color: white;
+    position: absolute;
+}
+
+.icLineOne{
+    top: 10px;
+}
+
+.icLineTwo{
+    top: 25px;
+}
+
+.icLineThree{
+    width: 1px;
+    height: 110%;
+    background-color: white;
+    position: absolute;
+    left: 10px;
+}
+
+.demureLogo{
+    font-family: 'Monsieur La Doulaise';
+    font-size: 30px;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+}
+
+.cardNumber{
+    display: flex;
+    margin-top: 30px;
+    justify-content: space-between;
+}
+
+.cardNumberSplit{
+    font-size: 22px;
+}
+
+.dpayAddBox{
+    border-left: 1px solid #e5e5e5;
+}
+
+.dpayAddItem{
+    width: 320px;
+    height: 200px;
+    border-radius: 15px;
+    border: 1px solid #e5e5e5;
+    padding: 30px;
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.dpayAddIcon{
+    color: #e5e5e5;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.dpayAddTitle{
+    color: #e5e5e5;
+}
+
+.dpayAddModalBox{
+
+}
+
+.dpayBank{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.dpayBankItem{
+
+}
+
+.dpayBankItem input:checked + label{
+    outline: 3px solid #14bf975e;
+}
+
+.dpayBankItem label{
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dpayInforBox{
+    margin-top: 35px;
+}
+
+.dpayInforTitle{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.dpayInformation{
+    background-color: #e5e5e5;
+    padding: 15px;
+}
+
+.dpayCardNumber{
+
+}
+
+.dpayCardNumberInputBox{
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.dpayInputTitle{
+    margin-right: 15px;
+    width: 65px;
+}
+
+.dpayCardNumberInputBox input{
+    width: 50px;
+    height: 30px;
+    border: 1px solid #e5e5e5;
+    outline: none;
+    padding-left: 0px;
+    text-align: center;
+    margin-right: 5px;
+    font-size: 15px;
+}
+
+.dpayBankRadio{
+    display: none;
+}
+
+.dpayBankName{
+
+}
+
+.dpayPeriodBox{
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.dpayPeriodBox input{
+    width: 50px;
+    height: 30px;
+    border: 1px solid #e5e5e5;
+    outline: none;
+    padding-left: 0px;
+    text-align: center;
+    margin-right: 5px;
+    font-size: 15px;
+}
+
+.dpayPeriodMiddle{
+    margin-right: 5px;
+}
+
+.dpayCardCVCBox{
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.dpayCardCVCBox input{
+    width: 150px;
+    height: 30px;
+    border: 1px solid #e5e5e5;
+    outline: none;
+    padding-left: 0px;
+    text-align: center;
+    margin-right: 5px;
+    font-size: 15px;
+}
+
+.dpayCardPasswordBox{
+    display: flex;
+}
+
+.dpayCardPasswordBox input{
+    width: 150px;
+    height: 30px;
+    border: 1px solid #e5e5e5;
+    outline: none;
+    padding-left: 0px;
+    text-align: center;
+    margin-right: 5px;
+    font-size: 15px;
+}
+
+.dpaySaveButton{
+    border: 1px solid #e5e5e5;
+    background-color: #253f39;
+    color: white;
+    padding: 5px 15px;
+    width: fit-content;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.cashMethod{
+    margin-top: 30px;
+}
+
+.methodBox{
+    display: flex;
+    gap: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-bottom: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
+}
+
+.methodItem{
+
+}
+
+.methodItem label{
+    display: flex;
+    width: 95px;
+    height: 95px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.methodItem input:checked + label{
+    outline: 3px solid rgb(77 142 0 / 30%);
+}
+
+
+.cashResultBox{
+    margin-top: 20px;
+    background-color: #e5e5e5;
+    padding: 20px;
+}
+
+.cashResult{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cashResultTitle{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.cashResultContent{
+
+}
+
+.cashDiscountResult{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cashDiscountResultTitle{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.cashDiscountResultContent{
+
+}
+
+.goBox{
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.go{
+    width: 200px;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    background-color: #253f39;
+    border: 1px solid #e5e5e5;
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}

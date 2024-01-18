@@ -1,0 +1,193 @@
+.bodys {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    background-color: white;
+    border-radius: 16px;
+    height: 100%;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 280px;
+    height: 315px;
+
+}
+
+.inputPassword {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+.main2 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 330px;
+    height: 430px;
+    padding: 16px;
+    gap: 10px;
+}
+
+.id,
+.password {
+    width: 210px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #a0b9b3;
+}
+
+.id:focus,
+.password:focus {
+    border-bottom: 2px solid #253f39;
+}
+
+.signinBtn,
+.kakaoBtn {
+    width: 210px;
+    height: 30px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signinBtn {
+    color: white;
+    background-color: #253f39;
+    margin-top: 20px
+}
+
+.signinBtn2 {
+    color: white;
+    background-color: #253f39;
+    margin-top: 40px
+}
+
+.Link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 13px;
+    gap: 5px;
+    bottom: 50px;
+    position: relative;
+}
+
+.signup,
+.findPassword {
+    text-decoration: none;
+    color: black
+}
+
+.bodys2 {
+    width: 100vw;
+    height: 100vh;
+    background-color: #253f39;
+    padding: 100px 300px 50px 300px;
+}
+
+.main2 {
+    position: relative;
+}
+
+.email {
+    width: 210px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #a0b9b3;
+    background-color: #efefef;
+}
+
+
+input {
+    padding-left: 5px;
+}
+
+.delete {
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 75px;
+    height: 30px;
+    border: solid 2px #253f39;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.modifyTitle {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.modifyEmail {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.modifyName {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.modifyPassword {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.modifyPasswordCheck {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.modifyBox {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.wrongPw {
+    color: red;
+    font-size: 16px;
+    padding: 0 80px 10px 0;
+    font-weight: bold;
+
+}
+
+.green {
+    font-size: 13px;
+    color: green;
+    font-weight: bold;
+}
+
+.red {
+    font-size: 12px;
+    color: red;
+    font-weight: bold;
+}
+
+.red13 {
+    font-size: 13px;
+    color: red;
+    font-weight: bold;
+}

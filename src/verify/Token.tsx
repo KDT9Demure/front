@@ -2,13 +2,13 @@ import axios from "axios"
 import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../hook";
 import {Cookies} from 'react-cookie';
-import { setGrade, setUserId, setUserName } from "../reducer/singin";
+import { setGrade, setUserId, setUserName, setUserid } from "../reducer/singin";
 
 export default function Token(){
 
     
     const cookies = new Cookies();
-    console.log(cookies.get("NID"));
+    console.log(cookies.get("DEMURE"));
     
     
     const dispatch = useAppDispatch();
@@ -20,15 +20,23 @@ export default function Token(){
         const signIn = async ()=>{
             const res = await axios({
                 method:"POST",
-                url:"http://localhost:8000/user/token",
+                url:`${import.meta.env.VITE_ADDRESS}/user/token`,
                 headers:{
-                    Authorization: `Bearer ${cookies.get("NID")}`
+                    Authorization: `Bearer ${cookies.get("DEMURE")}`
                 }
             })
 
             dispatch(setUserId(res.data.id));
             dispatch(setUserName(res.data.user_name));
             dispatch(setGrade(res.data.grade));
+            dispatch(setUserid(res.data.userid));
+        }
+
+        if(!cookies.get("DEMURE")){
+            dispatch(setUserId(0));
+            dispatch(setUserName(""));
+            dispatch(setGrade("N"));
+            dispatch(setUserid(""));
         }
         
         signIn()

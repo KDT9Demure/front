@@ -1,0 +1,179 @@
+.bodys {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    background-color: white;
+    border-radius: 12px;
+    height: 100%;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 320px;
+    height: 400px;
+    padding: 16px;
+    gap: 8px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+
+.findId {
+    width: 250px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #a0b9b3;
+}
+
+.findName {
+    width: 250px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #a0b9b3;
+}
+
+.findId:focus,
+.findName:focus {
+    border-bottom: 2px solid #253f39;
+}
+
+.emailDiv {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.main2 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 330px;
+    height: 520px;
+    gap: 10px;
+}
+
+.id,
+.password {
+    width: 250px;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #a0b9b3;
+
+}
+
+.id:focus,
+.password:focus {
+    border-bottom: 2px solid #253f39;
+}
+
+.signinBtn {
+    width: 250px;
+    height: 30px;
+    color: white;
+    border-radius: 5px;
+    background-color: #253f39;
+    cursor: pointer;
+    border: none;
+    margin-top: 35px;
+}
+
+.signinBtn {
+    color: white;
+    background-color: #253f39;
+
+}
+
+.signinBtn2 {
+    color: white;
+    background-color: #253f39;
+    margin-top: 40px
+}
+
+
+
+.Link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 13px;
+    gap: 5px;
+    bottom: 50px;
+    position: relative;
+}
+
+.signup,
+.findPassword {
+    text-decoration: none;
+    color: black
+}
+
+.emailNumberConfirmBtn {
+    color: white;
+    background-color: #253f39;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    margin-top: 30px;
+}
+
+.timer {
+    position: absolute;
+    right: 0px;
+    top: 40px;
+}
+
+.emailNumber {
+    width: 250px;
+    height: 40px;
+    border: none;
+    border-bottom: 2px solid #a0b9b3;
+    outline: none;
+}
+
+.emailNumber:focus {
+    border-bottom: 2px solid #253f39;
+}
+
+
+
+.authorText {
+    position: absolute;
+    font-size: 14px;
+    color: red;
+    font-weight: bold;
+}
+
+.green {
+    font-size: 14px;
+    color: green;
+    font-weight: bold;
+}
+
+.red {
+    font-size: 14px;
+    color: red;
+    font-weight: bold;
+}

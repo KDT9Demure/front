@@ -1,15 +1,19 @@
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
   }
-  
+ 
+@font-face {
+    font-family: 'MapoDacapo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoDacapoA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @font-face {
     font-family: 'yleeMortalHeartImmortalMemory';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/yleeMortalHeartImmortalMemory.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
-    /* main logo 폰트 */
 }
   
 @font-face {
@@ -17,102 +21,131 @@
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
     font-weight: 400;
     font-style: normal;
-    /* header menu 폰트 */
 }
-  
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Pretendard-Regular', sans-serif;
+
+@font-face {
+    font-family: 'GowunDodum-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
+
+@font-face {
+    font-family: 'Chosunilbo_myungjo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* body{
+    font-family: 'Chosunilbo_myungjo';
+} */
   
-.container {
+.box{
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100px;
-    width: 80%;
-    transition: background-color 0.5s ease-in-out;
-    margin-left: 10%;
-    margin-right: 10%;
-    border-radius: 30px 30px 30px 30px;
-    overflow: hidden; 
-    z-index: 100;
+    width: 100%;
     position: fixed;
-    padding-bottom: 15px;
+    z-index: 100;
+}
+  
+.container {
+    border-radius: 20px;
+    display: flex;
+    margin-top: 15px;
+    background: linear-gradient(45deg, rgb(0 0 0) 0%, rgb(60 60 60) 100%);
+    flex-direction: column;
+    align-items: center;
+    width: 730px;
 }
 
-.openMenu {
-    background-color: #253f39;
-    box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.05);
-    animation: fadeInWithScale 0.5s ease-out;
-        transform-origin: 50% 0;
-        transform: scale(1, 1);
-        transition: all 0.2s cubic-bezier(.72, .02, 1, .55);
-        animation-fill-mode: forwards;
-}
-   
-.headerLogo {
-    position: inherit;
+.logo {
+    position: absolute;
     top: 20px;
     cursor: pointer;
     font-size: 50px;
-    color: #253f39;
+    color: #fff;
+    text-shadow: 0 0 10px rgb(255 255 255 / 80%);
     font-family: 'Monsieur La Doulaise';
-    filter: drop-shadow(0 0 20px rgba(255, 187, 0, 0.4)) drop-shadow(0 0 10px rgba(255, 234, 112, 0.4)) drop-shadow(0 0 5px rgba(255, 238, 112, 0.4));
-    user-select:none;
+    user-select: none;
     z-index: 5;
 }
 
-.headerUser {
-    position: relative;
-    margin-top: -50px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    font-size: 20px;
-    font-family: 'yleeMortalHeartImmortalMemory', sans-serif;
-    justify-content: flex-end;
+
+.openMenu {
+    animation: fadeInWithScale 0.5s ease-out;
+    animation-fill-mode: forwards;
+    box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.05);
 }
-  
+
+.logoColor{
+    color: white;
+}
+
+.iconBox{
+    display: flex;
+    margin-right: 50px;
+}
+
+.searchBox{
+    margin-top: 30px;
+}
+
+.top{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: row-reverse;
+    margin-top: 30px;
+}
+
+.displayNone{
+    display: none;
+}
+
 .iconLink {
-    color: #253f39;
+    color: #fff;
+    margin-left: 20px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.homeBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 50px;
+}
+
+.homeLink{
+    color: #fff;
+    font-size: 20px;
+}
+
+.iconName{
+    margin-top: 5px;
     text-decoration: none;
+    font-size: 12px;
+}
+
+.hello{
+    position: absolute;
+    bottom: 10px;
 }
 
 .text {
     color: #253f39;
-    margin-left: 10px;
     font-size: 20px;
-    /* font-weight: bold; */
-}
-
-.openMenu .headerLogo {
+    font-family: 'yleeMortalHeartImmortalMemory';
     color: #fff;
-}
-
-.openMenu .iconLink {
-    color: #fff;
-}
-
-.openMenu .text {
-    color: #fff;
-}
-
-.wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 30px;
-    top: 100px;
-    width: 80%; 
-    margin-left: 10%;
-    margin-right: 10%;
 }
 
 .menu {
-    font-family: 'Pretendard-Regular';
+    font-family: 'GowunDodum-Regular';
     margin-bottom: 80px;
     display: flex;
     flex-direction: column;
@@ -124,49 +157,83 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
 }
 
 .headerSearchIcon {
-    color: #ffffff;
+    color: #797979;
     position: absolute;
     right: 0px;
-    font-size: 20px;
+    font-size: 15px;
+}
+
+.headerSearchInput:focus + .headerSearchIcon{
+    color: white;
 }
 
 .headerSearchInput {
-    background: none;
     border: none;
-    padding: 5px 25px;
+    padding: 5px 30px;
     padding-left: 0px;
-    font-size: 18px;
-    color: #ffff;
+    font-size: 15px;
+    color: #fff;
     outline: none;
-    border-bottom: 1px solid white;
-    width: 410px;
+    border-bottom: 1px solid #6d6d6d;
+    background: none;
+    width: 300px;
 }
 
-.headerSearchInput::placeholder {
-    white-space: nowrap;
+.headerSearchInput:focus{
+    border-bottom: 1px solid #fff;
+}
+
+.headerSearchInput:focus::placeholder {
+    color: white;
+}
+
+.menuBox{
+    position: relative;
+    width: 100%;
+    padding: 50px;
 }
 
 .headerMenu {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
     color: #ffff;
-    width: 735px;
+    width: 100%;
 }
 
-.headerMenu dt {
+.itemBox{
     font-size: 22px;
     margin-bottom: 10px;
 }
   
-.headerMenu div {
-    margin-bottom: 15px;
+.headerMenu div:nth-child(1) {
+    margin-bottom: 50px;
 }
 
-.headerMenu dt .dtLink {
+.linkCategoryBox, .linkCSBox{
+    position: absolute;
+    left: 260px;
+    border-radius: 15px;
+    box-sizing: content-box;
+    display: flex;
+    margin-right: 50px;
+    flex-wrap: wrap;
+    animation: nones 0.5s ease-out;
+    animation-fill-mode: forwards;
+}
+
+.linkCategoryBox{
+    top: 50px; 
+}
+
+.linkCSBox{
+    top:175px
+}
+
+.linkName {
     color: white;
     text-decoration: none;
     cursor: pointer;
@@ -174,37 +241,54 @@ body {
 
 .headerMenu dd {
     font-size: 15px;
-    padding-bottom: 8px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    display: flex;
 }
   
 .headerMenu dd .menuLink {
     color: white;
     text-decoration: none;
-    padding: 2px;
+    padding: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .headerMenu dd .menuLink:hover {
     background-color: #fff6f654;
+    border-radius: 5px;
     transition: background-color 0.2s ease-in-out;
 }
 
 .headerMenu dd:not(:last-child) {
-    border-bottom: 1px solid #fff;
-    margin-bottom: 8px;
+    /* border-bottom: 1px solid #fff;
+    margin-bottom: 8px; */
 }
 
 .headerMenu dd:last-child {
-    border-bottom: 1px solid #fff;
-    margin-bottom: 28px;
+    /* border-bottom: 1px solid #fff;
+    margin-bottom: 28px; */
 }
 
-  @keyframes fadeInWithScale {
-    from {
-      opacity: 0;
+@keyframes nones {
+    from{
+        opacity: 0;
+    }to{
+        opacity: 1;
     }
-    to {
-      opacity: 1;
-      background-color: #253f39;
+}
+
+@keyframes fadeInWithScale {
+    0% {
+        opacity: 0;
+        width: 100px;
+        height: 50px;
+    }
+    100% {
+        opacity: 1;
+        background-color: white;
+        width: 900px;
+        height: 500px;
     }
 }
 

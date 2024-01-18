@@ -1,85 +1,33 @@
-import React, { useState, useEffect } from "react"
-
+import { useState, useEffect, } from "react"
+import { useParams } from "react-router-dom";
 import axios from "axios";
-
 import styles from "../css/order.module.css";
-
-import { config } from '@fortawesome/fontawesome-svg-core'
-
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import Loading from "../item/Loading";
+
 
 export default function Order() {
+    const [isLoading, setIsLoading] = useState<boolean>(true)
+
+    // const userInfo = useAppSelector((state) => state.signin);
 
     const [orderList, setOrderList] = useState<any[]>([])
-    const [id, setId] = useState<Number | null>(null)
 
-    // const orderList = [
-    //     {
-    //         id: 1,
-    //         name: 'Product 1',
-    //         image: 'image-url-1',
-    //         sale: false,
-    //         price: 2000,
-    //         color: "브라운",
-    //         date: "2023.11.15",
-    //         orderNumber: 111111
-    //     },
-    //     {
-    //         id: 2,
-    //         name: 'Product 2',
-    //         image: 'image-url-2',
-    //         sale: false,
-    //         price: 30000,
-    //         color: "레드",
-    //         date: "2023.11.15",
-    //         orderNumber: 111111
-    //     },
-    //     {
-    //         id: 3,
-    //         name: 'Product 3',
-    //         image: 'image-url-3',
-    //         sale: false,
-    //         price: 59000,
-    //         color: "브라운",
-    //         date: "2023.11.14",
-    //         orderNumber: 222222
-    //     },
-    //     {
-    //         id: 4,
-    //         name: 'Product 4',
-    //         image: 'image-url-4',
-    //         sale: false,
-    //         price: 192000,
-    //         color: "블랙",
-    //         date: "2023.11.13",
-    //         orderNumber: 333333
-    //     },
-    //     {
-    //         id: 5,
-    //         name: 'Product 5',
-    //         image: 'image-url-5',
-    //         sale: true,
-    //         price: 1500000,
-    //         color: "화이트",
-    //         date: "2023.11.13",
-    //         orderNumber: 444444
-    //     },
-    // ]
-
+    const { id } = useParams<{ id: string }>();
+    console.log('현재 주문 ID:', id);
     useEffect(() => {
         const orderData = async () => {
-
             try {
-
+                setIsLoading(false)
                 const res = await axios({
                     method: "get",
-                    url: `http://localhost:8000/order`,
+                    url: `${import.meta.env.VITE_ADDRESS}/order/${id}`,
                 });
                 console.log('useEffect running')
 
                 setOrderList(res.data);
                 console.log(res.data)
-
+                setIsLoading(true)
 
             } catch (error) {
                 console.log(error);
@@ -93,65 +41,128 @@ export default function Order() {
 
 
     const reBuy = (id: number) => {
-        window.location.href = `http://localhost:3000/product/${id}`
+        window.location.href = `/product/${id}`
     }
+
+    const orderCancel = async (id: string) => {
+        if (confirm(`${id}번 주문을 취소하시겠습니까?`)) {
+            const res = await axios({
+                method: "delete",
+                url: `${import.meta.env.VITE_ADDRESS}/order/cancel`,
+                data: {
+                    id
+                }
+            })
+            console.log(res.data)
+            alert("주문이 취소되었습니다")
+            window.location.href = "/profile"
+        }
+    }
+
+    // 날짜별로 그룹화
+    const ordersByDate: { [key: string]: typeof orderList } = {};
+
+
+    orderList.forEach((order) => {
+        if (!ordersByDate[order.id]) {
+            ordersByDate[order.id] = [];
+        }
+        ordersByDate[order.id].push(order);
+    });
 
     return (
         <>
+
             <div className={styles.top}></div>
+            {isLoading ? <></> : <Loading />}
             <div className={styles.bodys}>
                 <div className={styles.container}>
-                    <div className={styles.orderList}>
-                        <h1>주문내역</h1>
+
+                    <div className={styles.orderList}>주문내역</div>
+
+                    <div className={styles.containerBox}>
+
+                        {Object.entries(ordersByDate).map(([id, orders]) => {
+                            const date = orders[0].create_date.split("T");
+                            const newDate = date[0];
+                            const amount = orders[0].amount
+                            const commaAmount = amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+                            console.log(orders.length)
+
+                            return (
+                                <div key={id} className={styles.map}>
+
+
+                                    <div className={styles.map}>
+                                        <hr className={styles.titleHr} />
+                                        <div>
+                                            <div className={styles.headerInfo}>
+                                                <div>
+                                                    <div className={styles.id}>{`${newDate}`}
+                                                        <span className={styles.date}>주문번호 : {id}</span>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <button className={styles.cancelBtn} onClick={() => orderCancel(id)}>주문 취소</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {orders.map((order) => (
+                                            <div key={order.id} className={styles.map2}>
+
+                                                <div className={styles.imgContainer} >
+
+                                                    <img src={order.goods_id.image} className={styles.img} alt="상품 이미지"></img>
+                                                    <button onClick={() => reBuy(order.goods_id.id)} className={styles.reBuy}>재구매</button>
+                                                </div>
+                                                <div className={styles.space}></div>
+                                                <div className={styles.productInfoContainer}>
+                                                    <div className={styles.topInfo}>
+
+                                                        <div className={styles.productName}> {order.goods_id.name} </div>
+                                                        <div className={styles.productColor} > {order.goods_id.color}</div>
+
+                                                    </div>
+                                                    <div className={styles.botInfo}>
+
+                                                        <div className={styles.Pp}>
+                                                            <span className={styles.price}>상품가격 </span><span className={styles.paymentPrice}>{Number(order.price) * Number(order.goods_count)} 원</span>
+                                                        </div>
+                                                        <div className={styles.Pc}>
+                                                            <div className={styles.productCount}>수량</div><div className={styles.productCountText}>{order.goods_count} 개</div>
+                                                        </div>
+                                                        <div className={styles.priceAndDelivery}>
+
+                                                            <div className={styles.Pd}>
+                                                                <span className={styles.delivery}>배송지</span><span className={styles.deliveryText}>{order.address} </span>
+                                                            </div>
+                                                            <div className={styles.Ps}>
+                                                                <span className={styles.deliveryStatus}>배송상태</span>
+                                                                {order.delivery_status === "배송전" ?
+                                                                    <span className={styles.deliveryStatusText}>{order.delivery_status}</span>
+                                                                    :
+                                                                    <span className={styles.deliveryStatusText2}>{order.delivery_status}</span>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                            </div>
+                                        ))}
+                                        <div className={styles.total}>
+                                            <div className={styles.totalHr}>
+                                                총 결제 금액 : {commaAmount} 원
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })}
                     </div>
-                    {orderList.map((order, index) => {
-
-                        const date = order.create_date
-                        const newDate = date.split("T")
-                        console.log(newDate[0])
-                        const newTime = newDate[1].split(".")
-
-                        return (
-                            <div className={styles.mainContainer}>
-                                <div key={order.id} className={styles.orderContainer}>
-
-                                    <div className={styles.orderNumber}>
-                                        <span >{newDate[0]}</span> <span>{newTime[0]}</span>
-                                        <span>  주문번호 {order.id}</span>
-
-                                    </div>
-
-                                    <div className={styles.imgContainer} >
-                                        <img src="" className={styles.img} alt="상품 이미지"></img>
-                                        <div><button onClick={() => reBuy(order.goods_id)} className={styles.reBuy}>재구매</button></div>
-                                    </div>
-
-                                    <div className={styles.infoContainer}>
-                                        <div>
-                                            <span className={styles.productName}> 제품명 {order.delivery_memo} </span>
-                                            <span className={styles.productColor} > 색상 {order.payment_type}</span>
-                                        </div>
-                                        <h2>{order.price}원</h2>
-                                        <span className={styles.productCount}>수량</span><span> {order.goods_count}</span><br />
-                                        <span className={styles.delivery}>배송지</span><span> {order.address}</span>
-                                        <div>
-                                            <span className={styles.price}>결제금액 </span><span className={styles.paymentPrice}> {Number(order.price) * Number(order.goods_count)}</span><br />
-
-                                            <span className={styles.deliveryStatus}>배송상태 {order.delivery_status}</span>
-
-                                        </div>
-                                        <div className={styles.cancle}>
-                                            <button>주문 취소(위치고민중)</button>
-                                        </div>
-                                    </div>
-                                    <hr className={styles.hr} />
-                                </div >
-                            </div>
-                        )
-
-                    })}
                 </div>
-            </div >
+            </div>
         </>
     )
 }

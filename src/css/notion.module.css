@@ -1,15 +1,8 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .notionContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color:#253f39;
     padding-top: 100px;
 }
 
@@ -22,17 +15,19 @@
     border-radius: 7px;
     padding: 50px;
     width: 700px;
+    padding-bottom: 75px;
+    padding-top: 75px;
 }
 
 .notionWrapper {
-    border: 3px solid #253f39;
-    border-radius: 7px;
+    border: 2px solid #253f39;
+    border-radius: 5px;
     padding: 16px;
     width: 600px;
 }
 
 .notionTitle {
-    font-size: 30px;
+    font-size: 25px;
     margin-bottom: 20px;
 }
 
@@ -42,11 +37,12 @@
     align-items: center;
     background-color: #253f39;
     color: white;
-    border-radius: 7px;
+    border-radius: 5px;
     width: 565px;
     height: 50px;
     padding: 16px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .notionBox2Wrapper {
@@ -56,10 +52,10 @@
     align-items: center;
     background-color: white;
     width: 565px;
-    height: 300px;
+    height: fit-content;
     margin-bottom: 10px;
     border: 1px solid #253f39;
-    border-radius: 7px;
+    border-radius: 5px;
 }
 
 .notionBox2 {
@@ -74,10 +70,12 @@
     height: 50px;
     padding: 16px;
     color: white;
+    cursor: pointer;
 }
 
 .notionBtn {
     cursor: pointer;
+    transition: all 0.3s;
 }
 
 .notionBtn:hover {
@@ -88,13 +86,15 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    height: 300px;
+    height: auto;
     gap: 10px;
+    margin-bottom: 10px;
+    width: 100%;
 }
 
 .notionDaterWrapper {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     padding-right: 10px;
@@ -103,7 +103,9 @@
 
 .notionInfor {
     padding-left: 10px;
-    width: 100%;
+    padding-right: 10px;
     height: auto;
     word-break:break-all;
+    line-height: 2;
+    white-space: pre-line;
 }

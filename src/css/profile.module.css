@@ -1,0 +1,313 @@
+.bodys {
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    position: relative;
+    background-color: white;
+    margin-top: 50px;
+    border-radius: 7px;
+    width: 750px;
+    padding: 30px;
+    padding-top: 50px;
+    margin-bottom: 30px;
+}
+
+
+.infoBox {
+    width: auto;
+    padding: 20px;
+    color: white;
+    background-color: #253f39;
+    border-radius: 5px;
+}
+
+.infoTitle {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.inforHello{
+    font-size: 35px;
+}
+
+.individualBox{
+    background-color: white;
+    padding: 10px;
+}
+
+.indivHeaderBox{
+    display: flex;
+    border-bottom: 1px solid #e5e5e5;
+    color: black;
+    font-size: 15px;
+    padding-bottom: 5px;
+}
+
+.inforUseridHeader{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}
+
+.inforUserNameHeader{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.inforUserPointHeader{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}
+
+.indivBodyBox{
+    display: flex;
+    color: #000;
+    margin-top: 10px;
+}
+
+.inforUserid{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}
+
+.inforUserName{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.inforUserPoint{
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}
+
+.btnFlex {
+    display: flex;
+    justify-content: end;
+}
+
+.editBtn {
+    cursor: pointer;
+    color: white;
+    background-color: #253f39;
+    border-radius: 25px;
+    margin: 10px 0 10px 0;
+    padding: 5px 10px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.orderListContainer {
+    /* width: auto; */
+    color: white;
+    background-color: #253f39;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+.orderTitle {
+    padding: 20px 0 10px 20px;
+    font-size: 20px;
+}
+
+.orderListBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 0px;
+}
+
+.whiteBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* height: auto; */
+    background-color: white;
+    color: black;
+    padding: 10px;
+    width: 100%;
+}
+
+.orderHr {
+    width: 100%;
+    border: 1px solid #e5e5e5;
+}
+
+.orderBoxHeader{
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 15px;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 33.3%;
+    margin: 6px 0 6px 0;
+}
+
+.orderText {
+    cursor: pointer;
+}
+
+.orderText:hover {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+
+.addressContainer {
+    width: auto;
+    color: white;
+    background-color: #253f39;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+.addressTitle {
+    padding: 20px 0 20px 20px;
+    font-size: 20px;
+    padding-bottom: 0px;
+}
+
+.addressBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 10px;
+}
+
+.whiteBox2 {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    flex-direction: column;
+}
+
+.addressItem{
+    display: flex;
+    border-bottom: 2px dashed #e5e5e5;
+    padding: 10px;
+    align-items: center;
+}
+
+.homeIcon{
+    margin-right: 10px;
+}
+
+.addressName{
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.address{
+    font-size: 18px;
+}
+
+.askTitle {
+    padding: 20px 0 10px 20px;
+    font-size: 20px;
+}
+
+.couponContainer {
+    width: auto;
+    padding: 20px;
+    color: white;
+    background-color: #253f39;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+.couponFlex {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.couponBox {
+    position: relative;
+    color: black;
+    background-color: white;
+    width: 200px;
+    height: 110px;
+    margin: 15px;
+    border-radius: 10px;
+    border: solid 1px;
+    margin-left: 0px;
+}
+
+.couponTitleBox{
+    display: flex;
+    align-items: center;
+}
+
+.couponTitle{
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.couponIndex {
+    padding: 2px 10px;
+    background-color: #ffd859;
+    border-radius: 25px;
+}
+
+.coupon1 {
+    position: absolute;
+    top: 40px;
+    left: 93.5%;
+    width: 35px;
+    height: 35px;
+    background-color: #253f39;
+    border-radius: 100px;
+}
+
+.couponName {
+    margin: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #253f39;
+}
+
+.couponDis {
+    margin: 10px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.dis {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.couponHr {
+    width: calc(100% - 20px);
+    margin-left: 10px;
+}
+
+.couponDate {
+    font-size: 14px;
+    margin-left: 10px;
+    margin-top: 5px;
+}
