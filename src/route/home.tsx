@@ -1,4 +1,4 @@
-import React, { useState, useEffect, CSSProperties } from 'react';
+import React, { useState, useEffect, CSSProperties, MouseEvent } from 'react';
 import homeStyles from '../css/home.module.css';
 
 type SlideImage = string[];
