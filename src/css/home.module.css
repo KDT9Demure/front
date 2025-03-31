@@ -99,7 +99,9 @@ body {
 }
 
 .brandSlideImg {
-    width: 291px;
+    width: 350px;
+    height: 500px;
+    object-fit: cover;
     border-radius: 20px;
     border-style: none;
     margin-right: 30px;
