@@ -8,13 +8,13 @@ import { useAppSelector } from "../hook";
 import Loading from "../item/Loading";
 
 
-function OneQna({ que, anw, anw1 }: { que: string, anw: string, anw1: string }) {
+function OneQna({ title, answer, detail }: { title: string, answer: string, detail: string }) {
   const [visible, setVisible] = useState<boolean>(true);
 
   return (
     visible ?
       (<div className={styles.qnaBox} onClick={() => setVisible(false)}>
-        <div>{que}</div>
+        <div>{title}</div>
         <div className={styles.qnaBtn}>
           <FontAwesomeIcon icon={faCaretDown} />
         </div>
@@ -22,12 +22,12 @@ function OneQna({ que, anw, anw1 }: { que: string, anw: string, anw1: string }) 
 
       (<div className={styles.qnaBox2Wrapper}>
         <div className={styles.qnaBox2} onClick={() => setVisible(true)} >
-          <div>{que}</div>
+          <div>{title}</div>
           <div className={styles.qnaBtn}><FontAwesomeIcon icon={faCaretUp} /></div>
         </div>
         <div className={styles.qnaInforBox}>
-          <div className={styles.qnaInfor}>{anw}</div>
-          <div className={styles.qnaInfor2}>{anw1}</div>
+          <div className={styles.qnaInfor}>{answer}</div>
+          <div className={styles.qnaInfor2}>{detail}</div>
         </div>
       </div>)
   )
@@ -42,7 +42,7 @@ function PatchBox({ comment, patch, setPatch }: { comment: any, patch: boolean, 
   const Patch = async () => {
     const res = await axios({
       method: "patch",
-      url: `${import.meta.env.VITE_ADDRESS}/question/update`,
+      url: `${import.meta.env.VITE_ADDRESS}/titlestion/update`,
       data: {
         id: comment?.id,
         title,
@@ -85,7 +85,7 @@ function Inquire({ comment, userData }: { comment: any, userData: any[] | any })
       }
       const res = await axios({
         method: "delete",
-        url: `${import.meta.env.VITE_ADDRESS}/question/delete`,
+        url: `${import.meta.env.VITE_ADDRESS}/titlestion/delete`,
         data: {
           id: comment.id
         }
@@ -101,9 +101,9 @@ function Inquire({ comment, userData }: { comment: any, userData: any[] | any })
 
     const res = await axios({
       method: "post",
-      url: `${import.meta.env.VITE_ADDRESS}/question/answer`,
+      url: `${import.meta.env.VITE_ADDRESS}/titlestion/answer`,
       data: {
-        question_id: comment.id,
+        titlestion_id: comment.id,
         content: Answer
       }
     })
@@ -184,19 +184,32 @@ export default function QnA() {
   const userData = useAppSelector((state) => state.signin);
 
   const getData = async () => {
-    const res = await axios({
-      method: "get",
-      url: `${import.meta.env.VITE_ADDRESS}/question/load`,
-    })
-    return res
+    try {
+      const res = await axios({
+        method: "get",
+        url: `${import.meta.env.VITE_ADDRESS}/titlestion/load`,
+      })
+      return res
+    } catch (e) {
+      return null;
+    }
   }
 
   useEffect(() => {
     setIsLoading(false);
     const datas = async () => {
       const res = await getData();
-      setComments(res.data);
-      setIsLoading(true);
+      if (res) {
+        setComments(res.data);
+        setIsLoading(true);
+      } else {
+        setComments([{
+          title: '임시테스트',
+          answer: '임시문의내용',
+          detail: '임시문의내용2'
+        }]);
+        setIsLoading(true);
+      }
     }
     datas();
   }, []);
@@ -205,7 +218,7 @@ export default function QnA() {
 
     const res = await axios({
       method: "post",
-      url: `${import.meta.env.VITE_ADDRESS}/question/write`,
+      url: `${import.meta.env.VITE_ADDRESS}/titlestion/write`,
       data: {
         title,
         content,
@@ -225,33 +238,17 @@ export default function QnA() {
         <div className={styles.qnaWrapper}>
           <div className={styles.qnaTitle}>자주 묻는 질문</div>
           <div className={styles.qnaName}></div>
-          <OneQna que="배송은 언제 오나요?"
-            anw="[배송일정]"
-            anw1="마이페이지에서 배송관련 정보를 볼 수 있습니다.
-                            배송은 주문 일 기준으로 하루 뒤 발송시작되며 배송이 시작 된 이후로는 택배사에 문의하셔야 합니다." />
-          <OneQna que="상품을 교환/반품하고 싶어요."
-            anw="[교환/반품/환불 신청 기간]"
-            anw1="교환/반품/환불은 배송 완료 후 7일 이내에 가능합니다.
-                            고객님이 받으신 상품의 내용이 표시 광고 및 계약 내용과 다른 경우 상품을 수령하신 날로부터 3개월 이내, 그 사실을 안 날(알 수 있었던 날)부터 30일 이내에 신청이 가능합니다."/>
-          <OneQna que="주문취소를 하고 싶어요."
-            anw="[주문취소방법]"
-            anw1="주문취소는 로그인을 하신 후 마이페이지에 들어가셔서 최근 주문 내역에서 하실 수 있습니다.
-                            주문을 취소하심과 동시에 환불과정이 진행되며 구매하시며 받으신 포인트가 회수되오니 참고 부탁드립니다."/>
-          <OneQna que="회원정보 수정은 어떻게 하나요?"
-            anw="[회원정보 수정방법]"
-            anw1="회원정보 수정은 로그인한 상태에서 마이페이지에서 가능합니다.
-                            회원정보 수정란에서 이름과 비밀번호를 수정하실 수 있습니다." />
-          <OneQna que="회원탈퇴는 어떻게 하나요?"
-            anw="[회원탈퇴방법]"
-            anw1="회원탈퇴는 로그인한 상태에서 회원님께서 직접 진행해야 합니다.
-                            회원탈퇴는 마이페이지에서 가능하며 탈퇴한 뒤에는 아이디 및 데이터를 복구할 수 없으니 신중히 진행하세요." />
-          <OneQna que="배송 받은 상품이 파손/누락 되었어요."
-            anw="[상품 파손/누락]"
-            anw1="상품이 파손 및 누락되었다면 교환을 통해 상품을 다시 받거나 반품하고 환불을 받으실 수 있습니다." />
-          <OneQna que="포인트 확인/사용은 어디서 하나요?"
-            anw="[포인트 확인 및 사용방법]"
-            anw1="고객님의 포인트 확인은 마이페이지에서 가능합니다.
-                            포인트는 최종 결제금액의 5%로 적립되며 결제페이지에서 포인트를 사용하실 수 있습니다." />
+          {
+            data.map((v, i) => {
+              return (
+                <OneQna
+                  key={i}
+                  title={v.title}
+                  answer={v.answer}
+                  detail={v.detail} />
+              )
+            })
+          }
         </div>
         <div className={styles.inquireWrapper}>
           <div className={styles.inquireHeaderTitle}>1:1 문의</div>
@@ -276,3 +273,67 @@ export default function QnA() {
   )
 
 }
+
+type QNAProps = {
+  title: string;
+  answer: string;
+  detail: string;
+}
+
+const data: QNAProps[] = [
+  {
+    title: '배송은 언제 오나요?',
+    answer: '[배송일정]',
+    detail: `
+      마이페이지에서 배송관련 정보를 볼 수 있습니다.
+      배송은 주문 일 기준으로 하루 뒤 발송시작되며 배송이 시작 된 이후로는 택배사에 문의하셔야 합니다.
+    `,
+  },
+  {
+    title: '상품을 교환/반품하고 싶어요.',
+    answer: '[교환/반품/환불 신청 기간]',
+    detail: `
+      교환/반품/환불은 배송 완료 후 7일 이내에 가능합니다.
+      고객님이 받으신 상품의 내용이 표시 광고 및 계약 내용과 다른 경우 상품을 수령하신 날로부터 3개월 이내, 그 사실을 안 날(알 수 있었던 날)부터 30일 이내에 신청이 가능합니다.
+    `,
+  },
+  {
+    title: '주문취소를 하고 싶어요.',
+    answer: '[주문취소방법]',
+    detail: `
+      주문취소는 로그인을 하신 후 마이페이지에 들어가셔서 최근 주문 내역에서 하실 수 있습니다.
+      주문을 취소하심과 동시에 환불과정이 진행되며 구매하시며 받으신 포인트가 회수되오니 참고 부탁드립니다.
+    `,
+  },
+  {
+    title: '회원정보 수정은 어떻게 하나요?',
+    answer: '[회원정보 수정방법]',
+    detail: `
+      회원정보 수정은 로그인한 상태에서 마이페이지에서 가능합니다.
+      회원정보 수정란에서 이름과 비밀번호를 수정하실 수 있습니다.
+    `,
+  },
+  {
+    title: '회원탈퇴는 어떻게 하나요?',
+    answer: '[회원탈퇴방법]',
+    detail: `
+      회원탈퇴는 로그인한 상태에서 회원님께서 직접 진행해야 합니다.
+      회원탈퇴는 마이페이지에서 가능하며 탈퇴한 뒤에는 아이디 및 데이터를 복구할 수 없으니 신중히 진행하세요.
+    `,
+  },
+  {
+    title: '배송 받은 상품이 파손/누락 되었어요.',
+    answer: '[상품 파손/누락]',
+    detail: `
+      상품이 파손 및 누락되었다면 교환을 통해 상품을 다시 받거나 반품하고 환불을 받으실 수 있습니다.
+    `,
+  },
+  {
+    title: '포인트 확인/사용은 어디서 하나요?',
+    answer: '[포인트 확인 및 사용방법]',
+    detail: `
+      고객님의 포인트 확인은 마이페이지에서 가능합니다.
+      포인트는 최종 결제금액의 5%로 적립되며 결제페이지에서 포인트를 사용하실 수 있습니다.
+    `,
+  }
+]

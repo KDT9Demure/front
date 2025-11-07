@@ -23,9 +23,6 @@ import Exhibition from './route/Exhibition';
 import Exhibition2 from './route/Exhibition2';
 import QnA from './route/qna';
 
-
-
-
 const router = createBrowserRouter([
   {
     path: "/",
