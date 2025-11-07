@@ -1,4 +1,3 @@
-import React from 'react'
 import Header from './nav/header'
 import Footer from './nav/footer';
 import { Outlet } from 'react-router-dom';
@@ -11,21 +10,21 @@ import Chatbot from './route/Chatbot';
 
 function App() {
 
-    let persistor = persistStore(store);
+  let persistor = persistStore(store);
 
-    return (
-        <>
-            <Provider store={store}>
-                <PersistGate loading={null} persistor={persistor}>
-                    <Token />
-                    <Header />
-                    <Outlet />
-                    <Chatbot />
-                    <Footer />
-                </PersistGate>
-            </Provider>
-        </>
-    )
+  return (
+    <>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Token />
+          <Header />
+          <Outlet />
+          <Chatbot />
+          <Footer />
+        </PersistGate>
+      </Provider>
+    </>
+  )
 }
 
 export default App;
