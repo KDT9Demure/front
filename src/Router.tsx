@@ -8,7 +8,6 @@ import Signup from './route/signup';
 import Product from './route/product';
 import List from './route/list';
 import Cart from './route/cart';
-import QnA from './route/qna';
 import Search from './route/search';
 import Order from './route/order';
 import Notice from './route/Notice';
@@ -22,6 +21,7 @@ import FindPw from './route/FindPw';
 import ChristmasCoupon from './event/ChristmasCoupon';
 import Exhibition from './route/Exhibition';
 import Exhibition2 from './route/Exhibition2';
+import QnA from './route/qna';
 
 
 
