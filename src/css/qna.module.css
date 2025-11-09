@@ -74,15 +74,6 @@
     cursor: pointer;
 }
 
-.qnaBtn {
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.qnaBtn:hover {
-    scale: 1.2;
-}
-
 .qnaInforBox {
     display: flex;
     flex-direction: column;
@@ -123,11 +114,12 @@
     margin-bottom: 10px;
     cursor: pointer;
     transition: all 0.3s;
+    position: relative;
 }
 
-.inquireBox:hover {
+/* .inquireBox:hover {
     transform: scale(1.02);
-}
+} */
 
 .inquireResponse {
     display: flex;
@@ -187,7 +179,8 @@
 .inquireMainTitle {
     display: flex;
     justify-content: flex-start;
-    font-size: 18px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 .inquireMainBtnWrapper {
@@ -227,9 +220,9 @@
     transition: all 0.3s;
 }
 
-.openAnswerBtn:hover, .closeAnswerBtn:hover {
+/* .openAnswerBtn:hover, .closeAnswerBtn:hover {
     scale: 1.1;
-}
+} */
 
 .inquirMainBtnWrapper {
     display: flex;
@@ -258,13 +251,13 @@
     cursor: pointer;
 }
 
-.inquireMainBtnOff:hover {
+/* .inquireMainBtnOff:hover {
     scale: 1.2;
-}
+} */
 
-.inquireMainPatch:hover, .inquireMainBtnDelete:hover {
+/* .inquireMainPatch:hover, .inquireMainBtnDelete:hover {
     scale: 1.1;
-}
+} */
 
 .inquireMainBtn {
     border-radius: 5px;
@@ -276,9 +269,9 @@
     width: 80px;
 }
 
-.inquireMainBtn:hover {
+/* .inquireMainBtn:hover {
     scale:1.1;
-}
+} */
 
 .inquireMainAnswerWrapper {
     border-top: 1px solid white ;
@@ -389,9 +382,9 @@
     transition: all 0.3s;
 }
 
-.answerRegisterBtn:hover {
+/* .answerRegisterBtn:hover {
     scale:1.1;
-}
+} */
 
 /* 수정 */
 .patchBox {
@@ -470,6 +463,6 @@
 }
 
 
-.patchRegisterBtn:hover, .patchCancelBtn:hover {
+/* .patchRegisterBtn:hover, .patchCancelBtn:hover {
     scale:1.1;
-}
+} */

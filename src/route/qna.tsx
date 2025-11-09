@@ -33,7 +33,7 @@ function OneQna({ title, answer, detail }: { title: string, answer: string, deta
   )
 }
 
-function PatchBox({ comment, patch, setPatch }: { comment: any, patch: boolean, setPatch: any }) {
+function PatchBox({ comment, setPatch }: { comment: any, patch: boolean, setPatch: any }) {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [secret, setSecret] = useState<boolean>(false);
@@ -140,11 +140,10 @@ function Inquire({ comment, userData }: { comment: any, userData: any[] | any })
 
       (<div className={styles.inquireMainBox}>
         <div className={styles.inquireMainHeader}>
-          <div className={styles.inquireMainTitle}>{comment.title}</div>
+          <div className={styles.inquireMainTitle} onClick={() => setVisible(true)}>{comment.title}</div>
           <div className={styles.inquireMainBtnWrapper}>
             {(comment.user_id === userData.user_id) && <button className={styles.inquireMainPatch} onClick={() => setPatch(true)}>수정</button>}
             {(comment.user_id === userData.user_id) && <button className={styles.inquireMainBtnDelete} onClick={Delete}>삭제</button>}
-            <div><FontAwesomeIcon className={styles.inquireMainBtnOff} icon={faCaretUp} onClick={() => setVisible(true)} /></div>
           </div>
         </div>
         {patch && <PatchBox comment={comment} patch={patch} setPatch={setPatch} />}
@@ -205,8 +204,7 @@ export default function QnA() {
       } else {
         setComments([{
           title: '임시테스트',
-          answer: '임시문의내용',
-          detail: '임시문의내용2'
+          content: '임시문의내용2',
         }]);
         setIsLoading(true);
       }
@@ -215,6 +213,12 @@ export default function QnA() {
   }, []);
 
   const register = async () => {
+
+    // 프론트 배포용 임시 코드
+    if (true) {
+      alert("서버와 연결되어 있지 않습니다.");
+      return;
+    }
 
     const res = await axios({
       method: "post",
