@@ -13,22 +13,19 @@
     align-items: center;
     background-color: white;
     border-radius: 5px;
-    padding: 16px;
+    padding: 60px 50px;
     width: 700px;
-    padding-top: 75px;
-    padding-bottom: 75px;
 }
 
 .qnaWrapper {
-    border: 2px solid #253f39;
     border-radius: 5px;
-    margin-bottom: 70px;
-    padding: 16px;
-    width: 600px;
+    margin-bottom: 50px;
+    width: 100%;
 }
 
 .qnaTitle, .inquireHeaderTitle {
-    font-size: 25px;
+    font-size: 28px;
+    font-weight: 600;
     margin-bottom: 20px;
 }
 
@@ -43,7 +40,7 @@
     background-color: #253f39;
     color: white;
     border-radius: 5px;
-    width: 565px;
+    width: 100%;
     height: 50px;
     padding: 16px;
     margin-bottom: 10px;
@@ -56,7 +53,6 @@
     justify-content: space-between;
     align-items: center;
     background-color: white;
-    width: 565px;
     height: auto;
     margin-bottom: 10px;
     border: 1px solid #253f39;
@@ -69,22 +65,13 @@
     align-items: flex-start;
     background-color: #253f39;
     color: black;
-    border-top-right-radius: 7px;
-    border-top-left-radius: 7px;
-    width: 565px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    width: 100%;
     height: 50px;
     padding: 16px;
     color: white;
     cursor: pointer;
-}
-
-.qnaBtn {
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.qnaBtn:hover {
-    scale: 1.2;
 }
 
 .qnaInforBox {
@@ -106,14 +93,11 @@
 }
 
 .inquireWrapper {
-    border: 2px solid #253f39;
-    border-radius: 5px;
-    padding: 16px;
-    width: 600px;
+    width: 100%;
 }
 
 .inquireSearch {
-    width: 565px;
+    /* width: 565px; */
     margin-bottom: 10px;
 }
 
@@ -124,28 +108,31 @@
     background-color: #253f39;
     color: white;
     border-radius: 5px;
-    width: 565px;
+    width: 100%;
     height: 50px;
     padding: 16px;
     margin-bottom: 10px;
     cursor: pointer;
     transition: all 0.3s;
+    position: relative;
 }
 
-.inquireBox:hover {
+/* .inquireBox:hover {
     transform: scale(1.02);
-}
+} */
 
 .inquireResponse {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    font-size: 10px;
+    white-space: nowrap;
+    font-size: 13px;
+    padding: 2px 4px;
+    border-radius: 5px;
     color: black;
-    background-color: white;
+    background-color: #fff;
+    position: absolute;
+    left: 15px;
 }
 
 .inquireTitle {
@@ -175,7 +162,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 565px;
+    width: 100%;
+    /* width: 565px; */
     background-color: #253f39;
     border-radius: 5px;
     color: white;
@@ -185,22 +173,19 @@
 
 .inquireMainHeader {
     display: flex;
-    justify-content: space-between;
-    width: 565px;
-    
+    gap: 10px;
 }
 
 .inquireMainTitle {
     display: flex;
     justify-content: flex-start;
-    padding-left: 15px;
-    font-size: 18px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 .inquireMainBtnWrapper {
     display: flex;
     gap: 10px;
-    padding-right: 15px;
     align-items: center;
 }
 
@@ -235,9 +220,9 @@
     transition: all 0.3s;
 }
 
-.openAnswerBtn:hover, .closeAnswerBtn:hover {
+/* .openAnswerBtn:hover, .closeAnswerBtn:hover {
     scale: 1.1;
-}
+} */
 
 .inquirMainBtnWrapper {
     display: flex;
@@ -266,13 +251,13 @@
     cursor: pointer;
 }
 
-.inquireMainBtnOff:hover {
+/* .inquireMainBtnOff:hover {
     scale: 1.2;
-}
+} */
 
-.inquireMainPatch:hover, .inquireMainBtnDelete:hover {
+/* .inquireMainPatch:hover, .inquireMainBtnDelete:hover {
     scale: 1.1;
-}
+} */
 
 .inquireMainBtn {
     border-radius: 5px;
@@ -284,9 +269,9 @@
     width: 80px;
 }
 
-.inquireMainBtn:hover {
+/* .inquireMainBtn:hover {
     scale:1.1;
-}
+} */
 
 .inquireMainAnswerWrapper {
     border-top: 1px solid white ;
@@ -295,7 +280,8 @@
 .inquireMainAnswer {
     border-radius: 5px;
     margin-top: 20px;
-    width: 450px;
+    width: 100%;
+    /* width: 450px; */
     height: 100px;
     resize: none;
     outline: none;
@@ -336,12 +322,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 565px;
+    width: 100%;
     background-color: #253f39;
     border-radius: 5px;
     color: white;
     padding: 16px;
-    margin-top: 50px;
 }
 
 .answerTitle {
@@ -397,9 +382,9 @@
     transition: all 0.3s;
 }
 
-.answerRegisterBtn:hover {
+/* .answerRegisterBtn:hover {
     scale:1.1;
-}
+} */
 
 /* 수정 */
 .patchBox {
@@ -407,7 +392,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 565px;
+    width: 100%;
+    /* width: 565px; */
     background-color: #253f39;
     border-radius: 5px;
     color: white;
@@ -477,6 +463,6 @@
 }
 
 
-.patchRegisterBtn:hover, .patchCancelBtn:hover {
+/* .patchRegisterBtn:hover, .patchCancelBtn:hover {
     scale:1.1;
-}
+} */
